@@ -38,9 +38,9 @@ Ponkházi Barnabás, Nádas Tamás
 
 - Milyen programnyelveket használsz?
 
-Frontend programozás:
--PHP
--REST API
+Backend programozás:
+    -PHP
+    -REST API
 
 Frontend programozás:
     - HTML, CSS és JavaScript 
