@@ -116,11 +116,12 @@
 }
 
 .logo_nev{
+    padding-top: 13px;
     width: 41vw;
     height: 41vh;    
 }
 
 .nev{
     text-align: center;
-    font-size: 630%;
+    font-size: 5vw;
 }
