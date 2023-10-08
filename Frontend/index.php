@@ -4,38 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-        crossorigin="anonymous"></script>
-    <!-- Bootstrap CSS beillesztése (online CDN) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!-- Stíluslap -->
-    
-    <link rel="stylesheet" href="styles.css"> <!-- Ebben a fájlban van a saját CSS kódod -->
-    <link rel="shortcut icon" href="/Frontend/kepek/owl-47526.svg">
-    <!-- Oldal faviconjának beállítása -->
-    <title>MathMaster - Matematikai gyakorló feladatok</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <link rel="shortcut icon" href="img/owl-47526.svg">
+
+    <title>MathMaster</title>
 </head>
 
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-light bg-light">
             <a href="#" class="navbar-brand mb-0 h1">
-                <img class="MathMaster_Logo d-inline-block aling-top" src="/Frontend/kepek/owl-47526.svg" alt="MathMaster Logó">
-                MathMaster
+                <img class="MathMaster_Logo d-inline-block align-top" src="img/owl-47526.svg" alt="MathMaster Logó">
+                MathMaster 
             </a>
             <button class="navbar-toggler second-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent23" aria-controls="navbarSupportedContent23" aria-expanded="false" aria-label="Toggle navigation">
                 <div class="animated-icon2"><span></span><span></span><span></span><span></span></div>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent23">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Kezdőlap</a>
                     </li>
@@ -51,18 +43,73 @@
     </header>
 
     <div class="container">
+        <div class="row logo_row">
+            <div class="col-lg-12 text-center logo_nev">
+                <img src="/Frontend/img/owl-47526.svg" alt="MathMaster Logó">
+                <h1 class="nev">MathMaster</h1>
+            </div>
+        </div>
+        <div class="row tanulas_row">
+            <div class="col-lg-12 text-center">
+                <h3 class="tanulas">Kezdjünk neki a tanulásnak kis baglyocska!</h3>
+                <img class="mb-5 mt-3 educator" src="img/undraw_educator_re_ju471.svg" alt=""><br>
+            </div>
+        </div>
         <div class="row">
-            <div class="col-12 logo_nev">
-                <img src="/Frontend/kepek/owl-47526.svg" alt="MathMaster Logó">
-                <p class="nev">MathMaster</p>
+            <div class="col-lg-3">
+            </div>
+            <div class="col-lg-3 col-md-12 text-center">
+                <a href="html/1-2.html"><button class="btn btn-danger">1-2. osztály</button></a>
+            </div>
+            <div class="col-lg-3 col-md-12 text-center">
+                <a href="html/3-4.html"><button class="btn btn-danger">3-4. osztály</button></a>
+            </div>
+            <div class="col-lg-3">
+            </div>
+            <div class="col-lg-3">
+            </div>
+            <div class="col-lg-3 col-md-12 text-center">
+                <button class="btn btn-secondary" title="Jelenleg még nem elérhető">5-6. osztály</button>
+            </div>
+            <div class="col-lg-3 col-md-12 text-center">
+                <button class="btn btn-secondary" title="Jelenleg még nem elérhető">7-8. osztály</button>
+            </div>
+            <div class="col-lg-3">
+            </div>
+        </div>
+        <div class="row">
+            
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="rolunk_felirat">Rólunk:</h2>
+
+                <p class="rolunk">Üdvözöljük a MathMaster online platformján! Válassz minket, mert szenvedélyünk az oktatás, és ezt a rendkívül hasznos tanulási oldalt életre hoztuk azért, hogy segítsünk neked a matematika világában.</p>
+
+                <p class="rolunk">Tudjuk, hogy a matematika néha kihívást jelent, de mi itt vagyunk, hogy segítsünk neked.</p>
+
+                <button class="btn btn-secondary rolunk_btn" title="Jelenleg még nem elérhető">Tudj meg többet</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="kapcs">Kapcsolatok:</h2>
+
+                <p class="rolunk">Üdvözöljük a MathMaster gyakorló platformunkon! Itt vagyunk, hogy segítsünk, és várjuk észrevételeit, kérdéseit vagy javaslatait a szolgáltatásunkkal kapcsolatban.</p>
+
+                <p class="rolunk">Hogyan érhet el minket?
+                    Bármikor szívesen fogadjuk visszajelzéseit és észrevételeit. </p>
+
+                <button class="btn btn-secondary rolunk_btn" title="Jelenleg még nem elérhető">Kapcsolat felvétel</button>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap JavaScript és jQuery beillesztése (online CDN) -->
-    
-    <!-- A saját JavaScript kód hivatkozása (ez az, amivel aktiválod az ikon animációkat) -->
-    <script src="index.js"></script> <!-- Itt tárolhatod el a saját JavaScript kódodat -->
+    <footer>
+        &copy 2023 MathMaster
+    </footer>
+
+    <script src="js/index.js"></script>
 </body>
 
 </html>

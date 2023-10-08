@@ -18,9 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Felhasználónév módosítása
         $newUsername = $_POST['new-username'];
 
-        // Ellenőrizze az új felhasználónevet, például hossz és egyéb szabályok szerint
-        // ...
-
         // Frissítse az adatbázist
         $updateQuery = "UPDATE Users SET fnev = ? WHERE fnev = ?";
         $stmt = $db->prepare($updateQuery);
@@ -53,8 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (isset($_POST['update-password'])) {
         // Jelszó módosítása
         $newPassword = $_POST['new-password'];
-
-        // Ellenőrizze az új jelszót, például erősség és hossz szerint
 
         // Hashelje és sózza be az új jelszót
         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
