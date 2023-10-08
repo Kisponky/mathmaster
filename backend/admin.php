@@ -48,3 +48,4 @@ if (isset($_SESSION['user_fnev'])) {
 }
 // Adatbázis kapcsolat bezárása
 $db->close();
+?>
