@@ -19,9 +19,10 @@ if (isset($_SESSION['user_fnev'])) {
             }
 
             // Üzenet mentése a "contactUs" táblába
-            $sql = "INSERT INTO contactUs (Felhasznalonev, Email, Text) VALUES (?, ?, ?)";// + Beküldés idejének naplózása!
+            $sql = "INSERT INTO contactUs (felhasznaloId, text) VALUES (?, ?)";
             if ($stmt = $db->prepare($sql)) {
-                $stmt->bind_param("sss", $fnev, $email, $message);
+                $stmt->bind_param("is", $felhasznaloId, $message);
+                $felhasznaloId = $_SESSION['user_id'];
                 if ($stmt->execute()) {
                     echo "Az üzenet sikeresen elküldve!";
                     exit;
@@ -33,6 +34,7 @@ if (isset($_SESSION['user_fnev'])) {
                 echo "Hiba az SQL előkészítésekor: " . $db->error;
             }
 
+
             $db->close();
         } else {
             echo "Az üzenet mező kitöltése kötelező!";
@@ -42,27 +44,30 @@ if (isset($_SESSION['user_fnev'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kapcsolat</title>
 </head>
+
 <body>
     <?php
     if (isset($_SESSION['user_fnev'])) {
         // Ha be van jelentkezve, form űrlap megjelenítése:
-        ?>
+    ?>
         <h1>Küldj üzenetet a fejlesztőknek</h1>
         <form method="POST" action="">
             <label for="message">Üzenet:</label>
             <textarea id="message" name="message" rows="4" cols="50" required></textarea><br>
             <input type="submit" name="submit" value="Küldés">
         </form>
-        <?php
+    <?php
     } else {
         // Ha nincs bejelentkezve:
         echo "Kérjük, először jelentkezz be, hogy üzenetet küldj!";
     }
     ?>
 </body>
+
 </html>
