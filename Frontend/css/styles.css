@@ -104,68 +104,69 @@
     background-color: transparent;
 }
 
-.nav-item{
+.nav-item {
     text-align: center;
     color: black;
     font-weight: bold;
 }
 
-.container .logo_nev{
+.container .logo_nev {
     max-width: 1280px;
     margin: 0 auto;
 }
 
-.logo_row{
-    height: 91vh
+.logo_row {
+    height: max-content;
 }
 
-.logo_nev{
+.logo_nev {
     padding-top: 13px;
     width: 41vw;
-    height: 41vh;    
+    height: fit-content;
 }
 
-.nev{
+.nev {
     font-size: 6vw;
 }
 
-.tanulas_row{
+.tanulas_row {
     height: 53vh;
 }
 
-.tanulas{
+.tanulas {
     padding-top: 25px;
     font-size: 2.3rem;
 }
 
-.educator{
+.educator {
     width: 70%;
     height: 50%;
 }
-
+/*
 .btn {
     margin-top: 10px;
     margin-bottom: 13px;
     margin-left: 20px;
-    width: 15vw;
-    height: 13vh;
-    font-size: 2.5vw;
+    /*width: 15vw;
+    /*height: 13vh;*/
+    font-size: 1.5vw;
+    padding: 2vw;
 }
-
-.rolunk_felirat{
+*/
+.rolunk_felirat {
     font-size: 2.5vw;
     text-align: left;
     padding: 8vh 10vw 0 10vw;
 }
 
-.rolunk{
+.rolunk {
     font-size: 1.7vw;
     text-indent: 1.5vw;
     text-align: left;
     padding: 0 10vw;
 }
 
-.rolunk_btn{
+.rolunk_btn {
     float: left;
     margin: 0 11vw 1.5vh 11vw;
     width: 11vw;
@@ -173,19 +174,142 @@
     font-size: 1.2vw;
 }
 
-.kapcs{
+.kapcs {
     font-size: 2.5vw;
     text-align: left;
     padding: 3.5vh 10vw 0 10vw;
 }
 
-footer{
+footer {
     background-color: #666;
     color: white;
     text-align: center;
+    margin-top: 3vh;
+    padding: 2vh;
+    font-size: 1.2vw;
 }
 
+@media screen and (max-width: 540px) {
 
-@media screen and (min-width: 400px) {
-    
+
 }
+@media screen and (min-width: 2560px) {
+    .navbar {
+        padding-right: 17px;
+    }
+
+    .navbar-brand {
+        margin-left: 17px;
+        font-size: 295%;
+        font-weight: bold;
+    }
+
+    .MathMaster_Logo {
+        width: 83px;
+        height: 83px;
+    }
+
+    .nav-link{
+        font-size: 170%;
+    }
+
+    .container{
+        max-width: 1880px;
+    }
+
+    .logo_row {
+        height: 86vh
+    }
+
+    .logo_nev {
+        padding-top: 23px;
+    }
+
+    .tanulas {
+        padding-top: 25px;
+        font-size: 3.5rem;
+    }
+
+    .educator {
+        width: 75%;
+        height: 55%;
+    }
+/*
+    .btn {
+        margin-top: 16px;
+        margin-bottom: 19px;
+    }
+*/
+    .rolunk_btn {
+        float: left;
+        margin: 0 11vw 1.5vh 11vw;
+        width: 11vw;
+        height: 6.5vh;
+        font-size: 1.2vw;
+    }
+
+    footer{
+        font-size: 155%;
+    }
+}
+
+/*@media screen and (min-width: 1440px) {
+    .navbar {
+        padding-right: 17px;
+    }
+
+    .navbar-brand {
+        margin-left: 17px;
+        font-size: 295%;
+        font-weight: bold;
+    }
+
+    .MathMaster_Logo {
+        width: 38px;
+        height: 38px;
+    }
+
+    .nav-link{
+        font-size: 170%;
+    }
+
+    .container{
+        max-width: 1880px;
+    }
+
+    .logo_row {
+        height: 86vh
+    }
+
+    .logo_nev {
+        padding-top: 23px;
+    }
+
+    .tanulas {
+        padding-top: 25px;
+        font-size: 3.5rem;
+    }
+
+    .educator {
+        width: 75%;
+        height: 55%;
+    }
+
+    .btn {
+        margin-top: 16px;
+        margin-bottom: 19px;
+    }
+
+    .rolunk_btn {
+        float: left;
+        margin: 0 11vw 1.5vh 11vw;
+        width: 11vw;
+        height: 6.5vh;
+        font-size: 1.2vw;
+    }
+
+    footer{
+        font-size: 155%;
+    }
+}
+*/

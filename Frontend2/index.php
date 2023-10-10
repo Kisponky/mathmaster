@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="en">
+<!--Hooty a bagoly neve-->
 
 <head>
     <meta charset="UTF-8">
@@ -20,8 +21,9 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-light bg-light">
             <a href="#" class="navbar-brand mb-0 h1">
-                <img class="MathMaster_Logo d-inline-block align-top" src="img/owl-47526.svg" alt="MathMaster Logó">
-                MathMaster
+                <img class="MathMaster_Logo_nav d-inline-block align-top" src="img/owl-47526.svg" alt="MathMaster Logó">
+                <!--nem középen jelenik meg-->
+                <span class="align-middle">MathMaster</span>
             </a>
             <button class="navbar-toggler second-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent23" aria-controls="navbarSupportedContent23" aria-expanded="false" aria-label="Toggle navigation">
                 <div class="animated-icon2"><span></span><span></span><span></span><span></span></div>
@@ -43,56 +45,53 @@
     </header>
 
     <div class="container">
-        <div class="row logo_row">
-            <div class="col-lg-12 text-center logo_nev">
-                <img src="/Frontend/img/owl-47526.svg" alt="MathMaster Logó">
-                <h1 class="nev">MathMaster</h1>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <img class="MathMaster_Logo img-fluid" src="img/owl-47526.svg" alt="MathMaster Logó">
+                <h1 class="cim">MathMaster</h1>
             </div>
         </div>
-        <div class="row tanulas_row">
+
+        <div class="row">
             <div class="col-lg-12 text-center">
-                <h3 class="tanulas">Kezdjünk neki a tanulásnak kis baglyocska!</h3>
-                <img class="mb-5 mt-3 educator" src="img/undraw_educator_re_ju471.svg" alt=""><br>
+                <h3 class="feladat_cim">Kezdj tanulni Hootyval kis baglyocska!</h3>
+                <img class="img-fluid" src="img/undraw_educator_re_ju471.svg" alt="Tanulás">
             </div>
         </div>
         <div class="row text-center">
-            <div class="col-lg-6 col-sm-12">
-                <a class="btn btn-danger btn-lg btn-block" href="">1-2</a>
+            <div class="col-lg-3 d-md-none d-lg-block"></div>
+            <div class="col-lg-3 col-md-6 mt-4">
+                <a href="" class="btn btn-danger osztaly_gomb">1-2 osztály</a>
             </div>
-            <div class="col-lg-6 col-sm-12">
-                <a class="btn btn-danger btn-lg btn-block" href="">1-2</a>
+            <div class="col-lg-3 col-md-6 mt-4">
+                <a href="" class="btn btn-danger osztaly_gomb">3-4 osztály</a>
             </div>
-            <div class="col-lg-6 col-sm-12">
-                <a class="btn btn-danger btn-lg btn-block" href="">1-2</a>
+            <div class="col-lg-3 d-md-none d-lg-block"></div>
+            <div class="col-lg-3 d-md-none d-lg-block"></div>
+            <div class="col-lg-3 col-md-6 mt-3">
+                <a href="" class="btn btn-secondary osztaly_gomb">5-6 osztály</a>
             </div>
-            <div class="col-lg-6 col-sm-12">
-                <a class="btn btn-danger btn-block" href="">1-2</a>
+            <div class="col-lg-3 col-md-6 mt-3">
+                <a href="" class="btn btn-secondary osztaly_gomb">7-8 osztály</a>
             </div>
+            <div class="col-lg-3 d-md-none d-lg-block"></div>
         </div>
-        <div class="row">
 
-        </div>
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="rolunk_felirat">Rólunk:</h2>
-
-                <p class="rolunk">Üdvözöljük a MathMaster online platformján! Válassz minket, mert szenvedélyünk az oktatás, és ezt a rendkívül hasznos tanulási oldalt életre hoztuk azért, hogy segítsünk neked a matematika világában.</p>
-
-                <p class="rolunk">Tudjuk, hogy a matematika néha kihívást jelent, de mi itt vagyunk, hogy segítsünk neked.</p>
-
-                <button class="btn btn-secondary rolunk_btn" title="Jelenleg még nem elérhető">Tudj meg többet</button>
-            </div>
-        </div>
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="kapcs">Kapcsolatok:</h2>
+                <h2>Rólunk:</h2>
+                <p>Üdvözöljük a MathMaster online platformján! Válassz minket, mert szenvedélyünk az oktatás, és ezt a rendkívül hasznos tanulási oldalt életre hoztuk azért, hogy segítsünk neked a matematika világában.</p>
+                <p>Tudjuk, hogy a matematika néha kihívást jelent, de mi itt vagyunk, hogy segítsünk neked.</p>
+                <a href="" class="btn btn-secondary info_gomb">Tudj meg többet</a>
+            </div>
+        </div>
 
-                <p class="rolunk">Üdvözöljük a MathMaster gyakorló platformunkon! Itt vagyunk, hogy segítsünk, és várjuk észrevételeit, kérdéseit vagy javaslatait a szolgáltatásunkkal kapcsolatban.</p>
-
-                <p class="rolunk">Hogyan érhet el minket?
-                    Bármikor szívesen fogadjuk visszajelzéseit és észrevételeit. </p>
-
-                <button class="btn btn-secondary rolunk_btn" title="Jelenleg még nem elérhető">Kapcsolat felvétel</button>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Kpacsolatok:</h2>
+                <p>Üdvözöljük a MathMaster gyakorló platformunkon! Itt vagyunk, hogy segítsünk, és várjuk észrevételeit, kérdéseit vagy javaslatait a szolgáltatásunkkal kapcsolatban.</p>
+                <p>Bármikor szívesen fogadjuk visszajelzéseit és észrevételeit.</p>
+                <a href="" class="btn btn-secondary info_gomb">Kapcsolat felvétel</a>
             </div>
         </div>
     </div>
@@ -100,6 +99,7 @@
     <footer>
         &copy 2023 MathMaster
     </footer>
+
 
     <script src="js/index.js"></script>
 </body>
