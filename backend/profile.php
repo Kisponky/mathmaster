@@ -110,7 +110,7 @@ $db->close();
         <input type="text" name="new-username" placeholder="Új felhasználónév" required>
         <button type="submit" name="update-username">Módosítás</button>
     </form>
-    <?php echo "Ezt lehet?"; ?>
+
     <h2>E-mail cím módosítása</h2>
     <form action="" method="post">
         <input type="email" name="new-email" placeholder="Új e-mail cím" required>
