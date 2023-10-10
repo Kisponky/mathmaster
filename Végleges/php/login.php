@@ -29,7 +29,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             $_SESSION['user_id'] = $userId;
             $_SESSION['user_email'] = $dbEmail;
             $_SESSION['user_fnev'] = $fnev;
-            header("Location: index.php"); // Átirányítás a sikeres bejelentkezés után
+            header("Location: ../index.php"); // Átirányítás a sikeres bejelentkezés után
             exit;
         } else {
             echo "Hibás jelszó. Kérjük, próbálja újra.";
