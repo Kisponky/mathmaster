@@ -2,7 +2,6 @@
     padding-right: 10px;
 }
 
-/*navbar math szöveg*/
 .navbar-brand {
     margin-left: 10px;
     font-size: 150%;
@@ -10,8 +9,8 @@
 }
 
 .MathMaster_Logo_nav {
-    width: 4.19vh;
-    height: 2.397vw;
+    width: 40px;
+    height: 40px;
 }
 
 .animated-icon1,
@@ -115,53 +114,40 @@
     padding-top: 10px;
     width: 80%;
     height: auto;
-    /* Ez az auto magasság miatt szükséges, hogy a kép arányosan változzon */
     max-height: 80vh;
-    /* A kép maximális magassága a viewport magassága legyen */
 }
 
 .cim {
     font-size: 6rem;
-    /* Például, de ezt méretezd a saját igényeid szerint */
 }
 
 .feladat_cim {
     font-size: 2.5rem;
-    /* Nagyobb betűméret (például 2.5rem) */
     padding-top: 20px;
-    /* Példa felső margó a címhez */
 }
 
 .osztaly_gomb {
     font-size: 1.4rem;
-    /* Nagyobb betűméret a gombokon (például 1.2rem) */
     padding: 15px 25px;
-    /* Padding beállítása (például 10px felülről és alulról, 20px jobbról és balról) */
 }
 
-h2{
+h2 {
     font-size: 1.8rem;
-    /* Például, de ezt méretezd a saját igényeid szerint */
     font-weight: bold;
     text-align: left;
-    /* Szöveg balra igazítása */
     padding: 25px 240px 0 240px;
-    /* Közepes padding a szélekhez */
 }
 
 p {
     font-size: 1.5rem;
-    /* Például, de ezt méretezd a saját igényeid szerint */
     text-align: left;
-    /* Szöveg balra igazítása */
     padding: 7px 240px;
-    /* Közepes padding a szélekhez */
 }
 
 .info_gomb {
     float: left;
-    font-size: 1.1rem; /* Alap gomb betűmérete */
-    padding: 10px 20px; /* Alap gomb paddingje */
+    font-size: 1.1rem;
+    padding: 10px 20px;
     margin: 5px 240px;
 }
 
@@ -172,4 +158,186 @@ footer {
     margin-top: 3vh;
     padding: 2vh;
     font-size: 1.2vw;
+}
+
+/*Galaxy Fold-hoz csökkenteni kell a méreteket, @media (max-width:300px)*/
+@media (max-width:300px) {
+    .cim {
+        font-size: 2.16rem;
+    }
+
+    .feladat_cim {
+        font-size: 2.15rem;
+        padding-top: 10px;
+    }
+
+    .osztaly_gomb {
+        font-size: 1.17rem;
+        padding: 12.5px 21px;
+    }
+
+    .btn-block-sm {
+        display: block;
+        width: 100%;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+        padding: 22px 0 0 0;
+    }
+
+    p {
+        font-size: 1.3rem;
+        padding: 6.1px 0;
+    }
+
+    .info_gomb {
+        font-size: 0.9rem;
+        padding: 8.4px 16.8px;
+        margin: 4px 0;
+    }
+
+    footer {
+        padding: 1.5vh;
+        font-size: 3.3vw;
+    }
+}
+
+
+/*Telefon álló nézetben*/
+@media (max-width: 576px) {
+    .navbar-brand {
+        font-size: 130%;
+    }
+
+    .MathMaster_Logo_nav {
+        width: 30px;
+        height: 30px;
+    }
+
+    .cim {
+        font-size: 3rem;
+    }
+
+    .btn-block-sm {
+        display: block;
+        width: 100%;
+    }
+
+    h2 {
+        padding: 25px 0 0 0;
+    }
+
+    p {
+        padding: 7px 0;
+    }
+
+    .info_gomb {
+        margin: 5px 0;
+    }
+
+    footer {
+        padding: 1.5vh;
+        font-size: 3.3vw;
+    }
+}
+
+/*Tablet álló nézetben*/
+@media (max-width: 768px) {
+    h2 {
+        padding: 25px 0 0 0;
+    }
+
+    p {
+        padding: 7px 0;
+    }
+
+    .info_gomb {
+        margin: 5px 0;
+    }
+
+    footer {
+        padding: 1.7vh;
+        font-size: 2.2vw;
+    }
+}
+
+/*Kis méretű monitor és laptop*/
+@media (min-width: 769px) and (max-width: 1200px) {
+    h2 {
+        padding: 25px 60px 0 60px;
+    }
+
+    p {
+        padding: 7px 60px;
+    }
+
+    .info_gomb {
+        margin: 5px 60px;
+    }
+
+    footer {
+        padding: 1.85vh;
+        font-size: 1.7vw;
+    }
+}
+
+@media (min-width: 2300px) {
+    
+    .navbar-brand {
+        font-size: 265%;
+        font-weight: bold;
+    }
+    
+    .MathMaster_Logo_nav {
+        width: 70.5px;
+        height: 70.5px;
+    }
+
+    .nav-link{
+        font-size: 160%;
+    }
+    
+    .cim {
+        font-size: 8rem;
+    }
+    
+    .feladat_cim {
+        font-size: 2.5rem;
+        padding-top: 20px;
+    }
+    
+    .osztaly_gomb {
+        font-size: 1.4rem;
+        padding: 15px 25px;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-align: left;
+        padding: 25px 240px 0 240px;
+    }
+    
+    p {
+        font-size: 1.5rem;
+        text-align: left;
+        padding: 7px 240px;
+    }
+    
+    .info_gomb {
+        float: left;
+        font-size: 1.1rem;
+        padding: 10px 20px;
+        margin: 5px 240px;
+    }
+    
+    footer {
+        background-color: #666;
+        color: white;
+        text-align: center;
+        margin-top: 3vh;
+        padding: 2vh;
+        font-size: 1.2vw;
+    }
 }

@@ -60,19 +60,19 @@
         </div>
         <div class="row text-center">
             <div class="col-lg-3 d-md-none d-lg-block"></div>
-            <div class="col-lg-3 col-md-6 mt-4">
-                <a href="" class="btn btn-danger osztaly_gomb">1-2 osztály</a>
+            <div class="col-lg-3 col-md-6 col-sm-12 mt-3">
+                <a href="" class="btn btn-danger btn-block-sm osztaly_gomb">1-2 osztály</a>
             </div>
-            <div class="col-lg-3 col-md-6 mt-4">
-                <a href="" class="btn btn-danger osztaly_gomb">3-4 osztály</a>
+            <div class="col-lg-3 col-md-6 col-sm-12 mt-3">
+                <a href="" class="btn btn-danger btn-block-sm osztaly_gomb">3-4 osztály</a>
             </div>
             <div class="col-lg-3 d-md-none d-lg-block"></div>
             <div class="col-lg-3 d-md-none d-lg-block"></div>
             <div class="col-lg-3 col-md-6 mt-3">
-                <a href="" class="btn btn-secondary osztaly_gomb">5-6 osztály</a>
+                <a href="" class="btn btn-secondary btn-block-sm osztaly_gomb">5-6 osztály</a>
             </div>
             <div class="col-lg-3 col-md-6 mt-3">
-                <a href="" class="btn btn-secondary osztaly_gomb">7-8 osztály</a>
+                <a href="" class="btn btn-secondary btn-block-sm osztaly_gomb">7-8 osztály</a>
             </div>
             <div class="col-lg-3 d-md-none d-lg-block"></div>
         </div>
@@ -88,7 +88,7 @@
 
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2>Kpacsolatok:</h2>
+                <h2>Kapcsolatok:</h2>
                 <p>Üdvözöljük a MathMaster gyakorló platformunkon! Itt vagyunk, hogy segítsünk, és várjuk észrevételeit, kérdéseit vagy javaslatait a szolgáltatásunkkal kapcsolatban.</p>
                 <p>Bármikor szívesen fogadjuk visszajelzéseit és észrevételeit.</p>
                 <a href="" class="btn btn-secondary info_gomb">Kapcsolat felvétel</a>
