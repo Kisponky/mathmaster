@@ -1,3 +1,49 @@
+<?php
+
+// Adatbázis kapcsolás
+$db = new mysqli('localhost', 'root', 'secret', 'jatekosmatek');
+
+// Kapcsolódás ellenőrzése
+if ($db->connect_error) {
+    die("Hiba a kapcsolódás során: " . $db->connect_error);
+}
+
+if (isset($_POST['email']) && isset($_POST['password'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // Felhasználói adatok ellenőrzése
+    $query = "SELECT id, fnev, email, jelszo FROM Users WHERE email = ?";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows == 1) {
+        // Felhasználó megtalálva, jelszó ellenőrzés
+        $stmt->bind_result($userId, $fnev, $dbEmail, $dbPassword);
+        $stmt->fetch();
+
+        if (password_verify($password, $dbPassword)) {
+            // Sikeres bejelentkezés
+            session_start();
+            $_SESSION['user_id'] = $userId;
+            $_SESSION['user_email'] = $dbEmail;
+            $_SESSION['user_fnev'] = $fnev;
+            header("Location: index.php"); // Átirányítás a sikeres bejelentkezés után
+            exit;
+        } else {
+            echo "Hibás jelszó. Kérjük, próbálja újra.";
+        }
+    } else {
+        echo "Nincs ilyen felhasználó ezzel az e-mail címmel.";
+    }
+    $stmt->close();
+}
+
+// Adatbázis kapcsolat bezárása
+$db->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <!--Hooty a bagoly neve-->
@@ -33,12 +79,16 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Kezdőlap</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Profil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Kijelentkezés</a>
-                    </li>
+                    <?php 
+                    session_start();
+                    if (isset($_SESSION['user_fnev'])) {
+                        echo '<li class="nav-item"><a class="nav-link" href="php/profile.php">Profil</a></li>';
+                        echo '<li class="nav-item"><a class="nav-link" href="php/logout.php">Kijelentkezés</a></li>';
+                    } else {
+                        echo '<li class="nav-item"><a class="nav-link" href="php/login.php">Bejelentkezés</a></li>';
+                        echo '<li class="nav-item"><a class="nav-link" href="php/register.php">Regisztráció</a></li>';
+                    }
+                    ?>
                 </ul>
             </div>
         </nav>
