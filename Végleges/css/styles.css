@@ -1,3 +1,4 @@
+/* A menü stílusa */
 .navbar {
     padding-right: 10px;
 }
@@ -13,6 +14,7 @@
     height: 40px;
 }
 
+/* A hamburger menü anumáció stílusa */
 .animated-icon1,
 .animated-icon2,
 .animated-icon3 {
@@ -110,6 +112,7 @@
     font-weight: bold;
 }
 
+/* Nagy bagoly */
 .MathMaster_Logo {
     padding-top: 10px;
     width: 80%;
@@ -117,15 +120,18 @@
     max-height: 80vh;
 }
 
+/* Oldal neve */
 .cim {
     font-size: 6rem;
 }
 
+/* következő rész címe */
 .feladat_cim {
     font-size: 2.5rem;
     padding-top: 20px;
 }
 
+/* a gombok alapértelmezet stílusa */
 .osztaly_gomb {
     font-size: 1.4rem;
     padding: 15px 25px;
@@ -144,6 +150,7 @@ p {
     padding: 7px 240px;
 }
 
+/* Al részek gombja */
 .info_gomb {
     float: left;
     font-size: 1.1rem;
@@ -151,6 +158,7 @@ p {
     margin: 5px 240px;
 }
 
+/* A footer stílusa */
 footer {
     background-color: #666;
     color: white;
@@ -303,40 +311,32 @@ footer {
     }
     
     .feladat_cim {
-        font-size: 2.5rem;
-        padding-top: 20px;
+        font-size: 3.4rem;
+        padding: 20px 0 20px 0;
     }
     
     .osztaly_gomb {
-        font-size: 1.4rem;
-        padding: 15px 25px;
+        font-size: 1.6rem;
+        padding: 16.6px 27.6px;
     }
     
     h2 {
-        font-size: 1.8rem;
-        font-weight: bold;
-        text-align: left;
-        padding: 25px 240px 0 240px;
+        font-size: 2.45rem;
+        padding: 26.55px 200px 0 200px;
     }
     
     p {
-        font-size: 1.5rem;
-        text-align: left;
-        padding: 7px 240px;
+        font-size: 2.1rem;
+        padding: 7.65px 200px;
     }
     
     .info_gomb {
-        float: left;
-        font-size: 1.1rem;
-        padding: 10px 20px;
-        margin: 5px 240px;
+        font-size: 1.4rem;
+        padding: 10.3px 20.3px;
+        margin: 5.3px 200px;
     }
     
     footer {
-        background-color: #666;
-        color: white;
-        text-align: center;
-        margin-top: 3vh;
         padding: 2vh;
         font-size: 1.2vw;
     }
