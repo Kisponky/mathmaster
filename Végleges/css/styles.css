@@ -112,6 +112,14 @@
     font-weight: bold;
 }
 
+.modal-header{
+    padding-top: 43px;
+}
+
+.modal-span{
+    vertical-align: inherit;
+}
+
 /* Nagy bagoly */
 .MathMaster_Logo {
     padding-top: 10px;

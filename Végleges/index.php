@@ -60,53 +60,56 @@
     </header>
 
     <!-- Register -->
+    <!-- megjelenő elem az oldal felet, alapértelmezetten rejtve -->
     <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- alapértelmezet méret, középre igazítva -->
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header p-5 pb-4 border-bottom-0" style="padding-top: 43px;">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
                     <h1 class="fw-bold mb-0 fs-2">
-                        <span style="vertical-align: inherit;">Regisztráció</span>
+                        <span class="modal-span">Regisztráció</span>
                     </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
                 </div>
 
                 <div class="modal-body p-5 pt-0">
-                    <form action="php/register.php" method="POST">
+                    <form>
+                        <!-- lebegő címke -->
                         <div class="form-floating mb-3">
                             <input name="fullname" type="text" class="form-control rounded-3" id="floatingInput" placeholder="vezeteknev keresztnev">
                             <label for="floatingInput">
-                                <span style="vertical-align: inherit;">Teljes név</span>
+                                <span class="modal-span">Teljes név</span>
                             </label>
                         </div>
                         <div class="form-floating mb-3">
                             <input name="username" type="text" class="form-control rounded-3" id="floatingInput" placeholder="felhasznalonev">
                             <label for="floatingInput">
-                                <span style="vertical-align: inherit;">Felhasználónév</span>
+                                <span class="modal-span">Felhasználónév</span>
                             </label>
                         </div>
                         <div class="form-floating mb-3">
                             <input name="email" type="email" class="form-control rounded-3" id="floatingInput" placeholder="nev@example.com">
                             <label for="floatingInput">
-                                <span style="vertical-align: inherit;">Email cím</span>
+                                <span class="modal-span">Email cím</span>
                             </label>
                         </div>
                         <div class="form-floating mb-3">
                             <input name="pw" type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Jelszo">
                             <label for="floatingPassword">
-                                <span style="vertical-align: inherit;">Jelszó</span>
+                                <span class="modal-span">Jelszó</span>
                             </label>
                         </div>
                         <div class="form-floating mb-3">
                             <input name="pw2" type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Jelszo">
                             <label for="floatingPassword">
-                                <span style="vertical-align: inherit;">Jelszó újra</span>
+                                <span class="modal-span">Jelszó újra</span>
                             </label>
                         </div>
-                        <button name="submit" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">
-                            <span style="vertical-align: inherit;">Regisztráció</span>
+                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">
+                            <span class="modal-span">Regisztráció</span>
                         </button>
                         <small class="text-body-secondary">
-                            <span style="vertical-align: inherit;">A Regisztráció gombra kattintva elfogadja a felhasználási feltételeket.</span>
+                            <span class="modal-span">A Regisztráció gombra kattintva elfogadja a felhasználási feltételeket.</span>
                         </small>
                     </form>
                 </div>
@@ -118,9 +121,9 @@
     <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header p-5 pb-4 border-bottom-0" style="padding-top: 43px;">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
                     <h1 class="fw-bold mb-0 fs-2">
-                        <span style="vertical-align: inherit;">Bejelentkezés</span>
+                        <span class="modal-span">Bejelentkezés</span>
                     </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
                 </div>
@@ -130,17 +133,17 @@
                         <div class="form-floating mb-3">
                             <input name="email" type="email" class="form-control rounded-3" id="floatingInput" placeholder="nev@example.com">
                             <label for="floatingInput">
-                                <span style="vertical-align: inherit;">Email cím</span>
+                                <span class="modal-span">Email cím</span>
                             </label>
                         </div>
                         <div class="form-floating mb-3">
                             <input name="password" type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Jelszo">
                             <label for="floatingPassword">
-                                <span style="vertical-align: inherit;">Jelszó</span>
+                                <span class="modal-span">Jelszó</span>
                             </label>
                         </div>
-                        <button name="submit" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">
-                            <span style="vertical-align: inherit;">Bejelentkezés</span>
+                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">
+                            <span class="modal-span">Bejelentkezés</span>
                         </button>
                     </form>
                 </div>
