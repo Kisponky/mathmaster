@@ -1,49 +1,3 @@
-<?php
-/*
-// Adatbázis kapcsolás
-$db = new mysqli('localhost', 'root', 'secret', 'jatekosmatek');
-
-// Kapcsolódás ellenőrzése
-if ($db->connect_error) {
-    die("Hiba a kapcsolódás során: " . $db->connect_error);
-}
-
-if (isset($_POST['email']) && isset($_POST['password'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    // Felhasználói adatok ellenőrzése
-    $query = "SELECT id, fnev, email, jelszo FROM Users WHERE email = ?";
-    $stmt = $db->prepare($query);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows == 1) {
-        // Felhasználó megtalálva, jelszó ellenőrzés
-        $stmt->bind_result($userId, $fnev, $dbEmail, $dbPassword);
-        $stmt->fetch();
-
-        if (password_verify($password, $dbPassword)) {
-            // Sikeres bejelentkezés
-            session_start();
-            $_SESSION['user_id'] = $userId;
-            $_SESSION['user_email'] = $dbEmail;
-            $_SESSION['user_fnev'] = $fnev;
-            header("Location: index.php"); // Átirányítás a sikeres bejelentkezés után
-            exit;
-        } else {
-            echo "Hibás jelszó. Kérjük, próbálja újra.";
-        }
-    } else {
-        echo "Nincs ilyen felhasználó ezzel az e-mail címmel.";
-    }
-    $stmt->close();
-}
-
-// Adatbázis kapcsolat bezárása
-$db->close();*/
-?>
 <!DOCTYPE html>
 <html lang="hu" data-bs-theme="dark">
 <!--Hooty a bagoly neve-->
@@ -91,8 +45,7 @@ $db->close();*/
                         <a class="nav-link" href="#">Kezdőlap</a>
                     </li>
                     <?php
-                    /*
-                    session_start();*/
+                    session_start();
                     if (isset($_SESSION['user_fnev'])) {
                         echo '<li class="nav-item"><a class="nav-link" href="php/profile.php">Profil</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="php/logout.php">Kijelentkezés</a></li>';
@@ -123,31 +76,31 @@ $db->close();*/
                     <form>
                         <!-- lebegő címke -->
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control rounded-3" id="floatingInput" placeholder="vezeteknev keresztnev">
+                            <input name="fullname" type="text" class="form-control rounded-3" id="floatingInput" placeholder="vezeteknev keresztnev">
                             <label for="floatingInput">
                                 <span class="modal-span">Teljes név</span>
                             </label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control rounded-3" id="floatingInput" placeholder="felhasznalonev">
+                            <input name="username" type="text" class="form-control rounded-3" id="floatingInput" placeholder="felhasznalonev">
                             <label for="floatingInput">
                                 <span class="modal-span">Felhasználónév</span>
                             </label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="nev@example.com">
+                            <input name="email" type="email" class="form-control rounded-3" id="floatingInput" placeholder="nev@example.com">
                             <label for="floatingInput">
                                 <span class="modal-span">Email cím</span>
                             </label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Jelszo">
+                            <input name="pw" type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Jelszo">
                             <label for="floatingPassword">
                                 <span class="modal-span">Jelszó</span>
                             </label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Jelszo">
+                            <input name="pw2" type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Jelszo">
                             <label for="floatingPassword">
                                 <span class="modal-span">Jelszó újra</span>
                             </label>
@@ -176,15 +129,15 @@ $db->close();*/
                 </div>
 
                 <div class="modal-body p-5 pt-0">
-                    <form>
+                    <form action="php/login.php" method="POST">
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="nev@example.com">
+                            <input name="email" type="email" class="form-control rounded-3" id="floatingInput" placeholder="nev@example.com">
                             <label for="floatingInput">
                                 <span class="modal-span">Email cím</span>
                             </label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Jelszo">
+                            <input name="password" type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Jelszo">
                             <label for="floatingPassword">
                                 <span class="modal-span">Jelszó</span>
                             </label>
