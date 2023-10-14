@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="modal-body p-5 pt-0">
-                    <form>
+                    <form action="php/register.php" method="POST">
                         <!-- lebegő címke -->
                         <div class="form-floating mb-3">
                             <input name="fullname" type="text" class="form-control rounded-3" id="floatingInput" placeholder="vezeteknev keresztnev">
@@ -105,7 +105,7 @@
                                 <span class="modal-span">Jelszó újra</span>
                             </label>
                         </div>
-                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">
+                        <button name="submit" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">
                             <span class="modal-span">Regisztráció</span>
                         </button>
                         <small class="text-body-secondary">
