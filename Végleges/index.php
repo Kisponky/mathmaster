@@ -1,5 +1,5 @@
 <?php
-/*
+
 // Adatbázis kapcsolás
 $db = new mysqli('localhost', 'root', 'secret', 'jatekosmatek');
 
@@ -42,7 +42,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 }
 
 // Adatbázis kapcsolat bezárása
-$db->close();*/
+$db->close();
 ?>
 <!DOCTYPE html>
 <html lang="hu" data-bs-theme="dark">
@@ -91,8 +91,7 @@ $db->close();*/
                         <a class="nav-link" href="#">Kezdőlap</a>
                     </li>
                     <?php
-                    /*
-                    session_start();*/
+                    session_start();
                     if (isset($_SESSION['user_fnev'])) {
                         echo '<li class="nav-item"><a class="nav-link" href="php/profile.php">Profil</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="php/logout.php">Kijelentkezés</a></li>';
@@ -118,38 +117,38 @@ $db->close();*/
                 </div>
 
                 <div class="modal-body p-5 pt-0">
-                    <form>
+                    <form action="php/register.php" method="POST">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control rounded-3" id="floatingInput" placeholder="vezeteknev keresztnev">
+                            <input name="fullname" type="text" class="form-control rounded-3" id="floatingInput" placeholder="vezeteknev keresztnev">
                             <label for="floatingInput">
                                 <span style="vertical-align: inherit;">Teljes név</span>
                             </label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control rounded-3" id="floatingInput" placeholder="felhasznalonev">
+                            <input name="username" type="text" class="form-control rounded-3" id="floatingInput" placeholder="felhasznalonev">
                             <label for="floatingInput">
                                 <span style="vertical-align: inherit;">Felhasználónév</span>
                             </label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="nev@example.com">
+                            <input name="email" type="email" class="form-control rounded-3" id="floatingInput" placeholder="nev@example.com">
                             <label for="floatingInput">
                                 <span style="vertical-align: inherit;">Email cím</span>
                             </label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Jelszo">
+                            <input name="pw" type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Jelszo">
                             <label for="floatingPassword">
                                 <span style="vertical-align: inherit;">Jelszó</span>
                             </label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Jelszo">
+                            <input name="pw2" type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Jelszo">
                             <label for="floatingPassword">
                                 <span style="vertical-align: inherit;">Jelszó újra</span>
                             </label>
                         </div>
-                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">
+                        <button name="submit" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">
                             <span style="vertical-align: inherit;">Regisztráció</span>
                         </button>
                         <small class="text-body-secondary">
@@ -173,20 +172,20 @@ $db->close();*/
                 </div>
 
                 <div class="modal-body p-5 pt-0">
-                    <form>
+                    <form action="php/login.php" method="POST">
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="nev@example.com">
+                            <input name="email" type="email" class="form-control rounded-3" id="floatingInput" placeholder="nev@example.com">
                             <label for="floatingInput">
                                 <span style="vertical-align: inherit;">Email cím</span>
                             </label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Jelszo">
+                            <input name="password" type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Jelszo">
                             <label for="floatingPassword">
                                 <span style="vertical-align: inherit;">Jelszó</span>
                             </label>
                         </div>
-                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">
+                        <button name="submit" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">
                             <span style="vertical-align: inherit;">Bejelentkezés</span>
                         </button>
                     </form>
