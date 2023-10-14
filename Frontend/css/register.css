@@ -1,0 +1,5 @@
+@media (max-width: 300px) {
+    .p-5 {
+        padding: 1.5rem!important;
+    }
+}

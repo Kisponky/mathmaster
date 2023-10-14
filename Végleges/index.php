@@ -1,4 +1,5 @@
 <?php
+/*
 // Adatbázis kapcsolás
 $db = new mysqli('localhost', 'root', 'secret', 'jatekosmatek');
 
@@ -41,10 +42,10 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 }
 
 // Adatbázis kapcsolat bezárása
-$db->close();
+$db->close();*/
 ?>
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="hu" data-bs-theme="dark">
 <!--Hooty a bagoly neve-->
 
 <head>
@@ -55,7 +56,7 @@ $db->close();
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- Bootstrap külső hivatkozás -->
+    <!-- Bootstrap külső hivatkozás CSS-re -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- Saját CSS -->
     <link rel="stylesheet" href="css/styles.css">
@@ -70,7 +71,7 @@ $db->close();
     <header>
         <!-- Navigációs sáv, Hamburger menü megjelenése sm méretben,
         világos szürke háttér -->
-        <nav class="navbar navbar-expand-sm bg-light">
+        <nav class="navbar navbar-expand-sm bg-secondary">
             <!-- cég, projekt nevéhez, alsó margó 0, h1 méretű szöveg -->
             <a href="#" class="navbar-brand mb-0 h1">
                 <!-- MathMaster_Logo_nav: kis ikon bel oldalt -->
@@ -90,19 +91,109 @@ $db->close();
                         <a class="nav-link" href="#">Kezdőlap</a>
                     </li>
                     <?php
-                    session_start();
+                    /*
+                    session_start();*/
                     if (isset($_SESSION['user_fnev'])) {
                         echo '<li class="nav-item"><a class="nav-link" href="php/profile.php">Profil</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="php/logout.php">Kijelentkezés</a></li>';
                     } else {
-                        echo '<li class="nav-item"><a class="nav-link" href="php/login.php">Bejelentkezés</a></li>';
-                        echo '<li class="nav-item"><a class="nav-link" href="php/register.php">Regisztráció</a></li>';
+                        echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#login">Bejelentkezés</a></li>';
+                        echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#register">Regisztráció</a></li>';
                     }
                     ?>
                 </ul>
             </div>
         </nav>
     </header>
+
+    <!-- Register -->
+    <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header p-5 pb-4 border-bottom-0" style="padding-top: 43px;">
+                    <h1 class="fw-bold mb-0 fs-2">
+                        <span style="vertical-align: inherit;">Regisztráció</span>
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
+                </div>
+
+                <div class="modal-body p-5 pt-0">
+                    <form>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control rounded-3" id="floatingInput" placeholder="vezeteknev keresztnev">
+                            <label for="floatingInput">
+                                <span style="vertical-align: inherit;">Teljes név</span>
+                            </label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control rounded-3" id="floatingInput" placeholder="felhasznalonev">
+                            <label for="floatingInput">
+                                <span style="vertical-align: inherit;">Felhasználónév</span>
+                            </label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="nev@example.com">
+                            <label for="floatingInput">
+                                <span style="vertical-align: inherit;">Email cím</span>
+                            </label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Jelszo">
+                            <label for="floatingPassword">
+                                <span style="vertical-align: inherit;">Jelszó</span>
+                            </label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Jelszo">
+                            <label for="floatingPassword">
+                                <span style="vertical-align: inherit;">Jelszó újra</span>
+                            </label>
+                        </div>
+                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">
+                            <span style="vertical-align: inherit;">Regisztráció</span>
+                        </button>
+                        <small class="text-body-secondary">
+                            <span style="vertical-align: inherit;">A Regisztráció gombra kattintva elfogadja a felhasználási feltételeket.</span>
+                        </small>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login -->
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header p-5 pb-4 border-bottom-0" style="padding-top: 43px;">
+                    <h1 class="fw-bold mb-0 fs-2">
+                        <span style="vertical-align: inherit;">Bejelentkezés</span>
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
+                </div>
+
+                <div class="modal-body p-5 pt-0">
+                    <form>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="nev@example.com">
+                            <label for="floatingInput">
+                                <span style="vertical-align: inherit;">Email cím</span>
+                            </label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Jelszo">
+                            <label for="floatingPassword">
+                                <span style="vertical-align: inherit;">Jelszó</span>
+                            </label>
+                        </div>
+                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">
+                            <span style="vertical-align: inherit;">Bejelentkezés</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <div class="container">
@@ -171,6 +262,8 @@ $db->close();
         &copy 2023 MathMaster
     </footer>
 
+    <!-- Bootstrap külső hivatkozás script-re -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <!-- Hamburger menü saját scriptje -->
     <script src="js/index.js"></script>
 </body>
