@@ -1,4 +1,5 @@
 <?php
+/*
 session_start();
 $db = new mysqli('localhost', 'root', 'secret', 'jatekosmatek');
 
@@ -92,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$db->close();
+$db->close(); */
 ?>
 <!DOCTYPE html>
 <html lang="en">
