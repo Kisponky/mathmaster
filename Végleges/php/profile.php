@@ -7,7 +7,7 @@ if ($db->connect_error) {
 }
 
 if (!isset($_SESSION['user_fnev'])) {
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit;
 }
 
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if ($stmt->execute()) {
                 session_destroy(); // Szükség esetén a session-t is törölje
-                header("Location: index.php"); // Átirányítás a fő oldalra a fiók törlése után
+                header("Location: ../index.php"); // Átirányítás a fő oldalra a fiók törlése után
                 exit;
             } else {
                 echo "Hiba a fiók törlése során: " . $stmt->error;
