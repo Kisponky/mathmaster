@@ -21,6 +21,33 @@
 </head>
 
 <body>
+<?php // Login felület megnyitás az átirányítás után
+session_start();               
+if(isset($_SESSION['login_message'])) {
+?>
+<script>
+$(document).ready(function(){
+    $('#login').modal('show');
+});
+</script>
+
+<?php
+}
+?>
+
+<?php // Register felület megnyitás az átirányítás után               
+if(isset($_SESSION['register_message'])) {
+?>
+<script>
+$(document).ready(function(){
+    $('#register').modal('show');
+});
+</script>
+<?php
+}
+?>
+
+
     <!-- A fejléc tartalmazza a menü rendszert -->
     <header>
         <!-- Navigációs sáv, Hamburger menü megjelenése sm méretben,
@@ -45,7 +72,6 @@
                         <a class="nav-link" href="#">Kezdőlap</a>
                     </li>
                     <?php
-                    session_start();
                     if (isset($_SESSION['user_fnev'])) {
                         echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#settings"">Beállítások</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="php/logout.php">Kijelentkezés</a></li>';
@@ -108,6 +134,13 @@
                         <button name="submit" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">
                             <span class="modal-span">Regisztráció</span>
                         </button>
+                        <?php
+                        if (isset($_SESSION['register_message'])) {
+                            $message = $_SESSION['register_message'];
+                            unset($_SESSION['register_message']);
+                            echo "<span style='color: #FFB02E;'>⚠️ ".$message."</span><br>";// Hibaüzenet kiírása
+                        }
+                        ?>
                         <small class="text-body-secondary">
                             <span class="modal-span">A Regisztráció gombra kattintva elfogadja a felhasználási feltételeket.</span>
                         </small>
@@ -146,6 +179,13 @@
                             <span class="modal-span">Bejelentkezés</span>
                         </button>
                     </form>
+                    <?php
+                        if (isset($_SESSION['login_message'])) {
+                            $message = $_SESSION['login_message'];
+                            unset($_SESSION['login_message']);
+                            echo "<span style='color: #FFB02E;'>⚠️ ".$message."</span>";// Hibaüzenet kiírása
+                        }
+                    ?>
                 </div>
             </div>
         </div>
@@ -199,9 +239,9 @@
                         </div>
                     </form>
                     <form action="php/settings.php" method="POST">
-                    <small class="text-body-secondary">
-                        <span class="modal-span">Figyelem: A fiók törlése visszavonhatatlan! Biztosan törölni szeretnéd a fiókodat?</span>
-                    </small>
+                        <small class="text-body-secondary">
+                            <span class="modal-span">Figyelem: A fiók törlése visszavonhatatlan! Biztosan törölni szeretnéd a fiókodat?</span>
+                        </small>
                     </form>
                     <form action="php/settings.php" method="POST">
                         <div class="form-check">
@@ -218,6 +258,8 @@
             </div>
         </div>
     </div>
+
+
 
 
     <div class="container">
