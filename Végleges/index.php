@@ -163,46 +163,54 @@
                 </div>
 
                 <div class="modal-body p-5 pt-0">
-                    <form action="php/login.php" method="POST">
+                    <form action="php/settings.php" method="POST">
                         <div class="row">
                             <div class="form-floating mb-3">
-                                <input name="username" type="text" class="form-control rounded-3 mb-2" id="floatingInput" placeholder="felhasznalonev">
+                                <input name="new-username" type="text" class="form-control rounded-3 mb-2" id="floatingInput" placeholder="felhasznalonev">
                                 <label for="floatingInput">
                                     <span class="modal-span">Felhasználónév módosítása</span>
                                 </label>
-                                <button class="w-100 mb-1 btn btn-lg rounded-3 btn-danger" type="submit">
+                                <button name="update-username" class="w-100 mb-1 btn btn-lg rounded-3 btn-danger" type="submit">
                                     <span class="modal-span">Módosítás</span>
                                 </button>
                             </div>
                         </div>
+                    </form>
+                    <form action="php/settings.php" method="POST">
                         <div class="form-floating mb-3">
-                            <input name="email" type="email" class="form-control rounded-3 mb-2" id="floatingInput" placeholder="nev@example.com">
+                            <input name="new-email" type="email" class="form-control rounded-3 mb-2" id="floatingInput" placeholder="nev@example.com">
                             <label for="floatingInput">
                                 <span class="modal-span">E-mail cím módosítása</span>
                             </label>
-                            <button class="w-100 mb-1 btn btn-lg rounded-3 btn-danger" type="submit">
+                            <button type="submit" name="update-email" class="w-100 mb-1 btn btn-lg rounded-3 btn-danger" type="submit">
                                 <span class="modal-span">Módosítás</span>
                             </button>
                         </div>
+                    </form>
+                    <form action="php/settings.php" method="POST">
                         <div class="form-floating mb-3">
-                            <input name="password" type="password" class="form-control rounded-3 mb-2" id="floatingPassword" placeholder="Jelszo">
+                            <input name="new-password" type="password" class="form-control rounded-3 mb-2" id="floatingPassword" placeholder="Jelszo">
                             <label for="floatingPassword">
                                 <span class="modal-span">Jelszó módosítása</span>
                             </label>
-                            <button class="w-100 mb-1 btn btn-lg rounded-3 btn-danger" type="submit">
+                            <button name="update-password" class="w-100 mb-1 btn btn-lg rounded-3 btn-danger" type="submit">
                                 <span class="modal-span">Módosítás</span>
                             </button>
                         </div>
-                        <small class="text-body-secondary">
-                            <span class="modal-span">Figyelem: A fiók törlése visszavonhatatlan! Biztosan törölni szeretnéd a fiókodat?</span>
-                        </small>
+                    </form>
+                    <form action="php/settings.php" method="POST">
+                    <small class="text-body-secondary">
+                        <span class="modal-span">Figyelem: A fiók törlése visszavonhatatlan! Biztosan törölni szeretnéd a fiókodat?</span>
+                    </small>
+                    </form>
+                    <form action="php/settings.php" method="POST">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="same-address">
+                            <input type="checkbox" name="confirm-delete" value="yes" class="form-check-input" id="same-address">
                             <label class="form-check-label" for="same-address">
                                 <span class="vertical-align: inherit;">Igen, szeretném törölni a fiókomat</span>
                             </label>
                         </div>
-                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">
+                        <button name="delete-account" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">
                             <span class="modal-span">Fiók törlése</span>
                         </button>
                     </form>
