@@ -47,7 +47,17 @@ $(document).ready(function(){
 }
 ?>
 
-
+<?php // Register felület megnyitás az átirányítás után               
+if(isset($_SESSION['settings_message'])) {
+?>
+<script>
+$(document).ready(function(){
+    $('#settings').modal('show');
+});
+</script>
+<?php
+}
+?>
     <!-- A fejléc tartalmazza a menü rendszert -->
     <header>
         <!-- Navigációs sáv, Hamburger menü megjelenése sm méretben,
@@ -254,6 +264,13 @@ $(document).ready(function(){
                             <span class="modal-span">Fiók törlése</span>
                         </button>
                     </form>
+                    <?php
+                        if (isset($_SESSION['settings_message'])) {
+                            $message = $_SESSION['settings_message'];
+                            unset($_SESSION['settings_message']);
+                            echo "<span style='color: #FFB02E;'>".$message."</span><br>";// Hibaüzenet kiírása
+                        }
+                        ?>
                 </div>
             </div>
         </div>
