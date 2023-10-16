@@ -18,6 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Felhasználónév módosítása
         $newUsername = $_POST['new-username'];
 
+        // Ellenőrzés: Ha a felhasználónév mező üres
+        if (empty($newUsername)) {
+            $_SESSION['settings_message'] = "⚠️ Felhasználónév mező nem lehet üres!";
+            header("Location: ../index.php");
+            exit;
+        }
+
         // Frissítse az adatbázist
         $updateQuery = "UPDATE Users SET fnev = ? WHERE fnev = ?";
         $stmt = $db->prepare($updateQuery);
@@ -25,9 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($stmt->execute()) {
             $_SESSION['user_fnev'] = $newUsername; // Frissítse a felhasználónevét a sessions-ben
-            echo "Felhasználónév sikeresen frissítve!";
+            $_SESSION['settings_message'] = "👌 Felhasználónév sikeresen frissítve!";
+            header("Location: ../index.php");
+            exit;
         } else {
-            echo "Hiba a felhasználónév frissítése során: " . $stmt->error;
+            $_SESSION['settings_message'] = "⚠️ Hiba a felhasználónév frissítése során: " . $stmt->error;
+            header("Location: ../index.php");
+            exit;
         }
 
         $stmt->close();
@@ -35,21 +46,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // E-mail cím módosítása
         $newEmail = $_POST['new-email'];
 
+        // Ellenőrzés: Ha az e-mail mező üres
+        if (empty($newEmail)) {
+            $_SESSION['settings_message'] = "⚠️ E-mail mező nem lehet üres!";
+            header("Location: ../index.php");
+            exit;
+        }
+
         // Frissítse az adatbázist
         $updateQuery = "UPDATE Users SET email = ? WHERE fnev = ?";
         $stmt = $db->prepare($updateQuery);
         $stmt->bind_param("ss", $newEmail, $user_fnev);
 
         if ($stmt->execute()) {
-            echo "E-mail cím sikeresen frissítve!";
+            $_SESSION['settings_message'] = "👌 E-mail cím sikeresen frissítve!";
+            header("Location: ../index.php");
+            exit;
         } else {
-            echo "Hiba az e-mail cím frissítése során: " . $stmt->error;
+            $_SESSION['settings_message'] = "⚠️ Hiba az e-mail cím frissítése során: " . $stmt->error;
+            header("Location: ../index.php");
+            exit;
         }
 
         $stmt->close();
     } elseif (isset($_POST['update-password'])) {
         // Jelszó módosítása
         $newPassword = $_POST['new-password'];
+
+        // Ellenőrzés: Ha a jelszó mező üres
+        if (empty($newPassword)) {
+            $_SESSION['settings_message'] = "⚠️ Jelszó mező nem lehet üres!";
+            header("Location: ../index.php");
+            exit;
+        }
 
         // Hashelje és sózza be az új jelszót
         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
@@ -60,9 +89,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("ss", $hashedPassword, $user_fnev);
 
         if ($stmt->execute()) {
-            echo "Jelszó sikeresen frissítve!";
+            $_SESSION['settings_message'] = "👌 Jelszó sikeresen frissítve!";
+            header("Location: ../index.php");
+            exit;
         } else {
-            echo "Hiba a jelszó frissítése során: " . $stmt->error;
+            $_SESSION['settings_message'] = "⚠️ Hiba a jelszó frissítése során: " . $stmt->error;
+            header("Location: ../index.php");
+            exit;
         }
 
         $stmt->close();
@@ -87,7 +120,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $stmt->close();
         } else {
-            echo "A fiók törléséhez erősítse meg a műveletet.";
+            $_SESSION['settings_message'] = "⚠️ A fiók törléséhez erősítse meg a műveletet!";
+            header("Location: ../index.php");
+            exit;
         }
     }
 }

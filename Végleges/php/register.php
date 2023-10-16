@@ -5,6 +5,7 @@ $db = new mysqli('localhost', 'root', 'secret', 'jatekosmatek');
 if ($db->connect_error) {
     die("Hiba a kapcsolódás során: " . $db->connect_error);
 }
+session_start();
 
 if (isset($_POST['submit'])) {
     // Űrlap adatok beolvasása
@@ -16,11 +17,15 @@ if (isset($_POST['submit'])) {
 
     // Ellenőrizd, hogy a két jelszó egyezik-e
     if ($jelszo != $jelszo2) {
-        echo "A két jelszó nem egyezik meg. Kérjük, próbálja újra.";
+        $_SESSION['register_message'] = "A két jelszó nem egyezik meg. Kérjük, próbálja újra.";
+        header("Location: ../index.php");
+        exit;
     } else {
         // Ellenőrizd, hogy az e-mail cím érvényes
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            echo "Az e-mail cím nem érvényes. Kérjük, adjon meg egy érvényes e-mail címet.";
+            $_SESSION['register_message'] = "Az e-mail cím nem érvényes. Kérjük, adjon meg egy érvényes e-mail címet.";
+            header("Location: ../index.php");
+            exit;
         } else {
             $jelszoHash = password_hash($jelszo, PASSWORD_DEFAULT); // Jelszó hash-elése
 
@@ -32,7 +37,9 @@ if (isset($_POST['submit'])) {
             $stmt->store_result();
 
             if ($stmt->num_rows > 0) {
-                echo "Ez az e-mail cím már regisztrálva van.";
+                $_SESSION['register_message'] = "Ez az e-mail cím már regisztrálva van.";
+                header("Location: ../index.php");
+                exit;
             } else {
                 // Hozzáadás az adatbázishoz
                 $insertQuery = "INSERT INTO Users (teljesNev, fnev, email, jelszo, letrehozas) VALUES (?, ?, ?, ?, NOW())";
@@ -44,7 +51,9 @@ if (isset($_POST['submit'])) {
                     header("Location: ../index.php");
                     exit;
                 } else {
-                    echo "Hiba a regisztráció során: " . $insertStmt->error;
+                    $_SESSION['register_message'] = "Hiba a regisztráció során: ".$insertStmt->error;
+                    header("Location: ../index.php");
+                    exit;
                 }
                 $insertStmt->close();
             }

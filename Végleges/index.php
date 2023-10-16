@@ -21,6 +21,43 @@
 </head>
 
 <body>
+<?php // Login felület megnyitás az átirányítás után
+session_start();               
+if(isset($_SESSION['login_message'])) {
+?>
+<script>
+$(document).ready(function(){
+    $('#login').modal('show');
+});
+</script>
+
+<?php
+}
+?>
+
+<?php // Register felület megnyitás az átirányítás után               
+if(isset($_SESSION['register_message'])) {
+?>
+<script>
+$(document).ready(function(){
+    $('#register').modal('show');
+});
+</script>
+<?php
+}
+?>
+
+<?php // Register felület megnyitás az átirányítás után               
+if(isset($_SESSION['settings_message'])) {
+?>
+<script>
+$(document).ready(function(){
+    $('#settings').modal('show');
+});
+</script>
+<?php
+}
+?>
     <!-- A fejléc tartalmazza a menü rendszert -->
     <header>
         <!-- Navigációs sáv, Hamburger menü megjelenése sm méretben,
@@ -45,7 +82,6 @@
                         <a class="nav-link" href="#">Kezdőlap</a>
                     </li>
                     <?php
-                    session_start();
                     if (isset($_SESSION['user_fnev'])) {
                         echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#settings"">Beállítások</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="php/logout.php">Kijelentkezés</a></li>';
@@ -108,6 +144,13 @@
                         <button name="submit" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">
                             <span class="modal-span">Regisztráció</span>
                         </button>
+                        <?php
+                        if (isset($_SESSION['register_message'])) {
+                            $message = $_SESSION['register_message'];
+                            unset($_SESSION['register_message']);
+                            echo "<span style='color: #FFB02E;'>⚠️ ".$message."</span><br>";// Hibaüzenet kiírása
+                        }
+                        ?>
                         <small class="text-body-secondary">
                             <span class="modal-span">A Regisztráció gombra kattintva elfogadja a felhasználási feltételeket.</span>
                         </small>
@@ -146,6 +189,13 @@
                             <span class="modal-span">Bejelentkezés</span>
                         </button>
                     </form>
+                    <?php
+                        if (isset($_SESSION['login_message'])) {
+                            $message = $_SESSION['login_message'];
+                            unset($_SESSION['login_message']);
+                            echo "<span style='color: #FFB02E;'>⚠️ ".$message."</span>";// Hibaüzenet kiírása
+                        }
+                    ?>
                 </div>
             </div>
         </div>
@@ -163,53 +213,70 @@
                 </div>
 
                 <div class="modal-body p-5 pt-0">
-                    <form action="php/login.php" method="POST">
+                    <form action="php/settings.php" method="POST">
                         <div class="row">
                             <div class="form-floating mb-3">
-                                <input name="username" type="text" class="form-control rounded-3 mb-2" id="floatingInput" placeholder="felhasznalonev">
+                                <input name="new-username" type="text" class="form-control rounded-3 mb-2" id="floatingInput" placeholder="felhasznalonev">
                                 <label for="floatingInput">
                                     <span class="modal-span">Felhasználónév módosítása</span>
                                 </label>
-                                <button class="w-100 mb-1 btn btn-lg rounded-3 btn-danger" type="submit">
+                                <button name="update-username" class="w-100 mb-1 btn btn-lg rounded-3 btn-danger" type="submit">
                                     <span class="modal-span">Módosítás</span>
                                 </button>
                             </div>
                         </div>
+                    </form>
+                    <form action="php/settings.php" method="POST">
                         <div class="form-floating mb-3">
-                            <input name="email" type="email" class="form-control rounded-3 mb-2" id="floatingInput" placeholder="nev@example.com">
+                            <input name="new-email" type="email" class="form-control rounded-3 mb-2" id="floatingInput" placeholder="nev@example.com">
                             <label for="floatingInput">
                                 <span class="modal-span">E-mail cím módosítása</span>
                             </label>
-                            <button class="w-100 mb-1 btn btn-lg rounded-3 btn-danger" type="submit">
+                            <button type="submit" name="update-email" class="w-100 mb-1 btn btn-lg rounded-3 btn-danger" type="submit">
                                 <span class="modal-span">Módosítás</span>
                             </button>
                         </div>
+                    </form>
+                    <form action="php/settings.php" method="POST">
                         <div class="form-floating mb-3">
-                            <input name="password" type="password" class="form-control rounded-3 mb-2" id="floatingPassword" placeholder="Jelszo">
+                            <input name="new-password" type="password" class="form-control rounded-3 mb-2" id="floatingPassword" placeholder="Jelszo">
                             <label for="floatingPassword">
                                 <span class="modal-span">Jelszó módosítása</span>
                             </label>
-                            <button class="w-100 mb-1 btn btn-lg rounded-3 btn-danger" type="submit">
+                            <button name="update-password" class="w-100 mb-1 btn btn-lg rounded-3 btn-danger" type="submit">
                                 <span class="modal-span">Módosítás</span>
                             </button>
                         </div>
+                    </form>
+                    <form action="php/settings.php" method="POST">
                         <small class="text-body-secondary">
                             <span class="modal-span">Figyelem: A fiók törlése visszavonhatatlan! Biztosan törölni szeretnéd a fiókodat?</span>
                         </small>
+                    </form>
+                    <form action="php/settings.php" method="POST">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="same-address">
+                            <input type="checkbox" name="confirm-delete" value="yes" class="form-check-input" id="same-address">
                             <label class="form-check-label" for="same-address">
                                 <span class="vertical-align: inherit;">Igen, szeretném törölni a fiókomat</span>
                             </label>
                         </div>
-                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">
+                        <button name="delete-account" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">
                             <span class="modal-span">Fiók törlése</span>
                         </button>
                     </form>
+                    <?php
+                        if (isset($_SESSION['settings_message'])) {
+                            $message = $_SESSION['settings_message'];
+                            unset($_SESSION['settings_message']);
+                            echo "<span style='color: #FFB02E;'>".$message."</span><br>";// Hibaüzenet kiírása
+                        }
+                        ?>
                 </div>
             </div>
         </div>
     </div>
+
+
 
 
     <div class="container">

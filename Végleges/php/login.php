@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // Adatbázis kapcsolás
 $db = new mysqli('localhost', 'root', 'secret', 'jatekosmatek');
 
@@ -32,10 +34,14 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             header("Location: ../index.php"); // Átirányítás a sikeres bejelentkezés után
             exit;
         } else {
-            echo "Hibás jelszó. Kérjük, próbálja újra.";
+            $_SESSION['login_message'] = "Hibás jelszó. Kérjük, próbálja újra.";
+            header("Location: ../index.php");
+            exit;
         }
     } else {
-        echo "Nincs ilyen felhasználó ezzel az e-mail címmel.";
+        $_SESSION['login_message'] = "Nincs ilyen felhasználó ezzel az e-mail címmel.";
+        header("Location: ../index.php");
+        exit;
     }
     $stmt->close();
 }
