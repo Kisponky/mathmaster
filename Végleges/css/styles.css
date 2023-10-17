@@ -120,6 +120,12 @@
     vertical-align: inherit;
 }
 
+/* message modal */
+textarea {
+    resize: none;
+    overflow: hidden;
+}
+
 /* Nagy bagoly */
 .MathMaster_Logo {
     padding-top: 10px;

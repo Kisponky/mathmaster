@@ -84,6 +84,7 @@ $(document).ready(function(){
                     <?php
                     if (isset($_SESSION['user_fnev'])) {
                         echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#settings"">Beállítások</a></li>';
+                        echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#message"">Üzenet</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="php/logout.php">Kijelentkezés</a></li>';
                     } else {
                         echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#login">Bejelentkezés</a></li>';
@@ -214,7 +215,6 @@ $(document).ready(function(){
 
                 <div class="modal-body p-5 pt-0">
                     <form action="php/settings.php" method="POST">
-                        <div class="row">
                             <div class="form-floating mb-3">
                                 <input name="new-username" type="text" class="form-control rounded-3 mb-2" id="floatingInput" placeholder="felhasznalonev">
                                 <label for="floatingInput">
@@ -224,7 +224,6 @@ $(document).ready(function(){
                                     <span class="modal-span">Módosítás</span>
                                 </button>
                             </div>
-                        </div>
                     </form>
                     <form action="php/settings.php" method="POST">
                         <div class="form-floating mb-3">
@@ -254,7 +253,7 @@ $(document).ready(function(){
                         </small>
                     </form>
                     <form action="php/settings.php" method="POST">
-                        <div class="form-check">
+                        <div class="form-check mt-1 mb-2">
                             <input type="checkbox" name="confirm-delete" value="yes" class="form-check-input" id="same-address">
                             <label class="form-check-label" for="same-address">
                                 <span class="vertical-align: inherit;">Igen, szeretném törölni a fiókomat</span>
@@ -276,7 +275,33 @@ $(document).ready(function(){
         </div>
     </div>
 
+    <!-- Message -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="message">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-header p-5 pb-4 border-bottom-0" style="padding-top: 43px;">
+                    <h1 class="fw-bold mb-0 fs-2">
+                        <span style="vertical-align: inherit;">Üzenet küldése</span>
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
+                </div>
 
+                <div class="modal-body p-5 pt-0">
+                    <form>
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control rounded-3" id="messageText" placeholder="Az üzenet szövege" oninput="this.style.height = ''; this.style.height = (this.scrollHeight) + 'px'"></textarea>
+                            <label for="messageText">
+                                <span style="vertical-align: inherit;">Üzenet szövege</span>
+                            </label>
+                        </div>
+                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">
+                            <span style="vertical-align: inherit;">Küldés</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <div class="container">
