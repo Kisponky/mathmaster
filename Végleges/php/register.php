@@ -15,6 +15,12 @@ if (isset($_POST['submit'])) {
     $jelszo = $_POST['pw'];
     $jelszo2 = $_POST['pw2'];
 
+    if ($fnev == "" || $teljesNev == "" || $email == "" || $jelszo == "" || $jelszo2 == "") {
+        $_SESSION['register_message'] = "Hiányzó adat(ok) a regisztrációhoz!";
+        header("Location: ../index.php");
+        exit;
+    }
+
     // Ellenőrizd, hogy a két jelszó egyezik-e
     if ($jelszo != $jelszo2) {
         $_SESSION['register_message'] = "A két jelszó nem egyezik meg. Kérjük, próbálja újra.";
