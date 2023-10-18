@@ -32,7 +32,7 @@
 </head>
 <body>
     <div class="container mt-5">
-        <div class="jumbotron text-center">
+        <div class="jumbotron text-center rounded-3">
             <h1 class="display-4">Rólunk</h1>
         </div>
 

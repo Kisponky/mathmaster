@@ -14,10 +14,8 @@
     height: 40px;
 }
 
-/* A hamburger menü anumáció stílusa */
-.animated-icon1,
-.animated-icon2,
-.animated-icon3 {
+/* A hamburger menü animáció stílusa */
+.animated-icon2 {
     width: 30px;
     height: 20px;
     position: relative;
@@ -26,16 +24,15 @@
     -moz-transform: rotate(0deg);
     -o-transform: rotate(0deg);
     transform: rotate(0deg);
-    -webkit-transition: .5s ease-in-out;
-    -moz-transition: .5s ease-in-out;
-    -o-transition: .5s ease-in-out;
-    transition: .5s ease-in-out;
+    -webkit-transition: .4s ease-in-out;
+    -moz-transition: .4s ease-in-out;
+    -o-transition: .4s ease-in-out;
+    transition: .4s ease-in-out;
     cursor: pointer;
 }
 
-.animated-icon1 span,
-.animated-icon2 span,
-.animated-icon3 span {
+
+.animated-icon2 span {
     display: block;
     position: absolute;
     height: 3px;
@@ -47,10 +44,10 @@
     -moz-transform: rotate(0deg);
     -o-transform: rotate(0deg);
     transform: rotate(0deg);
-    -webkit-transition: .25s ease-in-out;
-    -moz-transition: .25s ease-in-out;
-    -o-transition: .25s ease-in-out;
-    transition: .25s ease-in-out;
+    -webkit-transition: .24s ease-in-out;
+    -moz-transition: .24s ease-in-out;
+    -o-transition: .24s ease-in-out;
+    transition: .24s ease-in-out;
 }
 
 
