@@ -47,12 +47,24 @@ $(document).ready(function(){
 }
 ?>
 
-<?php // Register felület megnyitás az átirányítás után               
+<?php // settings felület megnyitás az átirányítás után               
 if(isset($_SESSION['settings_message'])) {
 ?>
 <script>
 $(document).ready(function(){
     $('#settings').modal('show');
+});
+</script>
+<?php
+}
+?>
+
+<?php // message felület megnyitás az átirányítás után               
+if(isset($_SESSION['send_message'])) {
+?>
+<script>
+$(document).ready(function(){
+    $('#message').modal('show');
 });
 </script>
 <?php
@@ -287,17 +299,24 @@ $(document).ready(function(){
                 </div>
 
                 <div class="modal-body p-5 pt-0">
-                    <form>
+                    <form action="php/sendMessage.php" method="POST">
                         <div class="form-floating mb-3">
-                            <textarea class="form-control rounded-3" id="messageText" placeholder="Az üzenet szövege" oninput="this.style.height = ''; this.style.height = (this.scrollHeight) + 'px'"></textarea>
+                            <textarea class="form-control rounded-3" id="messageText" name="message" placeholder="Az üzenet szövege" oninput="this.style.height = ''; this.style.height = (this.scrollHeight) + 'px'"></textarea>
                             <label for="messageText">
                                 <span style="vertical-align: inherit;">Üzenet szövege</span>
                             </label>
                         </div>
-                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">
+                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" name="submit" type="submit">
                             <span style="vertical-align: inherit;">Küldés</span>
                         </button>
                     </form>
+                    <?php 
+                    if (isset($_SESSION['send_message'])) {
+                        $message = $_SESSION['send_message'];
+                        unset($_SESSION['send_message']);
+                        echo "<span style='color: #FFB02E;'>".$message."</span>";// Hibaüzenet kiírása
+                    }
+                    ?>
                 </div>
             </div>
         </div>
