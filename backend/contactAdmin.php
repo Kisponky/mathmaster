@@ -22,8 +22,25 @@ if (isset($_POST['delete_message'])) {
     $delete_stmt->close();
 }
 
+// Válasz mentése
+if (isset($_POST['reply_message'])) {
+    $message_id = $_POST['message_id'];
+    $reply_text = $_POST['reply_text'];
+
+    $reply_sql = "UPDATE contactUs SET reply_text = ? WHERE id = ?";
+    $reply_stmt = $db->prepare($reply_sql);
+    $reply_stmt->bind_param("si", $reply_text, $message_id);
+
+    if ($reply_stmt->execute()) {
+        echo "A válasz elküldve.";
+    } else {
+        echo "Hiba a válasz elküldésekor: " . $reply_stmt->error;
+    }
+    $reply_stmt->close();
+}
+
 // Lekérdezés a contactUs és Users táblák között INNER JOIN segítségével
-$sql = "SELECT Users.fnev, Users.email, contactUs.created_at, contactUs.text, contactUs.id
+$sql = "SELECT Users.fnev, Users.email, contactUs.created_at, contactUs.text, contactUs.id, contactUs.reply_text
         FROM contactUs
         INNER JOIN Users ON contactUs.felhasznaloId = Users.id
         ORDER BY contactUs.created_at DESC";
@@ -46,6 +63,7 @@ $result = $db->query($sql);
             <th>Email</th>
             <th>Beküldés ideje</th>
             <th>Üzenet</th>
+            <th>Válasz</th>
             <th>Törlés</th>
         </tr>
         <?php
@@ -55,6 +73,17 @@ $result = $db->query($sql);
             echo "<td>" . htmlspecialchars($row['email']) . "</td>";
             echo "<td>" . htmlspecialchars($row['created_at']) . "</td>";
             echo "<td>" . htmlspecialchars($row['text']) . "</td>";
+            echo "<td>";
+            if (empty($row['reply_text'])) {
+                echo "<form method='POST' action=''>";
+                echo "<input type='hidden' name='message_id' value='" . $row['id'] . "'>";
+                echo "<textarea name='reply_text' rows='4' cols='50'></textarea><br>";
+                echo "<input type='submit' name='reply_message' value='Válasz küldése'>";
+                echo "</form>";
+            } else {
+                echo htmlspecialchars($row['reply_text']);
+            }
+            echo "</td>";
             echo "<td>";
             echo "<form method='POST' action=''>";
             echo "<input type='hidden' name='message_id' value='" . $row['id'] . "'>";
