@@ -85,6 +85,7 @@ $(document).ready(function(){
                     if (isset($_SESSION['user_fnev'])) {
                         echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#settings"">Beállítások</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#message"">Üzenet</a></li>';
+                        echo '<li class="nav-item"><a class="nav-link" href="./php/about.php">Rólunk</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="./php/contact.php">Kapcsolat</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="php/logout.php">Kijelentkezés</a></li>';
                     } else {

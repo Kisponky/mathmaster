@@ -1,0 +1,223 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* A menü stílusa */
+.navbar {
+    padding-right: 10px;
+}
+
+.navbar-brand {
+    margin-left: 10px;
+    font-size: 150%;
+    font-weight: bold;
+}
+
+.MathMaster_Logo_nav {
+    width: 40px;
+    height: 40px;
+}
+
+/* A hamburger menü animáció stílusa */
+.animated-icon1,
+.animated-icon2,
+.animated-icon3 {
+    width: 30px;
+    height: 20px;
+    position: relative;
+    margin: 0px;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .4s ease-in-out;
+    -moz-transition: .4s ease-in-out;
+    -o-transition: .4s ease-in-out;
+    transition: .4s ease-in-out;
+    cursor: pointer;
+}
+
+
+.animated-icon1 span,
+.animated-icon2 span,
+.animated-icon3 span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .24s ease-in-out;
+    -moz-transition: .24s ease-in-out;
+    -o-transition: .24s ease-in-out;
+    transition: .24s ease-in-out;
+}
+
+
+.animated-icon2 span {
+    background: black;
+}
+
+.animated-icon2 span:nth-child(1) {
+    top: 0px;
+}
+
+.animated-icon2 span:nth-child(2),
+.animated-icon2 span:nth-child(3) {
+    top: 10px;
+}
+
+.animated-icon2 span:nth-child(4) {
+    top: 20px;
+}
+
+.animated-icon2.open span:nth-child(1) {
+    top: 11px;
+    width: 0%;
+    left: 50%;
+}
+
+.animated-icon2.open span:nth-child(2) {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.animated-icon2.open span:nth-child(3) {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.animated-icon2.open span:nth-child(4) {
+    top: 11px;
+    width: 0%;
+    left: 50%;
+}
+
+
+.navbar .navbar-toggler {
+    border-width: 0;
+}
+
+.navbar-toggler {
+    background-color: transparent;
+}
+
+.nav-item {
+    text-align: center;
+    color: black;
+    font-weight: bold;
+}
+
+
+.jumbotron {
+    background: url('../img/forest-3394066.jpg') center/cover;
+    color: #d9b08c;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    border-radius: 0;
+}
+
+.about-us {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    margin-top: 40px;
+    /* color: #116466; */
+    color: white;
+}
+
+footer {
+    background-color: #666;
+    color: white;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 2vh;
+    font-size: 1.2vw;
+}
+
+@media (max-width:300px) {
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    p {
+        font-size: 1.3rem;
+    }
+    footer {
+        padding: 1.5vh;
+        font-size: 3.3vw;
+    }
+}
+
+@media (max-width: 576px) {
+    footer {
+        padding: 1.5vh;
+        font-size: 3.3vw;
+    }
+}
+
+@media (max-width: 768px) {
+    footer {
+        padding: 1.7vh;
+        font-size: 2.2vw;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+    footer {
+        padding: 1.85vh;
+        font-size: 1.7vw;
+    }
+}
+
+@media (min-width: 1201px) and (max-width: 1500px) {
+    footer {
+        padding: 2vh;
+        font-size: 1.45vw;
+    }
+}
+
+@media (min-width: 2300px) {
+    
+    .navbar-brand {
+        font-size: 265%;
+        font-weight: bold;
+    }
+    
+    .MathMaster_Logo_nav {
+        width: 70.5px;
+        height: 70.5px;
+    }
+
+    .nav-link{
+        font-size: 110%;
+    }
+    
+    h2 {
+        font-size: 2.45rem;
+        padding: 21.27px 100px 0 100px;
+    }
+    
+    p {
+        font-size: 2.1rem;
+        padding: 4.33px 100px;
+    }
+    
+    footer {
+        padding: 2vh;
+        font-size: 1.2vw;
+    }
+}
