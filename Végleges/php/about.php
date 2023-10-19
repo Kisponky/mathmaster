@@ -36,7 +36,7 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="../index.php">Kezdőlap</a>
                     </li>
-                    <!-- <?php
+                    <?php
                     if (isset($_SESSION['user_fnev'])) {
                         echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#settings"">Beállítások</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#message"">Üzenet</a></li>';
@@ -46,7 +46,7 @@
                         echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#login">Bejelentkezés</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#register">Regisztráció</a></li>';
                     }
-                    ?> -->
+                    ?>
                 </ul>
             </div>
         </nav>
