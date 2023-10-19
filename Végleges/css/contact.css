@@ -33,6 +33,7 @@
     cursor: pointer;
 }
 
+
 .animated-icon1 span,
 .animated-icon2 span,
 .animated-icon3 span {
@@ -112,67 +113,31 @@
     font-weight: bold;
 }
 
-.modal-header{
-    padding-top: 43px;
+/* CSS a textarea méretezhetőségének eltávolításához */
+form{
+    max-width: 50%;
 }
 
-.modal-span{
-    vertical-align: inherit;
-}
-
-/* message modal */
 textarea {
     resize: none;
-    overflow: hidden;
 }
 
-/* Nagy bagoly */
-.MathMaster_Logo {
-    padding-top: 10px;
-    width: 80%;
-    height: auto;
-    max-height: 80vh;
+.jumbotron {
+    background: url('../img/forest-3394066.jpg') center/cover;
+    color: #d9b08c;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    border-radius: 0;
 }
 
-/* Oldal neve */
-.cim {
-    font-size: 6rem;
+.about-us {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    margin-top: 40px;
+    /* color: #116466; */
+    color: white;
 }
 
-/* következő rész címe */
-.feladat_cim {
-    font-size: 2.5rem;
-    padding-top: 20px;
-}
-
-/* a gombok alapértelmezet stílusa */
-.osztaly_gomb {
-    font-size: 1.4rem;
-    padding: 15px 25px;
-}
-
-h2 {
-    font-size: 1.8rem;
-    font-weight: bold;
-    text-align: left;
-    padding: 25px 240px 0 240px;
-}
-
-p {
-    font-size: 1.5rem;
-    text-align: left;
-    padding: 7px 240px;
-}
-
-/* Al részek gombja */
-.info_gomb {
-    float: left;
-    font-size: 1.1rem;
-    padding: 10px 20px;
-    margin: 5px 240px;
-}
-
-/* A footer stílusa */
 footer {
     background-color: #666;
     color: white;
@@ -182,125 +147,63 @@ footer {
     font-size: 1.2vw;
 }
 
-/*Galaxy Fold-hoz csökkenteni kell a méreteket, @media (max-width:300px)*/
 @media (max-width:300px) {
-    .cim {
-        font-size: 2.16rem;
+    form{
+        max-width: 100%;
     }
-
-    .feladat_cim {
-        font-size: 2.15rem;
-        padding-top: 10px;
-    }
-
-    .osztaly_gomb {
-        font-size: 1.17rem;
-        padding: 12.5px 21px;
-    }
-
-    .btn-block-sm {
-        display: block;
-        width: 100%;
-    }
-
     h2 {
         font-size: 1.6rem;
-        padding: 22px 0 0 0;
     }
 
     p {
         font-size: 1.3rem;
-        padding: 6.1px 0;
     }
-
-    .info_gomb {
-        font-size: 0.9rem;
-        padding: 8.4px 16.8px;
-        margin: 4px 0;
-    }
-
     footer {
         padding: 1.5vh;
         font-size: 3.3vw;
     }
 }
 
-
-/*Telefon álló nézetben*/
 @media (max-width: 576px) {
-    .navbar-brand {
-        font-size: 130%;
+    form{
+        max-width: 100%;
     }
-
-    .MathMaster_Logo_nav {
-        width: 30px;
-        height: 30px;
-    }
-
-    .cim {
-        font-size: 3rem;
-    }
-
-    .btn-block-sm {
-        display: block;
-        width: 100%;
-    }
-
-    h2 {
-        padding: 25px 0 0 0;
-    }
-
-    p {
-        padding: 7px 0;
-    }
-
-    .info_gomb {
-        margin: 5px 0;
-    }
-
     footer {
         padding: 1.5vh;
         font-size: 3.3vw;
     }
 }
 
-/*Tablet álló nézetben*/
 @media (max-width: 768px) {
-    h2 {
-        padding: 25px 0 0 0;
+    form{
+        max-width: 80%;
     }
-
-    p {
-        padding: 7px 0;
+    .form-control{
+        font-size: 1.22rem;
     }
-
-    .info_gomb {
-        margin: 5px 0;
-    }
-
     footer {
         padding: 1.7vh;
         font-size: 2.2vw;
     }
 }
 
-/*Kis méretű monitor és laptop*/
 @media (min-width: 769px) and (max-width: 1200px) {
-    h2 {
-        padding: 25px 60px 0 60px;
+    .form-control{
+        font-size: 1.30rem;
     }
-
-    p {
-        padding: 7px 60px;
-    }
-
-    .info_gomb {
-        margin: 5px 60px;
-    }
-
     footer {
         padding: 1.85vh;
         font-size: 1.7vw;
+    }
+}
+
+@media (min-width: 1201px) and (max-width: 1500px) {
+    .form-control{
+        font-size: 1.41rem;
+    }
+    footer {
+        padding: 2vh;
+        font-size: 1.45vw;
     }
 }
 
@@ -317,37 +220,32 @@ footer {
     }
 
     .nav-link{
-        font-size: 160%;
-    }
-    
-    .cim {
-        font-size: 8rem;
-    }
-    
-    .feladat_cim {
-        font-size: 3.4rem;
-        padding: 20px 0 20px 0;
-    }
-    
-    .osztaly_gomb {
-        font-size: 1.6rem;
-        padding: 16.6px 27.6px;
+        font-size: 110%;
     }
     
     h2 {
         font-size: 2.45rem;
-        padding: 26.55px 200px 0 200px;
+        padding: 21.27px 100px 0 100px;
     }
     
     p {
         font-size: 2.1rem;
-        padding: 7.65px 200px;
+        padding: 4.33px 100px;
+    }
+
+    ul{
+        font-size: 2.1rem;
+        padding: 4.33px 100px; 
+    }
+
+    .form-control{
+        font-size: 2.1rem;
     }
     
-    .info_gomb {
-        font-size: 1.4rem;
+    .bekuld_gomb {
+        font-size: 1.6rem;
+        font-weight: bold;
         padding: 10.3px 20.3px;
-        margin: 5.3px 200px;
     }
     
     footer {

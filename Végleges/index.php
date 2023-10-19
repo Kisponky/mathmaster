@@ -21,43 +21,43 @@
 </head>
 
 <body>
-<?php // Login felület megnyitás az átirányítás után
-session_start();               
-if(isset($_SESSION['login_message'])) {
-?>
-<script>
-$(document).ready(function(){
-    $('#login').modal('show');
-});
-</script>
+    <?php // Login felület megnyitás az átirányítás után
+    session_start();
+    if (isset($_SESSION['login_message'])) {
+    ?>
+        <script>
+            $(document).ready(function() {
+                $('#login').modal('show');
+            });
+        </script>
 
-<?php
-}
-?>
+    <?php
+    }
+    ?>
 
-<?php // Register felület megnyitás az átirányítás után               
-if(isset($_SESSION['register_message'])) {
-?>
-<script>
-$(document).ready(function(){
-    $('#register').modal('show');
-});
-</script>
-<?php
-}
-?>
+    <?php // Register felület megnyitás az átirányítás után               
+    if (isset($_SESSION['register_message'])) {
+    ?>
+        <script>
+            $(document).ready(function() {
+                $('#register').modal('show');
+            });
+        </script>
+    <?php
+    }
+    ?>
 
-<?php // Register felület megnyitás az átirányítás után               
-if(isset($_SESSION['settings_message'])) {
-?>
-<script>
-$(document).ready(function(){
-    $('#settings').modal('show');
-});
-</script>
-<?php
-}
-?>
+    <?php // Register felület megnyitás az átirányítás után               
+    if (isset($_SESSION['settings_message'])) {
+    ?>
+        <script>
+            $(document).ready(function() {
+                $('#settings').modal('show');
+            });
+        </script>
+    <?php
+    }
+    ?>
     <!-- A fejléc tartalmazza a menü rendszert -->
     <header>
         <!-- Navigációs sáv, Hamburger menü megjelenése sm méretben,
@@ -85,6 +85,7 @@ $(document).ready(function(){
                     if (isset($_SESSION['user_fnev'])) {
                         echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#settings"">Beállítások</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#message"">Üzenet</a></li>';
+                        echo '<li class="nav-item"><a class="nav-link" href="./php/contact.php">Kapcsolat</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="php/logout.php">Kijelentkezés</a></li>';
                     } else {
                         echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#login">Bejelentkezés</a></li>';
@@ -149,7 +150,7 @@ $(document).ready(function(){
                         if (isset($_SESSION['register_message'])) {
                             $message = $_SESSION['register_message'];
                             unset($_SESSION['register_message']);
-                            echo "<span style='color: #FFB02E;'>⚠️ ".$message."</span><br>";// Hibaüzenet kiírása
+                            echo "<span style='color: #FFB02E;'>⚠️ " . $message . "</span><br>"; // Hibaüzenet kiírása
                         }
                         ?>
                         <small class="text-body-secondary">
@@ -191,11 +192,11 @@ $(document).ready(function(){
                         </button>
                     </form>
                     <?php
-                        if (isset($_SESSION['login_message'])) {
-                            $message = $_SESSION['login_message'];
-                            unset($_SESSION['login_message']);
-                            echo "<span style='color: #FFB02E;'>⚠️ ".$message."</span>";// Hibaüzenet kiírása
-                        }
+                    if (isset($_SESSION['login_message'])) {
+                        $message = $_SESSION['login_message'];
+                        unset($_SESSION['login_message']);
+                        echo "<span style='color: #FFB02E;'>⚠️ " . $message . "</span>"; // Hibaüzenet kiírása
+                    }
                     ?>
                 </div>
             </div>
@@ -215,15 +216,15 @@ $(document).ready(function(){
 
                 <div class="modal-body p-5 pt-0">
                     <form action="php/settings.php" method="POST">
-                            <div class="form-floating mb-3">
-                                <input name="new-username" type="text" class="form-control rounded-3 mb-2" id="floatingInput" placeholder="felhasznalonev">
-                                <label for="floatingInput">
-                                    <span class="modal-span">Felhasználónév módosítása</span>
-                                </label>
-                                <button name="update-username" class="w-100 mb-1 btn btn-lg rounded-3 btn-danger" type="submit">
-                                    <span class="modal-span">Módosítás</span>
-                                </button>
-                            </div>
+                        <div class="form-floating mb-3">
+                            <input name="new-username" type="text" class="form-control rounded-3 mb-2" id="floatingInput" placeholder="felhasznalonev">
+                            <label for="floatingInput">
+                                <span class="modal-span">Felhasználónév módosítása</span>
+                            </label>
+                            <button name="update-username" class="w-100 mb-1 btn btn-lg rounded-3 btn-danger" type="submit">
+                                <span class="modal-span">Módosítás</span>
+                            </button>
+                        </div>
                     </form>
                     <form action="php/settings.php" method="POST">
                         <div class="form-floating mb-3">
@@ -264,12 +265,12 @@ $(document).ready(function(){
                         </button>
                     </form>
                     <?php
-                        if (isset($_SESSION['settings_message'])) {
-                            $message = $_SESSION['settings_message'];
-                            unset($_SESSION['settings_message']);
-                            echo "<span style='color: #FFB02E;'>".$message."</span><br>";// Hibaüzenet kiírása
-                        }
-                        ?>
+                    if (isset($_SESSION['settings_message'])) {
+                        $message = $_SESSION['settings_message'];
+                        unset($_SESSION['settings_message']);
+                        echo "<span style='color: #FFB02E;'>" . $message . "</span><br>"; // Hibaüzenet kiírása
+                    }
+                    ?>
                 </div>
             </div>
         </div>

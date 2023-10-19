@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="hu" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -7,8 +7,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         /* CSS a textarea méretezhetőségének eltávolításához */
+        form{
+            max-width: 50%;
+        }
+
         textarea {
-            resize: none; 
+            resize: none;
         }
 
         .jumbotron {
@@ -23,7 +27,8 @@
             font-size: 1.6rem;
             line-height: 1.6;
             margin-top: 40px;
-            color: #116466;
+            /* color: #116466; */
+            color: white;
         }
 
         /* Testre szabhatod a további stílusokat itt */
@@ -53,8 +58,13 @@
             <ul>
                 <li>Telefon: +36 123 456 789</li>
                 <li>Cím: Budapest, Példa utca 123.</li>
-                <li>Üzenet:</li> 
-                <textarea class="p-2 rounded-3" rows="4" cols="50" placeholder="Ide írja üzenetét..."></textarea>
+                <li>Üzenet:</li>
+                <form>
+                        <textarea  rows="4" cols="50" class="form-control mb-3 rounded-3" id="messageText" placeholder="Ide írja üzenetét..."></textarea>
+                    <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" type="submit">
+                        <span style="vertical-align: inherit;">Küldés</span>
+                    </button>
+                </form>
             </ul>
         </div>
 
