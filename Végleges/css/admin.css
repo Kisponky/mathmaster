@@ -1,0 +1,206 @@
+/* A menü stílusa */
+.navbar {
+    padding-right: 10px;
+}
+
+.navbar-brand {
+    margin-left: 10px;
+    font-size: 150%;
+    font-weight: bold;
+}
+
+.MathMaster_Logo_nav {
+    width: 40px;
+    height: 40px;
+}
+
+/* A hamburger menü animáció stílusa */
+.animated-icon1,
+.animated-icon2,
+.animated-icon3 {
+    width: 30px;
+    height: 20px;
+    position: relative;
+    margin: 0px;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .4s ease-in-out;
+    -moz-transition: .4s ease-in-out;
+    -o-transition: .4s ease-in-out;
+    transition: .4s ease-in-out;
+    cursor: pointer;
+}
+
+.animated-icon1 span,
+.animated-icon2 span,
+.animated-icon3 span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .24s ease-in-out;
+    -moz-transition: .24s ease-in-out;
+    -o-transition: .24s ease-in-out;
+    transition: .24s ease-in-out;
+}
+
+
+.animated-icon2 span {
+    background: black;
+}
+
+.animated-icon2 span:nth-child(1) {
+    top: 0px;
+}
+
+.animated-icon2 span:nth-child(2),
+.animated-icon2 span:nth-child(3) {
+    top: 10px;
+}
+
+.animated-icon2 span:nth-child(4) {
+    top: 20px;
+}
+
+.animated-icon2.open span:nth-child(1) {
+    top: 11px;
+    width: 0%;
+    left: 50%;
+}
+
+.animated-icon2.open span:nth-child(2) {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.animated-icon2.open span:nth-child(3) {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.animated-icon2.open span:nth-child(4) {
+    top: 11px;
+    width: 0%;
+    left: 50%;
+}
+
+
+.navbar .navbar-toggler {
+    border-width: 0;
+}
+
+.navbar-toggler {
+    background-color: transparent;
+}
+
+.nav-item {
+    text-align: center;
+    color: black;
+    font-weight: bold;
+}
+
+.message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #3b3b3b;
+    margin-bottom: 2vh;
+    padding: 20px;
+    border-radius: 5px;
+    min-height: 682.8px;
+}
+
+.message-bubble {
+    width: 80%;
+    padding: 20px;
+    margin: 20px 0;
+    background: linear-gradient(to bottom, #CCDAD1, #CCDAD1);
+    color: black;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.message-bubble:hover {
+    transform: scale(1.05);
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.message-user {
+    font-size: 1.4rem;
+}
+
+.message-date {
+    font-size: 1.2rem;
+    color: #444;
+}
+
+.message-text {
+    font-size: 1.6rem;
+}
+
+.message-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.message-actions button {
+    padding: 10px 20px;
+    font-size: 1.4rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.message-actions button:nth-child(1) {
+    color: white;
+    margin-right: 10px;
+}
+
+.message-actions button:nth-child(2) {
+    border: black solid 1px;
+}
+
+#valaszTextarea {
+    resize: none;
+    overflow: hidden;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    min-height: 50px; 
+}
+
+/* A footer stílusa */
+footer {
+    background-color: #666;
+    color: white;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    padding: 1.8vh;
+    font-size: 1vw;
+}
