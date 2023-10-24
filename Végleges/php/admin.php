@@ -37,12 +37,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent23">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Kezdőlap</a>
+                        <a class="nav-link" href="../index.php">Kezdőlap</a>
                     </li>
                     <?php
                     if (isset($_SESSION['user_fnev'])) {
                         echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#settings"">Beállítások</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#message"">Üzenet</a></li>';
+                        echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#admin_recording"">Admin</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="./php/about.php">Rólunk</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="./php/contact.php">Kapcsolat</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="php/logout.php">Kijelentkezés</a></li>';
@@ -55,6 +56,41 @@
             </div>
         </nav>
     </header>
+
+    <!-- Admin felvétel -->
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="admin_recording">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-header p-5 pb-4 border-bottom-0" style="padding-top: 43px;">
+                    <h1 class="fw-bold mb-0 fs-2">
+                        <span style="vertical-align: inherit;">Új admin felvétel!</span>
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
+                </div>
+
+                <div class="modal-body p-5 pt-0">
+                    <form action="php/sendMessage.php" method="POST">
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control rounded-3" id="messageText" name="message" placeholder="Az üzenet szövege" oninput="this.style.height = ''; this.style.height = (this.scrollHeight) + 'px'"></textarea>
+                            <label for="messageText">
+                                <span style="vertical-align: inherit;">Felhasználónév</span>
+                            </label>
+                        </div>
+                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger" name="submit" type="submit">
+                            <span style="vertical-align: inherit;">Felvétel</span>
+                        </button>
+                    </form>
+                    <?php 
+                    if (isset($_SESSION['send_message'])) {
+                        $message = $_SESSION['send_message'];
+                        unset($_SESSION['send_message']);
+                        echo "<span style='color: #FFB02E;'>".$message."</span>";// Hibaüzenet kiírása
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <div class="container mt-5">
