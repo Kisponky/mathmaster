@@ -47,17 +47,17 @@
     }
     ?>
 
-<?php // Register felület megnyitás az átirányítás után               
-if(isset($_SESSION['settings_message'])) {
-?>
-<script>
-$(document).ready(function(){
-    $('#settings').modal('show');
-});
-</script>
-<?php
-}
-?>
+    <?php // Register felület megnyitás az átirányítás után               
+    if (isset($_SESSION['settings_message'])) {
+    ?>
+        <script>
+            $(document).ready(function() {
+                $('#settings').modal('show');
+            });
+        </script>
+    <?php
+    }
+    ?>
     <!-- A fejléc tartalmazza a menü rendszert -->
     <header>
         <!-- Navigációs sáv, Hamburger menü megjelenése sm méretben,
@@ -301,11 +301,11 @@ $(document).ready(function(){
                             <span style="vertical-align: inherit;">Küldés</span>
                         </button>
                     </form>
-                    <?php 
+                    <?php
                     if (isset($_SESSION['send_message'])) {
                         $message = $_SESSION['send_message'];
                         unset($_SESSION['send_message']);
-                        echo "<span style='color: #FFB02E;'>".$message."</span>";// Hibaüzenet kiírása
+                        echo "<span style='color: #FFB02E;'>" . $message . "</span>"; // Hibaüzenet kiírása
                     }
                     ?>
                 </div>
@@ -382,7 +382,7 @@ $(document).ready(function(){
 
     <!-- Bootstrap külső hivatkozás script-re -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <!-- Hamburger menü saját scriptje -->
+    <!-- saját script -->
     <script src="js/index.js"></script>
 </body>
 

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Animált Navbar</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        /* Alap stílusok a navbar-hoz */
+        .navbar {
+            background: linear-gradient(45deg, #ff6b6b, #6b66ff, #66ff6b, #6b6bff);
+            background-size: 400% 400%;
+            animation: gradient 6s linear infinite, pulse 2s infinite;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .navbar a {
+            color: #ffffff;
+            font-size: 16px;
+            transition: font-size 0.3s, color 0.3s;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        /* Betűtípus méret animáció */
+        .navbar a::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            font-size: 16px;
+            transform: scale(0, 1);
+            transition: transform 0.3s;
+        }
+
+        .navbar a:hover::before {
+            transform: scale(1, 1);
+        }
+
+        /* JavaScript-tel vezérelt részecskék animáció */
+        .particles {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: #17a2b8;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Weboldal Neve</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Kezdőlap</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Rólunk</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Szolgáltatások</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Kapcsolat</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const navbar = document.querySelector(".navbar");
+            const particlesContainer = document.createElement("div");
+            particlesContainer.classList.add("particles-container");
+            navbar.appendChild(particlesContainer);
+
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement("div");
+                particle.classList.add("particles");
+                particlesContainer.appendChild(particle);
+
+                particle.style.left = Math.random() * window.innerWidth + "px";
+                particle.style.top = Math.random() * window.innerHeight + "px";
+            }
+
+            document.addEventListener("mousemove", (e) => {
+                particlesContainer.style.left = e.pageX + "px";
+                particlesContainer.style.top = e.pageY + "px";
+            });
+        });
+
+    </script>
+</body>
+
+</html>

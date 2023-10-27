@@ -1,3 +1,19 @@
+/* JavaScript-tel vezérelt részecskék animáció */
+.particles-container {
+    position: fixed;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particles {
+    width: 2px;
+    height: 2px;
+    font-size: 32px;
+    white-space: nowrap;
+    position: fixed;
+    opacity: 0.5;
+}
+
 /* A menü stílusa */
 .navbar {
     padding-right: 10px;
@@ -112,11 +128,11 @@
     font-weight: bold;
 }
 
-.modal-header{
+.modal-header {
     padding-top: 43px;
 }
 
-.modal-span{
+.modal-span {
     vertical-align: inherit;
 }
 
@@ -305,51 +321,51 @@ footer {
 }
 
 @media (min-width: 2300px) {
-    
+
     .navbar-brand {
         font-size: 265%;
         font-weight: bold;
     }
-    
+
     .MathMaster_Logo_nav {
         width: 70.5px;
         height: 70.5px;
     }
 
-    .nav-link{
+    .nav-link {
         font-size: 160%;
     }
-    
+
     .cim {
         font-size: 8rem;
     }
-    
+
     .feladat_cim {
         font-size: 3.4rem;
         padding: 20px 0 20px 0;
     }
-    
+
     .osztaly_gomb {
         font-size: 1.6rem;
         padding: 16.6px 27.6px;
     }
-    
+
     h2 {
         font-size: 2.45rem;
         padding: 26.55px 200px 0 200px;
     }
-    
+
     p {
         font-size: 2.1rem;
         padding: 7.65px 200px;
     }
-    
+
     .info_gomb {
         font-size: 1.4rem;
         padding: 10.3px 20.3px;
         margin: 5.3px 200px;
     }
-    
+
     footer {
         padding: 2vh;
         font-size: 1.2vw;
