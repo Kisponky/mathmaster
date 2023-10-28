@@ -1,3 +1,19 @@
+/* JavaScript-tel vezérelt részecskék animáció */
+.particles-container {
+    position: fixed;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particles {
+    width: 2px;
+    height: 2px;
+    font-size: 32px;
+    white-space: nowrap;
+    position: fixed;
+    opacity: 0.5;
+}
+
 /* A menü stílusa */
 .navbar {
     padding-right: 10px;
@@ -121,7 +137,7 @@ textarea {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #3b3b3b;
+    background-color: rgba(59, 59, 59, 0.65);
     margin-bottom: 2vh;
     padding: 20px;
     border-radius: 5px;
