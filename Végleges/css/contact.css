@@ -1,3 +1,19 @@
+/* JavaScript-tel vezérelt részecskék animáció */
+.particles-container {
+    position: fixed;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particles {
+    width: 2px;
+    height: 2px;
+    font-size: 32px;
+    white-space: nowrap;
+    position: fixed;
+    opacity: 0.5;
+}
+
 /* A menü stílusa */
 .navbar {
     padding-right: 10px;
