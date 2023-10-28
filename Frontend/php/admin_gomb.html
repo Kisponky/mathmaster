@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Válasz űrlap</title>
+</head>
+<body>
+
+<button id="valaszGomb">Válasz</button>
+
+<form id="valaszForm" style="display: none;">
+    <textarea id="valaszTextarea" placeholder="Ide írja a választ"></textarea>
+    <button id="kuldGomb">Küldés</button>
+</form>
+
+<script>
+    const valaszGomb = document.getElementById("valaszGomb");
+    const valaszForm = document.getElementById("valaszForm");
+
+    valaszGomb.addEventListener("click", function() {
+        valaszGomb.style.display = "none";
+        valaszForm.style.display = "block";
+    });
+</script>
+
+</body>
+</html>

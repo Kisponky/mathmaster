@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: black;
+}
+
+.container {
+    position: relative;
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .icon {
+    width: 200px;
+}
+
+.container .icon path {
+    fill: transparent;
+    stroke-width: 10;
+    stroke: #ff0000;
+}
+
+.container .icon .trash path {
+    stroke-dasharray: 1500;
+    stroke-dashoffset: 1500;
+}

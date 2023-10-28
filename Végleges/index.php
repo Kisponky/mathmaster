@@ -47,17 +47,17 @@
     }
     ?>
 
-<?php // Register felület megnyitás az átirányítás után               
-if(isset($_SESSION['settings_message'])) {
-?>
-<script>
-$(document).ready(function(){
-    $('#settings').modal('show');
-});
-</script>
-<?php
-}
-?>
+    <?php // Register felület megnyitás az átirányítás után               
+    if (isset($_SESSION['settings_message'])) {
+    ?>
+        <script>
+            $(document).ready(function() {
+                $('#settings').modal('show');
+            });
+        </script>
+    <?php
+    }
+    ?>
     <!-- A fejléc tartalmazza a menü rendszert -->
     <header>
         <!-- Navigációs sáv, Hamburger menü megjelenése sm méretben,
@@ -87,6 +87,10 @@ $(document).ready(function(){
                     if (isset($_SESSION['user_fnev'])) {
                         echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#message"">Üzenet</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#settings"">Beállítások</a></li>';
+                        echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#message"">Üzenet</a></li>';
+                        echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#admin_recording"">Admin</a></li>';
+                        echo '<li class="nav-item"><a class="nav-link" href="./php/about.php">Rólunk</a></li>';
+                        echo '<li class="nav-item"><a class="nav-link" href="./php/contact.php">Kapcsolat</a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="php/logout.php">Kijelentkezés</a></li>';
                     } else {
                         echo '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#login">Bejelentkezés</a></li>';
@@ -278,7 +282,7 @@ $(document).ready(function(){
     </div>
 
     <!-- Message -->
-    <div class="modal fade" tabindex="-1" role="dialog" id="message">
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="message">
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-4 shadow">
                 <div class="modal-header p-5 pb-4 border-bottom-0" style="padding-top: 43px;">
@@ -300,11 +304,11 @@ $(document).ready(function(){
                             <span style="vertical-align: inherit;">Küldés</span>
                         </button>
                     </form>
-                    <?php 
+                    <?php
                     if (isset($_SESSION['send_message'])) {
                         $message = $_SESSION['send_message'];
                         unset($_SESSION['send_message']);
-                        echo "<span style='color: #FFB02E;'>".$message."</span>";// Hibaüzenet kiírása
+                        echo "<span style='color: #FFB02E;'>" . $message . "</span>"; // Hibaüzenet kiírása
                     }
                     ?>
                 </div>
@@ -381,7 +385,7 @@ $(document).ready(function(){
 
     <!-- Bootstrap külső hivatkozás script-re -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <!-- Hamburger menü saját scriptje -->
+    <!-- saját script -->
     <script src="js/index.js"></script>
 </body>
 
