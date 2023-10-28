@@ -76,9 +76,9 @@
                 <li>Telefon: +36 123 456 789</li>
                 <li>Cím: Budapest, Példa utca 123.</li>
                 <li>Üzenet:</li>
-                <form>
-                    <textarea rows="4" cols="50" class="form-control mb-3 rounded-3" id="messageText" placeholder="Ide írja üzenetét..."></textarea>
-                    <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger bekuld_gomb" type="submit">
+                <form action="sendMessage.php" method="POST">
+                    <textarea name="message" rows="4" cols="50" class="form-control mb-3 rounded-3" id="messageText" placeholder="Ide írja üzenetét..."></textarea>
+                    <button name="submit" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger bekuld_gomb" type="submit">
                         <span style="vertical-align: inherit;">Küldés</span>
                     </button>
                 </form>
