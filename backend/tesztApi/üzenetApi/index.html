@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="message_display.js"></script>
+    <title>Üzenet küldése</title>
+</head>
+<body>
+    <h1>Üzenet küldése</h1>
+    <form action="send_message.php" method="post">
+        <label for="message">Üzenet:</label><br>
+        <textarea id="message" name="message" rows="4" cols="50"></textarea><br>
+        <input type="submit" value="Küldés">
+    </form>
+    <div id="message-container"></div>
+</body>
+</html>
