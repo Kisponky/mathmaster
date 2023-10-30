@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
       particle.textContent = randomSymbol;
 
       // Véletlenszerű pozíciók és forgatás beállítása
-      const maxWidth = window.innerWidth - 60; // 30 pixel margó hagyása a jeleknek
+      const maxWidth = window.innerWidth - 60; // 60 pixel margó hagyása a jeleknek
       const maxHeight = window.innerHeight - 60;
 
       particle.style.left = Math.random() * maxWidth + "px";

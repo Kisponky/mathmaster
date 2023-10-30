@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="hu" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        /* Alapértelmezett stílusok */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+        }
+
+        nav li {
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .particle {
+            position: fixed;
+            font-size: 20px;
+            
+            z-index: -1;
+            opacity: 0.5;
+            animation: move 5s linear infinite, color-change 5s infinite alternate;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-100px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        
+
+        /* Egyéb testreszabások */
+
+        /* Add meg az egyéb testreszabásokat, amiket a weboldalhoz szeretnél hozzáadni. */
+    </style>
+    <title>Weboldal Címe</title>
+</head>
+
+<body>
+    <header class="bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">Weboldal Neve</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Kezdőlap</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Rólunk</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Szolgáltatások</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Kapcsolat</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="particles-container">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <!-- Add more particles here -->
+    </div>
+    <main class="container mt-5">
+
+        <h1>Üdvözöljük a weboldalon!</h1>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam vel nunc hendrerit condimentum ac
+            non libero. Integer eget luctus quam. Sed auctor, augue a vehicula convallis, elit odio egestas libero, sit
+            amet tristique sapien ligula vel quam. Fusce feugiat ac tortor nec mattis. In hac habitasse platea dictumst.
+            Sed vel rhoncus ante, a venenatis sapien. Fusce a enim ac nunc volutpat vehicula. Curabitur ut sodales
+            metus, id tristique arcu. Praesent nec risus sed nisi viverra laoreet. Cras tincidunt augue et justo
+            finibus, non pharetra turpis bibendum. Vivamus vitae justo id erat posuere varius sit amet vel elit. Donec
+            vehicula a libero eu sollicitudin. Nunc ut dolor lectus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam vel nunc hendrerit condimentum ac
+            non libero. Integer eget luctus quam. Sed auctor, augue a vehicula convallis, elit odio egestas libero, sit
+            amet tristique sapien ligula vel quam. Fusce feugiat ac tortor nec mattis. In hac habitasse platea dictumst.
+            Sed vel rhoncus ante, a venenatis sapien. Fusce a enim ac nunc volutpat vehicula. Curabitur ut sodales
+            metus, id tristique arcu. Praesent nec risus sed nisi viverra laoreet. Cras tincidunt augue et justo
+            finibus, non pharetra turpis bibendum. Vivamus vitae justo id erat posuere varius sit amet vel elit. Donec
+            vehicula a libero eu sollicitudin. Nunc ut dolor lectus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam vel nunc hendrerit condimentum ac
+            non libero. Integer eget luctus quam. Sed auctor, augue a vehicula convallis, elit odio egestas libero, sit
+            amet tristique sapien ligula vel quam. Fusce feugiat ac tortor nec mattis. In hac habitasse platea dictumst.
+            Sed vel rhoncus ante, a venenatis sapien. Fusce a enim ac nunc volutpat vehicula. Curabitur ut sodales
+            metus, id tristique arcu. Praesent nec risus sed nisi viverra laoreet. Cras tincidunt augue et justo
+            finibus, non pharetra turpis bibendum. Vivamus vitae justo id erat posuere varius sit amet vel elit. Donec
+            vehicula a libero eu sollicitudin. Nunc ut dolor lectus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam vel nunc hendrerit condimentum ac
+            non libero. Integer eget luctus quam. Sed auctor, augue a vehicula convallis, elit odio egestas libero, sit
+            amet tristique sapien ligula vel quam. Fusce feugiat ac tortor nec mattis. In hac habitasse platea dictumst.
+            Sed vel rhoncus ante, a venenatis sapien. Fusce a enim ac nunc volutpat vehicula. Curabitur ut sodales
+            metus, id tristique arcu. Praesent nec risus sed nisi viverra laoreet. Cras tincidunt augue et justo
+            finibus, non pharetra turpis bibendum. Vivamus vitae justo id erat posuere varius sit amet vel elit. Donec
+            vehicula a libero eu sollicitudin. Nunc ut dolor lectus.
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam vel nunc hendrerit condimentum ac
+            non libero. Integer eget luctus quam. Sed auctor, augue a vehicula convallis, elit odio egestas libero, sit
+            amet tristique sapien ligula vel quam. Fusce feugiat ac tortor nec mattis. In hac habitasse platea dictumst.
+            Sed vel rhoncus ante, a venenatis sapien. Fusce a enim ac nunc volutpat vehicula. Curabitur ut sodales
+            metus, id tristique arcu. Praesent nec risus sed nisi viverra laoreet. Cras tincidunt augue et justo
+            finibus, non pharetra turpis bibendum. Vivamus vitae justo id erat posuere varius sit amet vel elit. Donec
+            vehicula a libero eu sollicitudin. Nunc ut dolor lectus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam vel nunc hendrerit condimentum ac
+            non libero. Integer eget luctus quam. Sed auctor, augue a vehicula convallis, elit odio egestas libero, sit
+            amet tristique sapien ligula vel quam. Fusce feugiat ac tortor nec mattis. In hac habitasse platea dictumst.
+            Sed vel rhoncus ante, a venenatis sapien. Fusce a enim ac nunc volutpat vehicula. Curabitur ut sodales
+            metus, id tristique arcu. Praesent nec risus sed nisi viverra laoreet. Cras tincidunt augue et justo
+            finibus, non pharetra turpis bibendum. Vivamus vitae justo id erat posuere varius sit amet vel elit. Donec
+            vehicula a libero eu sollicitudin. Nunc ut dolor lectus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam vel nunc hendrerit condimentum ac
+            non libero. Integer eget luctus quam. Sed auctor, augue a vehicula convallis, elit odio egestas libero, sit
+            amet tristique sapien ligula vel quam. Fusce feugiat ac tortor nec mattis. In hac habitasse platea dictumst.
+            Sed vel rhoncus ante, a venenatis sapien. Fusce a enim ac nunc volutpat vehicula. Curabitur ut sodales
+            metus, id tristique arcu. Praesent nec risus sed nisi viverra laoreet. Cras tincidunt augue et justo
+            finibus, non pharetra turpis bibendum. Vivamus vitae justo id erat posuere varius sit amet vel elit. Donec
+            vehicula a libero eu sollicitudin. Nunc ut dolor lectus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam vel nunc hendrerit condimentum ac
+            non libero. Integer eget luctus quam. Sed auctor, augue a vehicula convallis, elit odio egestas libero, sit
+            amet tristique sapien ligula vel quam. Fusce feugiat ac tortor nec mattis. In hac habitasse platea dictumst.
+            Sed vel rhoncus ante, a venenatis sapien. Fusce a enim ac nunc volutpat vehicula. Curabitur ut sodales
+            metus, id tristique arcu. Praesent nec risus sed nisi viverra laoreet. Cras tincidunt augue et justo
+            finibus, non pharetra turpis bibendum. Vivamus vitae justo id erat posuere varius sit amet vel elit. Donec
+            vehicula a libero eu sollicitudin. Nunc ut dolor lectus.
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam vel nunc hendrerit condimentum ac
+            non libero. Integer eget luctus quam. Sed auctor, augue a vehicula convallis, elit odio egestas libero, sit
+            amet tristique sapien ligula vel quam. Fusce feugiat ac tortor nec mattis. In hac habitasse platea dictumst.
+            Sed vel rhoncus ante, a venenatis sapien. Fusce a enim ac nunc volutpat vehicula. Curabitur ut sodales
+            metus, id tristique arcu. Praesent nec risus sed nisi viverra laoreet. Cras tincidunt augue et justo
+            finibus, non pharetra turpis bibendum. Vivamus vitae justo id erat posuere varius sit amet vel elit. Donec
+            vehicula a libero eu sollicitudin. Nunc ut dolor lectus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam vel nunc hendrerit condimentum ac
+            non libero. Integer eget luctus quam. Sed auctor, augue a vehicula convallis, elit odio egestas libero, sit
+            amet tristique sapien ligula vel quam. Fusce feugiat ac tortor nec mattis. In hac habitasse platea dictumst.
+            Sed vel rhoncus ante, a venenatis sapien. Fusce a enim ac nunc volutpat vehicula. Curabitur ut sodales
+            metus, id tristique arcu. Praesent nec risus sed nisi viverra laoreet. Cras tincidunt augue et justo
+            finibus, non pharetra turpis bibendum. Vivamus vitae justo id erat posuere varius sit amet vel elit. Donec
+            vehicula a libero eu sollicitudin. Nunc ut dolor lectus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam vel nunc hendrerit condimentum ac
+            non libero. Integer eget luctus quam. Sed auctor, augue a vehicula convallis, elit odio egestas libero, sit
+            amet tristique sapien ligula vel quam. Fusce feugiat ac tortor nec mattis. In hac habitasse platea dictumst.
+            Sed vel rhoncus ante, a venenatis sapien. Fusce a enim ac nunc volutpat vehicula. Curabitur ut sodales
+            metus, id tristique arcu. Praesent nec risus sed nisi viverra laoreet. Cras tincidunt augue et justo
+            finibus, non pharetra turpis bibendum. Vivamus vitae justo id erat posuere varius sit amet vel elit. Donec
+            vehicula a libero eu sollicitudin. Nunc ut dolor lectus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam vel nunc hendrerit condimentum ac
+            non libero. Integer eget luctus quam. Sed auctor, augue a vehicula convallis, elit odio egestas libero, sit
+            amet tristique sapien ligula vel quam. Fusce feugiat ac tortor nec mattis. In hac habitasse platea dictumst.
+            Sed vel rhoncus ante, a venenatis sapien. Fusce a enim ac nunc volutpat vehicula. Curabitur ut sodales
+            metus, id tristique arcu. Praesent nec risus sed nisi viverra laoreet. Cras tincidunt augue et justo
+            finibus, non pharetra turpis bibendum. Vivamus vitae justo id erat posuere varius sit amet vel elit. Donec
+            vehicula a libero eu sollicitudin. Nunc ut dolor lectus.
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam vel nunc hendrerit condimentum ac
+            non libero. Integer eget luctus quam. Sed auctor, augue a vehicula convallis, elit odio egestas libero, sit
+            amet tristique sapien ligula vel quam. Fusce feugiat ac tortor nec mattis. In hac habitasse platea dictumst.
+            Sed vel rhoncus ante, a venenatis sapien. Fusce a enim ac nunc volutpat vehicula. Curabitur ut sodales
+            metus, id tristique arcu. Praesent nec risus sed nisi viverra laoreet. Cras tincidunt augue et justo
+            finibus, non pharetra turpis bibendum. Vivamus vitae justo id erat posuere varius sit amet vel elit. Donec
+            vehicula a libero eu sollicitudin. Nunc ut dolor lectus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam vel nunc hendrerit condimentum ac
+            non libero. Integer eget luctus quam. Sed auctor, augue a vehicula convallis, elit odio egestas libero, sit
+            amet tristique sapien ligula vel quam. Fusce feugiat ac tortor nec mattis. In hac habitasse platea dictumst.
+            Sed vel rhoncus ante, a venenatis sapien. Fusce a enim ac nunc volutpat vehicula. Curabitur ut sodales
+            metus, id tristique arcu. Praesent nec risus sed nisi viverra laoreet. Cras tincidunt augue et justo
+            finibus, non pharetra turpis bibendum. Vivamus vitae justo id erat posuere varius sit amet vel elit. Donec
+            vehicula a libero eu sollicitudin. Nunc ut dolor lectus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam vel nunc hendrerit condimentum ac
+            non libero. Integer eget luctus quam. Sed auctor, augue a vehicula convallis, elit odio egestas libero, sit
+            amet tristique sapien ligula vel quam. Fusce feugiat ac tortor nec mattis. In hac habitasse platea dictumst.
+            Sed vel rhoncus ante, a venenatis sapien. Fusce a enim ac nunc volutpat vehicula. Curabitur ut sodales
+            metus, id tristique arcu. Praesent nec risus sed nisi viverra laoreet. Cras tincidunt augue et justo
+            finibus, non pharetra turpis bibendum. Vivamus vitae justo id erat posuere varius sit amet vel elit. Donec
+            vehicula a libero eu sollicitudin. Nunc ut dolor lectus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam vel nunc hendrerit condimentum ac
+            non libero. Integer eget luctus quam. Sed auctor, augue a vehicula convallis, elit odio egestas libero, sit
+            amet tristique sapien ligula vel quam. Fusce feugiat ac tortor nec mattis. In hac habitasse platea dictumst.
+            Sed vel rhoncus ante, a venenatis sapien. Fusce a enim ac nunc volutpat vehicula. Curabitur ut sodales
+            metus, id tristique arcu. Praesent nec risus sed nisi viverra laoreet. Cras tincidunt augue et justo
+            finibus, non pharetra turpis bibendum. Vivamus vitae justo id erat posuere varius sit amet vel elit. Donec
+            vehicula a libero eu sollicitudin. Nunc ut dolor lectus.
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam vel nunc hendrerit condimentum ac
+            non libero. Integer eget luctus quam. Sed auctor, augue a vehicula convallis, elit odio egestas libero, sit
+            amet tristique sapien ligula vel quam. Fusce feugiat ac tortor nec mattis. In hac habitasse platea dictumst.
+            Sed vel rhoncus ante, a venenatis sapien. Fusce a enim ac nunc volutpat vehicula. Curabitur ut sodales
+            metus, id tristique arcu. Praesent nec risus sed nisi viverra laoreet. Cras tincidunt augue et justo
+            finibus, non pharetra turpis bibendum. Vivamus vitae justo id erat posuere varius sit amet vel elit. Donec
+            vehicula a libero eu sollicitudin. Nunc ut dolor lectus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam vel nunc hendrerit condimentum ac
+            non libero. Integer eget luctus quam. Sed auctor, augue a vehicula convallis, elit odio egestas libero, sit
+            amet tristique sapien ligula vel quam. Fusce feugiat ac tortor nec mattis. In hac habitasse platea dictumst.
+            Sed vel rhoncus ante, a venenatis sapien. Fusce a enim ac nunc volutpat vehicula. Curabitur ut sodales
+            metus, id tristique arcu. Praesent nec risus sed nisi viverra laoreet. Cras tincidunt augue et justo
+            finibus, non pharetra turpis bibendum. Vivamus vitae justo id erat posuere varius sit amet vel elit. Donec
+            vehicula a libero eu sollicitudin. Nunc ut dolor lectus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam vel nunc hendrerit condimentum ac
+            non libero. Integer eget luctus quam. Sed auctor, augue a vehicula convallis, elit odio egestas libero, sit
+            amet tristique sapien ligula vel quam. Fusce feugiat ac tortor nec mattis. In hac habitasse platea dictumst.
+            Sed vel rhoncus ante, a venenatis sapien. Fusce a enim ac nunc volutpat vehicula. Curabitur ut sodales
+            metus, id tristique arcu. Praesent nec risus sed nisi viverra laoreet. Cras tincidunt augue et justo
+            finibus, non pharetra turpis bibendum. Vivamus vitae justo id erat posuere varius sit amet vel elit. Donec
+            vehicula a libero eu sollicitudin. Nunc ut dolor lectus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam vel nunc hendrerit condimentum ac
+            non libero. Integer eget luctus quam. Sed auctor, augue a vehicula convallis, elit odio egestas libero, sit
+            amet tristique sapien ligula vel quam. Fusce feugiat ac tortor nec mattis. In hac habitasse platea dictumst.
+            Sed vel rhoncus ante, a venenatis sapien. Fusce a enim ac nunc volutpat vehicula. Curabitur ut sodales
+            metus, id tristique arcu. Praesent nec risus sed nisi viverra laoreet. Cras tincidunt augue et justo
+            finibus, non pharetra turpis bibendum. Vivamus vitae justo id erat posuere varius sit amet vel elit. Donec
+            vehicula a libero eu sollicitudin. Nunc ut dolor lectus.
+        </p>
+    </main>
+    <footer class="bg-dark text-light text-center py-3">
+        &copy; 2023 Te Céged Neve
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const numParticles = 25; // Az összes részecske száma
+
+            for (let i = 0; i < numParticles; i++) {
+                createParticle();
+            }
+        });
+
+        function createParticle() {
+            const particle = document.createElement("div");
+            particle.classList.add("particle");
+
+            const mathSymbols = ['∑', '∫', '∆', '√', '∞', '≈', '≠', '∈', '∩', '∪']; // Matematikai szimbólumok tömbje
+            const randomSymbol = mathSymbols[Math.floor(Math.random() * mathSymbols.length)]; // Véletlenszerűen kiválasztunk egy szimbólumot
+
+            const randomX = Math.random() * 100 + "vw"; // Véletlenszerű X pozíció
+            const randomY = Math.random() * 100 + "vh"; // Véletlenszerű Y pozíció
+            const randomDelay = Math.random() * 5;
+            const randomDuration = 2 + Math.random() * 3;
+
+            particle.textContent = randomSymbol; // Beállítjuk a matematikai szimbólumot
+            particle.style.left = randomX; // Beállítjuk a vízszintes pozíciót
+            particle.style.top = randomY; // Beállítjuk a függőleges pozíciót
+            particle.style.animationDelay = `${randomDelay}s`;
+            particle.style.animationDuration = `${randomDuration}s`;
+
+            document.body.appendChild(particle);
+        }
+
+    </script>
+</body>
+
+</html>

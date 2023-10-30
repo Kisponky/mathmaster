@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Animált Navbar</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -39,52 +40,22 @@
             transform: scale(1, 1);
         }
 
-        .container {
-            background: white;
-        }
-
         /* JavaScript-tel vezérelt részecskék animáció */
         .particles-container {
             position: fixed;
             pointer-events: none;
             z-index: -1;
-            /* Elrejti a generált szimbólumokat a többi tartalom mögött */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
 
         .particles {
             width: 2px;
             height: 2px;
-            font-size: 16px;
-            white-space: nowrap;
             position: fixed;
-            animation: mathSymbolAnimation 10s alternate infinite;
-        }
-
-
-        @keyframes mathSymbolAnimation {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            50% {
-                transform: translate(0, 10px) scale(1.2);
-            }
-
-            100% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            0% {
-                transform: translate(5px, 5px) scale(1);
-            }
-
-            50% {
-                transform: translate(0, 0) scale(1.2);
-            }
-
-            100% {
-                transform: translate(10px, 0) scale(1);
-            }
         }
     </style>
 
@@ -242,29 +213,66 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const particlesContainer = document.querySelector(".particles-container");
+        // JavaScript-tel vezérelt részecskék animáció
+const particlesContainer = document.querySelector(".particles-container");
 
-            const mathSymbols = ["+", "-", "*", "/", "=", "∫", "∑", "∆", "∞", "√", "∈"];
+const mathSymbols = ["+", "-", "*", "/", "=", "∫", "∑", "∆", "∞", "√", "∈"];
+const symbolSize = 32; // A szimbólum mérete
+const spacing = 0.5; // Szimbólumok közötti távolság (0.5px)
 
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement("div");
-                particle.classList.add("particles");
-                particlesContainer.appendChild(particle);
+const updateMaxWidthAndHeight = () => {
+    const isMobileView = window.innerWidth <= 768; // Ellenőrzi, hogy mobil nézetben vagyunk-e
+    const containerWidth = isMobileView ? window.innerWidth : window.innerWidth - symbolSize;
+    const containerHeight = isMobileView ? window.innerHeight - symbolSize : window.innerHeight;
+    return [containerWidth, containerHeight];
+};
 
-                const randomSymbol = mathSymbols[Math.floor(Math.random() * mathSymbols.length)];
-                const randomRotation = Math.random() * 90 - 45; // Véletlenszerű elforgatás -45° és 45° között
-                particle.textContent = randomSymbol;
+let [maxWidth, maxHeight] = updateMaxWidthAndHeight();
 
-                const maxWidth = window.innerWidth - 30;
-                const maxHeight = window.innerHeight - 30;
+const isOverlapping = (left, top) => {
+    const elements = document.getElementsByClassName("particles");
+    for (let i = 0; i < elements.length; i++) {
+        const rect = elements[i].getBoundingClientRect();
+        if (
+            left < rect.right + spacing &&
+            left + symbolSize > rect.left - spacing &&
+            top < rect.bottom + spacing &&
+            top + symbolSize > rect.top - spacing
+        ) {
+            return true; // Az új szimbólum átfed a már meglévővel
+        }
+    }
+    return false; // Nincs átfedés
+};
 
-                particle.style.left = Math.random() * maxWidth + "px";
-                particle.style.top = Math.random() * maxHeight + "px";
-                particle.style.transform = `translate(0, 0) rotate(${randomRotation}deg) scale(1)`;
-            }
-        });
+for (let i = 0; i < 150; i++) {
+    const particle = document.createElement("div");
+    particle.classList.add("particles");
+    particlesContainer.appendChild(particle);
 
+    const randomSymbol = mathSymbols[Math.floor(Math.random() * mathSymbols.length)];
+    const randomRotation = Math.random() * 90 - 45; // Véletlenszerű elforgatás -45° és 45° között
+
+    let leftPosition, topPosition;
+    do {
+        leftPosition = Math.random() * maxWidth;
+        topPosition = Math.random() * maxHeight;
+    } while (isOverlapping(leftPosition, topPosition));
+
+    particle.textContent = randomSymbol;
+    particle.style.left = leftPosition + "px";
+    particle.style.top = topPosition + "px";
+    particle.style.transform = `translate(0, 0) rotate(${randomRotation}deg) scale(1)`;
+}
+
+// Frissíti a max szélességet és magasságot, amikor az ablak mérete változik
+window.addEventListener("resize", () => {
+    const [newMaxWidth, newMaxHeight] = updateMaxWidthAndHeight();
+    if (newMaxWidth !== maxWidth || newMaxHeight !== maxHeight) {
+        maxWidth = newMaxWidth;
+        maxHeight = newMaxHeight;
+    }
+});
 
     </script>
 </body>
