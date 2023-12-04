@@ -1,0 +1,389 @@
+/* JavaScript-tel vezérelt részecskék animáció */
+.particles-container {
+    position: fixed;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particles {
+    width: 2px;
+    height: 2px;
+    font-size: 32px;
+    white-space: nowrap;
+    position: fixed;
+    opacity: 0.5;
+}
+
+/* A menü stílusa */
+.navbar {
+    padding-right: 10px;
+}
+
+.navbar-brand {
+    margin-left: 10px;
+    font-size: 150%;
+    font-weight: bold;
+}
+
+.MathMaster_Logo_nav {
+    width: 40px;
+    height: 40px;
+}
+
+/* A hamburger menü animáció stílusa */
+.animated-icon1,
+.animated-icon2,
+.animated-icon3 {
+    width: 30px;
+    height: 20px;
+    position: relative;
+    margin: 0px;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .4s ease-in-out;
+    -moz-transition: .4s ease-in-out;
+    -o-transition: .4s ease-in-out;
+    transition: .4s ease-in-out;
+    cursor: pointer;
+}
+
+.animated-icon1 span,
+.animated-icon2 span,
+.animated-icon3 span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .24s ease-in-out;
+    -moz-transition: .24s ease-in-out;
+    -o-transition: .24s ease-in-out;
+    transition: .24s ease-in-out;
+}
+
+
+.animated-icon2 span {
+    background: black;
+}
+
+.animated-icon2 span:nth-child(1) {
+    top: 0px;
+}
+
+.animated-icon2 span:nth-child(2),
+.animated-icon2 span:nth-child(3) {
+    top: 10px;
+}
+
+.animated-icon2 span:nth-child(4) {
+    top: 20px;
+}
+
+.animated-icon2.open span:nth-child(1) {
+    top: 11px;
+    width: 0%;
+    left: 50%;
+}
+
+.animated-icon2.open span:nth-child(2) {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.animated-icon2.open span:nth-child(3) {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.animated-icon2.open span:nth-child(4) {
+    top: 11px;
+    width: 0%;
+    left: 50%;
+}
+
+
+.navbar .navbar-toggler {
+    border-width: 0;
+}
+
+.navbar-toggler {
+    background-color: transparent;
+}
+
+.nav-item {
+    text-align: center;
+    color: black;
+    font-weight: bold;
+}
+
+.modal-header {
+    padding-top: 43px;
+}
+
+.modal-span {
+    vertical-align: inherit;
+}
+
+/* message modal */
+textarea {
+    resize: none;
+    overflow: hidden;
+}
+
+/* Nagy bagoly */
+.MathMaster_Logo {
+    padding-top: 10px;
+    width: 80%;
+    height: auto;
+    max-height: 80vh;
+}
+
+/* Oldal neve */
+.cim {
+    font-size: 6rem;
+}
+
+/* következő rész címe */
+.feladat_cim {
+    font-size: 2.5rem;
+    padding-top: 20px;
+}
+
+/* a gombok alapértelmezet stílusa */
+.osztaly_gomb {
+    font-size: 1.4rem;
+    padding: 15px 25px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: left;
+    padding: 25px 240px 0 240px;
+}
+
+p {
+    font-size: 1.5rem;
+    text-align: left;
+    padding: 7px 240px;
+}
+
+/* Al részek gombja */
+.info_gomb {
+    float: left;
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    margin: 5px 240px;
+}
+
+/* A footer stílusa */
+footer {
+    background-color: #666;
+    color: white;
+    text-align: center;
+    margin-top: 3vh;
+    padding: 2vh;
+    font-size: 1.2vw;
+}
+
+/*Galaxy Fold-hoz csökkenteni kell a méreteket, @media (max-width:300px)*/
+@media (max-width:300px) {
+    .particles {
+        font-size: 27px;
+    }
+    
+    .cim {
+        font-size: 2.16rem;
+    }
+
+    .feladat_cim {
+        font-size: 2.15rem;
+        padding-top: 10px;
+    }
+
+    .osztaly_gomb {
+        font-size: 1.17rem;
+        padding: 12.5px 21px;
+    }
+
+    .btn-block-sm {
+        display: block;
+        width: 100%;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+        padding: 22px 0 0 0;
+    }
+
+    p {
+        font-size: 1.3rem;
+        padding: 6.1px 0;
+    }
+
+    .info_gomb {
+        font-size: 0.9rem;
+        padding: 8.4px 16.8px;
+        margin: 4px 0;
+    }
+
+    footer {
+        padding: 1.5vh;
+        font-size: 3.3vw;
+    }
+}
+
+
+/*Telefon álló nézetben*/
+@media (max-width: 576px) {
+    .navbar-brand {
+        font-size: 130%;
+    }
+
+    .MathMaster_Logo_nav {
+        width: 30px;
+        height: 30px;
+    }
+
+    .cim {
+        font-size: 3rem;
+    }
+
+    .btn-block-sm {
+        display: block;
+        width: 100%;
+    }
+
+    h2 {
+        padding: 25px 0 0 0;
+    }
+
+    p {
+        padding: 7px 0;
+    }
+
+    .info_gomb {
+        margin: 5px 0;
+    }
+
+    footer {
+        padding: 1.5vh;
+        font-size: 3.3vw;
+    }
+}
+
+/*Tablet álló nézetben*/
+@media (max-width: 768px) {
+    h2 {
+        padding: 25px 0 0 0;
+    }
+
+    p {
+        padding: 7px 0;
+    }
+
+    .info_gomb {
+        margin: 5px 0;
+    }
+
+    footer {
+        padding: 1.7vh;
+        font-size: 2.2vw;
+    }
+}
+
+/*Kis méretű monitor és laptop*/
+@media (min-width: 769px) and (max-width: 1200px) {
+    h2 {
+        padding: 25px 60px 0 60px;
+    }
+
+    p {
+        padding: 7px 60px;
+    }
+
+    .info_gomb {
+        margin: 5px 60px;
+    }
+
+    footer {
+        padding: 1.85vh;
+        font-size: 1.7vw;
+    }
+}
+
+@media (min-width: 2300px) {
+
+    .navbar-brand {
+        font-size: 265%;
+        font-weight: bold;
+    }
+
+    .MathMaster_Logo_nav {
+        width: 70.5px;
+        height: 70.5px;
+    }
+
+    .nav-link {
+        font-size: 160%;
+    }
+
+    .cim {
+        font-size: 8rem;
+    }
+
+    .feladat_cim {
+        font-size: 3.4rem;
+        padding: 20px 0 20px 0;
+    }
+
+    .osztaly_gomb {
+        font-size: 1.6rem;
+        padding: 16.6px 27.6px;
+    }
+
+    h2 {
+        font-size: 2.45rem;
+        padding: 26.55px 200px 0 200px;
+    }
+
+    p {
+        font-size: 2.1rem;
+        padding: 7.65px 200px;
+    }
+
+    .info_gomb {
+        font-size: 1.4rem;
+        padding: 10.3px 20.3px;
+        margin: 5.3px 200px;
+    }
+
+    footer {
+        padding: 2vh;
+        font-size: 1.2vw;
+    }
+}
+
+
+
+
+
+.bg-color{
+    background: #323640;
+}
+
+.btn-color{
+    background: #ccc;
+}

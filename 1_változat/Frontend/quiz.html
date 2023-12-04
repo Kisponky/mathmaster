@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <title>Matematikai Feladatok</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        select,
+        button {
+            font-size: 16px;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        #problems {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .problem-container {
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .number {
+            font-size: 16px;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        input[type="number"] {
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+        }
+
+        input[type="number"][style="background-color: green"] {
+            background-color: green;
+            color: white;
+        }
+
+        input[type="number"][style="background-color: red"] {
+            background-color: red;
+            color: white;
+        }
+
+        .operation-sign {
+            font-size: 20px;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Matematikai Feladatok</h1>
+    <select id="operation">
+        <option value="add">Összeadás</option>
+        <option value="subtract">Kivonás</option>
+        <option value="multiply">Szorzás</option>
+        <option value="divide">Osztás</option>
+    </select>
+    <button onclick="generateProblems()">Generálás</button>
+    <div id="problems"></div>
+    <script>
+        function generateProblems() {
+            const operation = document.getElementById('operation').value;
+            const problemsContainer = document.getElementById('problems');
+            problemsContainer.innerHTML = '';
+
+            for (let i = 0; i < 3; i++) {
+                const num1 = Math.floor(Math.random() * 10);
+                const num2 = Math.floor(Math.random() * 10);
+                let problem, answer;
+
+                switch (operation) {
+                    case 'add':
+                        problem = `
+                            <table>
+                                <tr><td></td><td class="number">${num1}</td></tr>
+                                <tr>
+                                    <td class="operation-sign">+</td>
+                                    <td class="number">${num2}</td>
+                                </tr>
+                            </table>
+                        `;
+                        answer = num1 + num2;
+                        break;
+                    case 'subtract':
+                        problem = `
+                            <table>
+                                <tr><td></td><td class="number">${num1}</td></tr>
+                                <tr>
+                                    <td class="operation-sign">-</td>
+                                    <td class="number">${num2}</td>
+                                </tr>
+                            </table>
+                        `;
+                        answer = num1 - num2;
+                        break;
+                    case 'multiply':
+                        problem = `
+                            <table>
+                                <tr>
+                                    <td class="number">${num1}</td>
+                                    <td class="operation-sign">×</td>
+                                    <td class="number">${num2}</td>
+                                </tr>
+                            </table> 
+                        `;
+                        answer = num1 * num2;
+                        break;
+                    case 'divide':
+                        let dividend = num1 * 10 + num2;
+                        let divisor = num2;
+                        let quotient = Math.floor(dividend / divisor);
+                        let remainder = dividend % divisor;
+                        problem = `
+                            <table>
+                                <tr>
+                                    <td class="number">${num1}</td>
+                                    <td class="operation-sign">÷</td>
+                                    <td class="number">${num2}</td>
+                                    <td class="operation-sign">=</td>
+                                </tr>
+                            </table>
+                        `;
+                        answer = quotient;
+                        break;
+                }
+
+                const div = document.createElement('div');
+                div.className = 'problem-container';
+                div.innerHTML = problem;
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.addEventListener('change', function () {
+                    if (parseFloat(input.value) === answer) {
+                        input.style.backgroundColor = 'green';
+                    } else {
+                        input.style.backgroundColor = 'red';
+                    }
+                });
+
+                div.appendChild(input);
+                problemsContainer.appendChild(div);
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+body {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    padding: 10px;
+    align-items: flex-start;
+    gap: 10px;
+    background: linear-gradient(180deg, #243B55 0%, #141E30 100%);  
+}
+
+.container {
+    display: flex;
+    max-width: 1400px;
+    width: 100vw;
+    height: 1080px;
+    padding: 10px;
+    align-items: flex-start;
+    gap: 10px;
+    position: absolute;
+    left: 260px;
+    background-color: black; 
+    /* background: linear-gradient(180deg, #243B55 0%, #141E30 100%); */
+}
+
+.container {
+    /* display: flex;
+    max-width: 1400px;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0 auto; /* Középre igazítás */
+    position: relative; /* Abszolút pozíció helyett relatív pozíció */
+    background-color: black; */
+}
