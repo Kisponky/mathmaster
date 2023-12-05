@@ -172,7 +172,7 @@ h1{
 }
 
 
-.btn{
+.btn-class{
     background: #800000;
     font-family: 'Poppins', sans-serif;
     font-size: 28px;
@@ -212,4 +212,10 @@ p{
     line-height: 160%;
 }
 
-/* gomb elkészítése még kell (div-be kell helyezni) */
+.btn-about-contact{
+    background: #800000;
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
