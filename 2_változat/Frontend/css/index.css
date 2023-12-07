@@ -1,9 +1,3 @@
-.row .col-1{
-    background-color: rgba(255, 0, 0, 0.2);
-    height: 100px;
-    border: black solid 1px;
-}
-
 .container-fluid{
     padding: 0;
 }
@@ -219,3 +213,51 @@ p{
     font-weight: bold;
     color: #fff;
 }
+
+.container3{
+    background: url('../img/blob13.svg') no-repeat 60% 100%;
+}
+
+@media (max-width: 1389px) {
+    .container3{
+        background: none;
+    }
+}
+
+
+.ceg-logo-footer{
+    height: 63px;
+}
+
+.ceg-nev-footer{
+    font-family: 'Abril_Farface', serif;
+    font-size: 40px;
+    font-weight: bold;
+    color: #800000;
+}
+
+.copyright{
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    color: #fff;
+}
+
+.idezet{
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    color: #fff;
+    line-height: 130%;
+}
+
+.container4{
+    background: url('../img/footer3.svg') no-repeat center center;
+    background-size: cover;
+}
+
+.footer-bg{
+    background: rgba(255, 0, 0, .2);
+    border: black solid 1px;
+    height: 100px;
+}
+
+/* mobil nézetben nincs középen a szöveg */
