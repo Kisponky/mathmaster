@@ -220,7 +220,7 @@ p {
     line-height: 160%;
 }
 
-.container2{
+.container2 {
     background: url('../img/blob_about06.svg');
 }
 
@@ -250,9 +250,31 @@ p {
 }
 
 .container4 {
-    background: url('../img/footer_about02.svg') no-repeat center center;
+    background: url('../img/footer_about06.svg') no-repeat center center;
     background-size: cover;
 }
+
+@media (max-width: 1499px) {
+    .container4 {
+        background: url('../img/footer3.svg') no-repeat center center;
+        background-size: cover;
+    }
+}
+
+@media (max-width: 1439px) {
+    .container2 {
+        background: none;
+    }
+}
+
+@media (min-height: 1200px) {
+    .container4 {
+        position: absolute;
+        bottom: 0;
+    }
+}
+
+
 
 .footer-bg {
     /* background: rgba(255, 0, 0, .2);
