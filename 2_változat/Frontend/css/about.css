@@ -6,11 +6,12 @@
     max-width: 1440px;
 }
 
+
+
 .custom-container {
     max-width: 1440px;
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -25,15 +26,11 @@
 
 .custom-nav li {
     margin-right: 5px;
-    /* 5px távolság a lista elemek között */
-    text-align: right;
-    /* Jobbra igazítás */
 }
 
 .custom-nav a {
     text-decoration: none;
     color: #fff;
-    /* Fehér szín a lista linkek szövegéhez */
 }
 
 .nav-pills .nav-link.active,
@@ -41,6 +38,8 @@
     color: #fff;
     background-color: #800000;
 }
+
+
 
 .ceg-logo {
     height: 40px;
@@ -57,8 +56,6 @@
     font-weight: bold;
     color: #800000;
 }
-
-/* Aktív elem még hiányzik */
 
 .nav-link {
     font-family: 'Abril_Farface', serif;
@@ -201,11 +198,6 @@ h1 {
     padding: 28px 0 16px 0;
 }
 
-/* @media (max-width: 374px) {
-    h1 {
-        font-size: 50px;
-    }
-} */
 
 
 @font-face {
@@ -223,6 +215,7 @@ p {
 .container2 {
     background: url('../img/blob_about06.svg');
 }
+
 
 
 .ceg-logo-footer {
@@ -292,4 +285,4 @@ p {
     }
 }
 
-/* mobil nézetben nincs középen a szöveg */
+/* Hamburger menü nem működik még */
