@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('../font/Poppins.zip');
+}
+
+.modal-content{
+    background-image: linear-gradient(#22446B, #162C45);
+    border-radius: 25px;
+}
+
+.modal-header {
+    padding-top: 43px;
+    color: white;
+}
+
+.btn-close {
+    color: #fff;
+    background: url('../img/btn-close.svg') no-repeat center center;
+    box-sizing: content-box;
+    width: 0.5em;
+    height: 0.5em;
+    padding: 0.25em;
+}
+
+span {
+    vertical-align: inherit;
+}
+
+.btn {
+    background: #800000;
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.custom-textarea {
+    resize: none;
+    overflow: hidden;
+}

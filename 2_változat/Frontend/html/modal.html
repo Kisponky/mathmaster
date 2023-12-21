@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="hu" data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/modal.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Button to trigger the modal -->
+    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#regisztracio">
+        regisztráció
+    </button>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="regisztracio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    <h1 class="fw-bold mb-0 fs-2">
+                        <span>Regisztráció</span>
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
+                </div>
+
+                <div class="modal-body p-5 pt-0">
+                    <form>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control rounded-3" id="floatingInput"
+                                placeholder="vezeteknev keresztnev">
+                            <label for="floatingInput">
+                                <span>Teljes név</span>
+                            </label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control rounded-3" id="floatingInput"
+                                placeholder="felhasznalonev">
+                            <label for="floatingInput">
+                                <span>Felhasználónév</span>
+                            </label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control rounded-3" id="floatingInput"
+                                placeholder="nev@example.com">
+                            <label for="floatingInput">
+                                <span>Email cím</span>
+                            </label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control rounded-3" id="floatingPassword"
+                                placeholder="Jelszo">
+                            <label for="floatingPassword">
+                                <span>Jelszó</span>
+                            </label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control rounded-3" id="floatingPassword"
+                                placeholder="Jelszo">
+                            <label for="floatingPassword">
+                                <span>Jelszó újra</span>
+                            </label>
+                        </div>
+                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0" type="submit">
+                            <span>Regisztráció</span>
+                        </button>
+                        <small class="text-white-50">
+                            <span>A Regisztráció gombra kattintva elfogadja a
+                                felhasználási feltételeket.</span>
+                        </small>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Button to trigger the modal -->
+    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#bejelentkezes">
+        bejelentkezés
+    </button>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="bejelentkezes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    <h1 class="fw-bold mb-0 fs-2">
+                        <span>Bejelentkezés</span>
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
+                </div>
+
+                <div class="modal-body p-5 pt-0">
+                    <form>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control rounded-3" id="floatingInput"
+                                placeholder="nev@example.com">
+                            <label for="floatingInput">
+                                <span>Email cím</span>
+                            </label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control rounded-3" id="floatingPassword"
+                                placeholder="Jelszo">
+                            <label for="floatingPassword">
+                                <span>Jelszó</span>
+                            </label>
+                        </div>
+                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0" type="submit">
+                            <span>Bejelentkezés</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Button to trigger the modal -->
+    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#uzenet">
+        Üzenet küldés
+    </button>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="uzenet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    <h1 class="fw-bold mb-0 fs-2">
+                        <span>Üzenet küldés</span>
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
+                </div>
+
+                <div class="modal-body p-5 pt-0">
+                    <form>
+                        <div class="form-floating mb-3">
+                            <textarea
+                                oninput="this.style.height = ''; this.style.height = (this.scrollHeight + 2) + 'px';"
+                                name="message" class="form-control rounded-3 custom-textarea" id="floatingInput"
+                                cols="30" rows="1"></textarea>
+                            <label for="floatingInput">
+                                <span>Üzenet szövege</span>
+                            </label>
+                        </div>
+                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0" type="submit">
+                            <span>Küldés</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Button to trigger the modal -->
+    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#admin">
+        Admin felvétel
+    </button>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    <h1 class="fw-bold mb-0 fs-2">
+                        <span>Új admin felvétele</span>
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
+                </div>
+
+                <div class="modal-body p-5 pt-0">
+                    <form>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control rounded-3" id="floatingInput"
+                                placeholder="nev@example.com">
+                            <label for="floatingInput">
+                                <span>Felhasználó email címe</span>
+                            </label>
+                        </div>
+                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0" type="submit">
+                            <span>Felvétel</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Button to trigger the modal -->
+    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#beallitasok">
+        beállítások
+    </button>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="beallitasok" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    <h1 class="fw-bold mb-0 fs-2">
+                        <span>Beállítások</span>
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
+                </div>
+
+                <div class="modal-body p-5 pt-0">
+                    <form>
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control rounded-3" id="floatingInput"
+                                placeholder="vezeteknev keresztnev">
+                            <label for="floatingInput">
+                                <span>Felhasználónév</span>
+                            </label>
+                        </div>
+                        <button class="w-100 mb-3 btn btn-lg rounded-3 btn-danger border-0" type="submit">
+                            <span>Módosítás</span>
+                        </button>
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control rounded-3" id="floatingInput"
+                                placeholder="vezeteknev keresztnev">
+                            <label for="floatingInput">
+                                <span>Email cím</span>
+                            </label>
+                        </div>
+                        <button class="w-100 mb-3 btn btn-lg rounded-3 btn-danger border-0" type="submit">
+                            <span>Módosítás</span>
+                        </button>
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control rounded-3" id="floatingInput"
+                                placeholder="vezeteknev keresztnev">
+                            <label for="floatingInput">
+                                <span>Jelszó</span>
+                            </label>
+                        </div>
+                        <button class="w-100 mb-3 btn btn-lg rounded-3 btn-danger border-0" type="submit">
+                            <span>Módosítás</span>
+                        </button>
+                        <small class="text-white-50">
+                            <span>Figyelem: A fiók törlése visszavonhatatlan! Biztosan törölni szeretnéd a
+                                fiókodat?</span><br>
+                            <input class="mb-2" type="checkbox" id="delete" name="delete" value="Fiókját töröltük!">
+                            <label for="delete">Igen szeretném törölni a fiókomat</label>
+                        </small>
+                        <button class="w-100 mb-3 btn btn-lg rounded-3 btn-danger border-0" type="submit">
+                            <span>Fiók törlése</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
