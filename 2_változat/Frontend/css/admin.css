@@ -298,6 +298,12 @@ p {
     border: none;
 }
 
+@media (max-width: 425px){
+    .message-actions {
+        justify-content: center;
+    }
+}
+
 #inputMezo {
     resize: none;
     overflow: hidden;
