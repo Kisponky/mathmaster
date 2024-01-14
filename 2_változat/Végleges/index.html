@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="hu" data-bs-theme="light">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="shortcut icon" href="img/owl-47526.svg" type="image/x-icon">
+    <title>MathMaster</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <header class="d-flex flex-wrap justify-content-center py-3">
+            <div class="custom-container">
+
+                <a href="#"
+                    class="d-flex align-items-center mb-3 mb-md-0 ms-2 me-md-auto link-body-emphasis text-decoration-none">
+                    <img class="pe-2 ceg-logo" src="img/owl-47526.svg" alt="">
+                    <span class="ceg-nev">MathMaster</span>
+                </a>
+
+                <ul class="nav nav-pills custom-nav">
+                    <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">
+                            <span style="vertical-align: inherit;">Kezdőlap</span>
+                        </a>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#regisztracio">
+                            <span style="vertical-align: inherit;">Regisztráció</span>
+                        </a>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#bejelentkezes">
+                            <span style="vertical-align: inherit;">Bejelentkezés</span>
+                        </a>
+                    </li>
+                    <li class="nav-item"><a href="./html/about.html" class="nav-link">
+                            <span style="vertical-align: inherit;">Rólunk</span>
+                        </a>
+                    </li>
+                    <li class="nav-item"><a href="./html/contact.html" class="nav-link">
+                            <span style="vertical-align: inherit;">Kapcsolat</span>
+                        </a>
+                    </li>
+                    <!-- Abban az esetben jelenik meg, ha már be vagyunk jelentkezve -->
+                    <li class="nav-item"><a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#uzenet">
+                        <span style="vertical-align: inherit;">Üzenet küldés</span>
+                    </a>
+                </li>
+                </ul>
+
+                <div class="dropdown text-end">
+                    <a href="#" class="d-block link-body-emphasis text-decoration-none me-2" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <img src="img/PersonCircle_Profile.svg" alt="mdo" width="32" height="32" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu text-small">
+                        <li><a class="dropdown-item" href="#">
+                                <span style="vertical-align: inherit;">Új feladat...</span>
+                            </a>
+                        </li>
+                        <li><a class="dropdown-item" href="./html/statistics.html">
+                                <span style="vertical-align: inherit;">Statisztika</span>
+                            </a>
+                        </li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#beallitasok">
+                                <span style="vertical-align: inherit;">Beállítások</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">
+                                <span style="vertical-align: inherit;">Kijelentkezés</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </header>
+    </div>
+
+
+
+    <!-- Regisztrációs modal -->
+    <div class="modal fade" id="regisztracio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    <h1 class="fw-bold mb-0 fs-2">
+                        <span>Regisztráció</span>
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
+                </div>
+
+                <div class="modal-body p-5 pt-0">
+                    <form>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control rounded-3" id="floatingInput"
+                                placeholder="vezeteknev keresztnev">
+                            <label for="floatingInput">
+                                <span>Teljes név</span>
+                            </label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control rounded-3" id="floatingInput"
+                                placeholder="felhasznalonev">
+                            <label for="floatingInput">
+                                <span>Felhasználónév</span>
+                            </label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control rounded-3" id="floatingInput"
+                                placeholder="nev@example.com">
+                            <label for="floatingInput">
+                                <span>Email cím</span>
+                            </label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control rounded-3" id="floatingPassword"
+                                placeholder="Jelszo">
+                            <label for="floatingPassword">
+                                <span>Jelszó</span>
+                            </label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control rounded-3" id="floatingPassword"
+                                placeholder="Jelszo">
+                            <label for="floatingPassword">
+                                <span>Jelszó újra</span>
+                            </label>
+                        </div>
+                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0" type="submit">
+                            <span>Regisztráció</span>
+                        </button>
+                        <small class="text-white-50">
+                            <span>A Regisztráció gombra kattintva elfogadja a
+                                felhasználási feltételeket.</span>
+                        </small>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Bejelentkezés modal -->
+    <div class="modal fade" id="bejelentkezes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    <h1 class="fw-bold mb-0 fs-2">
+                        <span>Bejelentkezés</span>
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
+                </div>
+
+                <div class="modal-body p-5 pt-0">
+                    <form>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control rounded-3" id="floatingInput"
+                                placeholder="nev@example.com">
+                            <label for="floatingInput">
+                                <span>Email cím</span>
+                            </label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control rounded-3" id="floatingPassword"
+                                placeholder="Jelszo">
+                            <label for="floatingPassword">
+                                <span>Jelszó</span>
+                            </label>
+                        </div>
+                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0" type="submit">
+                            <span>Bejelentkezés</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Üzenet küldés modal -->
+    <div class="modal fade" id="uzenet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    <h1 class="fw-bold mb-0 fs-2">
+                        <span>Üzenet küldés</span>
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
+                </div>
+
+                <div class="modal-body p-5 pt-0">
+                    <form>
+                        <div class="form-floating mb-3">
+                            <textarea
+                                oninput="this.style.height = ''; this.style.height = (this.scrollHeight + 2) + 'px';"
+                                name="message" class="form-control rounded-3 custom-textarea" id="floatingInput"
+                                cols="30" rows="1"></textarea>
+                            <label for="floatingInput">
+                                <span>Üzenet szövege</span>
+                            </label>
+                        </div>
+                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0" type="submit">
+                            <span>Küldés</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Beállítások modal -->
+    <div class="modal fade" id="beallitasok" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    <h1 class="fw-bold mb-0 fs-2">
+                        <span>Beállítások</span>
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
+                </div>
+
+                <div class="modal-body p-5 pt-0">
+                    <form>
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control rounded-3" id="floatingInput"
+                                placeholder="vezeteknev keresztnev">
+                            <label for="floatingInput">
+                                <span>Felhasználónév</span>
+                            </label>
+                        </div>
+                        <button class="w-100 mb-3 btn btn-lg rounded-3 btn-danger border-0" type="submit">
+                            <span>Módosítás</span>
+                        </button>
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control rounded-3" id="floatingInput"
+                                placeholder="vezeteknev keresztnev">
+                            <label for="floatingInput">
+                                <span>Email cím</span>
+                            </label>
+                        </div>
+                        <button class="w-100 mb-3 btn btn-lg rounded-3 btn-danger border-0" type="submit">
+                            <span>Módosítás</span>
+                        </button>
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control rounded-3" id="floatingInput"
+                                placeholder="vezeteknev keresztnev">
+                            <label for="floatingInput">
+                                <span>Jelszó</span>
+                            </label>
+                        </div>
+                        <button class="w-100 mb-3 btn btn-lg rounded-3 btn-danger border-0" type="submit">
+                            <span>Módosítás</span>
+                        </button>
+                        <small class="text-white-50">
+                            <span>Figyelem: A fiók törlése visszavonhatatlan! Biztosan törölni szeretnéd a
+                                fiókodat?</span><br>
+                            <input class="mb-2" type="checkbox" id="delete" name="delete" value="Fiókját töröltük!">
+                            <label for="delete">Igen szeretném törölni a fiókomat</label>
+                        </small>
+                        <button class="w-100 mb-3 btn btn-lg rounded-3 btn-danger border-0" type="submit">
+                            <span>Fiók törlése</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <main>
+        <div class="container-fluid container1">
+            <div class="container">
+                <div class="row">
+                    <div class="col text-center">
+                        <img class="img-fluid logo" src="img/owl-47526.svg" alt="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-center">
+                        <h1>MathMaster</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="container pt-2">
+            <div class="container container2 pt-4">
+
+                <div class="row pt-1">
+                    <div class="col-sm-1 col-lg-2"></div>
+                    <div class="col-sm-10 col-lg-8 text-center">
+                        <img class="img-fluid" src="img/undraw_educator_re_ju471.svg" alt="">
+                    </div>
+                    <div class="col-sm-1 col-lg-2"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-1 col-lg-2 col-xl-3 d-none d-sm-none d-md-block"></div>
+                    <div class="col-xs-12 col-md-4 col-lg-3 col-xl-2 text-center py-3">
+                        <button class="btn btn-danger btn-class" type="button">1-2 osztály</button>
+                    </div>
+                    <div class="col-md-2 d-none d-sm-none d-md-block"></div>
+                    <div class="col-xs-12 col-md-4 col-lg-3 col-xl-2 text-center py-3">
+                        <button class="btn btn-danger btn-class" type="button">3-4 osztály</button>
+                    </div>
+                    <div class="col-md-1 col-lg-2 col-xl-3 d-none d-sm-none d-md-block"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-1 col-lg-2 col-xl-3 d-none d-sm-none d-md-block"></div>
+                    <div class="col-xs-12 col-md-4 col-lg-3 col-xl-2 text-center py-3">
+                        <button class="btn btn-danger btn-class" type="button">5-6 osztály</button>
+                    </div>
+                    <div class="col-md-2 d-none d-sm-none d-md-block"></div>
+                    <div class="col-xs-12 col-md-4 col-lg-3 col-xl-2 text-center py-3">
+                        <button class="btn btn-danger btn-class" type="button">7-8 osztály</button>
+                    </div>
+                    <div class="col-md-1 col-lg-2 col-xl-3 d-none d-sm-none d-md-block"></div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="container container3">
+
+            <div class="row">
+                <div class="container">
+
+                    <div class="row">
+                        <h4 class="col-12">Rólunk:</h4>
+                        <p class="col-12">Üdvözöljük a MathMaster online platformján! Válassz minket, mert szenvedélyünk
+                            az oktatás, és ezt a rendkívül hasznos tanulási oldalt életre hoztuk azért, hogy segítsünk
+                            neked a matematika világában.</p>
+                        <p class="col-12">Tudjuk, hogy a matematika néha kihívást jelent, de mi itt vagyunk, hogy
+                            segítsünk neked.</p>
+                        <div class="col">
+                            <button class="btn btn-danger btn-about-contact" type="button">Tudj meg többet</button>
+                        </div>
+                    </div>
+
+                    <div class="row pt-3">
+                        <h4 class="col-12">Kapcsolatok:</h4>
+                        <p class="col-12">Üdvözöljük a MathMaster gyakorló platformunkon! Itt vagyunk, hogy segítsünk,
+                            és várjuk észrevételeit, kérdéseit vagy javaslatait a szolgáltatásunkkal kapcsolatban.</p>
+                        <p class="col-12">Bármikor szívesen fogadjuk visszajelzéseit és észrevételeit.</p>
+                        <div class="col">
+                            <button class="btn btn-danger btn-about-contact" type="button">Kapcsolat felvétel</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+
+
+    <footer class="container-fluid container4">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-xs-12 col-lg-6">
+                    <div class="row d-none d-sm-none d-md-none d-lg-block footer-bg">
+                        <div class="col-12"></div>
+                    </div>
+                    <div class="row footer-bg">
+                        <div class="col-12"></div>
+                    </div>
+                    <div class="row footer-bg">
+                        <div class="col-12"></div>
+                    </div>
+                    <div class="row footer-bg">
+                        <div class="col-xs-0 col-md-3 col-lg-2"></div>
+                        <div class="col-xs-12 col-md-6 d-flex align-items-center ceg">
+                            <img class="ceg-logo-footer" src="img/owl-47526.svg" alt="">
+                            <span class="ps-3 ceg-nev-footer">MathMaster</span>
+                        </div>
+                        <div class="col-xs-0 col-md-3 col-lg-4"></div>
+                    </div>
+                    <div class="row footer-bg">
+                        <div class="col-xs-0 col-md-3 col-lg-2"></div>
+                        <div class="col-xs-12 col-md-6 col-lg-7 text-center d-flex align-items-end pb-sm-5 pb-lg-4">
+                            <span class="align-bottom copyright">&copy; 2023 Minden jog fenntartva</span>
+                        </div>
+                        <div class="col-xs-0 col-md-3 col-lg-3"></div>
+                    </div>
+                    <div class="row footer-bg">
+                        <div class="col-12"></div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-xs-12 col-lg-6 d-none d-sm-none d-md-none d-lg-block">
+                    <div class="row footer-bg">
+                        <div class="col-12"></div>
+                    </div>
+                    <div class="row footer-bg">
+                        <div class="col-12"></div>
+                    </div>
+                    <div class="row footer-bg">
+                        <div class="col-12"></div>
+                    </div>
+                    <div class="row footer-bg">
+                        <div class="col-lg-1 col-xl-2"></div>
+                        <div class="col-lg-9 col-xl-6 d-flex align-items-center">
+                            <span class="align-middle idezet">“A megszerzett tudás csak akkor válik valódi tudássá,
+                                ha képes vagy rá, hogy közöld másokkal.”</span>
+                        </div>
+                        <div class="col-lg-3 col-xl-4"></div>
+                    </div>
+                    <div class="row footer-bg">
+                        <div class="col-lg-1 col-xl-2"></div>
+                        <div class="col-lg-5 col-xl-4 d-flex align-items-center">
+                            <span class="align-middle idezet">Geert Kimpen</span>
+                        </div>
+                        <div class="col-lg-6 col-xl-6"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>

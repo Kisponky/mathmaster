@@ -1,0 +1,380 @@
+.container-fluid {
+    padding: 0;
+}
+
+.container {
+    max-width: 1440px;
+    background: rgba(10, 10, 10, .05);
+}
+
+
+
+.custom-container {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.custom-nav {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.custom-nav li {
+    margin-right: 5px;
+}
+
+.custom-nav a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #800000;
+}
+
+
+
+.ceg-logo {
+    height: 40px;
+}
+
+@font-face {
+    font-family: 'Abril_Farface';
+    src: url('../font/Abril_Fatface.zip');
+}
+
+.ceg-nev {
+    font-family: 'Abril_Farface', serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #800000;
+}
+
+.nav-link {
+    font-family: 'Abril_Farface', serif;
+    font-size: 16px;
+    font-weight: normal;
+    color: #fff;
+}
+
+.active {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.profile {
+    height: 28px;
+}
+
+header {
+    background-image: linear-gradient(to right, #162C45, #22446B);
+}
+
+.animated-icon1,
+.animated-icon2,
+.animated-icon3 {
+    width: 30px;
+    height: 20px;
+    position: relative;
+    margin: 0px;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .4s ease-in-out;
+    -moz-transition: .4s ease-in-out;
+    -o-transition: .4s ease-in-out;
+    transition: .4s ease-in-out;
+    cursor: pointer;
+}
+
+.animated-icon1 span,
+.animated-icon2 span,
+.animated-icon3 span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .24s ease-in-out;
+    -moz-transition: .24s ease-in-out;
+    -o-transition: .24s ease-in-out;
+    transition: .24s ease-in-out;
+}
+
+
+.animated-icon2 span {
+    background: black;
+}
+
+.animated-icon2 span:nth-child(1) {
+    top: 0px;
+}
+
+.animated-icon2 span:nth-child(2),
+.animated-icon2 span:nth-child(3) {
+    top: 10px;
+}
+
+.animated-icon2 span:nth-child(4) {
+    top: 20px;
+}
+
+.animated-icon2.open span:nth-child(1) {
+    top: 11px;
+    width: 0%;
+    left: 50%;
+}
+
+.animated-icon2.open span:nth-child(2) {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.animated-icon2.open span:nth-child(3) {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.animated-icon2.open span:nth-child(4) {
+    top: 11px;
+    width: 0%;
+    left: 50%;
+}
+
+.navbar .navbar-toggler {
+    border-width: 0;
+}
+
+.navbar-toggler {
+    background-color: transparent;
+}
+
+button#button {
+    order: 1;
+}
+
+img#profil {
+    order: 2;
+}
+
+@media (max-width: 420px) {
+    button#button {
+        order: 2;
+    }
+
+    img#profil {
+        order: 1;
+    }
+}
+
+
+
+@font-face {
+    font-family: 'Abril_Farface';
+    src: url('../font/Abril_Fatface.zip');
+}
+
+h1 {
+    font-family: 'Abril_Farface', serif;
+    font-size: 60px;
+    font-weight: bold;
+    padding: 53px 0 24px 0;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../font/Poppins.zip');
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+
+
+.message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f1f1f1;
+    padding: 20px;
+}
+
+.message-buborek {
+    width: 80%;
+    padding: 25px 30px;
+    margin: 20px 0;
+    background: rgba(10, 10, 10, .19);
+    border-radius: 40px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.message-buborek:hover {
+    transform: scale(1.05);
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.message-user {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.message-date {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    color: #444;
+}
+
+.message-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.message-actions {
+    display: flex;
+    justify-content: end;
+    margin-top: 10px;
+}
+
+.message-actions button {
+    padding: 10px 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-primary-class {
+    background: #000080;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    border: none;
+    margin-right: 10px;
+}
+
+.btn-danger-class {
+    background: #800000;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    border: none;
+}
+
+@media (max-width: 425px){
+    .message-actions {
+        justify-content: center;
+    }
+}
+
+#inputMezo {
+    resize: none;
+    overflow: hidden;
+    display: none;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.ceg-logo-footer {
+    height: 63px;
+}
+
+.ceg-nev-footer {
+    font-family: 'Abril_Farface', serif;
+    font-size: 40px;
+    font-weight: bold;
+    color: #800000;
+}
+
+.copyright {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    color: #fff;
+}
+
+.idezet {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    color: #fff;
+    line-height: 130%;
+}
+
+.container4 {
+    background: url('../img/footer3.svg') no-repeat center center;
+    background-size: cover;
+}
+
+@media (max-width: 1439px) {
+    .container2 {
+        background: none;
+    }
+}
+
+@media (min-height: 1200px) {
+    .container4 {
+        position: absolute;
+        bottom: 0;
+    }
+}
+
+
+
+.footer-bg {
+    /* background: rgba(255, 0, 0, .2);
+    border: black solid 1px; */
+    height: 100px;
+}
+
+@media (max-width: 800px) {
+
+    .ceg-logo-footer,
+    .ceg-nev-footer,
+    .copyright {
+        text-align: center;
+        margin: 0 auto;
+    }
+}
+
+/* Hamburger menü nem működik még */
