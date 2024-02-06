@@ -151,6 +151,80 @@ app.get('/check-auth', (req, res) => {
 });
 
 
+app.get('/uzenetek', (req, res) => {
+  // SQL lekérdezés definiálása
+  const sqlQuery = 'SELECT k.`kapcsolat_id`, k.`felhasznalo_id`, f.`teljes_nev` AS `felhasznalo_teljes_nev`, k.`beerkezett_uzenet`, k.`letrehozas_datuma` FROM `kapcsolat` k INNER JOIN `felhasznalo` f ON k.`felhasznalo_id` = f.`felhasznalo_id` WHERE k.`archive_uzenetek` IS NULL;';
+
+  // SQL lekérdezés végrehajtása
+  connection.query(sqlQuery, (error, results, fields) => {
+    if (error) {
+      console.error('Hiba a lekérdezés során: ' + error.message);
+      res.status(500).send('Internal Server Error');
+      return;
+    }
+
+    // Sikeres lekérdezés esetén küldjük vissza az eredményeket
+    res.json(results);
+  });
+});
+
+app.delete('/kapcsolat/:kapcsolat_id', (req, res) => {
+  const kapcsolatId = req.params.kapcsolat_id;
+
+  const sql = 'DELETE FROM kapcsolat WHERE kapcsolat_id = ?';
+
+    // SQL lekérdezés végrehajtása
+    connection.query(sql, [kapcsolatId], (error, results) => {
+        if (error) {
+            console.error('Hiba a lekérdezés során:', error);
+            res.status(500).json({ success: false, message: 'Hiba a kapcsolat törlése közben.' });
+        } else {
+            console.log('Kapcsolat sikeresen törölve.');
+            res.status(200).json({ success: true, message: `Kapcsolat ${kapcsolatId} sikeresen törölve.` });
+        }
+    });
+
+});
+
+app.post('/felvetel', (req, res) => {
+  const email = req.body.email; // A kérésből kiolvasott felhasználó azonosító
+  const token = req.body.token;
+  console.log("Adminauth-hoz:"+token)
+
+  // SQL lekérdezés az admin jog hozzáadásához
+  const sql = 'UPDATE felhasznalo SET admin = true WHERE email = ?';
+
+  // SQL lekérdezés végrehajtása
+  connection.query(sql, [email], (error, results) => {
+      if (error) {
+          console.error('Hiba a lekérdezés során:', error);
+          res.status(500).json({ success: false, message: 'Hiba az admin jog hozzáadása közben.' });
+      } else {
+          console.log('Admin jog sikeresen hozzáadva.');
+          res.status(200).json({ success: true, message: `Admin jog hozzáadva a felhasználóhoz: ${email}` });
+      }
+  });
+});
+
+app.put('/valasz/:kapcsolatId', (req, res) => {
+  const kapcsolatId = req.params.kapcsolatId;
+
+  // SQL frissítés végrehajtása
+  const sql = 'UPDATE `kapcsolat` SET `valasz_uzenet` = ?, `archive_uzenetek` = true WHERE `kapcsolat_id` = ?';
+  const values = [req.body.valaszUzenet, kapcsolatId];
+
+  connection.query(sql, values, (err, results) => {
+    if (err) {
+      console.error('Hiba az SQL lekérdezés során: ' + err.message);
+      res.status(500).json({ error: 'Hiba az SQL lekérdezés során' });
+      return;
+    }
+
+    console.log('Sikeres frissítés');
+    res.json({ success: true });
+  });
+});
+
 
 
 

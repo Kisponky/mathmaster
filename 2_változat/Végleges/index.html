@@ -45,7 +45,9 @@
             }
         };
 
-        checkAuthentication();
+        if (localStorage.getItem("token")) {
+            checkAuthentication();
+        }
     </script>
 </head>
 
@@ -63,13 +65,11 @@
                 <ul class="nav nav-pills custom-nav">
                     <script>
                         if (localStorage.getItem("token")) {
-                            console.log("IGAZ")
                             document.write('<li class="nav-item"><a href="#" class="nav-link active" aria-current="page"><span style="vertical-align: inherit;">Kezdőlap</span></a></li>')
                             document.write('<li class="nav-item"><a href="./html/about.html" class="nav-link"><span style="vertical-align: inherit;">Rólunk</span></a></li>')
                             document.write('<li class="nav-item"><a href="./html/contact.html" class="nav-link"><span style="vertical-align: inherit;">Kapcsolat</span></a></li>')
                             document.write('<li class="nav-item"><a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#uzenet"><span style="vertical-align: inherit;">Üzenet küldés</span></a></li>')
                         } else {
-                            console.log("HAMIS")
                             document.write('<li class="nav-item"><a href="#" class="nav-link active" aria-current="page"><span style="vertical-align: inherit;">Kezdőlap</span></a></li>')
                             document.write('<li class="nav-item"><a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#regisztracio"><span style="vertical-align: inherit;">Regisztráció</span></a></li>')
                             document.write('<li class="nav-item"><a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#bejelentkezes"><span style="vertical-align: inherit;">Bejelentkezés</span></a></li>')
