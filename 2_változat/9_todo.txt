@@ -1,0 +1,7 @@
+Ponkházi Barnabás:
+Adatbázis újratervezése miatt api átírása, javítása
+Admin functiók kidolkozása
+
+Nádas Tamás:
+Figma (tervezet elkészítése: Quiz választó, Quiz felület)
+Ezeknek a HTML kódjának megírásának elkezdése, előkészítése

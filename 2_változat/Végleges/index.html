@@ -14,9 +14,42 @@
     <link rel="stylesheet" href="css/modal.css">
     <link rel="shortcut icon" href="img/owl-47526.svg" type="image/x-icon">
     <title>MathMaster</title>
+    <script>
+        const checkAuthentication = async () => {
+            const token = localStorage.getItem('token');
+
+            try {
+                    const response = await fetch('http://localhost:8000/check-auth', {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': token,
+                            'Content-Type': 'application/json',
+                        },
+                    });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    console.log('Authentication successful:', data);
+                } else {
+                    console.error('Authentication failed:', data);
+                    if (localStorage.getItem("token") != null) {
+                        localStorage.removeItem('token');
+                        location.href = "index.html"
+                    }
+                    
+                }
+            } catch (error) {
+                console.error('Error during authentication:', error);
+                localStorage.removeItem('token');
+            }
+        };
+
+        checkAuthentication();
+    </script>
 </head>
 
-<body>
+<body>  
     <div class="container-fluid">
         <header class="d-flex flex-wrap justify-content-center py-3">
             <div class="custom-container">
@@ -28,34 +61,25 @@
                 </a>
 
                 <ul class="nav nav-pills custom-nav">
-                    <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">
-                            <span style="vertical-align: inherit;">Kezdőlap</span>
-                        </a>
-                    </li>
-                    <li class="nav-item"><a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#regisztracio">
-                            <span style="vertical-align: inherit;">Regisztráció</span>
-                        </a>
-                    </li>
-                    <li class="nav-item"><a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#bejelentkezes">
-                            <span style="vertical-align: inherit;">Bejelentkezés</span>
-                        </a>
-                    </li>
-                    <li class="nav-item"><a href="./html/about.html" class="nav-link">
-                            <span style="vertical-align: inherit;">Rólunk</span>
-                        </a>
-                    </li>
-                    <li class="nav-item"><a href="./html/contact.html" class="nav-link">
-                            <span style="vertical-align: inherit;">Kapcsolat</span>
-                        </a>
-                    </li>
-                    <!-- Abban az esetben jelenik meg, ha már be vagyunk jelentkezve -->
-                    <li class="nav-item"><a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#uzenet">
-                        <span style="vertical-align: inherit;">Üzenet küldés</span>
-                    </a>
-                </li>
+                    <script>
+                        if (localStorage.getItem("token")) {
+                            console.log("IGAZ")
+                            document.write('<li class="nav-item"><a href="#" class="nav-link active" aria-current="page"><span style="vertical-align: inherit;">Kezdőlap</span></a></li>')
+                            document.write('<li class="nav-item"><a href="./html/about.html" class="nav-link"><span style="vertical-align: inherit;">Rólunk</span></a></li>')
+                            document.write('<li class="nav-item"><a href="./html/contact.html" class="nav-link"><span style="vertical-align: inherit;">Kapcsolat</span></a></li>')
+                            document.write('<li class="nav-item"><a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#uzenet"><span style="vertical-align: inherit;">Üzenet küldés</span></a></li>')
+                        } else {
+                            console.log("HAMIS")
+                            document.write('<li class="nav-item"><a href="#" class="nav-link active" aria-current="page"><span style="vertical-align: inherit;">Kezdőlap</span></a></li>')
+                            document.write('<li class="nav-item"><a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#regisztracio"><span style="vertical-align: inherit;">Regisztráció</span></a></li>')
+                            document.write('<li class="nav-item"><a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#bejelentkezes"><span style="vertical-align: inherit;">Bejelentkezés</span></a></li>')
+                            document.write('<li class="nav-item"><a href="./html/about.html" class="nav-link"><span style="vertical-align: inherit;">Rólunk</span></a></li>')
+                        }
+                        
+                    </script>
                 </ul>
 
-                <div class="dropdown text-end">
+                <div id="profilom" class="dropdown text-end">
                     <a href="#" class="d-block link-body-emphasis text-decoration-none me-2" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         <img src="img/PersonCircle_Profile.svg" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -73,22 +97,31 @@
                                 <span style="vertical-align: inherit;">Beállítások</span>
                             </a>
                         </li>
+                        <script>
+                            if (localStorage.getItem("admin")) {
+                                document.write('<li><a class="dropdown-item" href="./html/admin.html"><span style="vertical-align: inherit;">Admin</span></a></li>')
+                            }
+                        </script>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">
+                        <li><a class="dropdown-item" href="#" onclick="logout()">
                                 <span style="vertical-align: inherit;">Kijelentkezés</span>
                             </a>
                         </li>
                     </ul>
                 </div>
-
+                <script>
+                    if(!localStorage.getItem("token")) {
+                        document.getElementById("profilom").style.display = "none";
+                    }
+                </script>
             </div>
         </header>
     </div>
-
-
-
+<script>
+    
+</script>
     <!-- Regisztrációs modal -->
     <div class="modal fade" id="regisztracio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -102,43 +135,41 @@
                 </div>
 
                 <div class="modal-body p-5 pt-0">
-                    <form>
+                    <form id="reg">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control rounded-3" id="floatingInput"
+                            <input type="text" class="form-control rounded-3" id="fullName"
                                 placeholder="vezeteknev keresztnev">
                             <label for="floatingInput">
                                 <span>Teljes név</span>
                             </label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control rounded-3" id="floatingInput"
+                            <input type="text" class="form-control rounded-3" id="userName"
                                 placeholder="felhasznalonev">
                             <label for="floatingInput">
                                 <span>Felhasználónév</span>
                             </label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control rounded-3" id="floatingInput"
-                                placeholder="nev@example.com">
+                            <input type="email" class="form-control rounded-3" id="email" placeholder="nev@example.com">
                             <label for="floatingInput">
                                 <span>Email cím</span>
                             </label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control rounded-3" id="floatingPassword"
-                                placeholder="Jelszo">
+                            <input type="password" class="form-control rounded-3" id="password" placeholder="Jelszo">
                             <label for="floatingPassword">
                                 <span>Jelszó</span>
                             </label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control rounded-3" id="floatingPassword"
-                                placeholder="Jelszo">
+                            <input type="password" class="form-control rounded-3" id="password2" placeholder="Jelszo">
                             <label for="floatingPassword">
                                 <span>Jelszó újra</span>
                             </label>
                         </div>
-                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0" type="submit">
+                        <button onclick="register()" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0"
+                            type="button">
                             <span>Regisztráció</span>
                         </button>
                         <small class="text-white-50">
@@ -168,20 +199,20 @@
                 <div class="modal-body p-5 pt-0">
                     <form>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control rounded-3" id="floatingInput"
+                            <input type="email" class="form-control rounded-3" id="emailL"
                                 placeholder="nev@example.com">
                             <label for="floatingInput">
                                 <span>Email cím</span>
                             </label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control rounded-3" id="floatingPassword"
-                                placeholder="Jelszo">
+                            <input type="password" class="form-control rounded-3" id="passwordL" placeholder="Jelszo">
                             <label for="floatingPassword">
                                 <span>Jelszó</span>
                             </label>
                         </div>
-                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0" type="submit">
+                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0" type="button"
+                            onclick="bejelentkez()">
                             <span>Bejelentkezés</span>
                         </button>
                     </form>
@@ -209,13 +240,14 @@
                         <div class="form-floating mb-3">
                             <textarea
                                 oninput="this.style.height = ''; this.style.height = (this.scrollHeight + 2) + 'px';"
-                                name="message" class="form-control rounded-3 custom-textarea" id="floatingInput"
-                                cols="30" rows="1"></textarea>
-                            <label for="floatingInput">
+                                name="message" class="form-control rounded-3 custom-textarea" id="text" cols="30"
+                                rows="1"></textarea>
+                            <label for="uzenet">
                                 <span>Üzenet szövege</span>
                             </label>
                         </div>
-                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0" type="submit">
+                        <button onclick="uzenet()" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0"
+                            type="button">
                             <span>Küldés</span>
                         </button>
                     </form>
@@ -447,6 +479,141 @@
         </div>
     </footer>
 
+
+    <script>
+        // register
+
+        function register() {
+
+            var fullName = document.getElementById('fullName').value;
+            var userName = document.getElementById('userName').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var password2 = document.getElementById('password2').value;
+
+
+            if (password != password2) {
+                alert("A jelszavak nem egyeznek!");
+            } else {
+                fetch("http://localhost:8000/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        fullName: fullName,
+                        userName: userName,
+                        email: email,
+                        password: password
+                    }),
+                })
+                    .then((response) => {
+                        return response.json();
+                    })
+                    .then((data) => {
+                        if (data.status == 404) {
+                            let err = document.getElementById("error");
+                            err.innerHTML = data.error;
+                        } else {
+                            location.href = "index.html"
+                        }
+
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            }
+        }
+
+        // login
+
+        function bejelentkez() {
+            // Az input mezőkből kinyerjük az e-mail címet és a jelszót
+            var emailL = document.getElementById('emailL').value;
+            var jelszoL = document.getElementById('passwordL').value;
+
+            // Az API végpont, ahova küldjük az adatokat
+            var apiEndpoint = 'http://localhost:8000/login';
+
+            // Fetch kérés konfigurációja
+            var requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: emailL, jelszo: jelszoL }),
+            };
+
+            // Fetch kérés küldése az API végpontra
+            fetch(apiEndpoint, requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    // A válasz feldolgozása, például sikeres bejelentkezés esetén
+                    console.log('Sikeres bejelentkezés:', data);
+                    localStorage.setItem('token', data.token);
+                    if (data.admin == true) {
+                        localStorage.setItem('admin', data.admin);
+                    }
+                    location.href = "index.html";
+                })
+                .catch(error => {
+                    // Hiba esetén
+                    console.error('Hiba történt:', error);
+                });
+        }
+
+        // logout
+
+
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('admin');
+            alert('Sikeres kijelentkezés.');
+            location.href = "index.html";
+        }
+
+
+        // üzenet küldés
+
+        function uzenet() {
+            var text = document.getElementById("text").value;
+            var token = localStorage.getItem("token");
+
+            if (text.length > 0) {
+                // Ellenőrzés, hogy a token létezik-e
+                if (token) {
+                    var data = {
+                        text: text,
+                        token: token
+                    };
+
+                    fetch("http://localhost:8000/text", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ text: text, token: token }),
+                    })
+                        .then(response => response.json())
+                        .then(result => {
+                            console.log(result);
+                            alert("Az üzenet sikeresen elküldve!");
+                            location.href = "index.html";
+                        })
+                        .catch(error => {
+                            console.error('Hiba történt a fetch kérés során:', error);
+                            alert("Hiba történt az üzenet küldése közben!");
+                        });
+                } else {
+                    alert("Hiányzó token!");
+                }
+            } else {
+                alert("Az üzenet nincs megadva!");
+            }
+        }
+
+
+    </script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
