@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <title>Math Quiz</title>
+
+    <style>
+        .col-2 {
+            width: 120px;
+        }
+
+        .input-style {
+            width: 20px;
+            margin: 0 2px;
+            padding: 3px 5px;
+        }
+
+        #myTargetDiv{
+            margin: 4px 26px 4px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        // Matematikai egyenlet
+        const equation = "123*4=492";
+
+        function muveletiJel() {
+            if (equation.includes('+')) {
+                return document.write('+');
+            } else if (equation.includes('-')) {
+                return document.write('-');
+            } else if (equation.includes('*')) {
+                return document.write('·');
+            }
+        }
+    </script>
+
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-2">
+                <p class="text-end my-0"><span style="margin: 0 7px;"></span><span style="margin: 0 7px;"></span><span style="margin: 0 8px 0 8px;"></span><script>muveletiJel()</script><span style="margin: 0 8px 0 8px;"></span></p>
+                <hr class="my-0">
+                <div id="myTargetDiv" class="d-flex justify-content-end my-1">
+                    <!-- <input type="text" class="form-control" style="width: 20px; margin: 0 2px; padding: 3px 5px;"
+                        oninput="validateInput(this)" tabindex="3">
+                    <input type="text" class="form-control" style="width: 20px; margin: 0 2px; padding: 3px 5px;"
+                        oninput="validateInput(this)" tabindex="2">
+                    <input type="text" class="form-control" style="width: 20px; margin: 0 2px; padding: 3px 5px;"
+                        oninput="validateInput(this)" tabindex="1"> -->
+                </div>
+            </div>
+            <div class="col align-self-center">
+                <button class="btn btn-outline-secondary" type="button">Eredmény</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        function validateInput(input) {
+            // Csak számok elfogadása
+            input.value = input.value.replace(/\D/g, '');
+
+            // Csak egy karakter elfogadása
+            if (input.value.length > 1) {
+                input.value = input.value.charAt(0);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Teszt adatok, a backend ezt a részt fogja majd kitölteni
+            const equation = "123*4=492";
+            const numbers = Array.from(equation.replace(/\D/g, ''), Number);
+            const result = numbers.reduce((acc, curr) => acc + curr, 0);
+
+
+            const parts = equation.split('=');
+            const result2 = parseInt(parts[1]);
+
+
+            // Elemek kiválasztása
+            const spans = document.querySelectorAll('.col-2 span');
+            const resultButton = document.querySelector('.btn');
+
+            // Teszt adatok beillesztése a megfelelő helyekre
+            for (let i = 0; i < spans.length; i++) {
+                spans[i].textContent = numbers[i];
+            }
+
+
+            // Megvizsgáljuk a result2 hosszát
+            const result2Length = result2.toString().length;
+
+            // Kiírjuk a konzolra
+            console.log("A result2 hossza:", result2Length);
+            console.log("A result2 értéke:", result2);
+
+
+
+            const targetDivId = "myTargetDiv";
+            const targetDiv = document.getElementById(targetDivId);
+
+            // Csak annyi darab input mezőt hozzáadunk, amennyi a result2Length értéke
+            for (let i = result2Length; i > 0; i--) {
+                const input = document.createElement("input");
+                input.type = "text";
+
+                // Bootstrap osztályok hozzáadása
+                input.classList.add("form-control");
+                input.classList.add("input-style");
+
+                input.addEventListener("input", function () {
+                    validateInput(this);
+                });
+
+                input.tabIndex = i;
+
+                targetDiv.appendChild(input);
+            }
+
+
+
+            const inputFields = document.querySelectorAll('.form-control');
+
+            // Eredmény gomb eseménykezelő
+            resultButton.addEventListener('click', function () {
+                // Kiolvasás és összeadás
+                let resultString = '';
+                inputFields.forEach(input => {
+                    resultString += input.value.trim(); // trim: eltávolítja a felesleges szóközöket
+                });
+
+                // Eredmény kiírása a consolera
+                console.log(resultString);
+
+                // Ellenőrizzük az eredményt
+                if (parseInt(resultString) === result2) {
+                    // Jó válasz
+                    resultButton.innerHTML = '<div class="alert alert-success">Jó válasz!</div>';
+                } else {
+                    // Rossz válasz
+                    resultButton.innerHTML = '<div class="alert alert-danger">Rossz válasz!</div>';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

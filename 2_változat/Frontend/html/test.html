@@ -8,37 +8,54 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-    <title>Math Quiz</title>
+    <title>Tabindex and Validation Example</title>
 
     <style>
         .col-2 {
             width: 120px;
         }
-        .input-style{
-            width: 20px; 
-            margin: 0 2px; 
+
+        .input-style {
+            width: 20px;
+            margin: 0 2px;
             padding: 3px 5px;
         }
     </style>
 </head>
 
 <body>
+
+    <script>
+        // Matematikai egyenlet
+        const equation = "123+135=258";
+
+        function muveletiJel() {
+            if (equation.includes('+')) {
+                return document.write('+');
+            } else {
+                return document.write('-');
+            }
+        }
+    </script>
+
     <div class="container">
         <div class="row">
             <div class="col"></div>
             <div class="col-2">
                 <p class="text-end my-0"><span style="margin: 0 8.5px;"></span><span style="margin: 0 7px;"></span><span
                         style="margin: 0 8px 0 8px;"></span></p>
-                <p class="text-end my-0">+ <span style="margin: 0 8.5px;"></span><span
-                        style="margin: 0 7px;"></span><span style="margin: 0 8px 0 8px;"></span></p>
+                <p class="text-end my-0">
+                    <script>muveletiJel()</script> <span style="margin: 0 8.5px;"></span><span
+                        style="margin: 0 7px;"></span><span style="margin: 0 8px 0 8px;"></span>
+                </p>
                 <hr class="my-0">
                 <div id="myTargetDiv" class="d-flex justify-content-end my-1">
                     <!-- <input type="text" class="form-control" style="width: 20px; margin: 0 2px; padding: 3px 5px;"
-                        oninput="validateInput(this)" tabindex="3">
-                    <input type="text" class="form-control" style="width: 20px; margin: 0 2px; padding: 3px 5px;"
-                        oninput="validateInput(this)" tabindex="2">
-                    <input type="text" class="form-control" style="width: 20px; margin: 0 2px; padding: 3px 5px;"
-                        oninput="validateInput(this)" tabindex="1"> -->
+                    oninput="validateInput(this)" tabindex="3">
+                <input type="text" class="form-control" style="width: 20px; margin: 0 2px; padding: 3px 5px;"
+                    oninput="validateInput(this)" tabindex="2">
+                <input type="text" class="form-control" style="width: 20px; margin: 0 2px; padding: 3px 5px;"
+                    oninput="validateInput(this)" tabindex="1"> -->
                 </div>
             </div>
             <div class="col align-self-center">
@@ -48,42 +65,40 @@
     </div>
 
     <script>
-        const equation = "123+135=258";
         const parts = equation.split('=');
         const result2 = parseInt(parts[1]);
 
-        // Megvizsgáljuk a result2 hosszát
-        const result2Length = result2.toString().length;
-
-        const targetDivId = "myTargetDiv";
-        const targetDiv = document.getElementById(targetDivId);
-
-        // Csak annyi darab input mezőt hozzáadunk, amennyi a result2Length értéke
-        for (let i = result2Length; i > 0; i--) {
-            const input = document.createElement("input");
-            input.type = "text";
-            input.placeholder = `Input ${i}`;
-            
-            // Bootstrap osztályok hozzáadása
+        function createInput(id, tabIndex) {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.id = id;
             input.classList.add("form-control");
             input.classList.add("input-style");
-
-            input.addEventListener("input", function() {
-                validateInput(this);
-            });
-
-            input.tabIndex = i;
-            
-            targetDiv.appendChild(input);
+            input.tabIndex = tabIndex;
+            input.oninput = function () {
+                const nextInputId = getNextInputId(id);
+                validateAndMoveToNext(this, nextInputId);
+            };
+            input.onkeydown = function (event) {
+                handleBackspace(this, event);
+            };
+            return input;
         }
 
-        // Kiírjuk a konzolra
-        console.log("A result2 hossza:", result2Length);
-    </script>
+        function getNextInputId(currentInputId) {
+            const index = parseInt(currentInputId.replace('input', ''));
+            return 'input' + (index % 6 + 1);
+        }
 
+        const myTargetDiv = document.getElementById('myTargetDiv');
+        const number = result2;
+        let tabIndex = number;
 
-    <script>
-        function validateInput(input) {
+        for (let i = number.toString().length; i >= 1; i--) {
+            myTargetDiv.appendChild(createInput('input' + i, tabIndex--));
+        }
+
+        function validateAndMoveToNext(input, nextInputId) {
             // Csak számok elfogadása
             input.value = input.value.replace(/\D/g, '');
 
@@ -91,60 +106,67 @@
             if (input.value.length > 1) {
                 input.value = input.value.charAt(0);
             }
+
+            // Ha egy karaktert írt be a felhasználó, lépjen tovább a következő mezőre vagy a gombra
+            if (input.value.length === 1) {
+                document.getElementById(nextInputId).focus();
+            }
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
-            // Teszt adatok, a backend ezt a részt fogja majd kitölteni
-            const equation = "123+135=58";
-            const numbers = Array.from(equation.replace(/\D/g, ''), Number);
-            const result = numbers.reduce((acc, curr) => acc + curr, 0);
-
-
-            const parts = equation.split('=');
-            const result2 = parseInt(parts[1]);
-
-
-            // Elemek kiválasztása
-            const spans = document.querySelectorAll('.col-2 span');
-            const inputFields = document.querySelectorAll('.form-control');
-            const resultButton = document.querySelector('.btn');
-
-            // Teszt adatok beillesztése a megfelelő helyekre
-            for (let i = 0; i < spans.length; i++) {
-                spans[i].textContent = numbers[i];
-            }
-
-
-            // Megvizsgáljuk a result2 hosszát
-            const result2Length = result2.toString().length;
-
-            // Kiírjuk a konzolra
-            console.log("A result2 hossza:", result2Length);
-
-
-
-            // Eredmény gomb eseménykezelő
-            resultButton.addEventListener('click', function () {
-                // Kiolvasás és összeadás
-                let resultString = '';
-                inputFields.forEach(input => {
-                    resultString += input.value.trim(); // trim: eltávolítja a felesleges szóközöket
-                });
-
-                // Eredmény kiírása a consolera
-                console.log(resultString);
-
-                // Ellenőrizzük az eredményt
-                if (parseInt(resultString) === result2) {
-                    // Jó válasz
-                    resultButton.innerHTML = '<div class="alert alert-success">Jó válasz!</div>';
-                } else {
-                    // Rossz válasz
-                    resultButton.innerHTML = '<div class="alert alert-danger">Rossz válasz!</div>';
+        function handleBackspace(input, event) {
+            // Ellenőrzi, hogy a lenyomott gomb a backspace vagy delete-e
+            if (event.code === 'Backspace' || event.code === 'Delete') {
+                // Ha az input mező üres, lépjen tovább a következő mezőre
+                if (input.value === '') {
+                    const prevInputId = 'input' + (parseInt(input.id.replace('input', '')) - 1);
+                    document.getElementById(prevInputId).focus();
                 }
+            }
+        }
+
+
+
+        const numbers = Array.from(equation.replace(/\D/g, ''), Number);
+        const result = numbers.reduce((acc, curr) => acc + curr, 0);
+
+
+
+
+
+        const spans = document.querySelectorAll('.col-2 span');
+        const resultButton = document.querySelector('.btn');
+
+
+
+        for (let i = 0; i < spans.length; i++) {
+            spans[i].textContent = numbers[i];
+        }
+
+
+
+        const inputFields = document.querySelectorAll('.form-control');
+
+        resultButton.addEventListener('click', function () {
+            let resultString = '';
+            inputFields.forEach(input => {
+                resultString += input.value.trim();
             });
+
+            // Eredmény kiírása a consolera
+            console.log(resultString);
+
+            // Ellenőrizzük az eredményt
+            if (parseInt(resultString) === result2) {
+                // Jó válasz
+                resultButton.innerHTML = '<div class="alert alert-success">Jó válasz!</div>';
+            } else {
+                // Rossz válasz
+                resultButton.innerHTML = '<div class="alert alert-danger">Rossz válasz!</div>';
+            }
         });
+
     </script>
+<!-- 3 jegyű számokkal működik csak az összeadás a span tagek miatt -->
 </body>
 
 </html>

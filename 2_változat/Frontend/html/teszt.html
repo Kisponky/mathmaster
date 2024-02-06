@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <title>Split and Display</title>
+  <style>
+    .form-control {
+      width: 30px;
+      margin: 0 5px 0 1px;
+      padding: 0 1px;
+      text-align: center;
+    }
+
+    .btn {
+      padding: 1px 3px;
+      background-color: #800000;
+      border: #650000 solid 1px;
+    }
+
+    .joValasz {
+      background-color: #28a745;
+      color: white;
+      border: 1px solid #218838;
+    }
+
+    .rosszValasz {
+      background-color: #dc3545;
+      color: white;
+      border: 1px solid #c82333;
+    }
+  </style>
+</head>
+
+<body>
+
+  <script>
+    // Kifejezés felosztása
+    var feladvany = "1+2=3";
+    var muvJelek = feladvany.split(/(\/\*\-\+|\=)/);
+    var szamok = feladvany.match(/\d+/g).map(Number);
+
+    // Számok külön változókba mentése
+    var szam1 = szamok[0];
+    var szam2 = szamok[1];
+    var eredmeny = szamok[2];
+
+    var negativ = feladvany.includes("=-");
+    var positiv1 = feladvany.includes("+") || feladvany.includes("-");
+
+
+    if (positiv1 && !negativ && szam1 <= 20 && szam2 <= 20 && eredmeny <= 20) {
+      // Flex container létrehozása
+      var flexContainer = document.createElement("div");
+      flexContainer.className = "d-flex";
+      document.body.appendChild(flexContainer);
+
+      muvJelek.forEach(function (part, index) {
+        if (index === muvJelek.length - 1) {
+          // Az utolsó elem (3) helyett input mezőt hoz létre
+          var input = document.createElement("input");
+          input.type = "text";
+          input.className = "form-control"; // Bootstrap form-control osztály
+          input.addEventListener("input", function () {
+            // Ellenőrizzük, hogy csak számokat tartalmaz-e
+            if (isNaN(this.value)) {
+              this.value = ""; // Ha nem szám, üresre állítjuk
+            }
+          });
+          flexContainer.appendChild(input);
+        } else {
+          var span = document.createElement("span");
+          span.textContent = part;
+          flexContainer.appendChild(span);
+        }
+      });
+    } else if (!negativ && szam1 <= 100 && szam2 <= 100 && eredmeny <= 100) {
+      // Flex container létrehozása
+      var flexContainer = document.createElement("div");
+      flexContainer.className = "d-flex";
+      document.body.appendChild(flexContainer);
+
+      muvJelek.forEach(function (part, index) {
+        if (index === muvJelek.length - 1) {
+          // Az utolsó elem (3) helyett input mezőt hoz létre
+          var input = document.createElement("input");
+          input.type = "text";
+          input.className = "form-control"; // Bootstrap form-control osztály
+          input.addEventListener("input", function () {
+            // Ellenőrizzük, hogy csak számokat tartalmaz-e
+            if (isNaN(this.value)) {
+              this.value = ""; // Ha nem szám, üresre állítjuk
+            }
+          });
+          flexContainer.appendChild(input);
+        } else {
+          var span = document.createElement("span");
+          span.textContent = part;
+          flexContainer.appendChild(span);
+        }
+      });
+    } else if (!negativ && szam1 <= 1000 && szam2 <= 1000 && eredmeny <= 1000) {
+      // Flex container létrehozása
+      var flexContainer = document.createElement("div");
+      flexContainer.className = "d-flex";
+      document.body.appendChild(flexContainer);
+
+      muvJelek.forEach(function (part, index) {
+        if (index === muvJelek.length - 1) {
+          // Az utolsó elem (3) helyett input mezőt hoz létre
+          var input = document.createElement("input");
+          input.type = "text";
+          input.className = "form-control"; // Bootstrap form-control osztály
+          input.addEventListener("input", function () {
+            // Ellenőrizzük, hogy csak számokat tartalmaz-e
+            if (isNaN(this.value)) {
+              this.value = ""; // Ha nem szám, üresre állítjuk
+            }
+          });
+          flexContainer.appendChild(input);
+        } else {
+          var span = document.createElement("span");
+          span.textContent = part;
+          flexContainer.appendChild(span);
+        }
+      });
+    }
+    else {
+      alert("4. osztályos feladvány!");
+    }
+
+    // Gomb létrehozása és hozzáadása
+    var button = document.createElement("button");
+    button.textContent = "Eredmény";
+    button.className = "btn btn-danger"; // Bootstrap btn és btn-secondary osztályok
+    button.addEventListener("click", function () {
+      // Ellenőrizzük az input mező tartalmát és változtatjuk a gomb kinézetét és szövegét
+      var inputValue = document.querySelector(".form-control").value;
+      var resultButton = document.createElement("button");
+
+      if (inputValue === muvJelek[muvJelek.length - 1]) {
+        resultButton.textContent = "Jó válasz!";
+        resultButton.className = "btn joValasz";
+      } else {
+        resultButton.textContent = "Rossz válasz!";
+        resultButton.className = "btn rosszValasz";
+      }
+
+      // Gomb cseréje az újra
+      flexContainer.replaceChild(resultButton, button);
+    });
+    flexContainer.appendChild(button);
+  </script>
+
+</body>
+
+</html>
