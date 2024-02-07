@@ -304,7 +304,7 @@ p {
     }
 }
 
-#inputMezo {
+.message-text textarea, .message-text button {
     resize: none;
     overflow: hidden;
     display: none;
