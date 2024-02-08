@@ -211,10 +211,15 @@ h3{
     h3{
         height: 20vh;
     }
+    .btn{
+        max-width: 80%;
+    }
 }
 
 .btn{
     font-size: 16px;
+    /* padding: 10px 8px; */
+    /* text-align: justify; */
 }
 
 .btn-info{
