@@ -191,53 +191,57 @@ img#profil {
 
 
 
-
-h3{
+h1 {
     font-family: 'Abril_Farface', serif;
     font-weight: bolder;
-    font-size: 28px;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40vh;
-}
-
-@media (max-width: 576px){
-    h3{
-        height: 20vh;
-    }
-    .btn{
-        max-width: 80%;
-    }
-}
-
-.btn{
-    font-size: 16px;
-    /* padding: 10px 8px; */
-    /* text-align: justify; */
-}
-
-.btn-info{
-    background: rgba(0, 255, 225, .2);
-    border-color: rgb(0, 255, 225);
+    font-size: 60px;
     color: white;
 }
 
-.btn-pink{
-    background: rgba(255, 0, 238, .2);
-    border-color: rgb(255, 0, 238);
-    color: white;
+#Select {
+    position: relative;
 }
 
-.btn-danger{
-    background: rgba(255, 79, 0, .2);
-    border-color: rgb(255, 79, 0);
-    color: white;
+#Select:before {
+    content: "Osztály:";
+    display: block;
+    position: absolute;
+    top: -30px;
+    left: 0;
+    font-weight: bold;
 }
 
-.btn-warning{
-    background: rgba(255, 255, 0, .2);
-    border-color: rgb(255, 255, 0);
-    color: white;
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../font/Poppins.zip');
+}
+
+.btn-danger {
+    font-family: 'Poppins', sans-serif;
+    float: right;
+    background: #800000;
+    border-color: #800000;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+#jobbranyil {
+    background: none;
+    border: none;
+    position: fixed;
+    top: 56%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: 3rem;
+}
+
+#balranyil {
+    background: none;
+    border: none;
+    position: fixed;
+    top: 58%;
+    left: 20px;
+    transform: translateY(-50%) scale(1, -1);
+    font-size: 3rem;
 }
