@@ -11,6 +11,32 @@
     <link rel="stylesheet" href="../css/modal.css">
     <link rel="shortcut icon" href="../img/owl-47526.svg" type="image/x-icon">
     <title>MathMaster</title>
+    <script>
+        fetch('http://localhost:8000/admin-check', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ token: localStorage.getItem('token') }),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                if (error.message.includes('403') || error.message.includes('401')) {
+                    window.location.href = '../index.html';
+                }
+            });
+
+
+    </script>
 </head>
 
 <body>
@@ -31,6 +57,10 @@
                     </li>
                     <li class="nav-item"><a href="#" class="nav-link active">
                             <span style="vertical-align: inherit;">Beérkező üzenetek</span>
+                        </a>
+                    </li>
+                    <li class="nav-item"><a href="./vizsgalati_naplo.html" class="nav-link">
+                            <span style="vertical-align: inherit;">Vizsgálati napló</span>
                         </a>
                     </li>
                     <li class="nav-item"><a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#admin">
@@ -125,7 +155,7 @@
 
                     <script>
                         function uezenetekBetolt() {
-                            fetch('http://localhost:8000/uzenetek')
+                            fetch(`http://localhost:8000/uzenetek/${localStorage.getItem('token')}`)
                                 .then(response => response.json())
                                 .then(data => {
                                     // Adatok betöltése a táblázatba
@@ -174,6 +204,7 @@
                                 method: 'DELETE',
                                 headers: {
                                     'Content-Type': 'application/json',
+                                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
                                 },
                             })
                                 .then(response => {
@@ -202,19 +233,20 @@
                                     headers: {
                                         'Content-Type': 'application/json',
                                     },
-                                    body: JSON.stringify({ valaszUzenet }),
+                                    body: JSON.stringify({ uzenet: valaszUzenet, token: localStorage.getItem('token') }),
                                 });
 
                                 if (!response.ok) {
                                     throw new Error('A szerver hibát adott vissza');
                                 }
+                                document.getElementById('message-buborek' + id.toString()).remove();
                                 const result = response.json();
                                 console.log(result);
-                                
+
                             } catch (error) {
                                 console.error('Hiba történt az API hívás során:', error.message);
                             }
-                            document.getElementById('message-buborek'+id.toString()).remove();
+
                         }
 
 

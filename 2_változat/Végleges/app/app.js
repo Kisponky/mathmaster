@@ -20,6 +20,17 @@ const config = new Config();
 
 const connection = mysql.createConnection(config);
 
+// function authentication(token) {
+//   try {
+//     const decodedToken = jwt.verify(token, TokenKey);
+    
+//     console.log("success")
+//   } catch (error) {
+//     console.log("error")
+    
+//   }
+// }
+
 app.get('/fnev', (req, res) => {//Minden felhasználói adat lekérése
   const query = 'SELECT * FROM Felhasznalok';
 
@@ -150,68 +161,147 @@ app.get('/check-auth', (req, res) => {
   }
 });
 
+app.get('/uzenetek/:token', (req, res) => {
+  const token = req.params.token;
 
-app.get('/uzenetek', (req, res) => {
-  // SQL lekérdezés definiálása
-  const sqlQuery = 'SELECT k.`kapcsolat_id`, k.`felhasznalo_id`, f.`teljes_nev` AS `felhasznalo_teljes_nev`, k.`beerkezett_uzenet`, k.`letrehozas_datuma` FROM `kapcsolat` k INNER JOIN `felhasznalo` f ON k.`felhasznalo_id` = f.`felhasznalo_id` WHERE k.`archive_uzenetek` IS NULL;';
+  // Ellenőrizze a token jogosultságát
+  try {
+    const decodedToken = jwt.verify(token, TokenKey);
 
-  // SQL lekérdezés végrehajtása
-  connection.query(sqlQuery, (error, results, fields) => {
-    if (error) {
-      console.error('Hiba a lekérdezés során: ' + error.message);
-      res.status(500).send('Internal Server Error');
-      return;
+    // Ellenőrizze, hogy a token admin jogosultságú-e
+    if (decodedToken.admin === 1) {
+      const sqlQuery = 'SELECT k.`kapcsolat_id`, k.`felhasznalo_id`, f.`teljes_nev` AS `felhasznalo_teljes_nev`, k.`beerkezett_uzenet`, k.`letrehozas_datuma` FROM `kapcsolat` k INNER JOIN `felhasznalo` f ON k.`felhasznalo_id` = f.`felhasznalo_id` WHERE k.`archive_uzenetek` IS NULL;';
+
+      // SQL lekérdezés végrehajtása
+      connection.query(sqlQuery, (error, results, fields) => {
+        if (error) {
+          console.error('Hiba a lekérdezés során: ' + error.message);
+          res.status(500).send('Internal Server Error');
+          return;
+        }
+
+        // Sikeres lekérdezés esetén küldjük vissza az eredményeket
+        res.json(results);
+      });
+    } else {
+      // Ha a token nem rendelkezik admin jogosultsággal
+      res.status(403).json({ success: false, message: 'Nincs megfelelő felhasználói jogosultság.' });
     }
-
-    // Sikeres lekérdezés esetén küldjük vissza az eredményeket
-    res.json(results);
-  });
+  } catch (error) {
+    // Ha a token verifikációja nem sikerül
+    console.error('Token verification failed:', error);
+    res.status(401).json({ success: false, message: 'Érvénytelen token.' });
+  }
 });
+
+app.get('/vizsgalatinaplo/:token', (req, res) => {
+  const token = req.params.token;
+
+  // Ellenőrizze a token jogosultságát
+  try {
+    const decodedToken = jwt.verify(token, TokenKey);
+
+    // Ellenőrizze, hogy a token admin jogosultságú-e
+    if (decodedToken.admin === 1) {
+      const sqlQuery = 'SELECT `naplo_id`, felhasznalo.felhasznalonev, felhasznalo.email, `tipus`, `megjegyzes`, vizsgalatinaplo.datum FROM `vizsgalatinaplo` INNER JOIN felhasznalo ON vizsgalatinaplo.felhasznalo_id = felhasznalo.felhasznalo_id WHERE 1 ORDER BY vizsgalatinaplo.datum DESC;';
+
+      // SQL lekérdezés végrehajtása
+      connection.query(sqlQuery, (error, results, fields) => {
+        if (error) {
+          console.error('Hiba a lekérdezés során: ' + error.message);
+          res.status(500).send('Internal Server Error');
+          return;
+        }
+
+        // Sikeres lekérdezés esetén küldjük vissza az eredményeket
+        res.json(results);
+      });
+    } else {
+      // Ha a token nem rendelkezik admin jogosultsággal
+      res.status(403).json({ success: false, message: 'Nincs megfelelő felhasználói jogosultság.' });
+    }
+  } catch (error) {
+    // Ha a token verifikációja nem sikerül
+    console.error('Token verification failed:', error);
+    res.status(401).json({ success: false, message: 'Érvénytelen token.' });
+  }
+});
+
 
 app.delete('/kapcsolat/:kapcsolat_id', (req, res) => {
   const kapcsolatId = req.params.kapcsolat_id;
+  const token = req.headers.authorization && req.headers.authorization.split(' ')[1]; // Az Authorization fejlécből kinyerjük a token-t
 
-  const sql = 'DELETE FROM kapcsolat WHERE kapcsolat_id = ?';
+  // Ellenőrizze a token jogosultságát
+  try {
+    const decodedToken = jwt.verify(token, TokenKey);
 
-    // SQL lekérdezés végrehajtása
-    connection.query(sql, [kapcsolatId], (error, results) => {
+    // Ellenőrizze, hogy a token admin jogosultságú-e
+    if (decodedToken.admin === 1) {
+      // Ha igen, hajtsa végre a törlési műveletet
+      const sql = 'DELETE FROM kapcsolat WHERE kapcsolat_id = ?';
+
+      connection.query(sql, [kapcsolatId], (error, results) => {
         if (error) {
-            console.error('Hiba a lekérdezés során:', error);
-            res.status(500).json({ success: false, message: 'Hiba a kapcsolat törlése közben.' });
+          console.error('Hiba a lekérdezés során:', error);
+          res.status(500).json({ success: false, message: 'Hiba a kapcsolat törlése közben.' });
         } else {
-            console.log('Kapcsolat sikeresen törölve.');
-            res.status(200).json({ success: true, message: `Kapcsolat ${kapcsolatId} sikeresen törölve.` });
+          console.log('Kapcsolat sikeresen törölve.');
+          res.status(200).json({ success: true, message: `Kapcsolat ${kapcsolatId} sikeresen törölve.` });
         }
-    });
-
+      });
+    } else {
+      // Ha a token nem rendelkezik admin jogosultsággal
+      res.status(403).json({ success: false, message: 'Nincs megfelelő felhasználói jogosultság.' });
+    }
+  } catch (error) {
+    // Ha a token verifikációja nem sikerül
+    console.error('Token verification failed:', error);
+    res.status(401).json({ success: false, message: 'Érvénytelen token.' });
+  }
 });
 
+
 app.post('/felvetel', (req, res) => {
-  const email = req.body.email; // A kérésből kiolvasott felhasználó azonosító
+  const email = req.body.email;
   const token = req.body.token;
-  console.log("Adminauth-hoz:"+token)
 
-  // SQL lekérdezés az admin jog hozzáadásához
-  const sql = 'UPDATE felhasznalo SET admin = true WHERE email = ?';
+  // Ellenőrizze a token jogosultságát
+  try {
+    const decodedToken = jwt.verify(token, TokenKey);
 
-  // SQL lekérdezés végrehajtása
-  connection.query(sql, [email], (error, results) => {
-      if (error) {
+    // Ellenőrizze, hogy a token admin jogosultságú-e
+    if (decodedToken.admin === 1) {
+      // Ha igen, hajtsa végre az admin jog hozzáadását
+      const sql = 'UPDATE felhasznalo SET admin = true WHERE email = ?';
+
+      connection.query(sql, [email], (error, results) => {
+        if (error) {
           console.error('Hiba a lekérdezés során:', error);
           res.status(500).json({ success: false, message: 'Hiba az admin jog hozzáadása közben.' });
-      } else {
+        } else {
           console.log('Admin jog sikeresen hozzáadva.');
           res.status(200).json({ success: true, message: `Admin jog hozzáadva a felhasználóhoz: ${email}` });
-      }
-  });
+        }
+      });
+    } else {
+      // Ha a token nem rendelkezik admin jogosultsággal
+      res.status(403).json({ success: false, message: 'Nincs megfelelő felhasználói jogosultság.' });
+    }
+  } catch (error) {
+    // Ha a token verifikációja nem sikerül
+    console.error('Token verification failed:', error);
+    res.status(401).json({ success: false, message: 'Érvénytelen token.' });
+  }
 });
 
 app.put('/valasz/:kapcsolatId', (req, res) => {
   const kapcsolatId = req.params.kapcsolatId;
+  const token = jwt.verify(req.body.token, TokenKey);
 
-  // SQL frissítés végrehajtása
+  if (token.admin == 1) {
   const sql = 'UPDATE `kapcsolat` SET `valasz_uzenet` = ?, `archive_uzenetek` = true WHERE `kapcsolat_id` = ?';
-  const values = [req.body.valaszUzenet, kapcsolatId];
+  const values = [req.body.uzenet, kapcsolatId];
 
   connection.query(sql, values, (err, results) => {
     if (err) {
@@ -223,7 +313,29 @@ app.put('/valasz/:kapcsolatId', (req, res) => {
     console.log('Sikeres frissítés');
     res.json({ success: true });
   });
+  } else {
+    res.json({ success: false });
+  }
+
+  
 });
+
+app.post('/admin-check', (req, res) => {
+  try {
+    const token = jwt.verify(req.body.token, TokenKey);
+
+    if (token.admin == 1) {
+      res.status(200).json({ success: true });
+    }
+    else {;
+      res.status(403).json({ error: 'Forbidden', message: 'Nem megfelelő felhasználói jogosultság!' });
+    }
+  } catch (error) {
+    console.error('Token verification failed:', error);
+    res.status(401).json({ error: 'Unauthorized' });
+  }
+});
+
 
 
 
