@@ -194,6 +194,39 @@ app.get('/uzenetek/:token', (req, res) => {
   }
 });
 
+app.get('/vizsgalatinaplo/:token', (req, res) => {
+  const token = req.params.token;
+
+  // Ellenőrizze a token jogosultságát
+  try {
+    const decodedToken = jwt.verify(token, TokenKey);
+
+    // Ellenőrizze, hogy a token admin jogosultságú-e
+    if (decodedToken.admin === 1) {
+      const sqlQuery = 'SELECT `naplo_id`, felhasznalo.felhasznalonev, felhasznalo.email, `tipus`, `megjegyzes`, vizsgalatinaplo.datum FROM `vizsgalatinaplo` INNER JOIN felhasznalo ON vizsgalatinaplo.felhasznalo_id = felhasznalo.felhasznalo_id WHERE 1 ORDER BY vizsgalatinaplo.datum DESC;';
+
+      // SQL lekérdezés végrehajtása
+      connection.query(sqlQuery, (error, results, fields) => {
+        if (error) {
+          console.error('Hiba a lekérdezés során: ' + error.message);
+          res.status(500).send('Internal Server Error');
+          return;
+        }
+
+        // Sikeres lekérdezés esetén küldjük vissza az eredményeket
+        res.json(results);
+      });
+    } else {
+      // Ha a token nem rendelkezik admin jogosultsággal
+      res.status(403).json({ success: false, message: 'Nincs megfelelő felhasználói jogosultság.' });
+    }
+  } catch (error) {
+    // Ha a token verifikációja nem sikerül
+    console.error('Token verification failed:', error);
+    res.status(401).json({ success: false, message: 'Érvénytelen token.' });
+  }
+});
+
 
 app.delete('/kapcsolat/:kapcsolat_id', (req, res) => {
   const kapcsolatId = req.params.kapcsolat_id;
