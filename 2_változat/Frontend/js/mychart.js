@@ -13,28 +13,28 @@ function updateChart() {
             datasets: [
                 {
                     label: 'Összeadás',
-                    data: [2, 3, 4, 2, 1, 5],
+                    data: [3, 4, 6, 4, 1, 7],
                     backgroundColor: 'rgba(99, 131, 255, 0.8)',
                     borderColor: 'rgba(99, 131, 255, 1)',
                     borderWidth: 1
                 },
                 {
                     label: 'Kivonás',
-                    data: [12, 19, 3, 5, 2, 6],
+                    data: [6, 9, 3, 5, 2, 6],
                     backgroundColor: 'rgba(255, 99, 132, 0.8)',
                     borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 1
                 },
                 {
                     label: 'Szorzás',
-                    data: [2, 3, 4, 2, 1, 5],
+                    data: [6, 1, 8, 2, 3, 3],
                     backgroundColor: 'rgba(255, 215, 99, 0.8)',
                     borderColor: 'rgba(255, 215, 99, 1)',
                     borderWidth: 1
                 },
                 {
                     label: 'Osztás',
-                    data: [12, 19, 3, 5, 2, 6],
+                    data: [9, 6, 9, 4, 6, 4],
                     backgroundColor: 'rgba(99, 255, 124, 0.8)',
                     borderColor: 'rgba(99, 255, 124, 1)',
                     borderWidth: 1
@@ -108,8 +108,3 @@ updateChart();
 
 /*Nagy Ferót megkérdezni, hogyan lakítsuk ki a mobil nézetet és a nála nagyobb méreteket, 
 amikor üres rész kerül a diagram alá*/
-
-
-
-
-
