@@ -1,43 +1,77 @@
-var ctx = document.getElementById('myChart').getContext('2d');
-var myBarChart;
+var ctx = document.getElementById('szazalek').getContext('2d');
+var szazalekChart;
 
-function updateChart() {
-    if (myBarChart) {
-        myBarChart.destroy();
+
+
+var osszeadasH = [2, 3, 4, 2, 1, 5];
+var osszeadasO = [5, 3, 7, 9, 1, 8];
+var osszeadas = [];
+for (let i = 0; i < osszeadasH.length; i++) {
+    osszeadas.push((osszeadasH[i] / osszeadasO[i]) * 100);
+}
+
+var kivonasH = [6, 9, 3, 5, 2, 6];
+var kivonasO = [8, 10, 7, 9, 4, 8];
+var kivonas = [];
+for (let i = 0; i < kivonasH.length; i++) {
+    kivonas.push((kivonasH[i] / kivonasO[i]) * 100);
+}
+
+var szorzasH = [4, 1, 8, 1, 2, 2];
+var szorzasO = [5, 3, 9, 4, 4, 4];
+var szorzas = [];
+for (let i = 0; i < szorzasH.length; i++) {
+    szorzas.push((szorzasH[i] / szorzasO[i]) * 100);
+}
+
+var osztasH = [6, 4, 6, 2, 4, 3];
+var osztasO = [8, 10, 7, 9, 4, 8];
+var osztas = [];
+for (let i = 0; i < osztasH.length; i++) {
+    osztas.push((osztasH[i] / osztasO[i]) * 100);
+}
+
+function chart() {
+    if (szazalekChart) {
+        szazalekChart.destroy();
     }
 
-    myBarChart = new Chart(ctx, {
+    szazalekChart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ['Január', 'Február', 'Március', 'Április', 'Május', 'Június'],
             datasets: [
                 {
                     label: 'Összeadás',
-                    data: [2, 3, 4, 2, 1, 5],
+                    data: [osszeadas[0], osszeadas[1], osszeadas[2], osszeadas[3], osszeadas[4], osszeadas[5]],
                     backgroundColor: 'rgba(99, 131, 255, 0.8)',
                     borderColor: 'rgba(99, 131, 255, 1)',
-                    borderWidth: 1
+                    borderWidth: 1,
+                    stack: 'Stack 0',
                 },
                 {
                     label: 'Kivonás',
-                    data: [12, 19, 3, 5, 2, 6],
+                    data: [kivonas[0], kivonas[1], kivonas[2], kivonas[3], kivonas[4], kivonas[5]],
                     backgroundColor: 'rgba(255, 99, 132, 0.8)',
                     borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1
+                    borderWidth: 1,
+                    stack: 'Stack 1',
                 },
                 {
                     label: 'Szorzás',
-                    data: [2, 3, 4, 2, 1, 5],
+                    data: [szorzas[0], szorzas[1], szorzas[2], szorzas[3], szorzas[4], szorzas[5]],
                     backgroundColor: 'rgba(255, 215, 99, 0.8)',
                     borderColor: 'rgba(255, 215, 99, 1)',
-                    borderWidth: 1
+                    borderWidth: 1,
+                    stack: 'Stack 2',
                 },
                 {
                     label: 'Osztás',
-                    data: [12, 19, 3, 5, 2, 6],
+                    data: [osztas[0], osztas[1], osztas[2], osztas[3], osztas[4], osztas[5]],
                     backgroundColor: 'rgba(99, 255, 124, 0.8)',
                     borderColor: 'rgba(99, 255, 124, 1)',
-                    borderWidth: 1
+                    borderWidth: 1,
+                    stack: 'Stack 3',
                 }
             ]
         },
@@ -89,7 +123,7 @@ function updateChart() {
                 },
                 title: {
                     display: true,
-                    text: 'Adott hónapban megoldott feladatok',
+                    text: 'Helyes válaszok százalékban',
                     color: 'white',
                     font: {
                         size: 16
@@ -100,16 +134,11 @@ function updateChart() {
     });
 }
 
-window.addEventListener('resize', function() {
-    updateChart();
+window.addEventListener('resize', function () {
+    chart();
 });
 
-updateChart();
+chart();
 
-/*Nagy Ferót megkérdezni, hogyan lakítsuk ki a mobil nézetet és a nála nagyobb méreteket, 
+/*Nagy Ferót megkérdezni, hogyan lakítsuk ki a mobil nézetet és a nála nagyobb méreteket,
 amikor üres rész kerül a diagram alá*/
-
-
-
-
-

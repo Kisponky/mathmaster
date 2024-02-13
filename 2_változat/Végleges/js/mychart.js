@@ -1,30 +1,42 @@
 var ctx = document.getElementById('myChart').getContext('2d');
-var myChart;
+var myBarChart;
 
 function updateChart() {
-    // Ellenőrizd, hogy a diagram létezik-e, és ha igen, töröld azt
-    if (myChart) {
-        myChart.destroy();
+    if (myBarChart) {
+        myBarChart.destroy();
     }
 
-    // Új diagram létrehozása a frissített beállításokkal
-    myChart = new Chart(ctx, {
+    myBarChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Január', 'Február', 'Március', 'Április', 'Május'],
+            labels: ['Január', 'Február', 'Március', 'Április', 'Május', 'Június'],
             datasets: [
                 {
-                    label: 'Helytelen válaszok',
-                    data: [2, 3, 4, 2, 1],
+                    label: 'Összeadás',
+                    data: [2, 3, 4, 2, 1, 5],
+                    backgroundColor: 'rgba(99, 131, 255, 0.8)',
+                    borderColor: 'rgba(99, 131, 255, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Kivonás',
+                    data: [12, 19, 3, 5, 2, 6],
                     backgroundColor: 'rgba(255, 99, 132, 0.8)',
                     borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 1
                 },
                 {
-                    label: 'Helyes válaszok',
-                    data: [12, 19, 3, 5, 2],
-                    backgroundColor: 'rgba(75, 192, 192, 0.8)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
+                    label: 'Szorzás',
+                    data: [2, 3, 4, 2, 1, 5],
+                    backgroundColor: 'rgba(255, 215, 99, 0.8)',
+                    borderColor: 'rgba(255, 215, 99, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Osztás',
+                    data: [12, 19, 3, 5, 2, 6],
+                    backgroundColor: 'rgba(99, 255, 124, 0.8)',
+                    borderColor: 'rgba(99, 255, 124, 1)',
                     borderWidth: 1
                 }
             ]
@@ -77,24 +89,27 @@ function updateChart() {
                 },
                 title: {
                     display: true,
-                    text: 'Statisztikád hónapokra bontva',
+                    text: 'Adott hónapban megoldott feladatok',
                     color: 'white',
                     font: {
                         size: 16
                     }
                 }
             }
-        }              
+        }
     });
 }
 
-// Az ablak méretváltozásakor frissítsd a diagramot
 window.addEventListener('resize', function() {
     updateChart();
 });
 
-// Oldal betöltésekor hozd létre az első diagramot
 updateChart();
 
 /*Nagy Ferót megkérdezni, hogyan lakítsuk ki a mobil nézetet és a nála nagyobb méreteket, 
 amikor üres rész kerül a diagram alá*/
+
+
+
+
+
