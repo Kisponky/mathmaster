@@ -1,31 +1,31 @@
-var ctx = document.getElementById('szazalek').getContext('2d');
+var szazalekCtx = document.getElementById('szazalekChart').getContext('2d');
 var szazalekChart;
 
 
 
-var osszeadasH = [2, 3, 4, 2, 1, 5];
-var osszeadasO = [5, 3, 7, 9, 1, 8];
+var osszeadasH = [2, 3, 3, 3, 1, 4];
+var osszeadasO = [3, 4, 6, 4, 1, 7];
 var osszeadas = [];
 for (let i = 0; i < osszeadasH.length; i++) {
     osszeadas.push((osszeadasH[i] / osszeadasO[i]) * 100);
 }
 
-var kivonasH = [6, 9, 3, 5, 2, 6];
-var kivonasO = [8, 10, 7, 9, 4, 8];
+var kivonasH = [4, 5, 3, 4, 2, 4];
+var kivonasO = [6, 9, 3, 5, 2, 6];
 var kivonas = [];
 for (let i = 0; i < kivonasH.length; i++) {
     kivonas.push((kivonasH[i] / kivonasO[i]) * 100);
 }
 
-var szorzasH = [4, 1, 8, 1, 2, 2];
-var szorzasO = [5, 3, 9, 4, 4, 4];
+var szorzasH = [2, 1, 4, 1, 2, 2];
+var szorzasO = [6, 1, 8, 2, 3, 3];
 var szorzas = [];
 for (let i = 0; i < szorzasH.length; i++) {
     szorzas.push((szorzasH[i] / szorzasO[i]) * 100);
 }
 
-var osztasH = [6, 4, 6, 2, 4, 3];
-var osztasO = [8, 10, 7, 9, 4, 8];
+var osztasH = [4, 5, 3, 3, 2, 4];
+var osztasO = [9, 6, 9, 4, 6, 4];
 var osztas = [];
 for (let i = 0; i < osztasH.length; i++) {
     osztas.push((osztasH[i] / osztasO[i]) * 100);
@@ -36,7 +36,7 @@ function chart() {
         szazalekChart.destroy();
     }
 
-    szazalekChart = new Chart(ctx, {
+    szazalekChart = new Chart(szazalekCtx, {
         type: 'bar',
         data: {
             labels: ['Január', 'Február', 'Március', 'Április', 'Május', 'Június'],
