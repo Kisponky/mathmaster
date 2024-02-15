@@ -351,11 +351,11 @@
                 <div class="row">
                     <div class="col-md-1 col-lg-2 col-xl-3 d-none d-sm-none d-md-block"></div>
                     <div class="col-xs-12 col-md-4 col-lg-3 col-xl-2 text-center py-3">
-                        <button class="btn btn-danger btn-class" type="button">1-2 osztály</button>
+                        <button class="btn btn-danger btn-class" type="button" onclick="osztaly(1)">1. osztály</button>
                     </div>
                     <div class="col-md-2 d-none d-sm-none d-md-block"></div>
                     <div class="col-xs-12 col-md-4 col-lg-3 col-xl-2 text-center py-3">
-                        <button class="btn btn-danger btn-class" type="button">3-4 osztály</button>
+                        <button class="btn btn-danger btn-class" type="button" onclick="osztaly(2)">2. osztály</button>
                     </div>
                     <div class="col-md-1 col-lg-2 col-xl-3 d-none d-sm-none d-md-block"></div>
                 </div>
@@ -363,17 +363,24 @@
                 <div class="row">
                     <div class="col-md-1 col-lg-2 col-xl-3 d-none d-sm-none d-md-block"></div>
                     <div class="col-xs-12 col-md-4 col-lg-3 col-xl-2 text-center py-3">
-                        <button class="btn btn-danger btn-class" type="button">5-6 osztály</button>
+                        <button class="btn btn-danger btn-class" type="button" onclick="osztaly(3)">3. osztály</button>
                     </div>
                     <div class="col-md-2 d-none d-sm-none d-md-block"></div>
                     <div class="col-xs-12 col-md-4 col-lg-3 col-xl-2 text-center py-3">
-                        <button class="btn btn-danger btn-class" type="button">7-8 osztály</button>
+                        <button class="btn btn-danger btn-class" type="button" onclick="osztaly(4)">4. osztály</button>
                     </div>
                     <div class="col-md-1 col-lg-2 col-xl-3 d-none d-sm-none d-md-block"></div>
                 </div>
 
             </div>
         </div>
+
+        <script>
+            function osztaly(szam) {
+                localStorage.setItem('class', szam);
+                location.href = "./html/quiz_selector.html";
+            }
+        </script>
 
 
 

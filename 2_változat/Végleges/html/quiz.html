@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +14,7 @@
     <link rel="shortcut icon" href="../img/owl-47526.svg" type="image/x-icon">
     <title>MathMaster</title>
 </head>
+
 <body>
     <div class="container-fluid">
         <header class="d-flex flex-wrap justify-content-center py-3">
@@ -80,23 +82,23 @@
         <div class="container">
             <div class="row">
                 <div class="col text-center">
-                    <h3>Itt jelenik meg az adatbázisból kikért kérdés!</h3>
+                    <h3 id="kerdes"></h3>
                 </div>
             </div>
             <div class="row">
                 <div class="col text-center">
-                    <button class="btn btn-info mb-5">A) válasz</button>
+                    <button id="valasz1" class="btn btn-info mb-5" onclick="valasz(1)"></button>
                 </div>
                 <div class="col text-center">
-                    <button class="btn btn-pink mb-5">B) válasz</button>
+                    <button id="valasz2" class="btn btn-pink mb-5" onclick="valasz(2)"></button>
                 </div>
             </div>
             <div class="row">
                 <div class="col text-center">
-                    <button class="btn btn-danger mb-5">C) válasz</button>
+                    <button id="valasz3" class="btn btn-danger mb-5" onclick="valasz(3)"></button>
                 </div>
                 <div class="col text-center">
-                    <button class="btn btn-warning mb-5">D) válasz</button>
+                    <button id="valasz4" class="btn btn-warning mb-5" onclick="valasz(4)"></button>
                 </div>
             </div>
         </div>
@@ -110,21 +112,60 @@
     <script src="js/index.js"></script>
 
     <script>
-        var btn = document.getElementsByClassName('btn');
+        function feladatGeneral() {
+            fetch(`http://localhost:8000/feladat?osztaly=${localStorage.getItem('class')}&tipus=kvíz`)
+                .then(response => response.json())
+                .then(data => kiir(data.tartalom, data.valaszlehetosegek))
+                .catch(error => console.error('Hiba a fetch kérés során: ', error));
+        }
+        feladatGeneral();
 
-        var max = btn[0];
+        function kiir(feladat, valaszok) {
+            // localStorage.setItem("kerdesSzam", i);
+            document.getElementById("kerdes").innerHTML = feladat;
+            let valaszokBontva = valaszok.split(";");
+            console.log(valaszokBontva);
+            document.getElementById("valasz1").innerHTML = (valaszokBontva[0]);
+            document.getElementById("valasz2").innerHTML = (valaszokBontva[1]);
+            document.getElementById("valasz3").innerHTML = (valaszokBontva[2]);
+            document.getElementById("valasz4").innerHTML = (valaszokBontva[3]);
 
-        for (let i = 1; i < btn.length; i++) {
-            if (btn[i].innerText.length > max.innerText.length) {
-                max = btn[i];
+            localStorage.setItem('valasz', valaszokBontva[4])
+
+            var btn = document.getElementsByClassName('btn');
+            var max = btn[0];
+
+            for (let i = 1; i < btn.length; i++) {
+                if (btn[i].innerText.length > max.innerText.length) {
+                    max = btn[i];
+                }
+            }
+
+            for (let i = 0; i < btn.length; i++) {
+                btn[i].style.width = max.offsetWidth + 10 + 'px';
+            }
+
+            console.log(max.innerText)
+
+            while (localStorage.getItem("kerdesSzam") == i + 1) {
+
             }
         }
 
-        for (let i = 0; i < btn.length; i++) {
-            btn[i].style.width = max.offsetWidth + 10 +'px';
+
+
+        function valasz(id) {
+            if (id == localStorage.getItem('valasz')) {
+                alert("Helyes");
+                // localStorage.setItem("kerdesSzam", localStorage.getItem("kerdesSzam") + 1)
+                feladatGeneral();
+            } else {
+                alert("Helytelen válasz")
+            }
         }
 
-        console.log(max.innerText)
+
     </script>
 </body>
+
 </html>

@@ -20,16 +20,9 @@ const config = new Config();
 
 const connection = mysql.createConnection(config);
 
-// function authentication(token) {
-//   try {
-//     const decodedToken = jwt.verify(token, TokenKey);
-    
-//     console.log("success")
-//   } catch (error) {
-//     console.log("error")
-    
-//   }
-// }
+function naplo(szoveg) {
+  console.log(szoveg)
+}
 
 app.get('/fnev', (req, res) => {//Minden felhasználói adat lekérése
   const query = 'SELECT * FROM Felhasznalok';
@@ -309,7 +302,6 @@ app.put('/valasz/:kapcsolatId', (req, res) => {
       res.status(500).json({ error: 'Hiba az SQL lekérdezés során' });
       return;
     }
-
     console.log('Sikeres frissítés');
     res.json({ success: true });
   });
@@ -336,6 +328,35 @@ app.post('/admin-check', (req, res) => {
   }
 });
 
+
+app.get('/feladat', (req, res) => {
+  const osztaly = req.query.osztaly;
+  const tipus = req.query.tipus;
+
+  const query = `
+    SELECT tartalom, valaszlehetosegek
+    FROM feladatlap
+    WHERE osztaly = ? AND tipus = ?
+    ORDER BY RAND()
+    LIMIT 1;
+  `;
+
+  connection.query(query, [osztaly, tipus], (err, results) => {
+    if (err) {
+      console.error('Hiba az adatbázislekérdezés során: ' + err.stack);
+      res.status(500).json({ error: 'Hiba az adatbázislekérdezés során' });
+      return;
+    }
+
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Nincs találat a megadott feltételekkel' });
+      return;
+    }
+
+    const feladat = results[0];
+    res.json(feladat);
+  });
+});
 
 
 

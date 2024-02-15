@@ -39,7 +39,7 @@ CREATE TABLE Feladatlap (
     osztaly INT,
     tipus VARCHAR(50),
     tartalom TEXT,
-    valaszlehetosegek VARCHAR(50),
+    valaszlehetosegek TEXT,
     FOREIGN KEY (felhasznalo_id) REFERENCES Felhasznalo(felhasznalo_id)
 );
 
