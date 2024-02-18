@@ -56,16 +56,16 @@ app.post('/register', (req, res) => {
 
   //   console.log("PW:"+hashedPassword)//A titkosítást vissza kell alakítani!
 
-    const userSQL = 'INSERT INTO felhasznalo(teljes_nev, felhasznalonev, email, jelszo, datum) VALUES (?, ?, ?, ?, NOW());';
-    con.query(userSQL, [req.body.fullName, req.body.userName, req.body.email, req.body.password], (err, result) => {
-      if (err) {
-        console.log(err);
-        res.status(404).send({ status: 404, error: "Hiba a felhasználó rögzítésekor" });
-      } else {
-        res.status(200).send({ status: 200, success: "Sikeres adatrögzítés" });
-      }
-    });
+  const userSQL = 'INSERT INTO felhasznalo(teljes_nev, felhasznalonev, email, jelszo, datum) VALUES (?, ?, ?, ?, NOW());';
+  con.query(userSQL, [req.body.fullName, req.body.userName, req.body.email, req.body.password], (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(404).send({ status: 404, error: "Hiba a felhasználó rögzítésekor" });
+    } else {
+      res.status(200).send({ status: 200, success: "Sikeres adatrögzítés" });
+    }
   });
+});
 // });
 
 app.post('/login', (req, res) => {
@@ -73,7 +73,7 @@ app.post('/login', (req, res) => {
 
   // Ellenőrizze, hogy az e-mail és jelszó üres-e
   if (!email || !jelszo) {
-      return res.status(400).json({ error: 'Hiányzó e-mail vagy jelszó' });
+    return res.status(400).json({ error: 'Hiányzó e-mail vagy jelszó' });
   }
 
   // bcrypt.hash(jelszo, saltRounds, (err, jelszo) => {
@@ -88,23 +88,24 @@ app.post('/login', (req, res) => {
   const values = [email, jelszo]; // Ebben a példában a jelszót egyszerűen továbbítjuk, de valós alkalmazásban hashelt jelszót kell használni!
 
   connection.query(sql, values, (err, results) => {
-      if (err) {
-          console.error('Adatbázis hiba:', err);
-          return res.status(500).json({ error: 'Belso hiba történt' });
-      }
+    if (err) {
+      console.error('Adatbázis hiba:', err);
+      return res.status(500).json({ error: 'Belso hiba történt' });
+    }
 
-      // Ellenőrizze, hogy a lekérdezés eredménye tartalmaz-e egyezést
-      if (results.length > 0) {
-          // Sikeres bejelentkezés
-          const user = results[0];
-          const expiresIn = 4 * 60 * 60; // 4 óra (mp-ben)
-          const token = jwt.sign({ userId: user.felhasznalo_id, email: user.email, admin: user.admin }, TokenKey, { expiresIn });
-          return res.json({ success: true, message: 'Sikeres bejelentkezés', token: token, admin: user.admin });
-      } else {
-          // Sikertelen bejelentkezés
-          return res.status(401).json({ error: 'Hibás e-mail vagy jelszó' });
-      }
-  })});
+    // Ellenőrizze, hogy a lekérdezés eredménye tartalmaz-e egyezést
+    if (results.length > 0) {
+      // Sikeres bejelentkezés
+      const user = results[0];
+      const expiresIn = 4 * 60 * 60; // 4 óra (mp-ben)
+      const token = jwt.sign({ userId: user.felhasznalo_id, email: user.email, admin: user.admin }, TokenKey, { expiresIn });
+      return res.json({ success: true, message: 'Sikeres bejelentkezés', token: token, admin: user.admin });
+    } else {
+      // Sikertelen bejelentkezés
+      return res.status(401).json({ error: 'Hibás e-mail vagy jelszó' });
+    }
+  })
+});
 // });
 
 app.post('/text', (req, res) => {
@@ -116,7 +117,7 @@ app.post('/text', (req, res) => {
 
       const decodedToken = jwt.verify(token, TokenKey);
       const userId = decodedToken.userId;
-      
+
       const sql = 'INSERT INTO kapcsolat (felhasznalo_id, beerkezett_uzenet, letrehozas_datuma) VALUES (?, ?, NOW());';
       connection.query(sql, [userId, text], (err) => {
         if (err) {
@@ -293,23 +294,23 @@ app.put('/valasz/:kapcsolatId', (req, res) => {
   const token = jwt.verify(req.body.token, TokenKey);
 
   if (token.admin == 1) {
-  const sql = 'UPDATE `kapcsolat` SET `valasz_uzenet` = ?, `archive_uzenetek` = true WHERE `kapcsolat_id` = ?';
-  const values = [req.body.uzenet, kapcsolatId];
+    const sql = 'UPDATE `kapcsolat` SET `valasz_uzenet` = ?, `archive_uzenetek` = true WHERE `kapcsolat_id` = ?';
+    const values = [req.body.uzenet, kapcsolatId];
 
-  connection.query(sql, values, (err, results) => {
-    if (err) {
-      console.error('Hiba az SQL lekérdezés során: ' + err.message);
-      res.status(500).json({ error: 'Hiba az SQL lekérdezés során' });
-      return;
-    }
-    console.log('Sikeres frissítés');
-    res.json({ success: true });
-  });
+    connection.query(sql, values, (err, results) => {
+      if (err) {
+        console.error('Hiba az SQL lekérdezés során: ' + err.message);
+        res.status(500).json({ error: 'Hiba az SQL lekérdezés során' });
+        return;
+      }
+      console.log('Sikeres frissítés');
+      res.json({ success: true });
+    });
   } else {
     res.json({ success: false });
   }
 
-  
+
 });
 
 app.post('/admin-check', (req, res) => {
@@ -319,7 +320,8 @@ app.post('/admin-check', (req, res) => {
     if (token.admin == 1) {
       res.status(200).json({ success: true });
     }
-    else {;
+    else {
+      ;
       res.status(403).json({ error: 'Forbidden', message: 'Nem megfelelő felhasználói jogosultság!' });
     }
   } catch (error) {
@@ -355,6 +357,46 @@ app.get('/feladat', (req, res) => {
 
     const feladat = results[0];
     res.json(feladat);
+  });
+});
+
+
+app.get('/statisztika/:token', (req, res) => {
+  const token = req.params.token;
+  console.log(token)
+  // Ellenőrizd, hogy a token érvényes formátumú JWT-e
+  let decodedToken;
+  try {
+    decodedToken = jwt.verify(token, TokenKey);
+  } catch (error) {
+    res.status(401).json({ error: 'Érvénytelen JWT token' });
+    return;
+  }
+
+  const felhasznaloId = decodedToken.userId;
+
+  console.log(decodedToken.userId);
+
+  const query = `
+    SELECT COUNT(osszes_kitoltes) AS osszes, COUNT(CASE WHEN jo_kitoltes = 1 THEN 1 ELSE NULL END) AS "jo"
+    FROM statisztika
+    WHERE felhasznalo_id = ?;
+  `;
+
+  connection.query(query, [felhasznaloId], (err, results) => {
+    if (err) {
+      console.error('Hiba az adatbázislekérdezés során: ' + err.stack);
+      res.status(500).json({ error: 'Hiba az adatbázislekérdezés során' });
+      return;
+    }
+
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Nincs találat a megadott felhasználóval' });
+      return;
+    }
+
+    const statisztika = results[0];
+    res.json(statisztika);
   });
 });
 

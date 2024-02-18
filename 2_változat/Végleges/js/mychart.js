@@ -1,6 +1,6 @@
 var ctx = document.getElementById('myChart').getContext('2d');
 var myBarChart;
-
+alert("Fut a chatr.js :)");
 function updateChart() {
     if (myBarChart) {
         myBarChart.destroy();
