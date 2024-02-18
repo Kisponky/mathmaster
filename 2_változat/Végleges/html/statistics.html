@@ -11,14 +11,7 @@
     <link rel="shortcut icon" href="../img/owl-47526.svg" type="image/x-icon">
 
     <script>
-        fetch(`http://localhost:8000/statisztika/${localStorage.getItem("token")}`)
-            .then(response => response.json())
-            .then(data => {
-                alert(data.osszes + " / " + data.jo)
-                // document.getElementById('osszes').innerText = `Osszes: ${data.osszes}`;
-                // document.getElementById('jo').innerText = `Jo: ${data.jo}`;
-            })
-            .catch(error => console.error('Hiba a fetch kérés során: ', error));
+        //fetch
     </script>
 
     <title>Statisztika</title>

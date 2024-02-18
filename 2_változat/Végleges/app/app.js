@@ -361,9 +361,12 @@ app.get('/feladat', (req, res) => {
 });
 
 
-app.get('/statisztika/:token', (req, res) => {
+app.get('/statisztika/:token/:muvelet', (req, res) => {
   const token = req.params.token;
-  console.log(token)
+  const muvelet = req.params.muvelet;
+  console.log(token);
+  console.log(muvelet);
+
   // Ellenőrizd, hogy a token érvényes formátumú JWT-e
   let decodedToken;
   try {
@@ -375,15 +378,26 @@ app.get('/statisztika/:token', (req, res) => {
 
   const felhasznaloId = decodedToken.userId;
 
-  console.log(decodedToken.userId);
-
   const query = `
-    SELECT COUNT(osszes_kitoltes) AS osszes, COUNT(CASE WHEN jo_kitoltes = 1 THEN 1 ELSE NULL END) AS "jo"
-    FROM statisztika
-    WHERE felhasznalo_id = ?;
+    SELECT 
+    COALESCE(SUM(osszes_kitoltes), 0) AS osszes, 
+    COALESCE(SUM(CASE WHEN jo_kitoltes = 1 THEN 1 ELSE 0 END), 0) AS "jo",
+    MONTH(month_dates.month) AS honap
+  FROM 
+    (SELECT DATE_FORMAT(NOW() - INTERVAL n MONTH, '%Y-%m-01') AS month
+    FROM (
+      SELECT 0 AS n UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5
+    ) AS numbers) AS month_dates
+  LEFT JOIN
+    statisztika ON MONTH(statisztika.created_at) = MONTH(month_dates.month)
+                AND felhasznalo_id = 8
+                AND created_at >= DATE_FORMAT(NOW() - INTERVAL 5 MONTH, '%Y-%m-01')
+                AND feladat_tipus = 'összeadás'
+  GROUP BY honap
+  ORDER BY honap DESC;
   `;
 
-  connection.query(query, [felhasznaloId], (err, results) => {
+  connection.query(query, [felhasznaloId, muvelet], (err, results) => {
     if (err) {
       console.error('Hiba az adatbázislekérdezés során: ' + err.stack);
       res.status(500).json({ error: 'Hiba az adatbázislekérdezés során' });
@@ -391,14 +405,15 @@ app.get('/statisztika/:token', (req, res) => {
     }
 
     if (results.length === 0) {
-      res.status(404).json({ error: 'Nincs találat a megadott felhasználóval' });
+      res.status(404).json({ error: 'Nincs találat a megadott felhasználóval és művelettel' });
       return;
     }
 
     const statisztika = results[0];
-    res.json(statisztika);
+    res.json(results);
   });
 });
+
 
 
 
