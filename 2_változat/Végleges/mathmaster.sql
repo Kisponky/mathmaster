@@ -29,6 +29,7 @@ CREATE TABLE Statisztika (
     osszes_kitoltes INT,
     jo_kitoltes INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    feladat_tipus VARCHAR(20),
     FOREIGN KEY (felhasznalo_id) REFERENCES Felhasznalo(felhasznalo_id)
 );
 
