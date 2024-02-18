@@ -17,10 +17,6 @@ body {
     background-color: #800000;
 }
 
-.dropdown-item.active {
-    background: #800000;
-}
-
 .ceg-nev {
     font-family: "Abril Fatface", serif;
     font-size: 24px;
@@ -126,29 +122,25 @@ header {
     }
 }
 
-@media (min-width: 450px) {
+@media (max-width: 450px) {
     .dropdown {
-        margin: 0 0 0 80px;
+        margin: 0 0 0 60px;
     }
 }
 
-@media (min-width: 390px) {
-    .ceg-nev {
-        margin: 0;
-    }
-
-    .dropdown {
-        margin: 0 0 0 50px;
-    }
-}
-
-@media (min-width: 360px) {
+@media (max-width: 391px) {
     .dropdown {
         margin: 0 0 0 25px;
     }
 }
 
-@media (min-width: 320px) {
+@media (max-width: 361px) {
+  .dropdown {
+        margin: 0 0 0 10px;
+    }
+}
+
+@media (max-width: 320px) {
     .ceg-nev {
         font-size: 20px;
     }
