@@ -130,7 +130,8 @@
             document.getElementById("valasz3").innerHTML = (valaszokBontva[2]);
             document.getElementById("valasz4").innerHTML = (valaszokBontva[3]);
 
-            localStorage.setItem('valasz', valaszokBontva[4])
+            console.log(atob("helyes1"))
+            localStorage.setItem('valasz', btoa(btoa(`val${valaszokBontva[4].toString()}asz`)))
 
             var btn = document.getElementsByClassName('btn');
             var max = btn[0];
@@ -155,7 +156,7 @@
 
 
         function valasz(id) {
-            if (id == localStorage.getItem('valasz')) {
+            if (btoa(btoa(`val${id.toString()}asz`)) == localStorage.getItem('valasz')) {
                 alert("Helyes");
                 // localStorage.setItem("kerdesSzam", localStorage.getItem("kerdesSzam") + 1)
                 feladatGeneral();

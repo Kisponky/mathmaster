@@ -26,9 +26,10 @@ CREATE TABLE Kapcsolat (
 CREATE TABLE Statisztika (
     statisztika_id INT PRIMARY KEY AUTO_INCREMENT,
     felhasznalo_id INT,
-    feladatlap_id INT,
     osszes_kitoltes INT,
     jo_kitoltes INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    feladat_tipus VARCHAR(20),
     FOREIGN KEY (felhasznalo_id) REFERENCES Felhasznalo(felhasznalo_id)
 );
 
