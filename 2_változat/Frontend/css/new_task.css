@@ -99,6 +99,8 @@ header {
 }
 
 @media (max-width: 576px) {
+    
+    
     .navbar-brand {
         order: -2;
     }
@@ -123,8 +125,14 @@ header {
 }
 
 @media (max-width: 450px) {
-    .dropdown {
-        margin: 0 0 0 60px;
+   .dropdown {
+        margin: 0 0 0 75px;
+    }
+}
+
+@media (max-width: 420px) {
+   .dropdown {
+        margin: 0 0 0 50px;
     }
 }
 
@@ -201,4 +209,10 @@ h1 {
     left: 20px;
     transform: translateY(-50%) scale(1, -1);
     font-size: 3rem;
+}
+
+
+
+.card .card-header{
+    height: fit-content;
 }

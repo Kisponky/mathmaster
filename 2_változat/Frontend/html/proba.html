@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <title>Document</title>
+
+    <style>
+        input .form-control {
+            width: 20px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-2 text-end" id="tartalom"></div>
+            <div class="col"></div>
+        </div>
+    </div>
+
+
+
+    <script>
+        var feladvany = "1+12=13";
+        var szamok = feladvany.match(/\d+/g);
+        var muvJelek = feladvany.match(/[+\-*/]/g);
+
+        var elsoOsztaly = feladvany.match(/[+-]/g);
+
+        var kisebbMint20 = true;
+        var kisebbMint100 = true;
+        var kisebbMint1000 = true;
+        var kisebbMint10000 = true;
+        for (let i = 0; i < szamok.length; i++) {
+            if (szamok[i] > 20) {
+                kisebbMint20 = false;
+            }
+
+            if (szamok[i] > 100) {
+                kisebbMint100 = false;
+            }
+
+            if (szamok[i] > 1000) {
+                kisebbMint1000 = false;
+            }
+
+            if (szamok[i] > 10000) {
+                kisebbMint10000 = false;
+            }
+        }
+
+        var tartalom = document.getElementById('tartalom');
+
+        if ((localStorage.getItem('class') == 1 && elsoOsztaly && kisebbMint20 == true /*&& lekérdezés adatbázisból*/) || (localStorage.getItem('class') == 2 && kisebbMint100 == true /*&& lekérdezés adatbázisból*/)) {
+            document.getElementById("tartalom").innerHTML = `<div class="d-flex"><span id="elso">${szamok[0]}</span><span id="muvelet">${muvJelek}</span><span id="masodik">${szamok[1]}</span>=<input type="text" name="" id=""><button>Beküldés</button></div>`
+        } else if ((localStorage.getItem('class') == 3 && kisebbMint1000 == true /*&& lekérdezés adatbázisból*/) || (localStorage.getItem('class') == 4 && kisebbMint10000 == true /*&& lekérdezés adatbázisból*/)) {
+            // Létrehozunk egy üres stringet, amelybe a ciklus eredményét fűzzük majd
+            var eredmenyInput = '';
+
+            // For ciklussal végigmegyünk a szamok tömb elemein
+            for (let i = 0; i < szamok[2].length; i++) {
+                eredmenyInput += `<input type="text" class="form-control mt-1 input-style">`;
+            }
+
+            // Az eredményHTML tartalmát illesszük be a tartalom elembe
+            document.getElementById("tartalom").innerHTML = `
+                <div id="elso">${szamok[0]}</div>
+                <div class="position-absolute">+</div>
+                <div id="masodik">${szamok[1]}</div>
+                <hr class="my-0">
+                <div id="eredmeny">${eredmenyInput}</div>
+            `;
+
+            const masodik = document.querySelectorAll('#masodik');
+            masodik.forEach(input => {
+                input.style.setProperty('letter-spacing', '8px');
+            });
+
+            // Add CSS styles to the input elements
+            const inputs = document.querySelectorAll('.input-style');
+            inputs.forEach(input => {
+                input.style.width = '20px';
+                input.style.display = 'inline-block';
+                input.style.margin = '0 2px';
+                input.style.padding = '3px 5px';
+            });
+        }
+
+
+
+        console.log(szamok);
+        console.log(muvJelek);
+
+
+
+        // Gomb, input mező és műveleti jel a 3, 4 osztályhoz majd Barnabással való konzultáció!
+    </script>
+
+
+
+    <!-- <script>
+        let szam = "123+2=125";
+        let keres = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+
+        let nemSzamok = [];
+        let hatarok = [];
+
+        for (let i = 0; i < szam.length; i++) {
+            if (!keres.includes(parseInt(szam[i]))) {
+                nemSzamok.push(szam[i]);
+                hatarok.push(i);
+            }
+        }
+
+        hatarok.push(szam.length)
+
+        document.write(szam + "<br>")
+        document.write(hatarok + "<br><br>")
+        let felosztva = [];
+
+        for (let i = 0; i < 3; i++) {
+            let szamresz = "";
+            if (i == 0) {
+                for (let j = 0; j < hatarok[i]; j++) {
+                    szamresz += szam[j];
+                }
+            } else {
+                for (let j = hatarok[i] - hatarok[i - 1] + 2; j < hatarok[i]; j++) {
+                    szamresz += szam[j];
+                }
+            }
+            document.write(szamresz + "<br>");
+            felosztva.push(szamresz);
+        }
+
+
+        let mmuvelet = nemSzamok[0];
+        document.write("<br>")
+        document.write(felosztva[0] + nemSzamok[0] + felosztva[1] + nemSzamok[1] + felosztva[2])
+    </script> -->
+</body>
+
+</html>
