@@ -1,64 +1,13 @@
 var ctx = document.getElementById('myChart').getContext('2d');
 var myBarChart;
 
-//Backend
-let honapok = ['Január', 'Február', 'Március', 'Április', 'Május', 'Június', 'Júlus', 'Augusztus', 'Szeptember', 'Október', 'November', 'December'];
-let jelenlegiHo = new Date().getMonth();
-
-let aktHonapok = [];
-if (jelenlegiHo < 5) {
-    for (let i = jelenlegiHo; i >= 0; i--) {
-        aktHonapok.push(honapok[i])
-        
-
-    }
-    for (let i = 11; i > jelenlegiHo + 6; i--) {
-        aktHonapok.push(honapok[i])
-
-    }
-} else {
-    for (let i = jelenlegiHo; i >= jelenlegiHo - 5; i--) {
-        aktHonapok.push(honapok[i])
-
-    }
-}
-
-let osszeadasO = [];
-let osszeadasH = [];
-
-console.log(aktHonapok)
 
 
-
-fetch(`http://localhost:8000/statisztika/${localStorage.getItem("token")}/${"összeadás"}`)
-            .then(response => response.json())
-            .then(data => {
-                // alert(data.osszes + " / " + data.jo);
-                console.log(data)
-                if (jelenlegiHo < 5) {
-                    // Felső for ciklus - sorrend: 9, 10, 11, 12
-                    for (let i = 0; i < jelenlegiHo + 1; i++) {
-                        osszeadasO.push(data[i + (6 - (jelenlegiHo + 1))].osszes);
-                        osszeadasH.push(data[i + (6 - (jelenlegiHo + 1))].jo);
-                    }
-                
-                    // Alsó for ciklus - sorrend: 1, 2
-                    for (let i = 0; i < 6 - (jelenlegiHo + 1); i++) {
-                        osszeadasO.push(data[i].osszes);
-                        osszeadasH.push(data[i].jo);
-                    }
-                }
-                
-            })
-            .catch(error => console.error('Hiba a fetch kérés során: ', error));
-
-// console.log(osszeadasH);
 // alert("Fut a chatr.js :)");
 function updateChart() {
     if (myBarChart) {
         myBarChart.destroy();
     }
-
     myBarChart = new Chart(ctx, {
         type: 'bar',
         data: {

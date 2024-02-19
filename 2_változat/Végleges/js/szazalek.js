@@ -2,14 +2,19 @@ var szazalekCtx = document.getElementById('szazalekChart').getContext('2d');
 var szazalekChart;
 
 console.log(osszeadasO);
+console.log(osszeadasO.length);
 console.log(osszeadasH);
 
 
-osszeadasH = [2, 3, 3, 3, 1, 4];
-osszeadasO = [3, 4, 6, 4, 1, 7];
+// osszeadasH = [2, 3, 3, 3, 1, 4];
+// osszeadasO = [3, 4, 6, 4, 1, 7];
 var osszeadas = [];
-for (let i = 0; i < osszeadasO.length; i++) {
-    osszeadas.push((osszeadasO[i] / osszeadasH[i]) * 100);
+for (let i = 0; i < 6; i++) {
+    if (osszeadasO[i] != 0) {
+        osszeadas.push((osszeadasH[i] / osszeadasO[i]) * 100);
+    } else {
+        osszeadas.push(0)
+    }
 }
 console.log(osszeadas)
 
@@ -46,7 +51,7 @@ function chart() {
             datasets: [
                 {
                     label: 'Összeadás',
-                    data: [osszeadas[0], osszeadas[1], osszeadas[2], osszeadas[3], osszeadas[4], osszeadas[5]],
+                    data: [osszeadas[5], osszeadas[4], osszeadas[3], osszeadas[2], osszeadas[1], osszeadas[0]],
                     backgroundColor: 'rgba(99, 131, 255, 0.8)',
                     borderColor: 'rgba(99, 131, 255, 1)',
                     borderWidth: 1,

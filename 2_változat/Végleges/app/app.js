@@ -380,7 +380,7 @@ app.get('/statisztika/:token/:muvelet', (req, res) => {
 
   const query = `
     SELECT 
-    COALESCE(SUM(osszes_kitoltes), 0) AS osszes, 
+    COALESCE(SUM(osszes_kitoltes), 0) AS "osszes", 
     COALESCE(SUM(CASE WHEN jo_kitoltes = 1 THEN 1 ELSE 0 END), 0) AS "jo",
     MONTH(month_dates.month) AS honap
   FROM 
@@ -390,9 +390,9 @@ app.get('/statisztika/:token/:muvelet', (req, res) => {
     ) AS numbers) AS month_dates
   LEFT JOIN
     statisztika ON MONTH(statisztika.created_at) = MONTH(month_dates.month)
-                AND felhasznalo_id = 8
+                AND felhasznalo_id = ?
                 AND created_at >= DATE_FORMAT(NOW() - INTERVAL 5 MONTH, '%Y-%m-01')
-                AND feladat_tipus = 'összeadás'
+                AND feladat_tipus = ?
   GROUP BY honap
   ORDER BY honap DESC;
   `;
