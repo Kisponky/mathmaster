@@ -1,0 +1,12 @@
+Tervezés: 100%
+Program: 60%
+Dokumentáció & tesztelés: 15%
+
+
+Mit kell még megcsinálni?
+
+quiz felület(front) --> Válaszadás eredményének szép megjelenítése
+felhasználói adatok módosítása(back & front)
+új feladat létrehozása (back)
+tesztfelület (back & front)
+statisztika lekérdezés (back) (összeadás kész)
