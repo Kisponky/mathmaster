@@ -1,10 +1,6 @@
 require('dotenv').config();
 
 module.exports = class Config {
-    user = "root";
-    password = "";
-    database = "mathmaster";
-    host = "localhost";
     constructor() {
         return {
             host:process.env.DB_HOST,

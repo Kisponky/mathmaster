@@ -1,23 +1,11 @@
 var szazalekCtx = document.getElementById('szazalekChart').getContext('2d');
 var szazalekChart;
 
-<<<<<<< HEAD
 
 
 // osszeadasH = [2, 3, 3, 3, 1, 4];
 // osszeadasO = [3, 4, 6, 4, 1, 7];
 
-=======
-var osszeadas = [];
-for (let i = 0; i < 6; i++) {
-    if (osszeadasO[i] != 0) {
-        osszeadas.push((osszeadasH[i] / osszeadasO[i]) * 100);
-    } else {
-        osszeadas.push(0)
-    }
-}
-console.log(osszeadas)
->>>>>>> 53047f82330c28384148ad71861ef40901e340cd
 
 var kivonasH = [0, 0, 0, 0, 0, 0];
 var kivonasO = [0, 0, 0, 0, 0, 0];
