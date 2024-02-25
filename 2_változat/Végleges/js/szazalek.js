@@ -1,31 +1,55 @@
 var szazalekCtx = document.getElementById('szazalekChart').getContext('2d');
 var szazalekChart;
 
+<<<<<<< HEAD
 
 
 // osszeadasH = [2, 3, 3, 3, 1, 4];
 // osszeadasO = [3, 4, 6, 4, 1, 7];
 
+=======
+var osszeadas = [];
+for (let i = 0; i < 6; i++) {
+    if (osszeadasO[i] != 0) {
+        osszeadas.push((osszeadasH[i] / osszeadasO[i]) * 100);
+    } else {
+        osszeadas.push(0)
+    }
+}
+console.log(osszeadas)
+>>>>>>> 53047f82330c28384148ad71861ef40901e340cd
 
 var kivonasH = [0, 0, 0, 0, 0, 0];
 var kivonasO = [0, 0, 0, 0, 0, 0];
 var kivonas = [];
 for (let i = 0; i < kivonasH.length; i++) {
-    kivonas.push((kivonasH[i] / kivonasO[i]) * 100);
+    if (kivonasO[i] != 0) {
+        kivonas.push((kivonasH[i] / kivonasO[i]) * 100);
+    } else {
+        kivonas.push(0)
+    }
 }
 
 var szorzasH = [0, 0, 0, 0, 0, 0];
 var szorzasO = [0, 0, 0, 0, 0, 0];
 var szorzas = [];
 for (let i = 0; i < szorzasH.length; i++) {
-    szorzas.push((szorzasH[i] / szorzasO[i]) * 100);
+    if (szorzasO[i] != 0) {
+        szorzas.push((szorzasH[i] / szorzasO[i]) * 100);
+    } else {
+        szorzas.push(0)
+    }
 }
 
 var osztasH = [0, 0, 0, 0, 0, 0];
 var osztasO = [0, 0, 0, 0, 0, 0];
 var osztas = [];
 for (let i = 0; i < osztasH.length; i++) {
-    osztas.push((osztasH[i] / osztasO[i]) * 100);
+    if (osztasO[i] != 0) {
+        osztas.push((osztasH[i] / osztasO[i]) * 100);
+    } else {
+        osztas.push(0)
+    }
 }
 
 function chart() {
@@ -141,6 +165,7 @@ window.addEventListener('resize', function () {
 });
 
 chart();
+
 
 /*Nagy Ferót megkérdezni, hogyan lakítsuk ki a mobil nézetet és a nála nagyobb méreteket,
 amikor üres rész kerül a diagram alá*/

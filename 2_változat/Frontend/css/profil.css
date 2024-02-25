@@ -3,7 +3,6 @@ body {
     background-size: cover;
 }
 
-
 .dropdown-toggle::after {
     display: none !important;
 }
@@ -153,15 +152,16 @@ header {
 
 
 
-.container.tartalom {
-    margin: 33vh 0;
+.btn-danger{
+    background: #800000;
 }
 
-.btn {
-    padding: 3px 5px;
-    background-color: #800000;
-    border: #650000 solid 1px;
-    color: white;
-    font-size: 16px;
-    font-family: 'Poppins', sans-serif;
+.logo{
+    padding: 16px 0 0 0;
+}
+
+@media (min-width: 1399px) {
+    .xl-top{
+        margin: 33px 0 0 0;
+    }
 }
