@@ -12,12 +12,12 @@
     <link rel="shortcut icon" href="../img/owl-47526.svg" type="image/x-icon">
     <title>MathMaster</title>
     <script>
-        fetch('http://localhost:8000/admin-check', {
-            method: 'POST',
+        fetch('http://localhost:8000/api/auth/check-admin', {
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `${localStorage.getItem('token')}`,
             },
-            body: JSON.stringify({ token: localStorage.getItem('token') }),
         })
             .then(response => {
                 if (!response.ok) {
@@ -155,7 +155,13 @@
 
                     <script>
                         function uezenetekBetolt() {
-                            fetch(`http://localhost:8000/uzenetek/${localStorage.getItem('token')}`)
+                            fetch(`http://localhost:8000/api/admin/messages`, {
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': localStorage.getItem('token'),
+                                    'Content-Type': 'application/json'
+                                }
+                            })
                                 .then(response => response.json())
                                 .then(data => {
                                     // Adatok betöltése a táblázatba
@@ -200,11 +206,11 @@
                         }
 
                         function torles(id) {
-                            fetch(`http://localhost:8000/kapcsolat/${id}`, {
+                            fetch(`http://localhost:8000/api/admin/kapcsolat/${id}`, {
                                 method: 'DELETE',
                                 headers: {
                                     'Content-Type': 'application/json',
-                                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                                    'Authorization': `${localStorage.getItem('token')}`,
                                 },
                             })
                                 .then(response => {
@@ -228,10 +234,11 @@
                             const kapcsolatId = 8;  // Az adott kapcsolatId, amelyet frissíteni szeretnél
                             const valaszUzenet = document.getElementById("inputMezo" + id.toString()).value;  // A frissítendő érték
                             try {
-                                const response = fetch(`http://localhost:8000/valasz/${id}`, {
+                                const response = fetch(`http://localhost:8000/api/admin/valasz/${id}`, {
                                     method: 'PUT',
                                     headers: {
                                         'Content-Type': 'application/json',
+                                        'Authorization': localStorage.getItem('token'),
                                     },
                                     body: JSON.stringify({ uzenet: valaszUzenet, token: localStorage.getItem('token') }),
                                 });
@@ -328,14 +335,14 @@
 
     <script>
         function adminFelvetel() {
-            fetch('http://localhost:8000/felvetel', {
+            fetch('http://localhost:8000/users/newAdmin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': localStorage.getItem('token'),
                 },
                 body: JSON.stringify({
-                    email: document.getElementById("ujAdminEmail").value,
-                    token: localStorage.getItem("token")
+                    email: document.getElementById("ujAdminEmail").value
                 }),
             })
                 .then(response => {

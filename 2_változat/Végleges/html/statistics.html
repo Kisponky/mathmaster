@@ -37,9 +37,16 @@
 
         console.log(aktHonapok)
 
+        var osszeadas = [];
 
 
-        fetch(`http://localhost:8000/statisztika/${localStorage.getItem("token")}/${"összeadás"}`)
+        fetch(`http://localhost:8000/api/tasks/statistics/${"összeadás"}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': localStorage.getItem('token'),
+                'Content-Type': 'application/json'
+            }
+        })
             .then(response => response.json())
             .then(data => {
                 // alert(data.osszes + " / " + data.jo);
@@ -58,10 +65,18 @@
                     }
                 }
 
+                for (let i = 0; i < 6; i++) {
+                    if (osszeadasO[i] != 0) {
+                        osszeadas.push((osszeadasH[i] / osszeadasO[i]) * 100);
+                    } else {
+                        osszeadas.push(0)
+                    }
+                }
+                console.log(osszeadas)
+
             })
             .catch(error => console.error('Hiba a fetch kérés során: ', error));
 
-        console.log(osszeadasH);
     </script>
 
     <title>Statisztika</title>
