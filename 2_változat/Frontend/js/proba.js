@@ -1,5 +1,4 @@
-var feladvany = "6+5=11";
-//Nagy Feró segítség a maradék-hoz
+var feladvany = "1000/8=125";
 var szamok = feladvany.match(/\d+/g);
 var muvJelek = feladvany.match(/[+\-*/]/g);
 var maradek = szamok[0] % szamok[1];
@@ -40,13 +39,13 @@ var tartalom = document.getElementById('tartalom');
 
 if ((localStorage.getItem('class') == 1 && elsoOsztaly && kisebbMint20 == true /*&& lekérdezés adatbázisból*/) || (localStorage.getItem('class') == 2 && kisebbMint100 == true /*&& lekérdezés adatbázisból*/) || (localStorage.getItem('class') == 3 && harmadikOsztaly && kisebbMint1000 == true && szamok[1].length == 1 /*&& lekérdezés adatbázisból*/)) {
     document.getElementById("tartalom").innerHTML = `
-    <div class="col-xxl-6"></div>
-    <div class="col-xxl-2 text-end">
+    <div class="col-1 col-md-4 col-lg-4 col-xl-5"></div>
+    <div class="col-9 col-md-4 col-lg-3 col-xl-2 text-end">
         <span style="color: white; font-size: 16px; font-family: 'Poppins', sans-serif;">${szamok[0] + muvJelek[0] + szamok[1]}=</span>
         <input type="text" class="form-control align-self-center input-style">
+        <button class="btn btn-danger" type="button" id="Ellenorzes">Eredmény</button>
     </div>
-    <div class="col-xxl-4 align-self-center">
-        <button class="btn btn-danger" type="button">Eredmény</button>
+    <div class="col-2 col-md-4 col-lg-5 col-xl-5 align-self-center">
     </div>
     `;
 
@@ -56,7 +55,7 @@ if ((localStorage.getItem('class') == 1 && elsoOsztaly && kisebbMint20 == true /
         input.style.margin = '0 3px 0 1px';
         input.style.padding = '3px 5px';
         input.style.textAlign = 'center';
-        input.style.display = 'inline-block'
+        input.style.display = 'inline-block';
         input.style.borderRadius = '5px'
     });
 
@@ -142,20 +141,18 @@ if ((localStorage.getItem('class') == 1 && elsoOsztaly && kisebbMint20 == true /
 
     // Az eredményHTML tartalmát illesszük be a tartalom elembe
     document.getElementById("tartalom").innerHTML = `
-    <div class="col-2 col-md-4 col-lg-5"></div>
-    <div class="col-6 col-md-3 col-lg-2  text-end">
+    <div class="col-3 col-md-5 col-xl-5"></div>
+    <div class="col-4 col-md-2 col-xl-1  text-end">
         <div id="elso">${elsoTagInput}</div>
         <div class="position-absolute" style="color: white; font-size: 16px; font-family: 'Poppins', sans-serif;">${muvJelek}</div>
         <div id="masodik">${masodikTagInput}</div>
         <hr class="my-0" style="color: white;">
         <div id="eredmeny">${eredmenyInput}</div>
     </div>
-    <div class="col-4 col-md-5 col-lg-5 align-self-center">
-        <button class="btn btn-danger" type="button">Eredmény</button>
+    <div class="col-5 col-md-5 col-xl-6 align-self-center">
+        <button class="btn btn-danger" type="button" id="Ellenorzes">Eredmény</button>
     </div>
     `;
-
-    const button = document.getElementById('Ellenorzes');
 
     // Add CSS styles to the input elements
     const tag = document.querySelectorAll('.tag-style');
@@ -257,18 +254,16 @@ if ((localStorage.getItem('class') == 1 && elsoOsztaly && kisebbMint20 == true /
 
     // Az eredményHTML tartalmát illesszük be a tartalom elembe
     document.getElementById("tartalom").innerHTML = `
-    <div class="col-2 col-md-4 col-lg-5"></div>
-    <div class="col-6 col-md-3 col-lg-2  text-end">
+    <div class="col-0 col-md-4 col-lg-5"></div>
+    <div class="col-7 col-md-3 col-lg-2  text-end">
         <div id="elso">${elsoTagInput + muvJelInput + masodikTagInput}</div>
         <hr class="my-0" style="color: white;">
         <div id="eredmeny">${eredmenyInput}</div>
     </div>
-    <div class="col-4 col-md-5 col-lg-5 align-self-center">
-        <button class="btn btn-danger" type="button">Eredmény</button>
+    <div class="col-5 col-md-5 col-lg-5 align-self-center">
+        <button class="btn btn-danger" type="button" id="Ellenorzes">Eredmény</button>
     </div>
     `;
-
-    const button = document.getElementById('Ellenorzes');
 
     // Add CSS styles to the input elements
     const tag = document.querySelectorAll('.tag-style');
@@ -433,8 +428,8 @@ if ((localStorage.getItem('class') == 1 && elsoOsztaly && kisebbMint20 == true /
 
     // Az eredményHTML tartalmát illesszük be a tartalom elembe
     document.getElementById("tartalom").innerHTML = `
-    <div class="col-2 col-md-4 col-lg-4"></div>
-    <div class="col-6 col-md-3 col-lg-3 text-end">
+    <div class="col-0 col-md-4 col-xl-5"></div>
+    <div class="col-8 col-md-3 col-xl-2 text-end">
         <div id="elso">${elsoTagInput + muvJelInput + masodikTagInput}</div>
         <hr class="my-0" style="color: white;">
         <div>${reszeredmenyInput1}</div>
@@ -442,12 +437,11 @@ if ((localStorage.getItem('class') == 1 && elsoOsztaly && kisebbMint20 == true /
         <hr class="my-0" style="color: white;">
         <div id="eredmeny">${eredmenyInput}</div>
     </div>
-    <div class="col-4 col-md-5 col-lg-5 align-self-center">
-        <button class="btn btn-danger" type="button">Eredmény</button>
+    <div class="col-4 col-md-5 col-xl-5 align-self-center">
+        <button class="btn btn-danger" type="button" id="Ellenorzes">Eredmény</button>
     </div>
     `;
 
-    const button = document.getElementById('Ellenorzes');
 
     // Add CSS styles to the input elements
     const tag = document.querySelectorAll('.tag-style');
@@ -620,17 +614,16 @@ if ((localStorage.getItem('class') == 1 && elsoOsztaly && kisebbMint20 == true /
 
     // Az eredményHTML tartalmát illesszük be a tartalom elembe
     document.getElementById("tartalom").innerHTML = `
-    <div class="col-2 col-md-4 col-lg-4"></div>
-    <div class="col-6 col-md-3 col-lg-4  text-end">
+    <div class="col-0 col-md-3 col-lg-4 col-xl-4"></div>
+    <div class="col-12 col-md-5 col-lg-4 col-xl-3  text-end">
         <div id="eredmeny">${elsoTagInput + muvJelInput + masodikTagInput + '<input type="text" class="form-control tag-style" value="=" disabled>' + eredmenyInput}</div>
         ${maradekInput}
     </div>
-    <div class="col-4 col-md-5 col-lg-4 align-self-center">
-        <button class="btn btn-danger" type="button">Eredmény</button>
+    <div class="col-12 col-md-4 col-lg-4 col-xl-5 align-self-center text-center text-sm-start">
+        <button class="btn btn-danger" type="button" id="Ellenorzes">Eredmény</button>
     </div>
     `;
 
-    const button = document.getElementById('Ellenorzes');
 
     // Add CSS styles to the input elements
     const tag = document.querySelectorAll('.tag-style');
