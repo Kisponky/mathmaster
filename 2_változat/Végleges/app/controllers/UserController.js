@@ -71,24 +71,103 @@ const getVizsgalatinaplo = (req, res) => {
     console.log(req.user.userId)
     try {
 
-      if (req.user.admin === 1) {
-        UserModel.getVizsgalatinaplo()
-          .then(results => {
-            res.json(results);
-          })
-          .catch(error => {
-            console.error('Hiba a lekérdezés során: ' + error.message);
-            res.status(500).send('Internal Server Error');
-          });
-      } else {
-        res.status(403).json({ success: false, message: 'Nincs megfelelő felhasználói jogosultság.' });
-      }
+        if (req.user.admin === 1) {
+            UserModel.getVizsgalatinaplo()
+                .then(results => {
+                    res.json(results);
+                })
+                .catch(error => {
+                    console.error('Hiba a lekérdezés során: ' + error.message);
+                    res.status(500).send('Internal Server Error');
+                });
+        } else {
+            res.status(403).json({ success: false, message: 'Nincs megfelelő felhasználói jogosultság.' });
+        }
     } catch (error) {
-      console.error('Token verification failed:', error);
-      res.status(401).json({ success: false, message: 'Érvénytelen token.' });
+        console.error('Token verification failed:', error);
+        res.status(401).json({ success: false, message: 'Érvénytelen token.' });
     }
-  };
-  
+};
 
 
-module.exports = { register, login, addAdminPrivilege, getVizsgalatinaplo };
+const updateUserUsername = (req, res) => {
+    const username = req.body.username;
+    const userId = req.user.userId;
+
+    if (!username) {
+        return res.status(400).json({ error: 'Hiányzó felhasználónév' });
+    }
+
+    UserModel.updateUserUsername(username, userId)
+        .then(result => {
+            res.status(200).json({ success: true, message: 'Felhasználónév sikeresen frissítve' });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ status: 500, error: 'Hiba a felhasználónév frissítésekor' });
+        });
+};
+
+
+const updateUserEmail = (req, res) => {
+    const userId = req.user.userId;
+    const newEmail = req.body.email;
+
+    UserModel.updateUserEmail(userId, newEmail)
+        .then(result => {
+            res.status(200).json({ success: true, message: 'Felhasználói email cím sikeresen frissítve.' });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ success: false, error: 'Hiba a felhasználói email cím frissítésekor.' });
+        });
+};
+
+const deleteUserById = async (req, res) => {
+    try {
+        const userId = req.user.userId;
+
+        const result = await UserModel.deleteUserById(userId);
+
+        if (result.affectedRows > 0) {
+            res.status(200).json({ success: true, message: 'Felhasználó sikeresen törölve' });
+        } else {
+            res.status(404).json({ status: 404, error: 'Felhasználó nem található' });
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ status: 500, error: 'Hiba a felhasználó törlésekor' });
+    }
+};
+
+
+const changePassword = (req, res) => {
+    const userId = req.user.userId;
+    const oldPassword = req.body.oldPassword;
+    const newPassword = req.body.newPassword;
+    
+    console.log("userId"+req.user.userId)
+    console.log("oldPassword"+req.body.oldPassword)
+    console.log("newPassword"+req.body.newPassword)
+
+    // Ellenőrizze, hogy az régi és az új jelszó üres-e
+    if (!oldPassword || !newPassword) {
+        return res.status(400).json({ error: 'Hiányzó régi vagy új jelszó' });
+    }
+
+    UserModel.changePassword(userId, oldPassword, newPassword)
+        .then(result => {
+            if (result.affectedRows > 0) {
+                res.status(200).json({ success: true, message: 'Jelszó sikeresen megváltoztatva' });
+            } else {
+                res.status(401).json({ error: 'Hibás régi jelszó' });
+            }
+        })
+        .catch(err => {
+            console.error('Adatbázis hiba:', err);
+            res.status(500).json({ error: 'Belso hiba történt' });
+        });
+};
+
+
+module.exports = { register, login, addAdminPrivilege, getVizsgalatinaplo, updateUserUsername, updateUserEmail, deleteUserById, changePassword };

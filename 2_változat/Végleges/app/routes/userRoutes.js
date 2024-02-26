@@ -15,6 +15,14 @@ router.post('/newAdmin', adminAuthMiddleware, UserController.addAdminPrivilege);
 
 router.get('/vizsgalatinaplo', adminAuthMiddleware, UserController.getVizsgalatinaplo);
 
+router.put('/update-username', auth, UserController.updateUserUsername);
+
+router.put('/update-email', auth, UserController.updateUserEmail);
+
+router.delete('/deleteProfile', auth, UserController.deleteUserById);
+
+router.put('/change-password', auth, UserController.changePassword);
+
 
 // Védett útvonal, ahol az authMiddleware-t alkalmazzuk
 router.get('/protected', auth, (req, res) => {

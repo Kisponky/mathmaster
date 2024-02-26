@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/modal.css">
     <link rel="shortcut icon" href="../img/owl-47526.svg" type="image/x-icon">
     <title>MathMaster</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/checkAuth.js"></script>
 </head>
 
@@ -77,6 +78,9 @@
                                     'Content-Type': 'application/json',
                                     'Authorization': `${localStorage.getItem('token')}`,
                                 },
+                                body: {
+                                    
+                                }
                             })
                                 .then(response => {
                                     if (!response.ok) {
@@ -86,10 +90,12 @@
                                 })
                                 .then(data => {
                                     console.log('Sikeres törlés:', data);
+                                    swal("Sikeres törlés!", "Az üzenet törlésre került.", "success")
                                     document.getElementById('message-buborek'+id).remove();
                                 })
                                 .catch(error => {
                                     console.error('Hiba a törlés során:', error);
+                                    swal("Hiba a törlés során!", `${error}`, "error")
                                 });
 
                         }
