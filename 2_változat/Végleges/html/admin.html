@@ -221,8 +221,7 @@
                                 })
                                 .then(data => {
                                     console.log('Sikeres törlés:', data);
-                                    alert("Sikeres törlés!")
-                                    location.href = "admin.html";
+                                    document.getElementById('message-buborek'+id).remove();
                                 })
                                 .catch(error => {
                                     console.error('Hiba a törlés során:', error);
