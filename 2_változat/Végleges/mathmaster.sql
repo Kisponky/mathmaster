@@ -3,7 +3,7 @@ USE mathmaster;
 CREATE TABLE Felhasznalo (
     felhasznalo_id INT PRIMARY KEY AUTO_INCREMENT,
     teljes_nev VARCHAR(50) NULL DEFAULT NULL,
-    felhasznalonev VARCHAR(50) NULL DEFAULT NULL,
+    felhasznalonev VARCHAR(50) UNIQUE NULL DEFAULT NULL,
     email VARCHAR(50) NULL DEFAULT NULL,
     jelszo BLOB NULL DEFAULT NULL,
     datum DATETIME NULL DEFAULT NULL,
@@ -55,3 +55,16 @@ CREATE TABLE VizsgalatiNaplo (
     datum DATETIME,
     FOREIGN KEY (felhasznalo_id) REFERENCES Felhasznalo(felhasznalo_id)
 );
+
+
+-- jelszo titkosítás
+DELIMITER //
+CREATE TRIGGER jelszoTitkositas
+BEFORE INSERT ON Felhasznalo
+FOR EACH ROW
+BEGIN
+    IF NEW.jelszo IS NOT NULL THEN
+        SET NEW.jelszo = SHA2(NEW.jelszo, 256);
+    END IF;
+END //
+DELIMITER ;

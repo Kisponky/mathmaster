@@ -1,15 +1,11 @@
 var szazalekCtx = document.getElementById('szazalekChart').getContext('2d');
 var szazalekChart;
 
-var osszeadas = [];
-for (let i = 0; i < 6; i++) {
-    if (osszeadasO[i] != 0) {
-        osszeadas.push((osszeadasH[i] / osszeadasO[i]) * 100);
-    } else {
-        osszeadas.push(0)
-    }
-}
-console.log(osszeadas)
+
+
+// osszeadasH = [2, 3, 3, 3, 1, 4];
+// osszeadasO = [3, 4, 6, 4, 1, 7];
+
 
 var kivonasH = [0, 0, 0, 0, 0, 0];
 var kivonasO = [0, 0, 0, 0, 0, 0];
@@ -114,11 +110,16 @@ function chart() {
                 },
                 y: {
                     stacked: true,
+                    min: 0,
+                    max: 100,
                     ticks: {
                         color: 'white',
                         font: {
                             size: 14
                         },
+                        callback: function (value) {
+                            return value + '%';
+                        }
                     },
                     grid: {
                         color: 'white'
@@ -156,3 +157,11 @@ chart();
 
 /*Nagy Ferót megkérdezni, hogyan lakítsuk ki a mobil nézetet és a nála nagyobb méreteket,
 amikor üres rész kerül a diagram alá*/
+
+
+// mychart.js
+document.addEventListener('DOMContentLoaded', function () {
+    // Itt folytathatod a mychart.js logikádat
+    chart();
+    updateChart();
+});

@@ -14,44 +14,10 @@
     <link rel="stylesheet" href="css/modal.css">
     <link rel="shortcut icon" href="img/owl-47526.svg" type="image/x-icon">
     <title>MathMaster</title>
-    <script>
-        const checkAuthentication = async () => {
-            const token = localStorage.getItem('token');
-
-            try {
-                    const response = await fetch('http://localhost:8000/check-auth', {
-                        method: 'GET',
-                        headers: {
-                            'Authorization': token,
-                            'Content-Type': 'application/json',
-                        },
-                    });
-
-                const data = await response.json();
-
-                if (response.ok) {
-                    console.log('Authentication successful:', data);
-                } else {
-                    console.error('Authentication failed:', data);
-                    if (localStorage.getItem("token") != null) {
-                        localStorage.removeItem('token');
-                        location.href = "index.html"
-                    }
-                    
-                }
-            } catch (error) {
-                console.error('Error during authentication:', error);
-                localStorage.removeItem('token');
-            }
-        };
-
-        if (localStorage.getItem("token")) {
-            checkAuthentication();
-        }
-    </script>
+    <!-- <script src="js/checkAuth.js"></script> -->
 </head>
 
-<body>  
+<body>
     <div class="container-fluid">
         <header class="d-flex flex-wrap justify-content-center py-3">
             <div class="custom-container">
@@ -75,7 +41,7 @@
                             document.write('<li class="nav-item"><a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#bejelentkezes"><span style="vertical-align: inherit;">Bejelentkezés</span></a></li>')
                             document.write('<li class="nav-item"><a href="./html/about.html" class="nav-link"><span style="vertical-align: inherit;">Rólunk</span></a></li>')
                         }
-                        
+
                     </script>
                 </ul>
 
@@ -93,7 +59,11 @@
                                 <span style="vertical-align: inherit;">Statisztika</span>
                             </a>
                         </li>
-                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#beallitasok">
+                        <li><a class="dropdown-item" href="./html/messages.html">
+                                <span style="vertical-align: inherit;">Üzeneteim</span>
+                            </a>
+                        </li>
+                        <li><a class="dropdown-item" href="./html/profile.html">
                                 <span style="vertical-align: inherit;">Beállítások</span>
                             </a>
                         </li>
@@ -112,16 +82,16 @@
                     </ul>
                 </div>
                 <script>
-                    if(!localStorage.getItem("token")) {
+                    if (!localStorage.getItem("token")) {
                         document.getElementById("profilom").style.display = "none";
                     }
                 </script>
             </div>
         </header>
     </div>
-<script>
-    
-</script>
+    <script>
+
+    </script>
     <!-- Regisztrációs modal -->
     <div class="modal fade" id="regisztracio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -502,7 +472,7 @@
             if (password != password2) {
                 alert("A jelszavak nem egyeznek!");
             } else {
-                fetch("http://localhost:8000/register", {
+                fetch("http://localhost:8000/users/register", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -540,7 +510,7 @@
             var jelszoL = document.getElementById('passwordL').value;
 
             // Az API végpont, ahova küldjük az adatokat
-            var apiEndpoint = 'http://localhost:8000/login';
+            var apiEndpoint = 'http://localhost:8000/users/login';
 
             // Fetch kérés konfigurációja
             var requestOptions = {
@@ -594,7 +564,7 @@
                         token: token
                     };
 
-                    fetch("http://localhost:8000/text", {
+                    fetch("http://localhost:8000/api/admin/text", {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

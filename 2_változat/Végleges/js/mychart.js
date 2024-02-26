@@ -102,11 +102,8 @@ function updateChart() {
     });
 }
 
-window.addEventListener('resize', function() {
+window.addEventListener('resize', function () {
     updateChart();
 });
 
 updateChart();
-
-/*Nagy Ferót megkérdezni, hogyan lakítsuk ki a mobil nézetet és a nála nagyobb méreteket,
-amikor üres rész kerül a diagram alá*/
