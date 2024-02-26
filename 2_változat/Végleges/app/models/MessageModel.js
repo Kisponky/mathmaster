@@ -56,6 +56,25 @@ class MessageModel {
     });
   }
 
+  static getArchivedMessages(userId) {
+    return new Promise((resolve, reject) => {
+      const sql = `
+        SELECT k.kapcsolat_id, k.felhasznalo_id, f.teljes_nev AS felhasznalo_teljes_nev,
+               k.beerkezett_uzenet, k.valasz_uzenet, k.letrehozas_datuma
+        FROM kapcsolat k
+        INNER JOIN felhasznalo f ON k.felhasznalo_id = f.felhasznalo_id
+        WHERE k.archive_uzenetek IS NOT NULL AND k.felhasznalo_id = ?
+      `;
+
+      db.query(sql, [userId], (error, results, fields) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(results);
+        }
+      });
+    });
+  }
 
 }
 

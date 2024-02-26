@@ -71,6 +71,21 @@ const saveMessage = (req, res) => {
       res.json({ success: false });
     }
   };
+
+
+  const getArchivedMessages = (req, res) => {
+    const userId = req.user.userId;
+  
+    MessageModel.getArchivedMessages(userId)
+      .then(results => {
+        res.json(results);
+      })
+      .catch(error => {
+        console.error('Hiba a lekérdezés során: ' + error.message);
+        res.status(500).send('Internal Server Error');
+      });
+  };
+  
   
 
-module.exports = { getMessages, saveMessage, deleteMessage, updateMessage  };
+module.exports = { getMessages, saveMessage, deleteMessage, updateMessage, getArchivedMessages  };

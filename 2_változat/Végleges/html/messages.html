@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="shortcut icon" href="../img/owl-47526.svg" type="image/x-icon">
+    <title>MathMaster</title>
+    <script src="../js/checkAuth.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+
+                    <div class="jumbotron text-center">
+                        <h1>Beérkező üzenetek</h1>
+                        <p>Egy pár beérkezett üzenet! :)</p>
+                    </div>
+
+                    <div class="message-container" id="messages"></div>
+
+                    <script>
+                        function uezenetekBetolt() {
+                            fetch("http://localhost:8000/api/admin/archived-messages", {
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': localStorage.getItem('token'),
+                                    'Content-Type': 'application/json',
+                                }
+                            })
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Network response was not ok');
+                                    }
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    // Adatok betöltése a táblázatba
+                                    const messages = document.getElementById('messages');
+                                    data.forEach(kapcsolat => {
+                                        let bubi = `
+                                            <div class="message-buborek" id="message-buborek${kapcsolat.kapcsolat_id}">
+                                                <div class="message-header">
+                                                    <div class="message-user">${kapcsolat.felhasznalo_teljes_nev}</div>
+                                                    <div class="message-date">${new Date(kapcsolat.letrehozas_datuma).toLocaleDateString()}</div>
+                                                </div>
+                                                <div class="message-text">
+                                                    <span><b>Üzenetem:</b> ${kapcsolat.beerkezett_uzenet}<br>
+                                                    <span><b>Válasz:</b> ${kapcsolat.valasz_uzenet}</span>
+                                                </div>
+                                                <div class="message-actions">
+                                                    <button class="btn btn-danger btn-danger-class" onclick="torles(${kapcsolat.kapcsolat_id})">Törlés</button>
+                                                </div>
+                                            </div>
+                                        `;
+                                        messages.innerHTML += bubi;
+                                    });
+                                })
+                                .catch(error => console.error('Fetch error:', error));
+                        }
+
+                        document.addEventListener('DOMContentLoaded', () => {
+                            uezenetekBetolt();
+                        });
+
+                        function torles(id) {
+                            fetch(`http://localhost:8000/api/admin/kapcsolat/${id}`, {
+                                method: 'DELETE',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': `${localStorage.getItem('token')}`,
+                                },
+                            })
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error(`HTTP hiba! Státusz: ${response.status}`);
+                                    }
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    console.log('Sikeres törlés:', data);
+                                    alert("Sikeres törlés!")
+                                    location.href = "admin.html";
+                                })
+                                .catch(error => {
+                                    console.error('Hiba a törlés során:', error);
+                                });
+
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

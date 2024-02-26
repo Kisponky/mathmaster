@@ -17,7 +17,7 @@ const checkAuth = async () => {
             console.error('Bejelentkezés ellenőrzése sikertelen:', data.message);
             if (localStorage.getItem("token")) {
                 localStorage.removeItem("token")
-                if(localStorage.getItem("admin")) {
+                if (localStorage.getItem("admin")) {
                     localStorage.removeItem("admin")
                 }
             }
@@ -25,8 +25,20 @@ const checkAuth = async () => {
         }
     } catch (error) {
         console.error('Hiba a kérés során:', error.message);
+        if (localStorage.getItem("token")) {
+            localStorage.removeItem("token")
+            if (localStorage.getItem("admin")) {
+                localStorage.removeItem("admin")
+            }
+        }
+        location.href = "../index.html"
     }
 };
 
-// Hívás a fenti függvénytől, például oldal betöltésekor
 checkAuth();
+
+if (localStorage.getItem('token') == null) {
+    location.href = "../index.html";
+}
+
+// Hívás a fenti függvénytől, például oldal betöltésekor
