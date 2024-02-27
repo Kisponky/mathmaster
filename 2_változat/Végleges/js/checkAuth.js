@@ -35,8 +35,6 @@ const checkAuth = async () => {
     }
 };
 
-checkAuth();
-
 if (localStorage.getItem('token') == null) {
     location.href = "../index.html";
 }
