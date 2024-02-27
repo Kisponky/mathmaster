@@ -2,6 +2,7 @@ var feladvany = "1000/8=125";
 var szamok = feladvany.match(/\d+/g);
 var muvJelek = feladvany.match(/[+\-*/]/g);
 var maradek = szamok[0] % szamok[1];
+//segítség kérés maradék kinyeréséhez
 
 var elsoTag = szamok[0].split("");
 var masodikTag = szamok[1].split("");
