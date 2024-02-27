@@ -13,8 +13,6 @@ router.post('/login', UserController.login);
 
 router.post('/newAdmin', adminAuthMiddleware, UserController.addAdminPrivilege);
 
-router.get('/vizsgalatinaplo', adminAuthMiddleware, UserController.getVizsgalatinaplo);
-
 router.put('/update-username', auth, UserController.updateUserUsername);
 
 router.put('/update-email', auth, UserController.updateUserEmail);

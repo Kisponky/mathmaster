@@ -55,6 +55,8 @@ class UserModel {
         });
     }
 
+    
+
     static updateUserUsername(username, userId) {
         const sql = 'UPDATE Felhasznalo SET felhasznalonev = ? WHERE felhasznalo_id = ?;';
         return new Promise((resolve, reject) => {
