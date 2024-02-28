@@ -16,12 +16,14 @@ const userRoutes = require('./routes/userRoutes');
 const authRoutes = require('./routes/authRoutes');
 const messageRoutes = require('./routes/messageRoutes');
 const taskRoutes = require('./routes/taskRoutes');
+const auditLogRoutes = require('./routes/auditLogRoutes');
 
 
 app.use('/users', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', messageRoutes);
 app.use('/api/tasks', taskRoutes);
+app.use('/api/auditLog', auditLogRoutes);
 
 
 app.get('/', (req, res) => {
