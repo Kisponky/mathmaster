@@ -1,6 +1,4 @@
-
-
-var feladvany = "";
+var feladvany = '';
 function testContent() {
     fetch(`http://localhost:8000/api/tasks/task?osztaly=${localStorage.getItem('class')}&tipus=matematika`, {
         method: 'GET',
@@ -21,11 +19,11 @@ function setData(data) {
     var szamok = feladvany.match(/\d+/g);
     var muvJelek = feladvany.match(/[+\-*/]/g);
     var maradek = szamok[0] % szamok[1];
-//segítség kérés maradék kinyeréséhez
+    //segítség kérés maradék kinyeréséhez
 
     var elsoTag = szamok[0].split("");
     var masodikTag = szamok[1].split("");
-
+    
 
     var elsoOsztaly = feladvany.match(/[+-]/g);
     var harmadikOsztaly = feladvany.match(/[/]/g);
@@ -55,7 +53,6 @@ function setData(data) {
         }
     }
 
-    var tartalom = document.getElementById('tartalom');
 
     if ((localStorage.getItem('class') == 1 && elsoOsztaly && kisebbMint20 == true /*&& lekérdezés adatbázisból*/) || (localStorage.getItem('class') == 2 && kisebbMint100 == true /*&& lekérdezés adatbázisból*/) || (localStorage.getItem('class') == 3 && harmadikOsztaly && kisebbMint1000 == true && szamok[1].length == 1 /*&& lekérdezés adatbázisból*/)) {
         document.getElementById("tartalom").innerHTML = `
@@ -92,6 +89,10 @@ function setData(data) {
                 button.style.backgroundColor = 'red';
                 button.textContent = 'Rossz válasz!';
             }
+
+            setTimeout(() => {
+                testContent();
+            }, 1500);
         });
 
 
@@ -108,7 +109,7 @@ function setData(data) {
 
         // Létrehozunk egy üres stringet, amelybe a ciklus eredményét fűzzük majd
         var eredmenyInput = '';
-
+        
         // Az input mezők számának meghatározása
         var inputCount = szamok[2].length;
 
@@ -118,6 +119,7 @@ function setData(data) {
             eredmenyInput += `<input type="text" class="form-control mt-1 input-style" maxlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, '')" if(this.value.length === 1) { document.querySelector('input[tabindex=\"${reversedTabIndex}\"] + input').focus(); }" tabindex="${reversedTabIndex}">`;
         }
 
+        
         // Az input mezőkre vonatkozó fókuszkezelő beállítása
         document.addEventListener("DOMContentLoaded", function () {
             const inputFields = document.querySelectorAll('.input-style');
