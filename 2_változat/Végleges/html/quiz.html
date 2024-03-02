@@ -4,7 +4,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script src="../js/checkAuth.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -17,65 +27,55 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <header class="d-flex flex-wrap justify-content-center py-3">
-            <div class="custom-container">
-                <a href="#"
-                    class="d-flex align-items-center mb-3 mb-md-0 ms-2 me-md-auto link-body-emphasis text-decoration-none">
-                    <img class="pe-2 ceg-logo" src="../img/owl-47526.svg" alt="">
-                    <span class="ceg-nev">MathMaster</span>
-                </a>
-
-                <ul class="nav nav-pills custom-nav">
-                    <li class="nav-item"><a href="../index.html" class="nav-link" aria-current="page">
-                            <span style="vertical-align: inherit;">Kezdőlap</span>
-                        </a>
-                    </li>
-                    <li class="nav-item"><a href="#" class="nav-link">
-                            <span style="vertical-align: inherit;">Bejelentkezés</span>
-                        </a>
-                    </li>
-                    <li class="nav-item"><a href="#" class="nav-link">
-                            <span style="vertical-align: inherit;">Rólunk</span>
-                        </a>
-                    </li>
-                    <li class="nav-item"><a href="#" class="nav-link">
-                            <span style="vertical-align: inherit;">Kapcsolat</span>
-                        </a>
-                    </li>
-                </ul>
-
-                <div class="dropdown text-end">
-                    <a href="#" class="d-block link-body-emphasis text-decoration-none me-2" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <img src="../img/PersonCircle_Profile.svg" alt="mdo" width="32" height="32"
-                            class="rounded-circle">
+    <header>
+        <div class="container">
+            <nav class="navbar navbar-expand-sm">
+                <div class="container-fluid">
+                    <a href="#" class="navbar-brand ceg-nev">
+                        <img src="../img/owl-47526.svg" alt="Logo" width="40" height="40"
+                            class="d-inline-block align-text-middle">
+                        MathMaster
                     </a>
-                    <ul class="dropdown-menu text-small">
-                        <li><a class="dropdown-item" href="#">
-                                <span style="vertical-align: inherit;">Új feladat...</span>
-                            </a>
-                        </li>
-                        <li><a class="dropdown-item" href="#">
-                                <span style="vertical-align: inherit;">Statisztika</span>
-                            </a>
-                        </li>
-                        <li><a class="dropdown-item" href="#">
-                                <span style="vertical-align: inherit;">Beállítások</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">
-                                <span style="vertical-align: inherit;">Kijelentkezés</span>
-                            </a>
-                        </li>
-                    </ul>
+
+                    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="toggler-icon top-bar"></span>
+                        <span class="toggler-icon middle-bar"></span>
+                        <span class="toggler-icon bottom-bar"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                        <ul class="navbar-nav nav-pills">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="../index.html">Kezdőlap</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./about.html">Rólunk</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./contact.html">Kapcsolat</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="nav-item dropdown me-1">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <img src="../img/PersonCircle_Profile.svg" alt="Profil" width="28" height="28">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">Új feladat...</a></li>
+                            <li><a class="dropdown-item" href="./statistics.html">Statisztika</a></li>
+                            <li><a class="dropdown-item" href="./profile.html">Beállítások</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Kijelentkezés</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </header>
-    </div>
+            </nav>
+        </div>
+    </header>
 
 
 
@@ -86,14 +86,18 @@
                     <h3 id="kerdes"></h3>
                 </div>
             </div>
+
+
             <div class="row">
                 <div class="col text-center">
                     <button id="valasz1" class="btn btn-info mb-5" onclick="valasz(1)"></button>
                 </div>
                 <div class="col text-center">
-                    <button id="valasz2" class="btn btn-pink mb-5" onclick="valasz(2)"></button>
+                    <button id="valasz2" class="btn btn-secondary mb-5" onclick="valasz(2)"></button>
                 </div>
             </div>
+
+
             <div class="row">
                 <div class="col text-center">
                     <button id="valasz3" class="btn btn-danger mb-5" onclick="valasz(3)"></button>
@@ -110,69 +114,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
-
-    <script>
-        function feladatGeneral() {
-            fetch(`http://localhost:8000/api/tasks/task?osztaly=${localStorage.getItem('class')}&tipus=kvíz`, {
-                method: 'GET',
-                headers: {
-                    'Authorization': localStorage.getItem("token"),
-                    'Content-Type': 'application/json',
-                }
-            })
-                .then(response => response.json())
-                .then(data => kiir(data.tartalom, data.valaszlehetosegek))
-                .catch(error => console.error('Hiba a fetch kérés során: ', error));
-        }
-        feladatGeneral();
-
-        function kiir(feladat, valaszok) {
-            // localStorage.setItem("kerdesSzam", i);
-            document.getElementById("kerdes").innerHTML = feladat;
-            let valaszokBontva = valaszok.split(";");
-            console.log(valaszokBontva);
-            document.getElementById("valasz1").innerHTML = (valaszokBontva[0]);
-            document.getElementById("valasz2").innerHTML = (valaszokBontva[1]);
-            document.getElementById("valasz3").innerHTML = (valaszokBontva[2]);
-            document.getElementById("valasz4").innerHTML = (valaszokBontva[3]);
-
-            console.log(atob("helyes1"))
-            localStorage.setItem('valasz', btoa(btoa(`val${valaszokBontva[4].toString()}asz`)))
-
-            var btn = document.getElementsByClassName('btn');
-            var max = btn[0];
-
-            for (let i = 1; i < btn.length; i++) {
-                if (btn[i].innerText.length > max.innerText.length) {
-                    max = btn[i];
-                }
-            }
-
-            for (let i = 0; i < btn.length; i++) {
-                btn[i].style.width = max.offsetWidth + 10 + 'px';
-            }
-
-            console.log(max.innerText)
-
-            while (localStorage.getItem("kerdesSzam") == i + 1) {
-
-            }
-        }
-
-
-
-        function valasz(id) {
-            if (btoa(btoa(`val${id.toString()}asz`)) == localStorage.getItem('valasz')) {
-                alert("Helyes");
-                // localStorage.setItem("kerdesSzam", localStorage.getItem("kerdesSzam") + 1)
-                feladatGeneral();
-            } else {
-                alert("Helytelen válasz")
-            }
-        }
-
-
-    </script>
+    
+    <script src="../js/quiz.js"></script>
 </body>
 
 </html>
