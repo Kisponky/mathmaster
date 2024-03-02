@@ -9,73 +9,7 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/statistics.css">
     <link rel="shortcut icon" href="../img/owl-47526.svg" type="image/x-icon">
-
-    <script>
-        let honapok = ['Január', 'Február', 'Március', 'Április', 'Május', 'Június', 'Júlus', 'Augusztus', 'Szeptember', 'Október', 'November', 'December'];
-        let jelenlegiHo = new Date().getMonth();
-        // jelenlegiHo = 6;
-        let aktHonapok = [];
-        if (jelenlegiHo < 5) {
-            for (let i = jelenlegiHo; i >= 0; i--) {
-                aktHonapok.push(honapok[i])
-            }
-            for (let i = 11; i > jelenlegiHo + 6; i--) {
-                aktHonapok.push(honapok[i])
-            }
-        } else {
-            for (let i = jelenlegiHo; i >= jelenlegiHo - 5; i--) {
-                aktHonapok.push(honapok[i])
-            }
-        }
-
-        let osszeadasO = [];
-        let osszeadasH = [];
-
-
-        var osszeadas = [];
-
-
-        fetch(`http://localhost:8000/api/tasks/statistics/${"összeadás"}`, {
-            method: 'GET',
-            headers: {
-                'Authorization': localStorage.getItem('token'),
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(response => response.json())
-            .then(data => {
-                // alert(data.osszes + " / " + data.jo);
-                console.log(data)
-                if (jelenlegiHo < 5) {
-                    for (let i = 0; i < jelenlegiHo + 1; i++) {
-                        osszeadasO.push(data[i + (6 - (jelenlegiHo + 1))].osszes);
-                        osszeadasH.push(data[i + (6 - (jelenlegiHo + 1))].jo);
-                    }
-                    for (let i = 0; i < 6 - (jelenlegiHo + 1); i++) {
-                        osszeadasO.push(data[i].osszes);
-                        osszeadasH.push(data[i].jo);
-                    }
-                } else {
-                    for (let i = jelenlegiHo; i >= jelenlegiHo - 5; i--) {
-                        osszeadasO.push(data[i].osszes);
-                        osszeadasH.push(data[i].jo);
-                    }
-                }
-
-                for (let i = 0; i < 6; i++) {
-                    if (osszeadasO[i] != 0) {
-                        osszeadas.push((osszeadasH[i] / osszeadasO[i]) * 100);
-                    } else {
-                        osszeadas.push(0)
-                    }
-                }
-                console.log(osszeadas)
-
-            })
-            .catch(error => console.error('Hiba a fetch kérés során: ', error));
-
-    </script>
-
+    <script src="../js/statistics/statistics.js"></script>
     <title>Statisztika</title>
 </head>
 
@@ -158,11 +92,11 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../js/mychart.js"></script>
-    <script src="../js/szazalek.js"></script>
+    <script src="../js/statistics/mychart.js"></script>
+    <script src="../js/statistics/szazalek.js"></script>
 </body>
 <script>
-     
+
 </script>
 
 </html>

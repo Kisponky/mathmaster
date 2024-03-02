@@ -1,45 +1,86 @@
-var ctx = document.getElementById('myChart').getContext('2d');
-var myBarChart;
+var szazalekCtx = document.getElementById('szazalekChart').getContext('2d');
+var szazalekChart;
 
 
 
-// alert("Fut a chatr.js :)");
-function updateChart() {
-    if (myBarChart) {
-        myBarChart.destroy();
+// osszeadasH = [2, 3, 3, 3, 1, 4];
+// osszeadasO = [3, 4, 6, 4, 1, 7];
+
+
+// var kivonasH = [0, 0, 0, 0, 0, 0];
+// var kivonasO = [0, 0, 0, 0, 0, 0];
+// var kivonas = [];
+// for (let i = 0; i < kivonasH.length; i++) {
+//     if (kivonasO[i] != 0) {
+//         kivonas.push((kivonasH[i] / kivonasO[i]) * 100);
+//     } else {
+//         kivonas.push(0)
+//     }
+// }
+
+// var szorzasH = [0, 0, 0, 0, 0, 0];
+// var szorzasO = [0, 0, 0, 0, 0, 0];
+// var szorzas = [];
+// for (let i = 0; i < szorzasH.length; i++) {
+//     if (szorzasO[i] != 0) {
+//         szorzas.push((szorzasH[i] / szorzasO[i]) * 100);
+//     } else {
+//         szorzas.push(0)
+//     }
+// }
+
+// var osztasH = [0, 0, 0, 0, 0, 0];
+// var osztasO = [0, 0, 0, 0, 0, 0];
+// var osztas = [];
+// for (let i = 0; i < osztasH.length; i++) {
+//     if (osztasO[i] != 0) {
+//         osztas.push((osztasH[i] / osztasO[i]) * 100);
+//     } else {
+//         osztas.push(0)
+//     }
+// }
+
+function chart() {
+    if (szazalekChart) {
+        szazalekChart.destroy();
     }
-    myBarChart = new Chart(ctx, {
+
+    szazalekChart = new Chart(szazalekCtx, {
         type: 'bar',
         data: {
             labels: [aktHonapok[5], aktHonapok[4], aktHonapok[3], aktHonapok[2], aktHonapok[1], aktHonapok[0]],
             datasets: [
                 {
                     label: 'Összeadás',
-                    data: [osszeadasO[5], osszeadasO[4], osszeadasO[3], osszeadasO[2], osszeadasO[1], osszeadasO[0]],
+                    data: [osszeadas[5], osszeadas[4], osszeadas[3], osszeadas[2], osszeadas[1], osszeadas[0]],
                     backgroundColor: 'rgba(99, 131, 255, 0.8)',
                     borderColor: 'rgba(99, 131, 255, 1)',
-                    borderWidth: 1
+                    borderWidth: 1,
+                    stack: 'Stack 0',
                 },
                 {
                     label: 'Kivonás',
-                    data: [0, 0, 0, 0, 0, 0],
+                    data: [kivonas[5], kivonas[4], kivonas[3], kivonas[2], kivonas[1], kivonas[0]],
                     backgroundColor: 'rgba(255, 99, 132, 0.8)',
                     borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1
+                    borderWidth: 1,
+                    stack: 'Stack 1',
                 },
                 {
                     label: 'Szorzás',
-                    data: [0, 0, 0, 0, 0, 0],
+                    data: [szorzas[5], szorzas[4], szorzas[3], szorzas[2], szorzas[1], szorzas[0]],
                     backgroundColor: 'rgba(255, 215, 99, 0.8)',
                     borderColor: 'rgba(255, 215, 99, 1)',
-                    borderWidth: 1
+                    borderWidth: 1,
+                    stack: 'Stack 2',
                 },
                 {
                     label: 'Osztás',
-                    data: [0, 0, 0, 0, 0, 0],
+                    data: [osztas[5], osztas[4], osztas[3], osztas[2], osztas[1], osztas[0]],
                     backgroundColor: 'rgba(99, 255, 124, 0.8)',
                     borderColor: 'rgba(99, 255, 124, 1)',
-                    borderWidth: 1
+                    borderWidth: 1,
+                    stack: 'Stack 3',
                 }
             ]
         },
@@ -69,11 +110,16 @@ function updateChart() {
                 },
                 y: {
                     stacked: true,
+                    min: 0,
+                    max: 100,
                     ticks: {
                         color: 'white',
                         font: {
                             size: 14
                         },
+                        callback: function (value) {
+                            return value + '%';
+                        }
                     },
                     grid: {
                         color: 'white'
@@ -91,7 +137,7 @@ function updateChart() {
                 },
                 title: {
                     display: true,
-                    text: 'Adott hónapban megoldott feladatok',
+                    text: 'Helyes válaszok százalékban',
                     color: 'white',
                     font: {
                         size: 16
@@ -103,7 +149,19 @@ function updateChart() {
 }
 
 window.addEventListener('resize', function () {
-    updateChart();
+    chart();
 });
 
-updateChart();
+// chart();
+
+
+/*Nagy Ferót megkérdezni, hogyan lakítsuk ki a mobil nézetet és a nála nagyobb méreteket,
+amikor üres rész kerül a diagram alá*/
+
+
+// mychart.js
+document.addEventListener('DOMContentLoaded', function () {
+    // Itt folytathatod a mychart.js logikádat
+    chart();
+    updateChart();
+});
