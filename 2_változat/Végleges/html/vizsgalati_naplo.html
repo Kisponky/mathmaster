@@ -108,7 +108,7 @@
             <div class="row mt-5">
                 <h2 class="ps-4">Vizsgálati Napló</h2>
 
-                <select id="select" onchange="auditLog(document.getElementById('select').value, 'DESC')">
+                <select id="select" onchange="auditLog(document.getElementById('select').value, orderType(localStorage.getItem('isMirrored')))">
                     <option value="null">Szűrés kikapcsolva</option>
                     <option value="Üzenet küldés!">Üzenet küldés!</option>
                     <option value="Válasz üzenet!">Válasz üzenet!</option>
@@ -149,9 +149,16 @@
         crossorigin="anonymous"></script>
     <script>
 
+        function orderType(type) {
+            if (type == "true") {
+                return "DESC";
+            } else {
+                return "ASC";
+            }
+        }
 
         document.addEventListener('DOMContentLoaded', () => {
-            auditLog("null", "DESC")
+            auditLog(document.getElementById("select").value, "ASC")
         });
 
         function auditLog(type, order) {
