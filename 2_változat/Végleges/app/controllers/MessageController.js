@@ -1,4 +1,5 @@
 const MessageModel = require('../models/MessageModel');
+const AuditLogModel = require('../models/auditLogModel');
 const jwt = require('jsonwebtoken');
 
 const getMessages = (req, res) => {

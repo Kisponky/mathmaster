@@ -30,6 +30,28 @@ const getVizsgalatinaplo = async (req, res) => {
     }
   };
   
+  const addAuditLog = async (req, res) => {
+    try {
+      if (req.user.admin === 1) {
+        const { felhasznalo_id, admin_igen_nem, tipus, megjegyzes } = req.body;
+  
+        // Ellenőrizzük, hogy minden szükséges adat meg van-e adva
+        if (!felhasznalo_id || !admin_igen_nem || !tipus || !megjegyzes) {
+          return res.status(400).json({ success: false, message: 'Hiányzó adatok.' });
+        }
+  
+        // Az új bejegyzés hozzáadása az audit log-hoz
+        await AuditLogModel.addAuditLogEntry(felhasznalo_id, admin_igen_nem, tipus, megjegyzes);
+  
+        res.json({ success: true, message: 'Audit log bejegyzés sikeresen hozzáadva.' });
+      } else {
+        res.status(403).json({ success: false, message: 'Nincs megfelelő felhasználói jogosultság.' });
+      }
+    } catch (error) {
+      console.error('Hiba az audit log bejegyzés hozzáadása során:', error.message);
+      res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+  };
+  
 
-
-module.exports = { getVizsgalatinaplo };
+module.exports = { getVizsgalatinaplo, addAuditLog };

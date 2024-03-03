@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const UserModel = require('../models/UserModel');
+const AuditLogModel = require('../models/auditLogModel');
 const { ClientBase } = require('pg');
 require('dotenv').config();
 
@@ -53,6 +54,7 @@ const addAdminPrivilege = (req, res) => {
         UserModel.addAdminPrivilege(email)
             .then(() => {
                 console.log('Admin jog sikeresen hozzáadva.');
+                AuditLogModel.addAuditLog(req.user.userId, 1, "Admin felvétel", `Admin jogosultság hozzáadva a követlezőhöz: ${email}`);
                 res.status(200).json({ success: true, message: `Admin jog hozzáadva a felhasználóhoz: ${email}` });
             })
             .catch((error) => {
@@ -60,6 +62,8 @@ const addAdminPrivilege = (req, res) => {
                 res.status(500).json({ success: false, message: 'Hiba az admin jog hozzáadása közben.' });
             });
 
+
+
     } catch (error) {
         console.error('Token verification failed:', error);
         res.status(401).json({ success: false, message: 'Érvénytelen token.' });
@@ -67,27 +71,27 @@ const addAdminPrivilege = (req, res) => {
 };
 
 
-const getVizsgalatinaplo = (req, res) => {
-    console.log(req.user.userId)
-    try {
+// const getVizsgalatinaplo = (req, res) => {
+//     console.log(req.user.userId)
+//     try {
 
-        if (req.user.admin === 1) {
-            UserModel.getVizsgalatinaplo()
-                .then(results => {
-                    res.json(results);
-                })
-                .catch(error => {
-                    console.error('Hiba a lekérdezés során: ' + error.message);
-                    res.status(500).send('Internal Server Error');
-                });
-        } else {
-            res.status(403).json({ success: false, message: 'Nincs megfelelő felhasználói jogosultság.' });
-        }
-    } catch (error) {
-        console.error('Token verification failed:', error);
-        res.status(401).json({ success: false, message: 'Érvénytelen token.' });
-    }
-};
+//         if (req.user.admin === 1) {
+//             UserModel.getVizsgalatinaplo()
+//                 .then(results => {
+//                     res.json(results);
+//                 })
+//                 .catch(error => {
+//                     console.error('Hiba a lekérdezés során: ' + error.message);
+//                     res.status(500).send('Internal Server Error');
+//                 });
+//         } else {
+//             res.status(403).json({ success: false, message: 'Nincs megfelelő felhasználói jogosultság.' });
+//         }
+//     } catch (error) {
+//         console.error('Token verification failed:', error);
+//         res.status(401).json({ success: false, message: 'Érvénytelen token.' });
+//     }
+// };
 
 
 const updateUserUsername = (req, res) => {
@@ -145,10 +149,10 @@ const changePassword = (req, res) => {
     const userId = req.user.userId;
     const oldPassword = req.body.oldPassword;
     const newPassword = req.body.newPassword;
-    
-    console.log("userId"+req.user.userId)
-    console.log("oldPassword"+req.body.oldPassword)
-    console.log("newPassword"+req.body.newPassword)
+
+    console.log("userId" + req.user.userId)
+    console.log("oldPassword" + req.body.oldPassword)
+    console.log("newPassword" + req.body.newPassword)
 
     // Ellenőrizze, hogy az régi és az új jelszó üres-e
     if (!oldPassword || !newPassword) {
@@ -170,4 +174,4 @@ const changePassword = (req, res) => {
 };
 
 
-module.exports = { register, login, addAdminPrivilege, getVizsgalatinaplo, updateUserUsername, updateUserEmail, deleteUserById, changePassword };
+module.exports = { register, login, addAdminPrivilege, updateUserUsername, updateUserEmail, deleteUserById, changePassword };

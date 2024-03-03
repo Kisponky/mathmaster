@@ -41,19 +41,19 @@ class UserModel {
         });
     }
 
-    static getVizsgalatinaplo() {
-        return new Promise((resolve, reject) => {
-            const sqlQuery = 'SELECT `naplo_id`, felhasznalo.felhasznalonev, felhasznalo.email, `tipus`, `megjegyzes`, vizsgalatinaplo.datum FROM `vizsgalatinaplo` INNER JOIN felhasznalo ON vizsgalatinaplo.felhasznalo_id = felhasznalo.felhasznalo_id WHERE 1 ORDER BY vizsgalatinaplo.datum DESC;';
+    // static getVizsgalatinaplo() {
+    //     return new Promise((resolve, reject) => {
+    //         const sqlQuery = 'SELECT `naplo_id`, felhasznalo.felhasznalonev, felhasznalo.email, `tipus`, `megjegyzes`, vizsgalatinaplo.datum FROM `vizsgalatinaplo` INNER JOIN felhasznalo ON vizsgalatinaplo.felhasznalo_id = felhasznalo.felhasznalo_id WHERE 1 ORDER BY vizsgalatinaplo.datum DESC;';
 
-            db.query(sqlQuery, (error, results, fields) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(results);
-                }
-            });
-        });
-    }
+    //         db.query(sqlQuery, (error, results, fields) => {
+    //             if (error) {
+    //                 reject(error);
+    //             } else {
+    //                 resolve(results);
+    //             }
+    //         });
+    //     });
+    // }
 
     
 

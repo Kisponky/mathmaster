@@ -41,6 +41,21 @@ class AuditLogModel {
         });
     }
 
+    static addAuditLog(felhasznalo_id, admin_igen_nem, tipus, megjegyzes) {
+        return new Promise((resolve, reject) => {
+          const sqlQuery = 'INSERT INTO `vizsgalatinaplo`(`felhasznalo_id`, `admin_igen_nem`, `tipus`, `megjegyzes`) VALUES (?, ?, ?, ?)';
+          const values = [felhasznalo_id, admin_igen_nem, tipus, megjegyzes];
+    
+          db.query(sqlQuery, values, (error, results, fields) => {
+            if (error) {
+              reject(error);
+            } else {
+              resolve(results);
+            }
+          });
+        });
+      }
+    
 }
 
 module.exports = AuditLogModel;
