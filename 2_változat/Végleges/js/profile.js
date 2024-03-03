@@ -2,7 +2,12 @@ function updateUsername() {
     const newUsername = document.getElementById('userName').value;
 
     if (!newUsername) {
-       Swal.fire("A mező üres!", "Kérjük, adjon meg egy új felhasználónevet.", "info")
+        Swal.fire({
+            title: "A mező üres!",
+            text: "Kérjük, adjon meg egy új felhasználónevet.",
+            icon: "info",
+            confirmButtonColor: "#3498db"
+        })
         return;
     }
 
@@ -22,20 +27,37 @@ function updateUsername() {
         })
         .then(data => {
             console.log(data);
-           Swal.fire("Felhasználónév sikeresen frissítve!", `A te új felhasználóneved: ${document.getElementById("userName").value}`, "success")
+            Swal.fire({
+                title: "Felhasználónév sikeresen frissítve!",
+                text: `A te új felhasználóneved: ${document.getElementById("userName").value}`,
+                icon: "success",
+                confirmButtonColor: "#3498db"
+            });
             document.getElementById("userName").value = "";
         })
         .catch(error => {
             console.error('Fetch error:', error);
-           Swal.fire("Hiba történt a felhasználónév frissítése során.", `${error}`, "error")
+            Swal.fire({
+                title: "Hiba történt a felhasználónév frissítése során.",
+                text: `${error}`,
+                icon: "error",
+                confirmButtonColor: "#3498db"
+            });
         });
 }
+
+
 
 function updateEmail() {
     const newEmail = document.getElementById('userMail').value;
 
     if (!newEmail) {
-       Swal.fire("A mező üres!", "Kérjük, adjon meg egy új email címet.", "info")
+        Swal.fire({
+            title: "A mező üres!",
+            text: "Kérjük, adjon meg egy új email címet.",
+            icon: "info",
+            confirmButtonColor: "#3498db"
+        });
         return;
     }
 
@@ -55,14 +77,25 @@ function updateEmail() {
         })
         .then(data => {
             console.log(data);
-           Swal.fire("Email cím sikeresen frissítve!", `A te új email címed: ${document.getElementById("userMail").value}`, "success")
+            Swal.fire({
+                title: "Email cím sikeresen frissítve!",
+                text: `A te új email címed: ${document.getElementById("userMail").value}`,
+                icon: "success",
+                confirmButtonColor: "#3498db"
+            });
             document.getElementById("userMail").value = "";
         })
         .catch(error => {
             console.error('Fetch error:', error);
-           Swal.fire("Hiba történt az email cím frissítése során.", `${error}`, "error")
+            Swal.fire({
+                title: "Hiba történt az email cím frissítése során.",
+                text: `${error}`,
+                icon: "error",
+                confirmButtonColor: "#3498db"
+            });
         });
 }
+
 
 
 function changePassword() {
@@ -71,12 +104,22 @@ function changePassword() {
     const newPassword2 = document.getElementById('newPw2').value;
 
     if (!oldPassword || !newPassword || !newPassword2) {
-        Swal.fire("Hiányzó jelszó", "Kérjük, töltse ki az összes mezőt.", "info");
+        Swal.fire({
+            title: "Hiányzó jelszó",
+            text: "Kérjük, töltse ki az összes mezőt.",
+            icon: "info",
+            confirmButtonColor: "#3498db"
+        });
         return;
     }
 
     if (newPassword != newPassword2) {
-        Swal.fire("Hibás jelszó", "A két jelsző nem egyezik.", "info");
+        Swal.fire({
+            title: "Hibás jelszó!",
+            text: "A két jelsző nem egyezik.",
+            icon: "info",
+            confirmButtonColor: "#3498db"
+        });
         return;
     }
 
@@ -110,7 +153,12 @@ function changePassword() {
         })
         .catch(error => {
             console.error('Fetch error:', error);
-            Swal.fire("Hiba történt a jelszóváltás során.", `${error}`, "error");
+            Swal.fire({
+                title: "Hiba történt a jelszóváltás során.",
+                text: `${error}`,
+                icon: "error",
+                confirmButtonColor: "#3498db"
+            });
         });
 }
 
@@ -127,7 +175,7 @@ function deleteUserProfile() {
         cancelButtonColor: "#277049",
         cancelButtonText: "Mégsem",
         confirmButtonText: "Igen, töröld!",
-        backdrop: "rgba(0, 0, 0, 0.93)",  // Háttérszín beállítása
+        backdrop: "rgba(0, 0, 0, 0.93)",
     })
         .then((result) => {
             if (result.isConfirmed) {
