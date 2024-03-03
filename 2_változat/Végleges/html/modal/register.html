@@ -1,0 +1,57 @@
+<div class="modal fade" id="regisztracio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header p-5 pb-4 border-bottom-0">
+                <h1 class="fw-bold mb-0 fs-2">
+                    <span>Regisztráció</span>
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
+            </div>
+
+            <div class="modal-body p-5 pt-0">
+                <form id="reg">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control rounded-3" id="fullName"
+                            placeholder="vezeteknev keresztnev">
+                        <label for="floatingInput">
+                            <span>Teljes név</span>
+                        </label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control rounded-3" id="userName" placeholder="felhasznalonev">
+                        <label for="floatingInput">
+                            <span>Felhasználónév</span>
+                        </label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control rounded-3" id="email" placeholder="nev@example.com">
+                        <label for="floatingInput">
+                            <span>Email cím</span>
+                        </label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control rounded-3" id="password" placeholder="Jelszo">
+                        <label for="floatingPassword">
+                            <span>Jelszó</span>
+                        </label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control rounded-3" id="password2" placeholder="Jelszo">
+                        <label for="floatingPassword">
+                            <span>Jelszó újra</span>
+                        </label>
+                    </div>
+                    <button onclick="register()" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0"
+                        type="button">
+                        <span>Regisztráció</span>
+                    </button>
+                    <small class="text-white-50">
+                        <span>A Regisztráció gombra kattintva elfogadja a
+                            felhasználási feltételeket.</span>
+                    </small>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
