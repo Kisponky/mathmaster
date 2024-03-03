@@ -1,4 +1,5 @@
 const MessageModel = require('../models/MessageModel');
+const AuditLogModel = require('../models/auditLogModel');
 const jwt = require('jsonwebtoken');
 
 const getMessages = (req, res) => {
@@ -45,7 +46,8 @@ const saveMessage = (req, res) => {
     MessageModel.deleteMessage(kapcsolatId)
       .then(() => {
         console.log(`Kapcsolat ${kapcsolatId} sikeresen törölve.`);
-        res.status(200).json({ success: true, message: `Kapcsolat ${kapcsolatId} sikeresen törölve.` });
+          AuditLogModel.addAuditLog(req.user.userId, "Üzenet törlése", `Az üzenet törlésre került`);
+          res.status(200).json({ success: true, message: `Kapcsolat ${kapcsolatId} sikeresen törölve.` });
       })
       .catch((error) => {
         console.error('Hiba a lekérdezés során:', error);
@@ -61,6 +63,7 @@ const saveMessage = (req, res) => {
       MessageModel.updateMessage(kapcsolatId, req.body.uzenet)
         .then(() => {
           console.log('Sikeres frissítés');
+          AuditLogModel.addAuditLog(req.user.userId, "Válasz üzenet", `Válasz: ${req.body.uzenet}`);
           res.json({ success: true });
         })
         .catch((error) => {

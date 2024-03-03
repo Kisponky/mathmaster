@@ -108,10 +108,9 @@
             <div class="row mt-5">
                 <h2 class="ps-4">Vizsgálati Napló</h2>
 
-                <select id="select" onchange="auditLog(document.getElementById('select').value, 'DESC')">
-                    <option value="null">Szűrés kikapcsolva</option>
-                    <option value="Üzenet küldés!">Üzenet küldés!</option>
-                    <option value="Válasz üzenet!">Válasz üzenet!</option>
+                <select id="select"
+                    onchange="auditLog(document.getElementById('select').value, orderType(localStorage.getItem('isMirrored')))">
+                    <option value="null"></option>
                 </select>
             </div>
             <div class="row">
@@ -124,7 +123,7 @@
                                 <th scope="col">Email</th>
                                 <th scope="col">Típus</th>
                                 <th scope="col">Megjegyzés</th>
-                                <th scope="col" id="datumHeader">Dátum 
+                                <th scope="col" id="datumHeader">Dátum
                                     <span id="caretIcon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
@@ -149,9 +148,16 @@
         crossorigin="anonymous"></script>
     <script>
 
+        function orderType(type) {
+            if (type == "true") {
+                return "DESC";
+            } else {
+                return "ASC";
+            }
+        }
 
         document.addEventListener('DOMContentLoaded', () => {
-            auditLog("null", "DESC")
+            auditLog(document.getElementById("select").value, "ASC")
         });
 
         function auditLog(type, order) {
@@ -170,10 +176,24 @@
                     return response.json();
                 })
                 .then(data => {
-                    console.log(data)
+                    console.log(data.data)
+                    const selectElement = document.getElementById('select');
+                    const tipusok = data.data.tipusok;
+                    selectElement.innerHTML = '<option value="null">Szűrés kikapcsolva</option>';
+
+                    tipusok.forEach(tipus => {
+                        const option = document.createElement('option');
+                        option.value = tipus;
+                        option.text = tipus;
+                        if (tipus == type) {
+                            option.selected = true;
+                        }
+                        selectElement.appendChild(option);
+                    });
+
                     // Adatok feldolgozása és táblázat generálása
                     const tableBody = document.getElementById('tableBody');
-                    data.forEach(row => {
+                    data.data.vizsgalatinaplo.forEach(row => {
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
                   <th scope="row">${row.naplo_id}</th>
@@ -185,6 +205,9 @@
                 `;
                         tableBody.appendChild(tr);
                     });
+
+
+
                 })
                 .catch(error => console.error('Error:', error));
         }

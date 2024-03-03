@@ -49,10 +49,9 @@ CREATE TABLE Feladatlap (
 CREATE TABLE VizsgalatiNaplo (
     naplo_id INT PRIMARY KEY AUTO_INCREMENT,
     felhasznalo_id INT,
-    admin_igen_nem TINYINT(4) NULL DEFAULT NULL,
     tipus TEXT,
     megjegyzes TEXT,
-    datum DATETIME,
+    datum TIMESTAMP DEFAULT NOW(),
     FOREIGN KEY (felhasznalo_id) REFERENCES Felhasznalo(felhasznalo_id)
 );
 

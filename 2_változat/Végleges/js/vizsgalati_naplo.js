@@ -16,18 +16,23 @@ document.addEventListener('DOMContentLoaded', () => {
 `;
 
     let isMirrored = false;
+    localStorage.setItem("isMirrored", isMirrored);
 
     datumHeader.addEventListener('click', () => {
         if (!isMirrored) {
             // Tükrözött ikon megjelenítése
             caretIconContainer.innerHTML = '';
             caretIconContainer.appendChild(mirroredIcon);
+            auditLog(document.getElementById("select").value, "DESC")
         } else {
             // Eredeti ikon visszaállítása
             caretIconContainer.innerHTML = '';
             caretIconContainer.appendChild(caretIcon);
+            auditLog(document.getElementById("select").value, "ASC")
         }
 
         isMirrored = !isMirrored;
+        localStorage.setItem("isMirrored", isMirrored);
+        
     });
 });
