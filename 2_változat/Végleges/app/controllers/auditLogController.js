@@ -33,15 +33,15 @@ const getVizsgalatinaplo = async (req, res) => {
   const addAuditLog = async (req, res) => {
     try {
       if (req.user.admin === 1) {
-        const { felhasznalo_id, admin_igen_nem, tipus, megjegyzes } = req.body;
+        const { felhasznalo_id, tipus, megjegyzes } = req.body;
   
         // Ellenőrizzük, hogy minden szükséges adat meg van-e adva
-        if (!felhasznalo_id || !admin_igen_nem || !tipus || !megjegyzes) {
+        if (!felhasznalo_id || !tipus || !megjegyzes) {
           return res.status(400).json({ success: false, message: 'Hiányzó adatok.' });
         }
   
         // Az új bejegyzés hozzáadása az audit log-hoz
-        await AuditLogModel.addAuditLogEntry(felhasznalo_id, admin_igen_nem, tipus, megjegyzes);
+        await AuditLogModel.addAuditLog(felhasznalo_id, tipus, megjegyzes);
   
         res.json({ success: true, message: 'Audit log bejegyzés sikeresen hozzáadva.' });
       } else {
