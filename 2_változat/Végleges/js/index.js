@@ -4,8 +4,6 @@ function osztaly(szam) {
   location.href = "./html/quiz_selector.html";
 }
 
-
-
 // Regisztráció
 function register() {
   var fullName = document.getElementById('fullName').value;
@@ -76,11 +74,14 @@ function bejelentkez() {
     .then(data => {
       console.log('Sikeres bejelentkezés:', data);
       localStorage.setItem('token', data.token);
+      const expirationTime = new Date(new Date().getTime() + data.expiresIn * 1000); // Az expiresIn másodpercben van, ezért szorozzuk meg 1000-rel
+      localStorage.setItem('expirationTime', expirationTime.toISOString());
       if (data.admin == true) {
         localStorage.setItem('admin', data.admin);
       }
       // location.href = "index.html";
       navBar();
+      autoLogout()
       $(bezar).modal('hide');
     })
     .catch(error => {
@@ -88,13 +89,39 @@ function bejelentkez() {
     });
 }
 
+function autoLogout() {
+  if (new Date().getTime() < new Date(localStorage.getItem('expirationTime')).getTime()) {
+    console.log((new Date(localStorage.getItem('expirationTime')).getTime()) - (new Date().getTime()))
+    setTimeout(() => {
+      logout()
+    }, (new Date(localStorage.getItem('expirationTime')).getTime()) - (new Date().getTime()))
+  
+  } else {
+    if (localStorage.getItem("token")) {
+      logout()
+    }
+  }
+}
+
+autoLogout()
 
 
 // Kijelentkezés
 function logout() {
-  localStorage.removeItem('token');
-  localStorage.removeItem('admin');
-  location.href = "index.html";
+  if (localStorage.getItem("token")) {
+    Swal.fire({
+      title: "Sikeres kijelentkezés!",
+      text: "Ön sikeresen kijelentkezett az oldalról.",
+      icon: "success",
+      confirmButtonColor: "#3498db"
+    });
+    localStorage.removeItem('token');
+    localStorage.removeItem('admin');
+  }
+  navBar();
+  if (window.location.href.includes("/html/")) {
+    location.href = "../index.html"
+  }
 }
 
 
