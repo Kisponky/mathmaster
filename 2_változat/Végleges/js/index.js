@@ -13,6 +13,7 @@ function register() {
   var email = document.getElementById('email').value;
   var password = document.getElementById('password').value;
   var password2 = document.getElementById('password2').value;
+  var bezar = document.getElementById('regisztracio');
 
 
   if (password != password2) {
@@ -43,9 +44,16 @@ function register() {
           let err = document.getElementById("error");
           err.innerHTML = data.error;
         } else {
-          location.href = "index.html"
+          Swal.fire({
+            title: "Sikeres regisztráció!",
+            icon: "success",
+            confirmButtonColor: "#3498db",
+            timer: 2000
+          });
+          setTimeout(() => {
+            $(bezar).modal('hide');
+          }, 2000);
         }
-
       })
       .catch((error) => {
         console.log(error);
@@ -60,7 +68,7 @@ function bejelentkez() {
   var emailL = document.getElementById('emailL').value;
   var jelszoL = document.getElementById('passwordL').value;
   var apiEndpoint = 'http://localhost:8000/users/login';
-  var bezar = document.getElementById('bejelentkezes');
+  var bezarL = document.getElementById('bejelentkezes');
 
   var requestOptions = {
     method: 'POST',
@@ -81,7 +89,7 @@ function bejelentkez() {
       }
       // location.href = "index.html";
       navBar();
-      $(bezar).modal('hide');
+      $(bezarL).modal('hide');
     })
     .catch(error => {
       console.error('Hiba történt:', error);
@@ -94,7 +102,7 @@ function bejelentkez() {
 function logout() {
   localStorage.removeItem('token');
   localStorage.removeItem('admin');
-  location.href = "index.html";
+  navBar();
 }
 
 
@@ -103,6 +111,7 @@ function logout() {
 function uzenet() {
   var text = document.getElementById("text").value;
   var token = localStorage.getItem("token");
+  var bezarT = document.getElementById('uzenet');
 
 
   if (text.length > 0) {
@@ -126,10 +135,11 @@ function uzenet() {
             title: "Az üzenet sikeresen elküldve!",
             text: "Hamarosan válaszolunk önnek!",
             icon: "success",
-            confirmButtonColor: "#3498db"
+            confirmButtonColor: "#3498db",
+            timer: 3000
           });
           setTimeout(() => {
-            location.href = "index.html";
+            $(bezarT).modal('hide');
           }, 3000);
         })
         .catch(error => {
