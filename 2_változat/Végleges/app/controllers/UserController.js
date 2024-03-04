@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const UserModel = require('../models/UserModel');
 const AuditLogModel = require('../models/auditLogModel');
+const sendEmail = require('../helpers/emailSender');
 const { ClientBase } = require('pg');
 require('dotenv').config();
 
@@ -9,6 +10,7 @@ const register = (req, res) => {
 
     UserModel.createUser(req.body.fullName, req.body.userName, req.body.email, req.body.password)
         .then(result => {
+            sendEmail(req.body.fullName, req.body.email)
             res.status(200).send({ status: 200, success: "Sikeres adatrögzítés" });
         })
         .catch(err => {
@@ -30,7 +32,7 @@ const login = (req, res) => {
             if (results.length > 0) {
                 const user = results[0];
                 const expiresIn = 4 * 60 * 60; // 4 óra (mp-ben)
-                const token = jwt.sign({ userId: user.felhasznalo_id, email: user.email, admin: user.admin }, process.env.TOKEN_KEY, { expiresIn });
+                const token = jwt.sign({ userId: user.felhasznalo_id, fullName: user.teljes_nev, email: user.email, admin: user.admin }, process.env.TOKEN_KEY, { expiresIn });
                 return res.json({ success: true, message: 'Sikeres bejelentkezés', token: token, admin: user.admin });
             } else {
                 // Sikertelen bejelentkezés

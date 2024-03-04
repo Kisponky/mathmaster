@@ -1,5 +1,7 @@
 const MessageModel = require('../models/MessageModel');
 const AuditLogModel = require('../models/auditLogModel');
+const GetUserDataByConnectionId = require('../models/getUserDataByConnectionId')
+const newMessage = require('../helpers/newMessage')
 const jwt = require('jsonwebtoken');
 
 const getMessages = (req, res) => {
@@ -64,6 +66,14 @@ const saveMessage = (req, res) => {
         .then(() => {
           console.log('Sikeres frissítés');
           AuditLogModel.addAuditLog(req.user.userId, "Válasz üzenet", `Válasz: ${req.body.uzenet}`);
+          GetUserDataByConnectionId.getUserData(kapcsolatId)
+          .then((results) => {
+              console.log('Users:', results[0]);
+              newMessage(results[0].teljes_nev, results[0].email)
+          })
+          .catch((err) => {
+              console.error('Error getting users:', err);
+          });
           res.json({ success: true });
         })
         .catch((error) => {

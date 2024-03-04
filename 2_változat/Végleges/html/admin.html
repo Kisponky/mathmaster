@@ -245,7 +245,7 @@
                                 if (!response.ok) {
                                     throw new Error('A szerver hibát adott vissza');
                                 }
-                                document.getElementById('message-buborek' + id.toString()).remove();
+                                document.getElementById('message-buborek'+id).remove();
                                 const result = response.json();
                                 console.log(result);
 
