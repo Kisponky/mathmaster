@@ -8,6 +8,7 @@ function navBar() {
     var admin = document.getElementById('admin');
 
     navbarMenu.innerHTML = '';
+    uzeneteim.innerHTML = '';
 
     // Felhasználó bejelentkezésének ellenőrzése
     if (localStorage.getItem("token")) {
