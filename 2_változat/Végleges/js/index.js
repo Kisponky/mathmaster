@@ -60,6 +60,7 @@ function bejelentkez() {
   var emailL = document.getElementById('emailL').value;
   var jelszoL = document.getElementById('passwordL').value;
   var apiEndpoint = 'http://localhost:8000/users/login';
+  var bezar = document.getElementById('bejelentkezes');
 
   var requestOptions = {
     method: 'POST',
@@ -78,7 +79,9 @@ function bejelentkez() {
       if (data.admin == true) {
         localStorage.setItem('admin', data.admin);
       }
-      location.href = "index.html";
+      // location.href = "index.html";
+      navBar();
+      $(bezar).modal('hide');
     })
     .catch(error => {
       console.error('Hiba történt:', error);
