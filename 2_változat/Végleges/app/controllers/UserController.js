@@ -31,9 +31,9 @@ const login = (req, res) => {
         .then(results => {
             if (results.length > 0) {
                 const user = results[0];
-                const expiresIn = 4 * 60 * 60; // 4 óra (mp-ben)
+                const expiresIn = 10; // 4 óra (mp-ben)
                 const token = jwt.sign({ userId: user.felhasznalo_id, fullName: user.teljes_nev, email: user.email, admin: user.admin }, process.env.TOKEN_KEY, { expiresIn });
-                return res.json({ success: true, message: 'Sikeres bejelentkezés', token: token, admin: user.admin });
+                return res.json({ success: true, message: 'Sikeres bejelentkezés', token: token, admin: user.admin, expiresIn: expiresIn });
             } else {
                 // Sikertelen bejelentkezés
                 return res.status(401).json({ error: 'Hibás e-mail vagy jelszó' });

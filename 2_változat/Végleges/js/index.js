@@ -4,8 +4,6 @@ function osztaly(szam) {
   location.href = "./html/quiz_selector.html";
 }
 
-
-
 // Regisztráció
 function register() {
   var fullName = document.getElementById('fullName').value;
@@ -84,25 +82,64 @@ function bejelentkez() {
     .then(data => {
       console.log('Sikeres bejelentkezés:', data);
       localStorage.setItem('token', data.token);
+      const expirationTime = new Date(new Date().getTime() + data.expiresIn * 1000); // Az expiresIn másodpercben van, ezért szorozzuk meg 1000-rel
+      localStorage.setItem('expirationTime', expirationTime.toISOString());
       if (data.admin == true) {
         localStorage.setItem('admin', data.admin);
       }
       // location.href = "index.html";
       navBar();
+<<<<<<< HEAD
+      autoLogout()
+      $(bezar).modal('hide');
+=======
       $(bezarL).modal('hide');
+>>>>>>> b51d36814f07b96455699e973a908890761df031
     })
     .catch(error => {
       console.error('Hiba történt:', error);
     });
 }
 
+function autoLogout() {
+  if (new Date().getTime() < new Date(localStorage.getItem('expirationTime')).getTime()) {
+    console.log((new Date(localStorage.getItem('expirationTime')).getTime()) - (new Date().getTime()))
+    setTimeout(() => {
+      logout()
+    }, (new Date(localStorage.getItem('expirationTime')).getTime()) - (new Date().getTime()))
+  
+  } else {
+    if (localStorage.getItem("token")) {
+      logout()
+    }
+  }
+}
+
+autoLogout()
 
 
 // Kijelentkezés
 function logout() {
+<<<<<<< HEAD
+  if (localStorage.getItem("token")) {
+    Swal.fire({
+      title: "Sikeres kijelentkezés!",
+      text: "Ön sikeresen kijelentkezett az oldalról.",
+      icon: "success",
+      confirmButtonColor: "#3498db"
+    });
+    localStorage.removeItem('token');
+    localStorage.removeItem('admin');
+  }
+  navBar();
+  if (window.location.href.includes("/html/")) {
+    location.href = "../index.html"
+  }
+=======
   localStorage.removeItem('token');
   localStorage.removeItem('admin');
   navBar();
+>>>>>>> b51d36814f07b96455699e973a908890761df031
 }
 
 
