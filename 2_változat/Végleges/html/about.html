@@ -4,79 +4,91 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MathMaster</title>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Saját CSS -->
     <link rel="stylesheet" href="../css/about.css">
+
+    <!-- Favicon -->
     <link rel="shortcut icon" href="../img/owl-47526.svg" type="image/x-icon">
-    <title>MathMaster</title>
 </head>
 
 <body>
-    <div class="container-fluid">
-        <header class="d-flex flex-wrap justify-content-center py-3">
-            <div class="custom-container">
-
-                <a href="#"
-                    class="d-flex align-items-center mb-3 mb-md-0 ms-2 me-md-auto link-body-emphasis text-decoration-none">
-                    <img class="pe-2 ceg-logo" src="../img/owl-47526.svg" alt="">
-                    <span class="ceg-nev">MathMaster</span>
-                </a>
-
-                <ul class="nav nav-pills custom-nav">
-                    <li class="nav-item"><a href="../index.html" class="nav-link" aria-current="page">
-                            <span style="vertical-align: inherit;">Kezdőlap</span>
-                        </a>
-                    </li>
-                    <li class="nav-item"><a href="#" class="nav-link">
-                            <span style="vertical-align: inherit;">Bejelentkezés</span>
-                        </a>
-                    </li>
-                    <li class="nav-item"><a href="#" class="nav-link active">
-                            <span style="vertical-align: inherit;">Rólunk</span>
-                        </a>
-                    </li>
-                    <li class="nav-item"><a href="#" class="nav-link">
-                            <span style="vertical-align: inherit;">Kapcsolat</span>
-                        </a>
-                    </li>
-                </ul>
-
-                <div class="dropdown text-end">
-                    <a href="#" class="d-block link-body-emphasis text-decoration-none me-2" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <img src="../img/PersonCircle_Profile.svg" alt="mdo" width="32" height="32"
-                            class="rounded-circle">
+    <header>
+        <div class="container">
+            <nav class="navbar navbar-expand-sm">
+                <div class="container-fluid">
+                    <!-- Logo és cég neve -->
+                    <a href="#" class="navbar-brand ceg-nev">
+                        <img src="../img/owl-47526.svg" alt="Logo" width="40" height="40"
+                            class="d-inline-block align-text-middle">
+                        MathMaster
                     </a>
-                    <ul class="dropdown-menu text-small">
-                        <li><a class="dropdown-item" href="#">
-                                <span style="vertical-align: inherit;">Új feladat...</span>
-                            </a>
-                        </li>
-                        <li><a class="dropdown-item" href="#">
-                                <span style="vertical-align: inherit;">Statisztika</span>
-                            </a>
-                        </li>
-                        <li><a class="dropdown-item" href="#">
-                                <span style="vertical-align: inherit;">Beállítások</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">
-                                <span style="vertical-align: inherit;">Kijelentkezés</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
 
-            </div>
-        </header>
-    </div>
+                    <!-- Hamburgernavigáció -->
+                    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="toggler-icon top-bar"></span>
+                        <span class="toggler-icon middle-bar"></span>
+                        <span class="toggler-icon bottom-bar"></span>
+                    </button>
+
+                    <!-- Navigációs menü -->
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                        <ul class="navbar-nav nav-pills" id="navbarMenu"></ul>
+                    </div>
+
+                    <!-- Profil menü -->
+                    <div id="profilom" class="nav-item dropdown me-1">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <img src="../img/PersonCircle_Profile.svg" alt="Profil" width="28" height="28">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">Új feladat...</a></li>
+                            <li><a class="dropdown-item" href="./statistics.html">Statisztika</a></li>
+                            <li id="uzeneteim"></li>
+                            <li><a class="dropdown-item" href="./profile.html">Beállítások</a></li>
+                            <li id="admin"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#" onclick="logout()">Kijelentkezés</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+
+    <!-- Regisztrációs modal -->
+    <div id="registerContainer"></div>
+
+    <!-- Bejelentkezés modal -->
+    <div id="loginContainer"></div>
+
+    <!-- Üzenet küldés modal -->
+    <div id="uzenetContainer"></div>
 
 
 
@@ -90,35 +102,21 @@
                 <div class="col-1"></div>
             </div>
         </div>
-
-
-
+    
         <div class="container container2">
             <div class="row pt-4">
                 <div class="col-1"></div>
                 <div class="col-10">
-                    <p>Üdvözöljük a MathMaster online platformján! A szenvedélyünk az oktatás, ami életre hozta ezt a
-                        rendkívül hasznos tanulási oldalt.</p>
-                    <p>A célunk az volt, hogy egy könnyen hozzáférhető, interaktív matematikai gyakorlási platformot
-                        hozzunk létre az általános iskolás diákok számára. Hiszünk abban, hogy a matematika alapvető
-                        készségeket nyújt a gyerekeknek, amelyek az egész életük során hasznosak lesznek. Azonban
-                        tudjuk, hogy a matematikai tanulás lehet néha kihívást jelentő, és itt jövünk mi a segítségükre.
-                    </p>
-                    <p>Az általunk fejlesztett platform számos izgalmas funkciót kínál, amelyek segítik a diákokat a
-                        matematikai készségeik javításában. Lehetőség van a különböző matematikai kategóriákban való
-                        gyakorlásra, és a feladatok megoldásával azonnali visszajelzést kaphatnak arról, hogy helyesen
-                        vagy helytelenül válaszoltak-e. Emellett a diákok profiljukban nyomon követhetik eredményeiket,
-                        és statisztikákat is megtekinthetnek gyakorlásaikról.</p>
-                    <p>Elkötelezettek vagyunk az oktatás és a diákok fejlődése iránt, és büszkék vagyunk arra, hogy
-                        lehetőséget teremtettünk egy olyan eszköz létrehozásával, amely segíti a diákokat matematikai
-                        készségeik fejlesztésében. Reméljük, hogy élvezettel fogják használni platformunkat, és
-                        sikeresen fejlesztik matematikai tudásukat!</p>
+                    <p>Üdvözöljük a MathMaster online platformján! A szenvedélyünk az oktatás, ami életre hozta ezt a rendkívül hasznos tanulási oldalt.</p>
+                    <p>A célunk az volt, hogy egy könnyen hozzáférhető, interaktív matematikai gyakorlási platformot hozzunk létre az általános iskolás diákok számára. Hiszünk abban, hogy a matematika alapvető készségeket nyújt a gyerekeknek, amelyek az egész életük során hasznosak lesznek. Azonban tudjuk, hogy a matematikai tanulás lehet néha kihívást jelentő, és itt jövünk mi a segítségükre.</p>
+                    <p>Az általunk fejlesztett platform számos izgalmas funkciót kínál, amelyek segítik a diákokat a matematikai készségeik javításában. Lehetőség van a különböző matematikai kategóriákban való gyakorlásra, és a feladatok megoldásával azonnali visszajelzést kaphatnak arról, hogy helyesen vagy helytelenül válaszoltak-e. Emellett a diákok profiljukban nyomon követhetik eredményeiket, és statisztikákat is megtekinthetnek gyakorlásaikról.</p>
+                    <p>Elkötelezettek vagyunk az oktatás és a diákok fejlődése iránt, és büszkék vagyunk arra, hogy lehetőséget teremtettünk egy olyan eszköz létrehozásával, amely segíti a diákokat matematikai készségeik fejlesztésében. Reméljük, hogy élvezettel fogják használni platformunkat, és sikeresen fejlesztik matematikai tudásukat!</p>
                 </div>
                 <div class="col-1"></div>
             </div>
         </div>
     </main>
-
+    
 
 
     <footer class="container-fluid container4">
@@ -190,10 +188,17 @@
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    <script src="js/index.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+    <!-- Menü rendszer js -->
+    <script src="../js/aboutNavbar.js"></script>
+
+    <!-- Oldalhoz tartozó js -->
+    <script src="../js/modalsController.js"></script>
+
+    <!-- Sweetalert-ekhez tartozó js -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
