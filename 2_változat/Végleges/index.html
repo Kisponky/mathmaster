@@ -4,16 +4,29 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MathMaster</title>
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Saját CSS -->
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/modal.css">
+
+    <!-- Favicon -->
     <link rel="shortcut icon" href="img/owl-47526.svg" type="image/x-icon">
-    <title>MathMaster</title>
 </head>
 
 <body>
@@ -21,12 +34,14 @@
         <div class="container">
             <nav class="navbar navbar-expand-sm">
                 <div class="container-fluid">
+                    <!-- Logo és cég neve -->
                     <a href="#" class="navbar-brand ceg-nev">
                         <img src="./img/owl-47526.svg" alt="Logo" width="40" height="40"
                             class="d-inline-block align-text-middle">
                         MathMaster
                     </a>
 
+                    <!-- Hamburgernavigáció -->
                     <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -34,28 +49,31 @@
                         <span class="toggler-icon middle-bar"></span>
                         <span class="toggler-icon bottom-bar"></span>
                     </button>
+
+                    <!-- Navigációs menü -->
                     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-                        <ul class="navbar-nav nav-pills" id="navbarMenu">
-                            
-                        </ul>
+                        <ul class="navbar-nav nav-pills" id="navbarMenu"></ul>
                     </div>
+
+                    <!-- Profil menü -->
                     <div id="profilom" class="nav-item dropdown me-1">
-                        <a class=" nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             <img src="./img/PersonCircle_Profile.svg" alt="Profil" width="28" height="28">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="#">Új feladat...</a></li>
                             <li><a class="dropdown-item" href="./html/statistics.html">Statisztika</a></li>
-                            <span id="uzeneteim"></span>
-                            <li><a class="dropdown-item" href="#">Beállítások</a></li>
-                            <span id="admin"></span>
+                            <li id="uzeneteim"></li>
+                            <li><a class="dropdown-item" href="./html/profile.html">Beállítások</a></li>
+                            <li id="admin"></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <li><a class="dropdown-item" href="#" onclick="logout()">Kijelentkezés</a></li>
                         </ul>
                     </div>
+
                 </div>
             </nav>
         </div>
@@ -77,16 +95,21 @@
     <main>
         <div class="container-fluid container1">
             <div class="container">
+
+                <!-- Logo -->
                 <div class="row">
                     <div class="col text-center">
                         <img class="img-fluid logo" src="img/owl-47526.svg" alt="">
                     </div>
                 </div>
+
+                <!-- Cím -->
                 <div class="row">
                     <div class="col text-center">
                         <h1>MathMaster</h1>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -94,7 +117,8 @@
 
         <div class="container pt-2">
             <div class="container container2 pt-4">
-
+        
+                <!-- Kép -->
                 <div class="row pt-1">
                     <div class="col-sm-1 col-lg-2"></div>
                     <div class="col-sm-10 col-lg-8 text-center">
@@ -102,7 +126,8 @@
                     </div>
                     <div class="col-sm-1 col-lg-2"></div>
                 </div>
-
+        
+                <!-- Osztályok gombjai -->
                 <div class="row">
                     <div class="col-md-1 col-lg-2 col-xl-3 d-none d-sm-none d-md-block"></div>
                     <div class="col-xs-12 col-md-4 col-lg-3 col-xl-2 text-center py-3">
@@ -114,7 +139,8 @@
                     </div>
                     <div class="col-md-1 col-lg-2 col-xl-3 d-none d-sm-none d-md-block"></div>
                 </div>
-
+        
+                <!-- Osztályok gombjai -->
                 <div class="row">
                     <div class="col-md-1 col-lg-2 col-xl-3 d-none d-sm-none d-md-block"></div>
                     <div class="col-xs-12 col-md-4 col-lg-3 col-xl-2 text-center py-3">
@@ -126,68 +152,58 @@
                     </div>
                     <div class="col-md-1 col-lg-2 col-xl-3 d-none d-sm-none d-md-block"></div>
                 </div>
-
+        
             </div>
         </div>
-
-        <script>
-            function osztaly(szam) {
-                localStorage.setItem('class', szam);
-                location.href = "./html/quiz_selector.html";
-            }
-        </script>
-
+        
 
 
         <div class="container container3">
 
+            <!-- Rólunk rész -->
             <div class="row">
                 <div class="container">
-
                     <div class="row">
                         <h4 class="col-12">Rólunk:</h4>
-                        <p class="col-12">Üdvözöljük a MathMaster online platformján! Válassz minket, mert szenvedélyünk
-                            az oktatás, és ezt a rendkívül hasznos tanulási oldalt életre hoztuk azért, hogy segítsünk
-                            neked a matematika világában.</p>
-                        <p class="col-12">Tudjuk, hogy a matematika néha kihívást jelent, de mi itt vagyunk, hogy
-                            segítsünk neked.</p>
+                        <p class="col-12">Üdvözöljük a MathMaster online platformján! Válassz minket, mert szenvedélyünk az oktatás, és ezt a rendkívül hasznos tanulási oldalt életre hoztuk azért, hogy segítsünk neked a matematika világában.</p>
+                        <p class="col-12">Tudjuk, hogy a matematika néha kihívást jelent, de mi itt vagyunk, hogy segítsünk neked.</p>
                         <div class="col">
-                            <button class="btn btn-danger btn-about-contact" type="button">Tudj meg többet</button>
+                            <a href="./html/about.html" class="btn btn-danger btn-about-contact">Tudj meg többet</a>
                         </div>
                     </div>
-
-                    <div class="row pt-3">
-                        <h4 class="col-12">Kapcsolatok:</h4>
-                        <p class="col-12">Üdvözöljük a MathMaster gyakorló platformunkon! Itt vagyunk, hogy segítsünk,
-                            és várjuk észrevételeit, kérdéseit vagy javaslatait a szolgáltatásunkkal kapcsolatban.</p>
-                        <p class="col-12">Bármikor szívesen fogadjuk visszajelzéseit és észrevételeit.</p>
-                        <div class="col">
-                            <button class="btn btn-danger btn-about-contact" type="button">Kapcsolat felvétel</button>
-                        </div>
-                    </div>
-
                 </div>
             </div>
 
-        </div>
+            <!-- Kapcsolatok rész -->
+            <div class="row pt-3">
+                <div class="container">
+                    <div class="row">
+                        <h4 class="col-12">Kapcsolatok:</h4>
+                        <p class="col-12">Üdvözöljük a MathMaster gyakorló platformunkon! Itt vagyunk, hogy segítsünk, és várjuk észrevételeit, kérdéseit vagy javaslatait a szolgáltatásunkkal kapcsolatban.</p>
+                        <p class="col-12">Bármikor szívesen fogadjuk visszajelzéseit és észrevételeit.</p>
+                        <div class="col">
+                            <a href="./html/contact.html" class="btn btn-danger btn-about-contact">Kapcsolat felvétel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>        
     </main>
 
 
 
     <footer class="container-fluid container4">
         <div class="container">
-
+    
             <div class="row">
+                <!-- Bal oldal -->
                 <div class="col-xs-12 col-lg-6">
-                    <div class="row d-none d-sm-none d-md-none d-lg-block footer-bg">
-                        <div class="col-12"></div>
-                    </div>
-                    <div class="row footer-bg">
-                        <div class="col-12"></div>
-                    </div>
-                    <div class="row footer-bg">
-                        <div class="col-12"></div>
-                    </div>
+                    <div class="row d-none d-sm-none d-md-none d-lg-block footer-bg"></div>
+                    <div class="row footer-bg"></div>
+                    <div class="row footer-bg"></div>
+
+                    <!-- Cég logo és név -->
                     <div class="row footer-bg">
                         <div class="col-xs-0 col-md-3 col-lg-2"></div>
                         <div class="col-xs-12 col-md-6 d-flex align-items-center ceg">
@@ -196,38 +212,37 @@
                         </div>
                         <div class="col-xs-0 col-md-3 col-lg-4"></div>
                     </div>
+
+                    <!-- Copyright -->
                     <div class="row footer-bg">
                         <div class="col-xs-0 col-md-3 col-lg-2"></div>
                         <div class="col-xs-12 col-md-6 col-lg-7 text-center d-flex align-items-end pb-sm-5 pb-lg-4">
-                            <span class="align-bottom copyright">&copy; 2023 Minden jog fenntartva</span>
+                            <span class="align-bottom copyright">&copy; 2024 Minden jog fenntartva</span>
                         </div>
                         <div class="col-xs-0 col-md-3 col-lg-3"></div>
                     </div>
-                    <div class="row footer-bg">
-                        <div class="col-12"></div>
-                    </div>
+
+                    <div class="row footer-bg"></div>
                 </div>
+    
 
 
-
+                <!-- Jobb oldal -->
                 <div class="col-xs-12 col-lg-6 d-none d-sm-none d-md-none d-lg-block">
-                    <div class="row footer-bg">
-                        <div class="col-12"></div>
-                    </div>
-                    <div class="row footer-bg">
-                        <div class="col-12"></div>
-                    </div>
-                    <div class="row footer-bg">
-                        <div class="col-12"></div>
-                    </div>
+                    <div class="row footer-bg"></div>
+                    <div class="row footer-bg"></div>
+                    <div class="row footer-bg"></div>
+
+                    <!-- Idézet -->
                     <div class="row footer-bg">
                         <div class="col-lg-1 col-xl-2"></div>
                         <div class="col-lg-9 col-xl-6 d-flex align-items-center">
-                            <span class="align-middle idezet">“A megszerzett tudás csak akkor válik valódi tudássá,
-                                ha képes vagy rá, hogy közöld másokkal.”</span>
+                            <span class="align-middle idezet">“A megszerzett tudás csak akkor válik valódi tudássá, ha képes vagy rá, hogy közöld másokkal.”</span>
                         </div>
                         <div class="col-lg-3 col-xl-4"></div>
                     </div>
+
+                    <!-- Szerző -->
                     <div class="row footer-bg">
                         <div class="col-lg-1 col-xl-2"></div>
                         <div class="col-lg-5 col-xl-4 d-flex align-items-center">
@@ -237,167 +252,22 @@
                     </div>
                 </div>
             </div>
-
+    
         </div>
     </footer>
-
-
-    <script>
-        // register
-
-        function register() {
-
-            var fullName = document.getElementById('fullName').value;
-            var userName = document.getElementById('userName').value;
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
-            var password2 = document.getElementById('password2').value;
-
-
-            if (password != password2) {
-                alert("A jelszavak nem egyeznek!");
-            } else {
-                fetch("http://localhost:8000/users/register", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        fullName: fullName,
-                        userName: userName,
-                        email: email,
-                        password: password
-                    }),
-                })
-                    .then((response) => {
-                        return response.json();
-                    })
-                    .then((data) => {
-                        if (data.status == 404) {
-                            let err = document.getElementById("error");
-                            err.innerHTML = data.error;
-                        } else {
-                            location.href = "index.html"
-                        }
-
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-            }
-        }
-
-        // login
-
-        function bejelentkez() {
-            // Az input mezőkből kinyerjük az e-mail címet és a jelszót
-            var emailL = document.getElementById('emailL').value;
-            var jelszoL = document.getElementById('passwordL').value;
-
-            // Az API végpont, ahova küldjük az adatokat
-            var apiEndpoint = 'http://localhost:8000/users/login';
-
-            // Fetch kérés konfigurációja
-            var requestOptions = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email: emailL, jelszo: jelszoL }),
-            };
-
-            // Fetch kérés küldése az API végpontra
-            fetch(apiEndpoint, requestOptions)
-                .then(response => response.json())
-                .then(data => {
-                    // A válasz feldolgozása, például sikeres bejelentkezés esetén
-                    console.log('Sikeres bejelentkezés:', data);
-                    localStorage.setItem('token', data.token);
-                    if (data.admin == true) {
-                        localStorage.setItem('admin', data.admin);
-                    }
-                    location.href = "index.html";
-                })
-                .catch(error => {
-                    // Hiba esetén
-                    console.error('Hiba történt:', error);
-                });
-        }
-
-        // logout
-
-
-        function logout() {
-            localStorage.removeItem('token');
-            localStorage.removeItem('admin');
-            // alert('Sikeres kijelentkezés.');
-            location.href = "index.html";
-        }
-
-
-        // üzenet küldés
-
-        function uzenet() {
-            var text = document.getElementById("text").value;
-            var token = localStorage.getItem("token");
-
-            if (text.length > 0) {
-                // Ellenőrzés, hogy a token létezik-e
-                if (token) {
-                    var data = {
-                        text: text,
-                        token: token
-                    };
-
-                    fetch("http://localhost:8000/api/admin/text", {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ text: text, token: token }),
-                    })
-                        .then(response => response.json())
-                        .then(result => {
-                            console.log(result);
-                            alert("Az üzenet sikeresen elküldve!");
-                            location.href = "index.html";
-                        })
-                        .catch(error => {
-                            console.error('Hiba történt a fetch kérés során:', error);
-                            alert("Hiba történt az üzenet küldése közben!");
-                        });
-                } else {
-                    alert("Hiányzó token!");
-                }
-            } else {
-                alert("Az üzenet nincs megadva!");
-            }
-        }
-
-
-    </script>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    <script src="./js/navbar.js"></script>
     
 
-    <script>
-        $(function () {
-            $('#registerContainer').load('./html/modal/register.html');
-        });
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-        $(function () {
-            $('#loginContainer').load('./html/modal/login.html');
-        });
+    <!-- Menü rendszer js -->
+    <script src="./js/navbar.js"></script>
 
-        $(function () {
-            $('#uzenetContainer').load('./html/modal/uzenet.html');
-        });
-    </script>
-    <a href=""></a>
+    <!-- Oldalhoz tartozó js -->
+    <script src="./js/index.js"></script>
+
+    <!-- Sweetalert-ekhez tartozó js -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
