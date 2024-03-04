@@ -259,13 +259,6 @@ h1 {
     background-size: cover;
 }
 
-/* Mobil nézet */
-@media (max-width: 1389px) {
-    .container2 {
-        background: none;
-    }
-}
-
 
 
 /* Alcímek */
@@ -301,6 +294,11 @@ p {
 
 /* Mobil nézet */
 @media (max-width: 1389px) {
+    .container2 {
+        background: none;
+    }
+
+
     .container3 {
         background: none;
     }
@@ -308,12 +306,12 @@ p {
 
 
 
-/* Cég lábléc logó stílusok */
+/* Lábléc cég logó */
 .ceg-logo-footer {
     height: 63px;
 }
 
-/* Cég lábléc név stílusok */
+/* Lábléc cég név */
 .ceg-nev-footer {
     font-family: 'Abril Fatface', serif;
     font-size: 40px;
@@ -321,14 +319,14 @@ p {
     color: #800000;
 }
 
-/* Szerzői jogok szöveg stílusok */
+/* Copyrigth */
 .copyright {
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
     color: #fff;
 }
 
-/* Idézet stílusok */
+/* Idézet */
 .idezet {
     font-family: 'Poppins', sans-serif;
     font-size: 24px;
@@ -342,12 +340,12 @@ p {
     background-size: cover;
 }
 
-/* Lábléc háttérszín stílusok */
+/* Lábléc */
 .footer-bg {
-    height: 100px; /* Méret */
+    height: 100px;
 }
 
-/* Media query */
+/* Mobil nézet */
 @media (max-width: 800px) {
     .ceg-logo-footer,
     .ceg-nev-footer,
