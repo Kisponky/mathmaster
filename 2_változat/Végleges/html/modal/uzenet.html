@@ -1,29 +1,37 @@
-<div class="modal fade" id="uzenet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header p-5 pb-4 border-bottom-0">
-                <h1 class="fw-bold mb-0 fs-2">
-                    <span>Üzenet küldés</span>
-                </h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
-            </div>
-
-            <div class="modal-body p-5 pt-0">
-                <form>
-                    <div class="form-floating mb-3">
-                        <textarea oninput="this.style.height = ''; this.style.height = (this.scrollHeight + 2) + 'px';"
-                            name="message" class="form-control rounded-3 custom-textarea" id="text" cols="30"
-                            rows="1"></textarea>
-                        <label for="uzenet">
-                            <span>Üzenet szövege</span>
-                        </label>
-                    </div>
-                    <button onclick="uzenet()" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0"
-                        type="button">
-                        <span>Küldés</span>
-                    </button>
-                </form>
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="modal fade" id="uzenet" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    <h1 class="fw-bold mb-0 fs-2">Üzenet küldés</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
+                </div>
+    
+                <div class="modal-body p-5 pt-0">
+                    <form>
+                        <div class="form-floating mb-3">
+                            <textarea oninput="this.style.height = ''; this.style.height = (this.scrollHeight + 2) + 'px';"
+                                name="message" class="form-control rounded-3 custom-textarea" id="text" cols="30"
+                                rows="1"></textarea>
+                            <label for="text">
+                                <span>Üzenet szövege</span>
+                            </label>
+                        </div>
+                        <button onclick="uzenet()" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0"
+                            type="button">
+                            <span>Küldés</span>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</body>
+</html>

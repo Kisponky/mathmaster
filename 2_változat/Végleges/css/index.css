@@ -1,27 +1,73 @@
-.dropdown-toggle::after {
-    display: none !important;
-}
-
+/* Tartalom szélessége */
 .container {
     max-width: 1440px;
 }
 
-.nav-pills .nav-link.active,
-.nav-pills .show>.nav-link {
+/* Modal tartalma */
+.modal-content {
+    background-image: linear-gradient(#22446B, #162C45);
+    border-radius: 25px;
+}
+
+
+/* Modal fejléce */
+.modal-header {
+    padding-top: 43px;
+    color: white;
+}
+
+/* Modal-t bezáró gomb */
+.btn-close {
     color: #fff;
-    background-color: #800000;
+    background: url('../img/btn-close.svg') no-repeat center center;
+    box-sizing: content-box;
+    width: 0.5em;
+    height: 0.5em;
+    padding: 0.25em;
 }
 
-.nav-link:hover{
-    color: white;
+
+/* Textarea */
+.custom-textarea {
+    resize: none;
+    overflow: hidden;
 }
 
-.nav-link:active{
-    color: white;
+
+/* Regisztrációs szöveg */
+small {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    line-height: 120%;
 }
 
+
+/* Gomb */
+.btn-danger {
+    background: #800000;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+}
+
+
+
+/* Háttér szín */
+header {
+    background: linear-gradient(to right, #162C45, #22446B);
+}
+
+
+/* Szövegformázás */
+.ceg-nev,
+.nav-link,
+.dropdown-item {
+    font-family: 'Abril Fatface', serif;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+/* Cím */
 .ceg-nev {
-    font-family: "Abril Fatface", serif;
     font-size: 24px;
     font-weight: bold;
     color: #800000;
@@ -31,18 +77,39 @@
     color: #800000;
 }
 
+/* Linkek */
 .nav-link {
-    font-family: 'Abril_Farface', serif;
-    font-size: 16px;
-    font-weight: normal;
+    color: white;
+}
+
+.nav-link:hover,
+.nav-link:active {
+    color: white;
+}
+
+/* Aktív link */
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
     color: #fff;
-}
-
-header {
-    background-image: linear-gradient(to right, #162C45, #22446B);
+    background-color: #800000;
 }
 
 
+/* Hambureger menü */
+.toggler-icon{
+    width: 30px;
+    height: 3px;
+    border-radius: 9px;
+    background: #e74c3c;
+    display: block;
+    transition: all 0.3s ease-in-out;
+}
+
+
+/* Menü rendszer */
+.dropdown-toggle::after {
+    display: none !important;
+}
 
 .navbar-toggler {
     border: 0;
@@ -54,15 +121,6 @@ header {
     outline: none;
     box-shadow: none;
     border: 0;
-}
-
-.toggler-icon{
-    width: 30px;
-    height: 3px;
-    border-radius: 9px;
-    background: #e74c3c;
-    display: block;
-    transition: all 0.4s ease-in-out;
 }
 
 .middle-bar{
@@ -101,6 +159,8 @@ header {
     background: #f4f4f4;
 }
 
+
+/* Mobil nézet */
 @media (max-width: 576px) {
     .navbar-brand {
         order: -2;
@@ -127,7 +187,7 @@ header {
 
 @media (max-width: 450px) {
     .dropdown {
-        margin: 0 0 0 60px;
+        margin: 0 0 0 30px;
     }
 }
 
@@ -155,23 +215,27 @@ header {
 
 
 
+/* Logó */
 .logo {
     max-width: 712.5px;
     padding-top: 32px;
 }
 
+/* Főcím */
 h1 {
-    font-family: 'Abril_Farface', serif;
+    font-family: 'Abril Fatface', serif;
     font-size: 60px;
     font-weight: bold;
     color: #fff;
     padding: 28px 0 16px 0;
 }
 
+/* Első szakasz */
 .container1 {
     background: url('../img/deszka_hatter.svg');
 }
 
+/* Mobil nézet */
 @media (max-width: 374px) {
     h1 {
         font-size: 50px;
@@ -180,6 +244,7 @@ h1 {
 
 
 
+/* Gombok */
 .btn-class {
     background: #800000;
     font-family: 'Poppins', sans-serif;
@@ -188,11 +253,13 @@ h1 {
     color: #fff;
 }
 
+/* Második szakasz */
 .container2 {
     background: url('../img/blob08.svg') no-repeat center center;
     background-size: cover;
 }
 
+/* Mobil nézet */
 @media (max-width: 1389px) {
     .container2 {
         background: none;
@@ -201,18 +268,15 @@ h1 {
 
 
 
+/* Alcímek */
 h4 {
-    font-family: 'Abril_Farface', serif;
+    font-family: 'Abril Fatface', serif;
     font-size: 24px;
     font-weight: bold;
     line-height: 130%;
 }
 
-@font-face {
-    font-family: 'Poppins';
-    src: url('../font/Poppins.zip');
-}
-
+/* Szöveg */
 p {
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
@@ -220,18 +284,22 @@ p {
     line-height: 160%;
 }
 
+/* Gombok */
 .btn-about-contact {
     background: #800000;
     font-family: 'Poppins', sans-serif;
     font-size: 24px;
     font-weight: bold;
     color: #fff;
+    text-decoration: none;
 }
 
+/* Harmadik szakasz */
 .container3 {
-    background: url('../img/blob13.svg') no-repeat 60% 100%;
+    background: url('../img/blob13.svg') no-repeat 65% 110%;
 }
 
+/* Mobil nézet */
 @media (max-width: 1389px) {
     .container3 {
         background: none;
@@ -240,23 +308,27 @@ p {
 
 
 
+/* Cég lábléc logó stílusok */
 .ceg-logo-footer {
     height: 63px;
 }
 
+/* Cég lábléc név stílusok */
 .ceg-nev-footer {
-    font-family: 'Abril_Farface', serif;
+    font-family: 'Abril Fatface', serif;
     font-size: 40px;
     font-weight: bold;
     color: #800000;
 }
 
+/* Szerzői jogok szöveg stílusok */
 .copyright {
     font-family: 'Poppins', sans-serif;
-    font-size: 20px;
+    font-size: 16px;
     color: #fff;
 }
 
+/* Idézet stílusok */
 .idezet {
     font-family: 'Poppins', sans-serif;
     font-size: 24px;
@@ -264,25 +336,27 @@ p {
     line-height: 130%;
 }
 
+/* Negyedik szakasz */
 .container4 {
     background: url('../img/footer3.svg') no-repeat center center;
     background-size: cover;
 }
 
+/* Lábléc háttérszín stílusok */
 .footer-bg {
-    /* background: rgba(255, 0, 0, .2);
-    border: black solid 1px; */
-    height: 100px;
+    height: 100px; /* Méret */
 }
 
+/* Media query */
 @media (max-width: 800px) {
-
     .ceg-logo-footer,
     .ceg-nev-footer,
     .copyright {
         text-align: center;
         margin: 0 auto;
     }
-}
 
-/* Hamburger menü nem működik még */
+    .ceg-nev-footer{
+        font-size: 35px;
+    }
+}
