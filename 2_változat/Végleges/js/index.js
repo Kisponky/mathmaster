@@ -89,12 +89,8 @@ function bejelentkez() {
       }
       // location.href = "index.html";
       navBar();
-<<<<<<< HEAD
       autoLogout()
       $(bezar).modal('hide');
-=======
-      $(bezarL).modal('hide');
->>>>>>> b51d36814f07b96455699e973a908890761df031
     })
     .catch(error => {
       console.error('Hiba történt:', error);
@@ -120,7 +116,6 @@ autoLogout()
 
 // Kijelentkezés
 function logout() {
-<<<<<<< HEAD
   if (localStorage.getItem("token")) {
     Swal.fire({
       title: "Sikeres kijelentkezés!",
@@ -135,11 +130,6 @@ function logout() {
   if (window.location.href.includes("/html/")) {
     location.href = "../index.html"
   }
-=======
-  localStorage.removeItem('token');
-  localStorage.removeItem('admin');
-  navBar();
->>>>>>> b51d36814f07b96455699e973a908890761df031
 }
 
 
