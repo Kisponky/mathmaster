@@ -1,44 +1,46 @@
 <!DOCTYPE html>
-<html lang="hu">
-
+<html lang="hu" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
 <body>
+    <!-- Bejelentkezés modal -->
     <div class="modal fade" id="bejelentkezes" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
+
+                <!-- Modal fejléc -->
                 <div class="modal-header p-5 pb-4 border-bottom-0">
                     <h1 class="fw-bold mb-0 fs-2">Bejelentkezés</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
                 </div>
 
+                <!-- Modal tartalom -->
                 <div class="modal-body p-5 pt-0">
                     <form>
+
+                        <!-- Email cím mező -->
                         <div class="form-floating mb-3">
                             <input type="email" class="form-control rounded-3" id="emailL" placeholder="nev@example.com">
-                            <label for="emailL">
-                                <span>Email cím</span>
-                            </label>
+                            <label for="emailL"><span>Email cím</span></label>
                         </div>
+
+                        <!-- Jelszó mező -->
                         <div class="form-floating mb-3">
                             <input type="password" class="form-control rounded-3" id="passwordL" placeholder="Jelszo">
-                            <label for="passwordL">
-                                <span>Jelszó</span>
-                            </label>
+                            <label for="passwordL"><span>Jelszó</span></label>
                         </div>
-                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0" type="button"
-                            onclick="bejelentkez()">
-                            <span>Bejelentkezés</span>
-                        </button>
+
+                        <!-- Bejelentkezés gomb -->
+                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0" type="button" onclick="bejelentkez()"><span>Bejelentkezés</span></button>
+                    
                     </form>
                 </div>
+
             </div>
         </div>
     </div>
 </body>
-
 </html>

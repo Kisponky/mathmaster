@@ -1,66 +1,67 @@
 <!DOCTYPE html>
-<html lang="hu">
-
+<html lang="hu" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
 <body>
+    <!-- Regisztráció modal -->
     <div class="modal fade" id="regisztracio" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
+
+                <!-- Modal fejléc -->
                 <div class="modal-header p-5 pb-4 border-bottom-0">
                     <h1 class="fw-bold mb-0 fs-2">Regisztráció</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
                 </div>
 
+                <!-- Modal tartalom -->
                 <div class="modal-body p-5 pt-0">
                     <form id="reg">
+
+                        <!-- Teljes név mező -->
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control rounded-3" id="fullName" placeholder="vezeteknev keresztnev">
-                            <label for="fullName">
-                                <span>Teljes név</span>
-                            </label>
+                            <label for="fullName"><span>Teljes név</span></label>
                         </div>
+
+                        <!-- Felhasználónév mező -->
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control rounded-3" id="userName" placeholder="felhasznalonev">
-                            <label for="userName">
-                                <span>Felhasználónév</span>
-                            </label>
+                            <label for="userName"><span>Felhasználónév</span></label>
                         </div>
+
+                        <!-- Email cím mező -->
                         <div class="form-floating mb-3">
                             <input type="email" class="form-control rounded-3" id="email" placeholder="nev@example.com">
-                            <label for="email">
-                                <span>Email cím</span>
-                            </label>
+                            <label for="email"><span>Email cím</span></label>
                         </div>
+
+                        <!-- Jelszó mező -->
                         <div class="form-floating mb-3">
                             <input type="password" class="form-control rounded-3" id="password" placeholder="Jelszo">
-                            <label for="password">
-                                <span>Jelszó</span>
-                            </label>
+                            <label for="password"><span>Jelszó</span></label>
                         </div>
+
+                        <!-- Jelszó újra mező -->
                         <div class="form-floating mb-3">
                             <input type="password" class="form-control rounded-3" id="password2" placeholder="Jelszo">
-                            <label for="password2">
-                                <span>Jelszó újra</span>
-                            </label>
+                            <label for="password2"><span>Jelszó újra</span></label>
                         </div>
-                        <button onclick="register()" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0"
-                            type="button">
-                            <span>Regisztráció</span>
-                        </button>
-                        <small class="text-white-50">
-                            <span>A Regisztráció gombra kattintva elfogadja a
-                                felhasználási feltételeket.</span>
-                        </small>
+
+                        <!-- Regisztráció gomb -->
+                        <button onclick="register()" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0" type="button"><span>Regisztráció</span></button>
+                        
+                        <!-- Felhasználási feltételek -->
+                        <small class="text-white-50"><span>A Regisztráció gombra kattintva elfogadja a felhasználási feltételeket.</span></small>
+                    
                     </form>
                 </div>
+
             </div>
         </div>
     </div>
 </body>
-
 </html>
