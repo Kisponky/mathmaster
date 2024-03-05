@@ -90,7 +90,7 @@ function bejelentkez() {
       // location.href = "index.html";
       navBar();
       autoLogout()
-      $(bezar).modal('hide');
+      $(bezarL).modal('hide');
     })
     .catch(error => {
       console.error('Hiba történt:', error);
@@ -121,14 +121,17 @@ function logout() {
       title: "Sikeres kijelentkezés!",
       text: "Ön sikeresen kijelentkezett az oldalról.",
       icon: "success",
-      confirmButtonColor: "#3498db"
+      confirmButtonColor: "#3498db",
+      timer: 1000
     });
     localStorage.removeItem('token');
     localStorage.removeItem('admin');
   }
   navBar();
   if (window.location.href.includes("/html/")) {
-    location.href = "../index.html"
+    setTimeout(() => {
+      location.href = "../index.html"
+    }, 1000);
   }
 }
 
@@ -199,14 +202,36 @@ function uzenet() {
 
 
 // Modálok betöltése
-$(function () {
-  $('#registerContainer').load('./html/modal/register.html');
-});
+if (window.location.href.includes("index.html")) {
+  $(function () {
+    $('#registerContainer').load('./html/modal/register.html');
+  });
+  
+  $(function () {
+    $('#loginContainer').load('./html/modal/login.html');
+  });
+  
+  $(function () {
+    $('#uzenetContainer').load('./html/modal/uzenet.html');
+  });
 
-$(function () {
-  $('#loginContainer').load('./html/modal/login.html');
-});
+  
+} else {
+  $(function () {
+    $('#registerContainer').load('../html/modal/register.html');
+  });
+  
+  $(function () {
+    $('#loginContainer').load('../html/modal/login.html');
+  });
+  
+  $(function () {
+    $('#uzenetContainer').load('../html/modal/uzenet.html');
+  });
+}
 
-$(function () {
-  $('#uzenetContainer').load('./html/modal/uzenet.html');
-});
+if (localStorage.getItem("admin")) {
+  $(function () {
+    $('#adminContainer').load('./modal/admin.html');
+  });
+}

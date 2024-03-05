@@ -1,16 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu" data-bs-theme="light">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MathMaster</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Saját CSS -->
     <link rel="stylesheet" href="../css/admin.css">
-    <link rel="stylesheet" href="../css/modal.css">
+
+    <!-- Favicon -->
     <link rel="shortcut icon" href="../img/owl-47526.svg" type="image/x-icon">
-    <title>MathMaster</title>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- Javascriptek importálása -->
     <script src="../js/checkAuth.js"></script>
     <script src="../js/getMyMessages.js"></script>
     <script>checkAuth()</script>
@@ -30,10 +48,84 @@
             </div>
         </div>
     </main>
+    
+    
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
+    <footer class="container-fluid container4">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-xs-12 col-lg-6">
+                    <div class="row d-none d-sm-none d-md-none d-lg-block footer-bg">
+                        <div class="col-12"></div>
+                    </div>
+                    <div class="row footer-bg">
+                        <div class="col-12"></div>
+                    </div>
+                    <div class="row footer-bg">
+                        <div class="col-12"></div>
+                    </div>
+                    <div class="row footer-bg">
+                        <div class="col-xs-0 col-md-3 col-lg-2"></div>
+                        <div class="col-xs-12 col-md-6 d-flex align-items-center ceg">
+                            <img class="ceg-logo-footer" src="../img/owl-47526.svg" alt="">
+                            <span class="ps-3 ceg-nev-footer">MathMaster</span>
+                        </div>
+                        <div class="col-xs-0 col-md-3 col-lg-4"></div>
+                    </div>
+                    <div class="row footer-bg">
+                        <div class="col-xs-0 col-md-3 col-lg-2"></div>
+                        <div class="col-xs-12 col-md-6 col-lg-7 text-center d-flex align-items-end pb-sm-5 pb-lg-4">
+                            <span class="align-bottom copyright">&copy; 2023 Minden jog fenntartva</span>
+                        </div>
+                        <div class="col-xs-0 col-md-3 col-lg-3"></div>
+                    </div>
+                    <div class="row footer-bg">
+                        <div class="col-12"></div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-xs-12 col-lg-6 d-none d-sm-none d-md-none d-lg-block">
+                    <div class="row footer-bg">
+                        <div class="col-12"></div>
+                    </div>
+                    <div class="row footer-bg">
+                        <div class="col-12"></div>
+                    </div>
+                    <div class="row footer-bg">
+                        <div class="col-12"></div>
+                    </div>
+                    <div class="row footer-bg">
+                        <div class="col-lg-1 col-xl-2"></div>
+                        <div class="col-lg-9 col-xl-6 d-flex align-items-center">
+                            <span class="align-middle idezet">“A megszerzett tudás csak akkor válik valódi tudássá,
+                                ha képes vagy rá, hogy közöld másokkal.”</span>
+                        </div>
+                        <div class="col-lg-3 col-xl-4"></div>
+                    </div>
+                    <div class="row footer-bg">
+                        <div class="col-lg-1 col-xl-2"></div>
+                        <div class="col-lg-5 col-xl-4 d-flex align-items-center">
+                            <span class="align-middle idezet">Geert Kimpen</span>
+                        </div>
+                        <div class="col-lg-6 col-xl-6"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <!-- Oldalhoz tartozó js -->
+    <script src="../js/index.js"></script>
+
+    <!-- Sweetalert-ekhez tartozó js -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

@@ -9,6 +9,7 @@ function navBar() {
 
     navbarMenu.innerHTML = '';
     uzeneteim.innerHTML = '';
+    admin.innerHTML = '';
 
     // Felhasználó bejelentkezésének ellenőrzése
     if (localStorage.getItem("token")) {
