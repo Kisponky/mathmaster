@@ -1,29 +1,35 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="hu" data-bs-theme="light">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MathMaster</title>
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-    <script src="../js/checkAuth.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Saját CSS -->
     <link rel="stylesheet" href="../css/quiz.css">
+
+    <!-- Favicon -->
     <link rel="shortcut icon" href="../img/owl-47526.svg" type="image/x-icon">
-    <title>MathMaster</title>
+
+    <!-- Scriptek -->
+    <script src="../js/checkAuth.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>
@@ -31,12 +37,14 @@
         <div class="container">
             <nav class="navbar navbar-expand-sm">
                 <div class="container-fluid">
+                    <!-- Logo és cég neve -->
                     <a href="#" class="navbar-brand ceg-nev">
                         <img src="../img/owl-47526.svg" alt="Logo" width="40" height="40"
                             class="d-inline-block align-text-middle">
                         MathMaster
                     </a>
 
+                    <!-- Hamburgernavigáció -->
                     <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -44,20 +52,14 @@
                         <span class="toggler-icon middle-bar"></span>
                         <span class="toggler-icon bottom-bar"></span>
                     </button>
+
+                    <!-- Navigációs menü -->
                     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-                        <ul class="navbar-nav nav-pills">
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="../index.html">Kezdőlap</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./about.html">Rólunk</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./contact.html">Kapcsolat</a>
-                            </li>
-                        </ul>
+                        <ul class="navbar-nav nav-pills" id="navbarMenu"></ul>
                     </div>
-                    <div class="nav-item dropdown me-1">
+
+                    <!-- Profil menü -->
+                    <div id="profilom" class="nav-item dropdown me-1">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             <img src="../img/PersonCircle_Profile.svg" alt="Profil" width="28" height="28">
@@ -65,29 +67,38 @@
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="#">Új feladat...</a></li>
                             <li><a class="dropdown-item" href="./statistics.html">Statisztika</a></li>
+                            <li id="uzeneteim"></li>
                             <li><a class="dropdown-item" href="./profile.html">Beállítások</a></li>
+                            <li id="admin"></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Kijelentkezés</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="logout()">Kijelentkezés</a></li>
                         </ul>
                     </div>
+
                 </div>
             </nav>
         </div>
     </header>
 
 
+    <!-- Üzenet küldés modal -->
+    <div id="uzenetContainer"></div>
+
+    
 
     <main>
         <div class="container">
+
+            <!-- Kérdés megjelenítése -->
             <div class="row">
                 <div class="col text-center">
                     <h3 id="kerdes"></h3>
                 </div>
             </div>
-
-
+    
+            <!-- Válaszlehetőségek megjelenítése -->
             <div class="row">
                 <div class="col text-center">
                     <button id="valasz1" class="btn btn-info mb-5" onclick="valasz(1)"></button>
@@ -96,8 +107,7 @@
                     <button id="valasz2" class="btn btn-secondary mb-5" onclick="valasz(2)"></button>
                 </div>
             </div>
-
-
+    
             <div class="row">
                 <div class="col text-center">
                     <button id="valasz3" class="btn btn-danger mb-5" onclick="valasz(3)"></button>
@@ -106,15 +116,19 @@
                     <button id="valasz4" class="btn btn-warning mb-5" onclick="valasz(4)"></button>
                 </div>
             </div>
+
         </div>
-    </main>
+    </main>    
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <!-- Menü rendszer js -->
+    <script src="../js/messageNavbar.js"></script>
+
+    <!-- Oldalhoz tartozó js -->
     <script src="../js/quiz.js"></script>
 </body>
 

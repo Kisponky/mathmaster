@@ -89,7 +89,6 @@ function bejelentkez() {
       if (data.admin == true) {
         localStorage.setItem('admin', data.admin);
       }
-      // location.href = "index.html";
       navBar();
       autoLogout()
       $(bezarL).modal('hide');
@@ -215,8 +214,6 @@ if (window.location.href.includes("index.html")) {
   $(function () {
     $('#uzenetContainer').load('./html/modal/uzenet.html');
   });
-
-  
 } else {
   $(function () {
     $('#registerContainer').load('../html/modal/register.html');
