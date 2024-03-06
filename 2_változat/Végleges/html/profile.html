@@ -1,18 +1,37 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="hu" data-bs-theme="light">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MathMaster</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Saját CSS -->
     <link rel="stylesheet" href="../css/profile.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../img/owl-47526.svg" type="image/x-icon">
+
+    <!-- Javascriptek importálása -->
     <script src="../js/profile.js"></script>
     <script src="../js/checkAuth.js"></script>
     <script>checkAuth()</script>
-    <title>Document</title>
 </head>
 
 <body>
@@ -20,12 +39,14 @@
         <div class="container">
             <nav class="navbar navbar-expand-sm">
                 <div class="container-fluid">
+                    <!-- Logo és cég neve -->
                     <a href="#" class="navbar-brand ceg-nev">
                         <img src="../img/owl-47526.svg" alt="Logo" width="40" height="40"
                             class="d-inline-block align-text-middle">
                         MathMaster
                     </a>
 
+                    <!-- Hamburgernavigáció -->
                     <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -33,20 +54,14 @@
                         <span class="toggler-icon middle-bar"></span>
                         <span class="toggler-icon bottom-bar"></span>
                     </button>
+
+                    <!-- Navigációs menü -->
                     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-                        <ul class="navbar-nav nav-pills">
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="../index.html">Kezdőlap</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./about.html">Rólunk</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./contact.html">Kapcsolat</a>
-                            </li>
-                        </ul>
+                        <ul class="navbar-nav nav-pills" id="navbarMenu"></ul>
                     </div>
-                    <div class="nav-item dropdown me-1">
+
+                    <!-- Profil menü -->
+                    <div id="profilom" class="nav-item dropdown me-1">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             <img src="../img/PersonCircle_Profile.svg" alt="Profil" width="28" height="28">
@@ -54,13 +69,16 @@
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="#">Új feladat...</a></li>
                             <li><a class="dropdown-item" href="./statistics.html">Statisztika</a></li>
-                            <li><a class="dropdown-item active" href="#">Beállítások</a></li>
+                            <li id="uzeneteim"></li>
+                            <li><a class="dropdown-item active" href="./profile.html">Beállítások</a></li>
+                            <li id="admin"></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Kijelentkezés</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="logout()">Kijelentkezés</a></li>
                         </ul>
                     </div>
+
                 </div>
             </nav>
         </div>
@@ -68,59 +86,65 @@
 
 
 
+    <!-- Üzenet küldés modal -->
+    <div id="uzenetContainer"></div>
+
+
+
     <main>
         <div class="container">
             <div class="row">
+
+                <!-- Fiók módosítás űrlapja -->
                 <div class="col-12 col-md-6 order-2 order-md-1">
                     <form>
+
+                        <!-- Felhasználónév módosítása -->
                         <div class="form-floating mt-5 mb-2">
-                            <input type="text" class="form-control rounded-3" id="userName"
-                                placeholder="vezeteknev keresztnev">
-                            <label for="userName">
-                                <span>Felhasználónév</span>
-                            </label>
+                            <input type="text" class="form-control rounded-3" id="userName" placeholder="vezeteknev keresztnev">
+                            <label for="userName"><span>Felhasználónév</span></label>
                         </div>
                         <button onclick="updateUsername()" class="w-100 mb-3 btn btn-lg rounded-3 btn-danger border-0" type="button">
                             <span>Módosítás</span>
                         </button>
+
+                        <!-- Email cím módosítása -->
                         <div class="form-floating mb-2 xl-top">
-                            <input type="email" class="form-control rounded-3" id="userMail"
-                                placeholder="vezeteknev keresztnev">
-                            <label for="userMail">
-                                <span>Email cím</span>
-                            </label>
+                            <input type="email" class="form-control rounded-3" id="userMail" placeholder="vezeteknev keresztnev">
+                            <label for="userMail"><span>Email cím</span></label>
                         </div>
                         <button onclick="updateEmail()" class="w-100 mb-3 btn btn-lg rounded-3 btn-danger border-0" type="button">
                             <span>Módosítás</span>
                         </button>
+
+                        <!-- Jelszó módosítása -->
                         <div class="form-floating mb-2 xl-top">
-                            <input type="password" class="form-control rounded-3" id="oldPw"
-                                placeholder="vezeteknev keresztnev">
-                            <label for="oldPw">
-                                <span>Jelenlegi jelszó</span>
-                            </label>
+                            <input type="password" class="form-control rounded-3" id="oldPw" placeholder="vezeteknev keresztnev">
+                            <label for="oldPw"><span>Jelenlegi jelszó</span></label>
                         </div>
                         <div class="form-floating mb-2">
-                            <input type="password" class="form-control rounded-3" id="newPw"
-                                placeholder="vezeteknev keresztnev">
-                            <label for="newPw">
-                                <span>Új jelszó</span>
-                            </label>
+                            <input type="password" class="form-control rounded-3" id="newPw" placeholder="vezeteknev keresztnev">
+                            <label for="newPw"><span>Új jelszó</span></label>
                         </div>
                         <div class="form-floating mb-2">
-                            <input type="password" class="form-control rounded-3" id="newPw2"
-                                placeholder="vezeteknev keresztnev">
-                            <label for="newPw2">
-                                <span>Jelszó megerősítés</span>
-                            </label>
+                            <input type="password" class="form-control rounded-3" id="newPw2" placeholder="vezeteknev keresztnev">
+                            <label for="newPw2"><span>Jelszó megerősítés</span></label>
                         </div>
                         <button onclick="changePassword()" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0" type="button">
                             <span>Módosítás</span>
                         </button>
+
                     </form>
                 </div>
-                <div class="col-12 col-md-6 order-1 order-md-2"><img src="../img/owl-47526.svg" alt="" class="img-fluid position-relative top-50 start-50 translate-middle logo"></div>
+
+                <!-- Oldalsávban a logó képe -->
+                <div class="col-12 col-md-6 order-1 order-md-2">
+                    <img src="../img/owl-47526.svg" alt="Logo" class="img-fluid position-relative top-50 start-50 translate-middle logo">
+                </div>
+
             </div>
+
+            <!-- Fiók törlés gomb -->
             <div class="row">
                 <div class="col-12">
                     <button onclick="deleteUserProfile()" class="w-100 mt-4 mb-3 btn btn-lg rounded-3 btn-danger border-0" type="submit">
@@ -128,14 +152,23 @@
                     </button>
                 </div>
             </div>
+
         </div>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <!-- Menü rendszer js -->
+    <script src="../js/messageNavbar.js"></script>
+
+    <!-- Oldalhoz tartozó js -->
+    <script src="../js/index.js"></script>
+
+    <!-- Sweetalert-ekhez tartozó js -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
