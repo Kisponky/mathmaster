@@ -107,6 +107,11 @@ header {
     background-color: #800000;
 }
 
+.dropdown-item.active {
+    color: #fff;
+    background-color: #800000;
+}
+
 
 /* Hambureger menü */
 .toggler-icon{

@@ -35,6 +35,62 @@
 </head>
 
 <body>
+    <header>
+        <div class="container">
+            <nav class="navbar navbar-expand-sm">
+                <div class="container-fluid">
+                    <!-- Logo és cég neve -->
+                    <a href="#" class="navbar-brand ceg-nev">
+                        <img src="../img/owl-47526.svg" alt="Logo" width="40" height="40"
+                            class="d-inline-block align-text-middle">
+                        MathMaster
+                    </a>
+
+                    <!-- Hamburgernavigáció -->
+                    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="toggler-icon top-bar"></span>
+                        <span class="toggler-icon middle-bar"></span>
+                        <span class="toggler-icon bottom-bar"></span>
+                    </button>
+
+                    <!-- Navigációs menü -->
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                        <ul class="navbar-nav nav-pills" id="navbarMenu"></ul>
+                    </div>
+
+                    <!-- Profil menü -->
+                    <div id="profilom" class="nav-item dropdown me-1">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <img src="../img/PersonCircle_Profile.svg" alt="Profil" width="28" height="28">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">Új feladat...</a></li>
+                            <li><a class="dropdown-item" href="./statistics.html">Statisztika</a></li>
+                            <li id="uzeneteim"></li>
+                            <li><a class="dropdown-item" href="./profile.html">Beállítások</a></li>
+                            <li id="admin"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#" onclick="logout()">Kijelentkezés</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+
+    <!-- Üzenet küldés modal -->
+    <div id="uzenetContainer"></div>
+
+
+
     <main>
         <div class="container">
             <div class="row">
@@ -120,6 +176,9 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <!-- Menü rendszer js -->
+    <script src="../js/messageNavbar.js"></script>
 
     <!-- Oldalhoz tartozó js -->
     <script src="../js/index.js"></script>
