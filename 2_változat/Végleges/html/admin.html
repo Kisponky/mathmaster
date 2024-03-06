@@ -221,7 +221,7 @@
                                 })
                                 .then(data => {
                                     console.log('Sikeres törlés:', data);
-                                    document.getElementById('message-buborek'+id).remove();
+                                    document.getElementById('message-buborek' + id).remove();
                                 })
                                 .catch(error => {
                                     console.error('Hiba a törlés során:', error);
@@ -230,32 +230,28 @@
                         }
 
                         function valaszKuldes(id) {
-                            const kapcsolatId = 8;  // Az adott kapcsolatId, amelyet frissíteni szeretnél
-                            const valaszUzenet = document.getElementById("inputMezo" + id.toString()).value;  // A frissítendő érték
-                            try {
-                                const response = fetch(`http://localhost:8000/api/admin/valasz/${id}`, {
-                                    method: 'PUT',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                        'Authorization': localStorage.getItem('token'),
-                                    },
-                                    body: JSON.stringify({ uzenet: valaszUzenet, token: localStorage.getItem('token') }),
+                            const valaszUzenet = document.getElementById("inputMezo" + id.toString()).value; // A frissítendő érték
+
+                            fetch(`http://localhost:8000/api/admin/valasz/${id}`, {
+                                method: 'PUT',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': localStorage.getItem('token'),
+                                },
+                                body: JSON.stringify({ uzenet: valaszUzenet, token: localStorage.getItem('token') }),
+                            })
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('A szerver hibát adott vissza');
+                                    }
+                                    document.getElementById('message-buborek' + id.toString()).remove();
+                                    return response.json();
+                                })
+                                .catch(error => {
+                                    // A hiba kezelése itt történik
+                                    console.error('Hiba történt az API hívás során:', error.message);
                                 });
-
-                                if (!response.ok) {
-                                    throw new Error('A szerver hibát adott vissza');
-                                }
-                                document.getElementById('message-buborek'+id).remove();
-                                const result = response.json();
-                                console.log(result);
-
-                            } catch (error) {
-                                console.error('Hiba történt az API hívás során:', error.message);
-                            }
-
                         }
-
-
                     </script>
 
                 </div>

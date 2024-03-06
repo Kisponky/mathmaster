@@ -65,6 +65,8 @@ function register() {
 function bejelentkez() {
   var emailL = document.getElementById('emailL').value;
   var jelszoL = document.getElementById('passwordL').value;
+  document.getElementById('emailL').value = "";
+  document.getElementById('passwordL').value = "";
   var apiEndpoint = 'http://localhost:8000/users/login';
   var bezarL = document.getElementById('bejelentkezes');
 
@@ -140,6 +142,7 @@ function logout() {
 // Üzenet küldése
 function uzenet() {
   var text = document.getElementById("text").value;
+  document.getElementById("text").value = "";
   var token = localStorage.getItem("token");
   var bezarT = document.getElementById('uzenet');
 
@@ -168,9 +171,7 @@ function uzenet() {
             confirmButtonColor: "#3498db",
             timer: 3000
           });
-          setTimeout(() => {
-            $(bezarT).modal('hide');
-          }, 3000);
+          $(bezarT).modal('hide');
         })
         .catch(error => {
           console.error('Hiba történt a fetch kérés során:', error);
