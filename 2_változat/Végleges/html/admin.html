@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../css/modal.css">
     <link rel="shortcut icon" href="../img/owl-47526.svg" type="image/x-icon">
     <title>MathMaster</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         fetch('http://localhost:8000/api/auth/check-admin', {
             method: 'GET',
@@ -221,6 +222,7 @@
                                 })
                                 .then(data => {
                                     console.log('Sikeres törlés:', data);
+                                    swal("Sikeres törlés!", "Az üzenet törlésre került.", "success")
                                     document.getElementById('message-buborek' + id).remove();
                                 })
                                 .catch(error => {
@@ -228,7 +230,6 @@
                                 });
 
                         }
-
                         function valaszKuldes(id) {
                             const valaszUzenet = document.getElementById("inputMezo" + id.toString()).value; // A frissítendő érték
 
