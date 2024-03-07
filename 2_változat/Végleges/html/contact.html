@@ -114,9 +114,9 @@
 
                     <!-- Üzenet mező -->
                     <div class="mb-3 ps-3">
-                        <textarea oninput="this.style.height = ''; this.style.height = (this.scrollHeight + 2) + 'px';"class="form-control custom-textarea" rows="4" placeholder="Ide írja üzenetét..."></textarea>
+                        <textarea oninput="this.style.height = ''; this.style.height = (this.scrollHeight + 2) + 'px';"class="form-control custom-textarea" id="text" rows="4" placeholder="Ide írja üzenetét..."></textarea>
                     </div>
-                    <button class="btn btn-danger btn-class">Beküldés</button>
+                    <button class="btn btn-danger btn-class" onclick="uzenet()">Beküldés</button>
 
                     <!-- Visszajelzés és befejező rész -->
                     <p>Bármikor szívesen fogadjuk visszajelzéseiket, észrevételeiket vagy kérdéseiket. Segítünk minden olyan módon, amennyire csak tudunk, hogy a matematikai gyakorlás minél hatékonyabb és szórakoztatóbb legyen az Ön számára.</p>

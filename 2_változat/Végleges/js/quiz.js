@@ -12,8 +12,6 @@ function feladatGeneral() {
 }
 feladatGeneral();
 
-
-
 function kiir(feladat, valaszok) {
     document.getElementById("kerdes").innerHTML = feladat;
     let valaszokBontva = valaszok.split(";");
