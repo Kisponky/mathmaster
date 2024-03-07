@@ -9,7 +9,7 @@ const generateTask = (req, res) => {
       if (!task) {
         res.status(404).json({ error: 'Nincs találat a megadott feltételekkel' });
       } else {
-        res.json(task);
+        res.json(task[0]);
       }
     })
     .catch((error) => {
@@ -31,7 +31,7 @@ const getStatistics = (req, res) => {
       if (statistics.length === 0) {
         res.status(404).json({ error: 'Nincs találat a megadott felhasználóval és művelettel' });
       } else {
-        res.json(statistics);
+        res.json(statistics[0]);
       }
     })
     .catch((error) => {
