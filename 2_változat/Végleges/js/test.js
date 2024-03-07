@@ -119,50 +119,6 @@ function setData(data) {
             eredmenyInput += `<input type="text" class="form-control mt-1 input-style" maxlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, '')" if(this.value.length === 1) { document.querySelector('input[tabindex=\"${reversedTabIndex}\"] + input').focus(); }" tabindex="${reversedTabIndex}">`;
         }
 
-        // Az input mezőkre vonatkozó fókuszkezelő beállítása
-        document.addEventListener("DOMContentLoaded", function () {
-            const inputFields = document.querySelectorAll('.input-style');
-            const button = document.getElementById('Ellenorzes');
-
-            inputFields.forEach((input, index) => {
-                input.addEventListener('input', function (event) {
-                    if (event.target.value.length === 1) {
-                        const nextInput = inputFields[index - 1];
-                        if (nextInput) {
-                            nextInput.focus();
-                        } else {
-                            let result = '';
-                            inputFields.forEach(input => {
-                                result += input.value;
-                            });
-                        }
-                    }
-                });
-            });
-
-            button.addEventListener('click', function () {
-                let result = '';
-                inputFields.forEach(input => {
-                    result += input.value;
-                    input.disabled = true;
-                });
-
-                if (result === szamok[2]) {
-                    button.style.backgroundColor = 'rgb(0, 110, 0)';
-                    button.textContent = 'Jó válasz!';
-                } else {
-                    button.style.backgroundColor = 'red';
-                    button.textContent = 'Rossz válasz!';
-                }
-
-                setTimeout(() => {
-                    testContent();
-                }, 1500);
-            });
-
-        });
-
-
 
         // Az eredményHTML tartalmát illesszük be a tartalom elembe
         document.getElementById("tartalom").innerHTML = `
@@ -178,6 +134,47 @@ function setData(data) {
             <button class="btn btn-danger" type="button" id="Ellenorzes">Eredmény</button>
         </div>
         `;
+
+
+        // Az input mezőkre vonatkozó fókuszkezelő beállítása
+        const button = document.getElementById('Ellenorzes');
+        const inputFields = document.querySelectorAll('.input-style');
+
+        inputFields.forEach((input, index) => {
+            input.addEventListener('input', function (event) {
+                if (event.target.value.length === 1) {
+                    const nextInput = inputFields[index - 1];
+                    if (nextInput) {
+                        nextInput.focus();
+                    } else {
+                        let result = '';
+                        inputFields.forEach(input => {
+                            result += input.value;
+                        });
+                    }
+                }
+            });
+        });
+
+        button.addEventListener('click', function () {
+            let result = '';
+            inputFields.forEach(input => {
+                result += input.value;
+                input.disabled = true;
+            });
+
+            if (result === szamok[2]) {
+                button.style.backgroundColor = 'rgb(0, 110, 0)';
+                button.textContent = 'Jó válasz!';
+            } else {
+                button.style.backgroundColor = 'red';
+                button.textContent = 'Rossz válasz!';
+            }
+
+            setTimeout(() => {
+                testContent();
+            }, 1500);
+        });
 
         // Add CSS styles to the input elements
         const tag = document.querySelectorAll('.tag-style');
@@ -236,9 +233,22 @@ function setData(data) {
             eredmenyInput += `<input type="text" class="form-control tag-style" disabled>`;
         }
 
-        // Az input mezőkre vonatkozó fókuszkezelő beállítása
-        document.addEventListener("DOMContentLoaded", function () {
-            const inputFields = document.querySelectorAll('.input-style');
+
+        // Az eredményHTML tartalmát illesszük be a tartalom elembe
+        document.getElementById("tartalom").innerHTML = `
+        <div class="col-0 col-md-4 col-lg-5"></div>
+        <div class="col-9 col-md-3 col-lg-2  text-end">
+            <div id="elso">${elsoTagInput + muvJelInput + masodikTagInput}</div>
+            <hr class="my-0" style="color: white;">
+            <div id="eredmeny">${eredmenyInput}</div>
+        </div>
+        <div class="col-3 col-md-5 col-lg-5 align-self-center">
+            <button class="btn btn-danger" type="button" id="Ellenorzes">Eredmény</button>
+        </div>
+        `;
+
+
+        const inputFields = document.querySelectorAll('.input-style');
             const button = document.getElementById('Ellenorzes');
 
             inputFields.forEach((input, index) => {
@@ -277,22 +287,7 @@ function setData(data) {
                 }, 1500);
             });
 
-        });
 
-
-
-        // Az eredményHTML tartalmát illesszük be a tartalom elembe
-        document.getElementById("tartalom").innerHTML = `
-        <div class="col-0 col-md-4 col-lg-5"></div>
-        <div class="col-9 col-md-3 col-lg-2  text-end">
-            <div id="elso">${elsoTagInput + muvJelInput + masodikTagInput}</div>
-            <hr class="my-0" style="color: white;">
-            <div id="eredmeny">${eredmenyInput}</div>
-        </div>
-        <div class="col-3 col-md-5 col-lg-5 align-self-center">
-            <button class="btn btn-danger" type="button" id="Ellenorzes">Eredmény</button>
-        </div>
-        `;
 
         // Add CSS styles to the input elements
         const tag = document.querySelectorAll('.tag-style');
@@ -410,9 +405,25 @@ function setData(data) {
             eredmenyInput += `<input type="text" class="form-control tag-style" disabled>`;
         }
 
-        // Az input mezőkre vonatkozó fókuszkezelő beállítása
-        document.addEventListener("DOMContentLoaded", function () {
-            const inputFields = document.querySelectorAll('.input-style');
+
+        // Az eredményHTML tartalmát illesszük be a tartalom elembe
+        document.getElementById("tartalom").innerHTML = `
+        <div class="col-0 col-md-4 col-xl-5"></div>
+        <div class="col-8 col-md-3 col-xl-2 text-end">
+            <div id="elso">${elsoTagInput + muvJelInput + masodikTagInput}</div>
+            <hr class="my-0" style="color: white;">
+            <div>${reszeredmenyInput1}</div>
+            <div style="color: white;">+${reszeredmenyInput2}</div>
+            <hr class="my-0" style="color: white;">
+            <div id="eredmeny">${eredmenyInput}</div>
+        </div>
+        <div class="col-4 col-md-5 col-xl-5 align-self-center">
+            <button class="btn btn-danger" type="button" id="Ellenorzes">Eredmény</button>
+        </div>
+        `;
+
+
+        const inputFields = document.querySelectorAll('.input-style');
             const button = document.getElementById('Ellenorzes');
 
             inputFields.forEach((input, index) => {
@@ -455,25 +466,7 @@ function setData(data) {
                     testContent();
                 }, 1500);
             });
-        });
 
-
-
-        // Az eredményHTML tartalmát illesszük be a tartalom elembe
-        document.getElementById("tartalom").innerHTML = `
-        <div class="col-0 col-md-4 col-xl-5"></div>
-        <div class="col-8 col-md-3 col-xl-2 text-end">
-            <div id="elso">${elsoTagInput + muvJelInput + masodikTagInput}</div>
-            <hr class="my-0" style="color: white;">
-            <div>${reszeredmenyInput1}</div>
-            <div style="color: white;">+${reszeredmenyInput2}</div>
-            <hr class="my-0" style="color: white;">
-            <div id="eredmeny">${eredmenyInput}</div>
-        </div>
-        <div class="col-4 col-md-5 col-xl-5 align-self-center">
-            <button class="btn btn-danger" type="button" id="Ellenorzes">Eredmény</button>
-        </div>
-        `;
 
 
         // Add CSS styles to the input elements
@@ -565,7 +558,7 @@ function setData(data) {
                         // Hozzáadunk egy div-et, majd az input elemeket az adott div-hez
                         maradekInput += `<div>`;
                         for (let j = 0; j < maradekBlockInput - 2; j++) {
-                            maradekInput += `<input type="text" id="helyesMaradek" class="form-control mt-1 input-style">`;
+                            maradekInput += `<input type="text" id="helyesMaradek" class="form-control mt-1 input-style" placeholder="1">`;
                         }
                         for (let j = 0; j < maradekNoneInput + 2; j++) {
                             maradekInput += `<input type="text" class="form-control tag-style" disabled>`;
@@ -613,12 +606,26 @@ function setData(data) {
             }
         }
 
-        document.addEventListener("DOMContentLoaded", function () {
-            const button = document.getElementById('Ellenorzes');
+
+        // Az eredményHTML tartalmát illesszük be a tartalom elembe
+        document.getElementById("tartalom").innerHTML = `
+        <div class="col-0 col-md-3 col-lg-4 col-xl-4"></div>
+        <div class="col-12 col-md-5 col-lg-4 col-xl-3  text-end">
+            <div id="eredmeny">${elsoTagInput + muvJelInput + masodikTagInput + '<input type="text" class="form-control tag-style" value="=" disabled>' + eredmenyInput}</div>
+            ${maradekInput}
+        </div>
+        <div class="col-12 col-md-4 col-lg-4 col-xl-5 align-self-center text-center text-sm-start">
+            <button class="btn btn-danger btn-margin" type="button" id="Ellenorzes">Eredmény</button>
+        </div>
+        `;
+
+        const button = document.getElementById('Ellenorzes');
 
             button.addEventListener('click', function () {
                 // Az összes input elem kiválasztása a "Eredmény" id-vel rendelkező div alatt
                 var inputMezok = document.querySelectorAll('#eredmeny input[type="text"]');
+                var helyesMaradek = document.getElementById('helyesMaradek').value;
+                console.log(helyesMaradek)
 
                 // Az összes input mező értékeinek kinyerése és összevonása egy stringbe
                 var result = "";
@@ -631,7 +638,7 @@ function setData(data) {
                     var result2 = result.split('=')[1];
                 }
 
-                if (result2 === szamok[2]) {
+                if (result2 === szamok[2] && helyesMaradek == maradek) {
                     button.style.backgroundColor = 'rgb(0, 110, 0)';
                     button.style.fontSize = '16px';
                     button.style.fontFamily = '"Poppins", sans-serif';
@@ -647,19 +654,7 @@ function setData(data) {
                     testContent();
                 }, 1500);
             });
-        });
 
-        // Az eredményHTML tartalmát illesszük be a tartalom elembe
-        document.getElementById("tartalom").innerHTML = `
-        <div class="col-0 col-md-3 col-lg-4 col-xl-4"></div>
-        <div class="col-12 col-md-5 col-lg-4 col-xl-3  text-end">
-            <div id="eredmeny">${elsoTagInput + muvJelInput + masodikTagInput + '<input type="text" class="form-control tag-style" value="=" disabled>' + eredmenyInput}</div>
-            ${maradekInput}
-        </div>
-        <div class="col-12 col-md-4 col-lg-4 col-xl-5 align-self-center text-center text-sm-start">
-            <button class="btn btn-danger btn-margin" type="button" id="Ellenorzes">Eredmény</button>
-        </div>
-        `;
 
 
         // Add CSS styles to the input elements
