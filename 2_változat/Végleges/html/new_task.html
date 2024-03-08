@@ -1,375 +1,454 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="hu" data-bs-theme="light">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MathMaster</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
-    <style>
-        div {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-        input[type="text"] {
-            margin-left: 6px;
-        }
+    <!-- Saját CSS -->
+    <link rel="stylesheet" href="../css/new_task.css">
 
-        input[type="radio"] {
-            margin-right: 5px;
-        }
-    </style>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../img/owl-47526.svg" type="image/x-icon">
 </head>
 
 <body>
+    <header>
+        <div class="container">
+            <nav class="navbar navbar-expand-sm">
+                <div class="container-fluid">
+                    <!-- Logo és cég neve -->
+                    <a href="#" class="navbar-brand ceg-nev">
+                        <img src="../img/owl-47526.svg" alt="Logo" width="40" height="40"
+                            class="d-inline-block align-text-middle">
+                        MathMaster
+                    </a>
+
+                    <!-- Hamburgernavigáció -->
+                    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="toggler-icon top-bar"></span>
+                        <span class="toggler-icon middle-bar"></span>
+                        <span class="toggler-icon bottom-bar"></span>
+                    </button>
+
+                    <!-- Navigációs menü -->
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                        <ul class="navbar-nav nav-pills" id="navbarMenu"></ul>
+                    </div>
+
+                    <!-- Profil menü -->
+                    <div id="profilom" class="nav-item dropdown me-1">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <img src="../img/PersonCircle_Profile.svg" alt="Profil" width="28" height="28">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">Új feladat...</a></li>
+                            <li><a class="dropdown-item" href="./statistics.html">Statisztika</a></li>
+                            <li id="uzeneteim"></li>
+                            <li><a class="dropdown-item active" href="./profile.html">Beállítások</a></li>
+                            <li id="admin"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#" onclick="logout()">Kijelentkezés</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- Üzenet küldés modal -->
+    <div id="uzenetContainer"></div>
+
+
+
     <main>
         <div class="container">
             <div class="row">
 
                 <form>
-
-                    <div class="d-block" id="darabSzam">
-                        <input type="number" class="form-control d-block" id="darabSzamInput" min="1" max="10">
+                    <!-- Kérdés darab számának bekérése -->
+                    <div class="d-block mb-1" id="darabSzam">
+                        <h3>Új kvíz kérdések feltöltése</h3>
+                        <input type="number" class="form-control kerdes" id="darabSzamInput" placeholder="Hány kérdést szeretnél írni?">
                     </div>
 
 
-
+                    <!-- Adat bekérési űrlap -->
                     <div class="d-none" id="form1">
-                        <div class="form-floating mt-5 mb-2">
-                            <input type="text" class="form-control rounded-3" id="kerdes1" placeholder="Kérdés">
+                        <div class="form-floating col-12">
+                            <input type="text" class="form-control kerdes" id="kerdes1" placeholder="Kérdés">
                             <label for="kerdes1">Kérdés ?</label>
                         </div>
 
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz1" id="helyesValaszA1"
-                                value="1">A)
-                            <input type="text" class="form-control rounded-3" id="valaszA1">
-                        </div>
+                        <div class="valasz">
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz1" id="helyesValaszA1"
+                                    value="1">A)
+                                <input type="text" class="form-control" id="valaszA1">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz1" id="helyesValaszB1"
-                                value="2">B)
-                            <input type="text" class="form-control rounded-3" id="valaszB1">
-                        </div>
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz1" id="helyesValaszB1"
+                                    value="2">B)
+                                <input type="text" class="form-control" id="valaszB1">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz1" id="helyesValaszC1"
-                                value="3">C)
-                            <input type="text" class="form-control rounded-3" id="valaszC1">
-                        </div>
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz1" id="helyesValaszC1"
+                                    value="3">C)
+                                <input type="text" class="form-control" id="valaszC1">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz1" id="helyesValaszD1"
-                                value="4">D)
-                            <input type="text" class="form-control rounded-3" id="valaszD1">
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz1" id="helyesValaszD1"
+                                    value="4">D)
+                                <input type="text" class="form-control" id="valaszD1">
+                            </div>
                         </div>
                     </div>
 
 
                     <div class="d-none" id="form2">
-                        <div class="form-floating mt-5 mb-2">
-                            <input type="text" class="form-control rounded-3" id="kerdes2" placeholder="Kérdés">
+                        <div class="form-floating col-12">
+                            <input type="text" class="form-control kerdes" id="kerdes2" placeholder="Kérdés">
                             <label for="kerdes2">Kérdés ?</label>
                         </div>
 
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz2" id="helyesValaszA2"
-                                value="1">A)
-                            <input type="text" class="form-control rounded-3" id="valaszA2">
-                        </div>
+                        <div class="valasz">
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz2" id="helyesValaszA2"
+                                    value="1">A)
+                                <input type="text" class="form-control" id="valaszA2">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz2" id="helyesValaszB2"
-                                value="2">B)
-                            <input type="text" class="form-control rounded-3" id="valaszB2">
-                        </div>
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz2" id="helyesValaszB2"
+                                    value="2">B)
+                                <input type="text" class="form-control" id="valaszB2">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz2" id="helyesValaszC2"
-                                value="3">C)
-                            <input type="text" class="form-control rounded-3" id="valaszC2">
-                        </div>
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz2" id="helyesValaszC2"
+                                    value="3">C)
+                                <input type="text" class="form-control" id="valaszC2">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz2" id="helyesValaszD2"
-                                value="4">D)
-                            <input type="text" class="form-control rounded-3" id="valaszD2">
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz2" id="helyesValaszD2"
+                                    value="4">D)
+                                <input type="text" class="form-control" id="valaszD2">
+                            </div>
                         </div>
                     </div>
 
 
                     <div class="d-none" id="form3">
-                        <div class="form-floating mt-5 mb-2">
-                            <input type="text" class="form-control rounded-3" id="kerdes3" placeholder="Kérdés">
+                        <div class="form-floating col-12">
+                            <input type="text" class="form-control kerdes" id="kerdes3" placeholder="Kérdés">
                             <label for="kerdes3">Kérdés ?</label>
                         </div>
 
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz3" id="helyesValaszA3"
-                                value="1">A)
-                            <input type="text" class="form-control rounded-3" id="valaszA3">
-                        </div>
+                        <div class="valasz">
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz3" id="helyesValaszA3"
+                                    value="1">A)
+                                <input type="text" class="form-control" id="valaszA3">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz3" id="helyesValaszB3"
-                                value="2">B)
-                            <input type="text" class="form-control rounded-3" id="valaszB3">
-                        </div>
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz3" id="helyesValaszB3"
+                                    value="2">B)
+                                <input type="text" class="form-control" id="valaszB3">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz3" id="helyesValaszC3"
-                                value="3">C)
-                            <input type="text" class="form-control rounded-3" id="valaszC3">
-                        </div>
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz3" id="helyesValaszC3"
+                                    value="3">C)
+                                <input type="text" class="form-control" id="valaszC3">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz3" id="helyesValaszD3"
-                                value="4">D)
-                            <input type="text" class="form-control rounded-3" id="valaszD3">
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz3" id="helyesValaszD3"
+                                    value="4">D)
+                                <input type="text" class="form-control" id="valaszD3">
+                            </div>
                         </div>
                     </div>
 
 
                     <div class="d-none" id="form4">
-                        <div class="form-floating mt-5 mb-2">
-                            <input type="text" class="form-control rounded-3" id="kerdes4" placeholder="Kérdés">
+                        <div class="form-floating col-12">
+                            <input type="text" class="form-control kerdes" id="kerdes4" placeholder="Kérdés">
                             <label for="kerdes4">Kérdés ?</label>
                         </div>
 
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz4" id="helyesValaszA4"
-                                value="1">A)
-                            <input type="text" class="form-control rounded-3" id="valaszA4">
-                        </div>
+                        <div class="valasz">
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz4" id="helyesValaszA4"
+                                    value="1">A)
+                                <input type="text" class="form-control" id="valaszA4">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz4" id="helyesValaszB4"
-                                value="2">B)
-                            <input type="text" class="form-control rounded-3" id="valaszB4">
-                        </div>
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz4" id="helyesValaszB4"
+                                    value="2">B)
+                                <input type="text" class="form-control" id="valaszB4">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz4" id="helyesValaszC4"
-                                value="3">C)
-                            <input type="text" class="form-control rounded-3" id="valaszC4">
-                        </div>
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz4" id="helyesValaszC4"
+                                    value="3">C)
+                                <input type="text" class="form-control" id="valaszC4">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz4" id="helyesValaszD4"
-                                value="4">D)
-                            <input type="text" class="form-control rounded-3" id="valaszD4">
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz4" id="helyesValaszD4"
+                                    value="4">D)
+                                <input type="text" class="form-control" id="valaszD4">
+                            </div>
                         </div>
                     </div>
 
 
                     <div class="d-none" id="form5">
-                        <div class="form-floating mt-5 mb-2">
-                            <input type="text" class="form-control rounded-3" id="kerdes5" placeholder="Kérdés">
+                        <div class="form-floating col-12">
+                            <input type="text" class="form-control kerdes" id="kerdes5" placeholder="Kérdés">
                             <label for="kerdes5">Kérdés ?</label>
                         </div>
 
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz5" id="helyesValaszA5"
-                                value="1">A)
-                            <input type="text" class="form-control rounded-3" id="valaszA5">
-                        </div>
+                        <div class="valasz">
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz5" id="helyesValaszA5"
+                                    value="1">A)
+                                <input type="text" class="form-control" id="valaszA5">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz5" id="helyesValaszB5"
-                                value="2">B)
-                            <input type="text" class="form-control rounded-3" id="valaszB5">
-                        </div>
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz5" id="helyesValaszB5"
+                                    value="2">B)
+                                <input type="text" class="form-control" id="valaszB5">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz5" id="helyesValaszC5"
-                                value="3">C)
-                            <input type="text" class="form-control rounded-3" id="valaszC5">
-                        </div>
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz5" id="helyesValaszC5"
+                                    value="3">C)
+                                <input type="text" class="form-control" id="valaszC5">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz5" id="helyesValaszD5"
-                                value="4">D)
-                            <input type="text" class="form-control rounded-3" id="valaszD5">
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz5" id="helyesValaszD5"
+                                    value="4">D)
+                                <input type="text" class="form-control" id="valaszD5">
+                            </div>
                         </div>
                     </div>
 
 
                     <div class="d-none" id="form6">
-                        <div class="form-floating mt-5 mb-2">
-                            <input type="text" class="form-control rounded-3" id="kerdes6" placeholder="Kérdés">
+                        <div class="form-floating col-12">
+                            <input type="text" class="form-control kerdes" id="kerdes6" placeholder="Kérdés">
                             <label for="kerdes6">Kérdés ?</label>
                         </div>
 
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz6" id="helyesValaszA6"
-                                value="1">A)
-                            <input type="text" class="form-control rounded-3" id="valaszA6">
-                        </div>
+                        <div class="valasz">
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz6" id="helyesValaszA6"
+                                    value="1">A)
+                                <input type="text" class="form-control" id="valaszA6">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz6" id="helyesValaszB6"
-                                value="2">B)
-                            <input type="text" class="form-control rounded-3" id="valaszB6">
-                        </div>
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz6" id="helyesValaszB6"
+                                    value="2">B)
+                                <input type="text" class="form-control" id="valaszB6">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz6" id="helyesValaszC6"
-                                value="3">C)
-                            <input type="text" class="form-control rounded-3" id="valaszC6">
-                        </div>
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz6" id="helyesValaszC6"
+                                    value="3">C)
+                                <input type="text" class="form-control" id="valaszC6">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz6" id="helyesValaszD6"
-                                value="4">D)
-                            <input type="text" class="form-control rounded-3" id="valaszD6">
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz6" id="helyesValaszD6"
+                                    value="4">D)
+                                <input type="text" class="form-control" id="valaszD6">
+                            </div>
                         </div>
                     </div>
 
 
                     <div class="d-none" id="form7">
-                        <div class="form-floating mt-5 mb-2">
-                            <input type="text" class="form-control rounded-3" id="kerdes7" placeholder="Kérdés">
+                        <div class="form-floating col-12">
+                            <input type="text" class="form-control kerdes" id="kerdes7" placeholder="Kérdés">
                             <label for="kerdes7">Kérdés ?</label>
                         </div>
 
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz7" id="helyesValaszA7"
-                                value="1">A)
-                            <input type="text" class="form-control rounded-3" id="valaszA7">
-                        </div>
+                        <div class="valasz">
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz7" id="helyesValaszA7"
+                                    value="1">A)
+                                <input type="text" class="form-control" id="valaszA7">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz7" id="helyesValaszB7"
-                                value="2">B)
-                            <input type="text" class="form-control rounded-3" id="valaszB7">
-                        </div>
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz7" id="helyesValaszB7"
+                                    value="2">B)
+                                <input type="text" class="form-control" id="valaszB7">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz7" id="helyesValaszC7"
-                                value="3">C)
-                            <input type="text" class="form-control rounded-3" id="valaszC7">
-                        </div>
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz7" id="helyesValaszC7"
+                                    value="3">C)
+                                <input type="text" class="form-control" id="valaszC7">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz7" id="helyesValaszD7"
-                                value="4">D)
-                            <input type="text" class="form-control rounded-3" id="valaszD7">
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz7" id="helyesValaszD7"
+                                    value="4">D)
+                                <input type="text" class="form-control" id="valaszD7">
+                            </div>
                         </div>
                     </div>
 
 
                     <div class="d-none" id="form8">
-                        <div class="form-floating mt-5 mb-2">
-                            <input type="text" class="form-control rounded-3" id="kerdes8" placeholder="Kérdés">
+                        <div class="form-floating col-12">
+                            <input type="text" class="form-control kerdes" id="kerdes8" placeholder="Kérdés">
                             <label for="kerdes8">Kérdés ?</label>
                         </div>
 
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz8" id="helyesValaszA8"
-                                value="1">A)
-                            <input type="text" class="form-control rounded-3" id="valaszA8">
-                        </div>
+                        <div class="valasz">
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz8" id="helyesValaszA8"
+                                    value="1">A)
+                                <input type="text" class="form-control" id="valaszA8">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz8" id="helyesValaszB8"
-                                value="2">B)
-                            <input type="text" class="form-control rounded-3" id="valaszB8">
-                        </div>
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz8" id="helyesValaszB8"
+                                    value="2">B)
+                                <input type="text" class="form-control" id="valaszB8">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz8" id="helyesValaszC8"
-                                value="3">C)
-                            <input type="text" class="form-control rounded-3" id="valaszC8">
-                        </div>
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz8" id="helyesValaszC8"
+                                    value="3">C)
+                                <input type="text" class="form-control" id="valaszC8">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz8" id="helyesValaszD8"
-                                value="4">D)
-                            <input type="text" class="form-control rounded-3" id="valaszD8">
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz8" id="helyesValaszD8"
+                                    value="4">D)
+                                <input type="text" class="form-control" id="valaszD8">
+                            </div>
                         </div>
                     </div>
 
 
                     <div class="d-none" id="form9">
-                        <div class="form-floating mt-5 mb-2">
-                            <input type="text" class="form-control rounded-3" id="kerdes9" placeholder="Kérdés">
+                        <div class="form-floating col-12">
+                            <input type="text" class="form-control kerdes" id="kerdes9" placeholder="Kérdés">
                             <label for="kerdes9">Kérdés ?</label>
                         </div>
 
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz9" id="helyesValaszA9"
-                                value="1">A)
-                            <input type="text" class="form-control rounded-3" id="valaszA9">
-                        </div>
+                        <div class="valasz">
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz9" id="helyesValaszA9"
+                                    value="1">A)
+                                <input type="text" class="form-control" id="valaszA9">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz9" id="helyesValaszB9"
-                                value="2">B)
-                            <input type="text" class="form-control rounded-3" id="valaszB9">
-                        </div>
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz9" id="helyesValaszB9"
+                                    value="2">B)
+                                <input type="text" class="form-control" id="valaszB9">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz9" id="helyesValaszC9"
-                                value="3">C)
-                            <input type="text" class="form-control rounded-3" id="valaszC9">
-                        </div>
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz9" id="helyesValaszC9"
+                                    value="3">C)
+                                <input type="text" class="form-control" id="valaszC9">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz9" id="helyesValaszD9"
-                                value="4">D)
-                            <input type="text" class="form-control rounded-3" id="valaszD9">
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz9" id="helyesValaszD9"
+                                    value="4">D)
+                                <input type="text" class="form-control" id="valaszD9">
+                            </div>
                         </div>
                     </div>
 
 
                     <div class="d-none" id="form10">
-                        <div class="form-floating mt-5 mb-2">
-                            <input type="text" class="form-control rounded-3" id="kerdes10" placeholder="Kérdés">
+                        <div class="form-floating col-12">
+                            <input type="text" class="form-control kerdes" id="kerdes10" placeholder="Kérdés">
                             <label for="kerdes10">Kérdés ?</label>
                         </div>
 
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz10" id="helyesValaszA10"
-                                value="1">A)
-                            <input type="text" class="form-control rounded-3" id="valaszA10">
-                        </div>
+                        <div class="valasz">
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz10" id="helyesValaszA10"
+                                    value="1">A)
+                                <input type="text" class="form-control" id="valaszA10">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz10" id="helyesValaszB10"
-                                value="2">B)
-                            <input type="text" class="form-control rounded-3" id="valaszB10">
-                        </div>
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz10" id="helyesValaszB10"
+                                    value="2">B)
+                                <input type="text" class="form-control" id="valaszB10">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz10" id="helyesValaszC10"
-                                value="3">C)
-                            <input type="text" class="form-control rounded-3" id="valaszC10">
-                        </div>
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz10" id="helyesValaszC10"
+                                    value="3">C)
+                                <input type="text" class="form-control" id="valaszC10">
+                            </div>
 
-                        <div class="form-floating mb-2 xl-top">
-                            <input class="form-check-input" type="radio" name="helyes_valasz10" id="helyesValaszD10"
-                                value="4">D)
-                            <input type="text" class="form-control rounded-3" id="valaszD10">
+                            <div class="form-floating col-12 col-lg-3">
+                                <input class="form-check-input" type="radio" name="helyes_valasz10" id="helyesValaszD10"
+                                    value="4">D)
+                                <input type="text" class="form-control" id="valaszD10">
+                            </div>
                         </div>
                     </div>
 
 
-                    <button onclick="checkInput(), next()" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0"
+                    <button onclick="checkInput()" class="w-100 mb-2 btn btn-lg btn-danger border-0"
                         type="button">Tovább</button>
 
                 </form>
@@ -377,89 +456,20 @@
         </div>
     </main>
 
+
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <!-- Menü rendszer js -->
+    <script src="../js/messageNavbar.js"></script>
+
+    <!-- Oldalhoz tartozó js -->
+    <script src="../js/index.js"></script>
+    <script src="../js/new_task.js"></script>
+
     <!-- Sweetalert-ekhez tartozó js -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script>
-        var currentForm = 1; // Változó az aktuális blokk számához
-        var darab = 0; // Változó a blokkok számához
-        var kerdesek = []; // Tömb a kérdésekre
-        var valaszokA = []; // Tömb az A válaszokra
-        var valaszokB = []; // Tömb a B válaszokra
-        var valaszokC = []; // Tömb a C válaszokra
-        var valaszokD = []; // Tömb a D válaszokra
-        var radio = [];
-
-        function checkInput() {
-            // Ellenőrizzük, hogy a darabSzamInput mező ki van-e töltve
-            var darabSzamInput = document.getElementById("darabSzamInput");
-            darab = parseInt(darabSzamInput.value);
-
-            if (!isNaN(darab) && darab >= 1 && darab <= 10) {
-                showForm(currentForm);
-            } else {
-                alert("Kérlek adj meg egy érvényes számot 1 és 10 között!");
-            }
-        }
-
-        function showForm(formNumber) {
-            // Elrejtjük az összes formot
-            for (var i = 1; i <= 10; i++) {
-                document.getElementById("form" + i).classList.add("d-none");
-            }
-            // Megjelenítjük a megfelelő formot
-            document.getElementById("form" + formNumber).classList.remove("d-none");
-        }
-
-        function next() {
-            var currentFormElement = document.getElementById("form" + currentForm);
-            var inputs = currentFormElement.getElementsByTagName("input");
-            var kerdesInput = document.getElementById("kerdes" + currentForm).value;
-            var valaszAInput = document.getElementById("valaszA" + currentForm).value;
-            var valaszBInput = document.getElementById("valaszB" + currentForm).value;
-            var valaszCInput = document.getElementById("valaszC" + currentForm).value;
-            var valaszDInput = document.getElementById("valaszD" + currentForm).value;
-            var radioButton = document.getElementsByName("helyes_valasz" + currentForm).value;
-
-            // Ellenőrizzük, hogy minden mező ki van-e töltve
-            if (kerdesInput && valaszAInput && valaszBInput && valaszCInput && valaszDInput) {
-                kerdesek.push(kerdesInput);
-                valaszokA.push(valaszAInput);
-                valaszokB.push(valaszBInput);
-                valaszokC.push(valaszCInput);
-                valaszokD.push(valaszDInput);
-
-                for (let i = 0; i < radioButton; i++) {
-                    if (radioButton[i].checked) {
-                        radio.push(radioButton)
-                    }
-                }
-
-                currentForm++;
-                if (currentForm <= darab) {
-                    showForm(currentForm);
-                } else {
-                    showAllData();
-                }
-            } else {
-                alert("Kérlek tölts ki minden mezőt!");
-            }
-        }
-
-        function showAllData() {
-            for (var i = 0; i < darab; i++) {
-                var formElement = document.getElementById("form" + (i + 1));
-                formElement.classList.remove("d-none");
-                document.getElementById("kerdes" + (i + 1)).value = kerdesek[i];
-                document.getElementById("valaszA" + (i + 1)).value = valaszokA[i];
-                document.getElementById("valaszB" + (i + 1)).value = valaszokB[i];
-                document.getElementById("valaszC" + (i + 1)).value = valaszokC[i];
-                document.getElementById("valaszD" + (i + 1)).value = valaszokD[i];
-            }
-        }
-
-    </script>
-
 </body>
 
 </html>
