@@ -375,3 +375,20 @@ BEGIN
 END //
 
 DELIMITER ;
+
+-- addNewTask
+
+DELIMITER //
+
+CREATE PROCEDURE addNewTask(
+    IN p_felhasznalo_id INT,
+    IN p_osztaly VARCHAR(255),
+    IN p_tartalom VARCHAR(255),
+    IN p_valaszlehetosegek VARCHAR(255)
+)
+BEGIN
+    INSERT INTO `feladatlap`(`felhasznalo_id`, `osztaly`, `tipus`, `tartalom`, `valaszlehetosegek`)
+    VALUES (p_felhasznalo_id, p_osztaly, 'kviz', p_tartalom, p_valaszlehetosegek);
+END //
+
+DELIMITER ;

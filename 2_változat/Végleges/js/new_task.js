@@ -6,12 +6,12 @@ var valaszokB = [];
 var valaszokC = [];
 var valaszokD = [];
 var radio = [];
+var osztaly = document.getElementById('osztaly');
 
 
 // Fő függvény a bemenet ellenőrzéséhez és a formok megjelenítéséhez
 function checkInput() {
     var darabSzamInput = document.getElementById("darabSzamInput");
-    var osztaly = document.getElementById('osztaly');
     darab = parseInt(darabSzamInput.value);
 
     if (currentForm != darab + 1) {
@@ -31,9 +31,11 @@ function checkInput() {
             });
         }
     } else {
+        createNewTask();
         alert(osztaly.value)
     }
 }
+
 
 
 
@@ -127,3 +129,35 @@ function showAllData() {
         }
     }
 }
+
+
+// Példa fetch hívás a kliensoldalról a /task/new végpontra
+const createNewTask = async () => {
+    const studentClass = osztaly.value; // Helyettesítsd a saját osztálynévvel
+    const content = kerdesek; // Helyettesítsd a saját feladattartalommal
+    const answer = [valaszokA, valaszokB, valaszokC, valaszokD, radio]; // Helyettesítsd a saját válasszal
+    console.log(answer)
+
+    try {
+      const response = await fetch('http://localhost:8000/api/tasks/task/new', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('token')
+        },
+        body: JSON.stringify({ studentClass, content, answer }),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log(result); // Sikeres válasz esetén
+      } else {
+        const errorData = await response.json();
+        console.error('Hiba a szerver válaszában:', errorData);
+      }
+    } catch (error) {
+      console.error('Hiba a fetch hívás során:', error);
+    }
+};
+
+// Hívjuk meg a createNewTask funkciót
