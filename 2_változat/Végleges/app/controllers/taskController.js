@@ -25,7 +25,7 @@ const getStatistics = (req, res) => {
 
   // Token ellenőrzése és felhasználói azonosító lekérése
   let userId = req.user.userId;
-  
+
   TaskModel.getStatistics(userId, operation)
     .then((statistics) => {
       if (statistics.length === 0) {
@@ -48,10 +48,9 @@ const saveResult = (req, res) => {
   let taskType = req.body.taskType;
   console.log(taskType)
 
-  //userId, answer, taskType
   TaskModel.saveResult(userId, answer, taskType)
     .then((result) => {
-        res.status(200).json({ success: 'success' });
+      res.status(200).json({ success: 'success' });
     })
     .catch((error) => {
       console.error('Hiba az adatbázislekérdezés során: ' + error);
@@ -61,4 +60,36 @@ const saveResult = (req, res) => {
 };
 
 
-module.exports = { generateTask, getStatistics, saveResult };
+const newTask = (req, res) => {
+  let userId = req.user.userId;
+  console.log(userId)
+  let studentClass = req.body.studentClass;
+  console.log(studentClass)
+  let content = req.body.content;
+  console.log(content)
+  let answer = req.body.answer;
+  console.log(answer)
+
+  for (let i = 0; i < content.length; i++) {
+    let answers = "";
+    for (let j = 0; j < 4; j++) {
+      answers += answer[j][i]+";";      
+    }
+    answers += answer[4][i];      
+    console.log(answers)
+    TaskModel.newTask(userId, studentClass, content[i], answers)
+      .then((result) => {
+        // res.status(200).json({ success: 'success' });
+        console.log("task" + (i + 1) + " OK")
+      })
+      .catch((error) => {
+        console.error('Hiba az adatbázislekérdezés során: ' + error);
+        res.status(500).json({ error: 'Hiba az adatbázislekérdezés során' });
+      });
+  }
+  res.status(200).json({ success: 'success' });
+
+};
+
+
+module.exports = { generateTask, getStatistics, saveResult, newTask };

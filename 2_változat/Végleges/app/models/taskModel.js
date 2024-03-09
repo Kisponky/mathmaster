@@ -47,6 +47,20 @@ class TaskModel {
     });
   }
 
+  static newTask(userId, studentClass, content, answer) {
+    return new Promise((resolve, reject) => {
+      const query = `CALL addNewTask(?, ?, ?, ?);`;
+
+      db.query(query, [userId, studentClass, content, answer], (error, results) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(results[0]);
+        }
+      });
+    });
+  }
+
 }
 
 module.exports = TaskModel;

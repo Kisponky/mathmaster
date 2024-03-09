@@ -73,17 +73,17 @@ class UserModel {
     static deleteUserById(userId) {
         const sql = 'CALL DeleteUserById(?);';
         return new Promise((resolve, reject) => {
-          db.query(sql, [userId], (err, result) => {
-            if (err) {
-              reject(err);
-            } else {
-              resolve(result);
-            }
-          });
+            db.query(sql, [userId], (err, result) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(result);
+                }
+            });
         });
-      }
-    
-      static changePassword(userId, oldPassword, newPassword) {
+    }
+
+    static changePassword(userId, oldPassword, newPassword) {
         const sql = 'CALL UpdatePassword(?, ?, ?);';
         return new Promise((resolve, reject) => {
             db.query(sql, [newPassword, userId, oldPassword], (err, result) => {
@@ -95,9 +95,6 @@ class UserModel {
             });
         });
     }
-
-
-
 
     // Egyéb metódusok (pl. felhasználó frissítése, törlése)...
 }
