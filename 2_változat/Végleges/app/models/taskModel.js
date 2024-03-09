@@ -33,6 +33,20 @@ class TaskModel {
     });
   }
 
+  static saveResult(userId, answer, taskType) {
+    return new Promise((resolve, reject) => {
+      const query = `CALL saveResult(?, ?, ?);`;
+
+      db.query(query, [userId, answer, taskType], (error, results) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(results[0]);
+        }
+      });
+    });
+  }
+
 }
 
 module.exports = TaskModel;

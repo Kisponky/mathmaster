@@ -82,12 +82,33 @@ function setData(data) {
 
         button.addEventListener('click', function () {
             const result = document.querySelector('.input-style').value;
+
+            let muvJelekSzoveg;
+            switch (muvJelek[0]) {
+                case '+':
+                    muvJelekSzoveg = "összeadás"
+                    break;
+                case '-':
+                    muvJelekSzoveg = "kivonás"
+                    break;
+                case '*':
+                    muvJelekSzoveg = "szorzás"
+                    break;
+                case '/':
+                    muvJelekSzoveg = "osztás"
+                    break;
+                default:
+                    break;
+            }
+
             if (result === szamok[2]) {
                 button.style.backgroundColor = 'rgb(0, 110, 0)';
                 button.textContent = 'Jó válasz!';
+                saveStatistics(1, muvJelekSzoveg);
             } else {
                 button.style.backgroundColor = 'red';
                 button.textContent = 'Rossz válasz!';
+                saveStatistics(0, muvJelekSzoveg);
             }
 
             setTimeout(() => {
@@ -163,12 +184,22 @@ function setData(data) {
                 input.disabled = true;
             });
 
+            let muvJelekSzoveg;
+
+            if (muvJelek[0] == '+') {
+                muvJelekSzoveg = "összeadás"
+            } else {
+                muvJelekSzoveg = "kivonás"
+            }
+
             if (result === szamok[2]) {
                 button.style.backgroundColor = 'rgb(0, 110, 0)';
                 button.textContent = 'Jó válasz!';
+                saveStatistics(1, muvJelekSzoveg);
             } else {
                 button.style.backgroundColor = 'red';
                 button.textContent = 'Rossz válasz!';
+                saveStatistics(0, muvJelekSzoveg);
             }
 
             setTimeout(() => {
@@ -197,8 +228,6 @@ function setData(data) {
             input.style.margin = '0 2px';
             input.style.padding = '3px 5px';
         });
-
-
 
 
     } else if ((localStorage.getItem('class') == 3 && kisebbMint1000 == true && harmadikOsztaly1 && szamok[1].length == 1 /*&& lekérdezés adatbázisból*/) || (localStorage.getItem('class') == 4 && kisebbMint10000 == true && negyedikOsztaly1 && szamok[1].length == 1 /*&& lekérdezés adatbázisból*/)) {
@@ -249,43 +278,45 @@ function setData(data) {
 
 
         const inputFields = document.querySelectorAll('.input-style');
-            const button = document.getElementById('Ellenorzes');
+        const button = document.getElementById('Ellenorzes');
 
-            inputFields.forEach((input, index) => {
-                input.addEventListener('input', function (event) {
-                    if (event.target.value.length === 1) {
-                        const nextInput = inputFields[index - 1];
-                        if (nextInput) {
-                            nextInput.focus();
-                        } else {
-                            let result = '';
-                            inputFields.forEach(input => {
-                                result += input.value;
-                            });
-                        }
+        inputFields.forEach((input, index) => {
+            input.addEventListener('input', function (event) {
+                if (event.target.value.length === 1) {
+                    const nextInput = inputFields[index - 1];
+                    if (nextInput) {
+                        nextInput.focus();
+                    } else {
+                        let result = '';
+                        inputFields.forEach(input => {
+                            result += input.value;
+                        });
                     }
-                });
-            });
-
-            button.addEventListener('click', function () {
-                let result = '';
-                inputFields.forEach(input => {
-                    result += input.value;
-                    input.disabled = true;
-                });
-
-                if (result === szamok[2]) {
-                    button.style.backgroundColor = 'rgb(0, 110, 0)';
-                    button.textContent = 'Jó válasz!';
-                } else {
-                    button.style.backgroundColor = 'red';
-                    button.textContent = 'Rossz válasz!';
                 }
-
-                setTimeout(() => {
-                    testContent();
-                }, 1500);
             });
+        });
+
+        button.addEventListener('click', function () {
+            let result = '';
+            inputFields.forEach(input => {
+                result += input.value;
+                input.disabled = true;
+            });
+
+            if (result === szamok[2]) {
+                button.style.backgroundColor = 'rgb(0, 110, 0)';
+                button.textContent = 'Jó válasz!';
+                saveStatistics(1, "szorzás");
+            } else {
+                button.style.backgroundColor = 'red';
+                button.textContent = 'Rossz válasz!';
+                saveStatistics(0, "szorzás");
+            }
+
+            setTimeout(() => {
+                testContent();
+            }, 1500);
+        });
 
 
 
@@ -424,48 +455,50 @@ function setData(data) {
 
 
         const inputFields = document.querySelectorAll('.input-style');
-            const button = document.getElementById('Ellenorzes');
+        const button = document.getElementById('Ellenorzes');
 
-            inputFields.forEach((input, index) => {
-                input.addEventListener('input', function (event) {
-                    if (event.target.value.length === 1) {
-                        const nextInput = inputFields[index - 1];
-                        if (nextInput) {
-                            nextInput.focus();
-                        } else {
-                            let result = '';
-                            inputFields.forEach(input => {
-                                result += input.value;
-                            });
-                        }
+        inputFields.forEach((input, index) => {
+            input.addEventListener('input', function (event) {
+                if (event.target.value.length === 1) {
+                    const nextInput = inputFields[index - 1];
+                    if (nextInput) {
+                        nextInput.focus();
+                    } else {
+                        let result = '';
+                        inputFields.forEach(input => {
+                            result += input.value;
+                        });
                     }
-                });
-            });
-
-
-            button.addEventListener('click', function () {
-                // Az összes input elem kiválasztása a "Eredmény" id-vel rendelkező div alatt
-                var inputMezok = document.querySelectorAll('#eredmeny input[type="text"]');
-
-                // Az összes input mező értékeinek kinyerése és összevonása egy stringbe
-                var result = "";
-                inputMezok.forEach(function (input) {
-                    result += input.value;
-                    input.disabled = true;
-                });
-
-                if (result === szamok[2]) {
-                    button.style.backgroundColor = 'rgb(0, 110, 0)';
-                    button.textContent = 'Jó válasz!';
-                } else {
-                    button.style.backgroundColor = 'red';
-                    button.textContent = 'Rossz válasz!';
                 }
-
-                setTimeout(() => {
-                    testContent();
-                }, 1500);
             });
+        });
+
+
+        button.addEventListener('click', function () {
+            // Az összes input elem kiválasztása a "Eredmény" id-vel rendelkező div alatt
+            var inputMezok = document.querySelectorAll('#eredmeny input[type="text"]');
+
+            // Az összes input mező értékeinek kinyerése és összevonása egy stringbe
+            var result = "";
+            inputMezok.forEach(function (input) {
+                result += input.value;
+                input.disabled = true;
+            });
+
+            if (result === szamok[2]) {
+                button.style.backgroundColor = 'rgb(0, 110, 0)';
+                button.textContent = 'Jó válasz!';
+                saveStatistics(1, "szorzás");
+            } else {
+                button.style.backgroundColor = 'red';
+                button.textContent = 'Rossz válasz!';
+                saveStatistics(0, "szorzás");
+            }
+
+            setTimeout(() => {
+                testContent();
+            }, 1500);
+        });
 
 
 
@@ -621,39 +654,41 @@ function setData(data) {
 
         const button = document.getElementById('Ellenorzes');
 
-            button.addEventListener('click', function () {
-                // Az összes input elem kiválasztása a "Eredmény" id-vel rendelkező div alatt
-                var inputMezok = document.querySelectorAll('#eredmeny input[type="text"]');
-                var helyesMaradek = document.getElementById('helyesMaradek').value;
-                console.log(helyesMaradek)
+        button.addEventListener('click', function () {
+            // Az összes input elem kiválasztása a "Eredmény" id-vel rendelkező div alatt
+            var inputMezok = document.querySelectorAll('#eredmeny input[type="text"]');
+            var helyesMaradek = document.getElementById('helyesMaradek').value;
+            console.log(helyesMaradek)
 
-                // Az összes input mező értékeinek kinyerése és összevonása egy stringbe
-                var result = "";
-                inputMezok.forEach(function (input) {
-                    result += input.value;
-                    input.disabled = true;
-                });
-
-                if (result.includes('=')) {
-                    var result2 = result.split('=')[1];
-                }
-
-                if (result2 === szamok[2] && helyesMaradek == maradek) {
-                    button.style.backgroundColor = 'rgb(0, 110, 0)';
-                    button.style.fontSize = '16px';
-                    button.style.fontFamily = '"Poppins", sans-serif';
-                    button.textContent = 'Jó válasz!';
-                } else {
-                    button.style.backgroundColor = 'red';
-                    button.style.fontSize = '16px';
-                    button.style.fontFamily = '"Poppins", sans-serif';
-                    button.textContent = 'Rossz válasz!';
-                }
-
-                setTimeout(() => {
-                    testContent();
-                }, 1500);
+            // Az összes input mező értékeinek kinyerése és összevonása egy stringbe
+            var result = "";
+            inputMezok.forEach(function (input) {
+                result += input.value;
+                input.disabled = true;
             });
+
+            if (result.includes('=')) {
+                var result2 = result.split('=')[1];
+            }
+
+            if (result2 === szamok[2] && helyesMaradek == maradek) {
+                button.style.backgroundColor = 'rgb(0, 110, 0)';
+                button.style.fontSize = '16px';
+                button.style.fontFamily = '"Poppins", sans-serif';
+                button.textContent = 'Jó válasz!';
+                saveStatistics(1, "osztás");
+            } else {
+                button.style.backgroundColor = 'red';
+                button.style.fontSize = '16px';
+                button.style.fontFamily = '"Poppins", sans-serif';
+                button.textContent = 'Rossz válasz!';
+                saveStatistics(0, "osztás");
+            }
+
+            setTimeout(() => {
+                testContent();
+            }, 1500);
+        });
 
 
 
@@ -680,3 +715,32 @@ function setData(data) {
         });
     }
 }
+
+
+// Példa fetch hívás a kliensoldalról
+const saveStatistics = async (answer, taskType) => {
+    try {
+        const response = await fetch('http://localhost:8000/api/tasks/statistics/saveResult', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": localStorage.getItem('token')
+            },
+            body: JSON.stringify({
+                answer,
+                taskType
+            }),
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            console.log(result); // Sikeres válasz esetén
+        } else {
+            const errorData = await response.json();
+            console.error('Hiba a szerver válaszában:', errorData);
+        }
+    } catch (error) {
+        console.error('Hiba a fetch hívás során:', error);
+    }
+};
+

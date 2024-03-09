@@ -359,3 +359,19 @@ BEGIN
 END //
 
 DELIMITER ;
+
+-- saveTestResult
+
+DELIMITER //
+
+CREATE PROCEDURE saveResult(
+    IN p_felhasznalo_id INT,
+    IN p_jo_kitoltes INT,
+    IN p_feladat_tipus VARCHAR(255)
+)
+BEGIN
+    INSERT INTO `statisztika`(`felhasznalo_id`, `osszes_kitoltes`, `jo_kitoltes`, `feladat_tipus`, `created_at`)
+    VALUES (p_felhasznalo_id, 1, p_jo_kitoltes, p_feladat_tipus, NOW());
+END //
+
+DELIMITER ;

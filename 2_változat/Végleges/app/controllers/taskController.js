@@ -40,5 +40,25 @@ const getStatistics = (req, res) => {
     });
 };
 
+const saveResult = (req, res) => {
+  let userId = req.user.userId;
+  console.log(userId)
+  let answer = req.body.answer;
+  console.log(answer)
+  let taskType = req.body.taskType;
+  console.log(taskType)
 
-module.exports = { generateTask, getStatistics };
+  //userId, answer, taskType
+  TaskModel.saveResult(userId, answer, taskType)
+    .then((result) => {
+        res.status(200).json({ success: 'success' });
+    })
+    .catch((error) => {
+      console.error('Hiba az adatbázislekérdezés során: ' + error);
+      res.status(500).json({ error: 'Hiba az adatbázislekérdezés során' });
+    });
+
+};
+
+
+module.exports = { generateTask, getStatistics, saveResult };

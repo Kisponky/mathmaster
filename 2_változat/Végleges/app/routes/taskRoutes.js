@@ -7,5 +7,7 @@ router.get('/task', auth, taskController.generateTask);
 
 router.get('/statistics/:muvelet', auth, taskController.getStatistics);
 
+router.post('/statistics/saveResult', auth, taskController.saveResult);
+
 
 module.exports = router;
