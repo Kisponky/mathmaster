@@ -38,7 +38,7 @@ function navBar() {
 
     // Admin menüpont megjelenítése
     if (localStorage.getItem("admin")) {
-        new_task.innerHTML += '<li><a class="dropdown-item" href="#">Új feladat...</a></li>';
+        new_task.innerHTML += '<li><a class="dropdown-item" href="./html/new_task.html">Új feladat...</a></li>';
         admin.innerHTML += '<li><a class="dropdown-item" href="./html/admin.html">Admin</a></li>';
     }
 }

@@ -2,139 +2,91 @@
 <html lang="hu">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MathMaster</title>
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Saját CSS -->
     <link rel="stylesheet" href="../css/admin.css">
-    <link rel="stylesheet" href="../css/modal.css">
+
+    <!-- Favicon -->
     <link rel="shortcut icon" href="../img/owl-47526.svg" type="image/x-icon">
-    <title>MathMaster</title>
+
+    <!-- Javascriptek importálása -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script>
-        fetch('http://localhost:8000/api/auth/check-admin', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `${localStorage.getItem('token')}`,
-            },
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                if (error.message.includes('403') || error.message.includes('401')) {
-                    window.location.href = '../index.html';
-                }
-            });
-
-
-    </script>
+    <script src="../js/admin.js"></script>
 </head>
 
 <body>
-    <div class="container-fluid">
-        <header class="d-flex flex-wrap justify-content-center py-3">
-            <div class="custom-container">
-
-                <a href="#" class="navbar-brand ceg-nev">
-                    <img src="../img/owl-47526.svg" alt="Logo" width="40" height="40"
-                        class="d-inline-block align-text-middle">
-                    MathMaster
-                </a>
-
-                <ul class="nav nav-pills custom-nav">
-                    <li class="nav-item"><a href="../index.html" class="nav-link" aria-current="page">
-                            <span style="vertical-align: inherit;">Kezdőlap</span>
-                        </a>
-                    </li>
-                    <li class="nav-item"><a href="#" class="nav-link active">
-                            <span style="vertical-align: inherit;">Beérkező üzenetek</span>
-                        </a>
-                    </li>
-                    <li class="nav-item"><a href="./vizsgalati_naplo.html" class="nav-link">
-                            <span style="vertical-align: inherit;">Vizsgálati napló</span>
-                        </a>
-                    </li>
-                    <li class="nav-item"><a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#admin">
-                            <span style="vertical-align: inherit;">Admin felvétel</span>
-                        </a>
-                    </li>
-                </ul>
-
-                <div class="dropdown text-end">
-                    <a href="#" class="d-block link-body-emphasis text-decoration-none me-2" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <img src="../img/PersonCircle_Profile.svg" alt="mdo" width="32" height="32"
-                            class="rounded-circle">
+    <header>
+        <div class="container">
+            <nav class="navbar navbar-expand-sm">
+                <div class="container-fluid">
+                    <!-- Logo és cég neve -->
+                    <a href="#" class="navbar-brand ceg-nev">
+                        <img src="../img/owl-47526.svg" alt="Logo" width="40" height="40"
+                            class="d-inline-block align-text-middle">
+                        MathMaster
                     </a>
-                    <ul class="dropdown-menu text-small">
-                        <li><a class="dropdown-item" href="#">
-                                <span style="vertical-align: inherit;">Új feladat...</span>
-                            </a>
-                        </li>
-                        <li><a class="dropdown-item" href="#">
-                                <span style="vertical-align: inherit;">Statisztika</span>
-                            </a>
-                        </li>
-                        <li><a class="dropdown-item" href="#">
-                                <span style="vertical-align: inherit;">Beállítások</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">
-                                <span style="vertical-align: inherit;">Kijelentkezés</span>
-                            </a>
-                        </li>
-                    </ul>
+
+                    <!-- Hamburgernavigáció -->
+                    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="toggler-icon top-bar"></span>
+                        <span class="toggler-icon middle-bar"></span>
+                        <span class="toggler-icon bottom-bar"></span>
+                    </button>
+
+                    <!-- Navigációs menü -->
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                        <ul class="navbar-nav nav-pills" id="navbarMenu"></ul>
+                    </div>
+
+                    <!-- Profil menü -->
+                    <div id="profilom" class="nav-item dropdown me-1">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <img src="../img/PersonCircle_Profile.svg" alt="Profil" width="28" height="28">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li id="new_task"></li>
+                            <li><a class="dropdown-item" href="./statistics.html">Statisztika</a></li>
+                            <li id="uzeneteim"></li>
+                            <li><a class="dropdown-item" href="./profile.html">Beállítások</a></li>
+                            <li id="admin"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#" onclick="logout()">Kijelentkezés</a></li>
+                        </ul>
+                    </div>
+
                 </div>
-
-            </div>
-        </header>
-    </div>
-
-
-
-    <!-- Admin felvétel modal -->
-    <div class="modal fade" id="admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header p-5 pb-4 border-bottom-0">
-                    <h1 class="fw-bold mb-0 fs-2">
-                        <span>Új admin felvétele</span>
-                    </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
-                </div>
-
-                <div class="modal-body p-5 pt-0">
-                    <form>
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control rounded-3" id="ujAdminEmail"
-                                placeholder="nev@example.com">
-                            <label for="floatingInput">
-                                <span>Felhasználó email címe</span>
-                            </label>
-                        </div>
-                        <button onclick="adminFelvetel()" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0"
-                            type="button">
-                            <span>Felvétel</span>
-                        </button>
-                    </form>
-                </div>
-            </div>
+            </nav>
         </div>
-    </div>
+    </header>
+
+
+
+    <!-- Üzenet küldés modal -->
+    <div id="adminContainer"></div>
 
 
 
@@ -142,140 +94,35 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-
-
-
+    
+                    <!-- Cím és egy kis szöveg -->
                     <div class="jumbotron text-center">
                         <h1>Beérkező üzenetek</h1>
                         <p>Egy pár beérkezett üzenet! :)</p>
                     </div>
-
-
-
+    
+                    <!-- Üzenet konténer -->
                     <div class="message-container" id="messages"></div>
-
-                    <script>
-                        function uezenetekBetolt() {
-                            fetch(`http://localhost:8000/api/admin/messages`, {
-                                method: 'GET',
-                                headers: {
-                                    'Authorization': localStorage.getItem('token'),
-                                    'Content-Type': 'application/json'
-                                }
-                            })
-                                .then(response => response.json())
-                                .then(data => {
-                                    // Adatok betöltése a táblázatba
-                                    const messages = document.getElementById('messages');
-                                    data.forEach(kapcsolat => {
-                                        let bubi = `
-                                            <div class="message-buborek" id="message-buborek${kapcsolat.kapcsolat_id}">
-                                                <div class="message-header">
-                                                    <div class="message-user">${kapcsolat.felhasznalo_teljes_nev}</div>
-                                                    <div class="message-date">${new Date(kapcsolat.letrehozas_datuma).toLocaleDateString()}</div>
-                                                </div>
-                                                <div class="message-text">
-                                                    ${kapcsolat.beerkezett_uzenet}
-                                                    <textarea
-                                                        oninput="this.style.height = ''; this.style.height = (this.scrollHeight + 2) + 'px';"
-                                                        class="form-control" id="inputMezo${kapcsolat.kapcsolat_id}" rows="1"
-                                                        placeholder="Ide írja válaszát..."></textarea>
-                                                        <button onclick="valaszKuldes(${kapcsolat.kapcsolat_id})" class="btn btn-info btn-info-class" id="inputButton${kapcsolat.kapcsolat_id}">Küldés</button>
-                                                </div>
-                                                <div class="message-actions">
-                                                    <button class="btn btn-primary btn-primary-class"
-                                                        onclick="valaszInputMezo(${kapcsolat.kapcsolat_id})">Válasz</button>
-                                                    <button class="btn btn-danger btn-danger-class" onclick="torles(${kapcsolat.kapcsolat_id})">Törlés</button>
-                                                </div>
-                                            </div>
-                                        `;
-                                        messages.innerHTML += bubi;
-                                    });
-                                })
-                                .catch(error => console.error('Hiba a fetch kérés során:', error));
-                        }
-
-                        document.addEventListener('DOMContentLoaded', () => {
-                            uezenetekBetolt()
-                        });
-
-                        function valaszInputMezo(id) {
-                            var inputMezo = document.getElementById(`inputMezo${id}`);
-                            inputMezo.style.display = "block";
-                            var inputButton = document.getElementById(`inputButton${id}`);
-                            inputButton.style.display = "block";
-                        }
-
-                        function torles(id) {
-                            fetch(`http://localhost:8000/api/admin/kapcsolat/${id}`, {
-                                method: 'DELETE',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'Authorization': `${localStorage.getItem('token')}`,
-                                },
-                            })
-                                .then(response => {
-                                    if (!response.ok) {
-                                        throw new Error(`HTTP hiba! Státusz: ${response.status}`);
-                                    }
-                                    return response.json();
-                                })
-                                .then(data => {
-                                    console.log('Sikeres törlés:', data);
-                                    swal("Sikeres törlés!", "Az üzenet törlésre került.", "success")
-                                    document.getElementById('message-buborek' + id).remove();
-                                })
-                                .catch(error => {
-                                    console.error('Hiba a törlés során:', error);
-                                });
-
-                        }
-                        function valaszKuldes(id) {
-                            const valaszUzenet = document.getElementById("inputMezo" + id.toString()).value; // A frissítendő érték
-
-                            fetch(`http://localhost:8000/api/admin/valasz/${id}`, {
-                                method: 'PUT',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'Authorization': localStorage.getItem('token'),
-                                },
-                                body: JSON.stringify({ uzenet: valaszUzenet, token: localStorage.getItem('token') }),
-                            })
-                                .then(response => {
-                                    if (!response.ok) {
-                                        throw new Error('A szerver hibát adott vissza');
-                                    }
-                                    document.getElementById('message-buborek' + id.toString()).remove();
-                                    return response.json();
-                                })
-                                .catch(error => {
-                                    // A hiba kezelése itt történik
-                                    console.error('Hiba történt az API hívás során:', error.message);
-                                });
-                        }
-                    </script>
-
+    
                 </div>
             </div>
         </div>
     </main>
+    
 
 
 
     <footer class="container-fluid container4">
         <div class="container">
-
+    
             <div class="row">
+                <!-- Bal oldal -->
                 <div class="col-xs-12 col-lg-6">
-                    <div class="row d-none d-sm-none d-md-none d-lg-block footer-bg">
-                        <div class="col-12"></div>
-                    </div>
-                    <div class="row footer-bg">
-                        <div class="col-12"></div>
-                    </div>
-                    <div class="row footer-bg">
-                        <div class="col-12"></div>
-                    </div>
+                    <div class="row d-none d-sm-none d-md-none d-lg-block footer-bg"></div>
+                    <div class="row footer-bg"></div>
+                    <div class="row footer-bg"></div>
+
+                    <!-- Cég logo és név -->
                     <div class="row footer-bg">
                         <div class="col-xs-0 col-md-3 col-lg-2"></div>
                         <div class="col-xs-12 col-md-6 d-flex align-items-center ceg">
@@ -284,38 +131,37 @@
                         </div>
                         <div class="col-xs-0 col-md-3 col-lg-4"></div>
                     </div>
+
+                    <!-- Copyright -->
                     <div class="row footer-bg">
                         <div class="col-xs-0 col-md-3 col-lg-2"></div>
                         <div class="col-xs-12 col-md-6 col-lg-7 text-center d-flex align-items-end pb-sm-5 pb-lg-4">
-                            <span class="align-bottom copyright">&copy; 2023 Minden jog fenntartva</span>
+                            <span class="align-bottom copyright">&copy; 2024 Minden jog fenntartva</span>
                         </div>
                         <div class="col-xs-0 col-md-3 col-lg-3"></div>
                     </div>
-                    <div class="row footer-bg">
-                        <div class="col-12"></div>
-                    </div>
+
+                    <div class="row footer-bg"></div>
                 </div>
+    
 
 
-
+                <!-- Jobb oldal -->
                 <div class="col-xs-12 col-lg-6 d-none d-sm-none d-md-none d-lg-block">
-                    <div class="row footer-bg">
-                        <div class="col-12"></div>
-                    </div>
-                    <div class="row footer-bg">
-                        <div class="col-12"></div>
-                    </div>
-                    <div class="row footer-bg">
-                        <div class="col-12"></div>
-                    </div>
+                    <div class="row footer-bg"></div>
+                    <div class="row footer-bg"></div>
+                    <div class="row footer-bg"></div>
+
+                    <!-- Idézet -->
                     <div class="row footer-bg">
                         <div class="col-lg-1 col-xl-2"></div>
                         <div class="col-lg-9 col-xl-6 d-flex align-items-center">
-                            <span class="align-middle idezet">“A megszerzett tudás csak akkor válik valódi tudássá,
-                                ha képes vagy rá, hogy közöld másokkal.”</span>
+                            <span class="align-middle idezet">“A megszerzett tudás csak akkor válik valódi tudássá, ha képes vagy rá, hogy közöld másokkal.”</span>
                         </div>
                         <div class="col-lg-3 col-xl-4"></div>
                     </div>
+
+                    <!-- Szerző -->
                     <div class="row footer-bg">
                         <div class="col-lg-1 col-xl-2"></div>
                         <div class="col-lg-5 col-xl-4 d-flex align-items-center">
@@ -325,46 +171,20 @@
                     </div>
                 </div>
             </div>
-
+    
         </div>
     </footer>
 
-    <script>
-        function adminFelvetel() {
-            fetch('http://localhost:8000/users/newAdmin', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem('token'),
-                },
-                body: JSON.stringify({
-                    email: document.getElementById("ujAdminEmail").value
-                }),
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP hiba! Státusz: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Sikeres admin felvétel:', data);
-                    alert("Sikeres admin felvétel")
-                })
-                .catch(error => {
-                    console.error('Hiba az admin felvétel során:', error);
-                });
-        }
 
 
-    </script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+    <!-- Menü rendszer js -->
+    <script src="../js/adminNavbar.js"></script>
 
-    <!-- Létrehozni a js fájlt és gombok ellenőrzése -->
-    <!-- Admin felvétel gomb bordó szín beállítása -->
+    <!-- Oldalhoz tartozó js -->
+    <script src="../js/index.js"></script>
 </body>
 
 </html>
