@@ -37,6 +37,13 @@ function showForm(formNumber) {
     document.getElementById("form" + formNumber).classList.remove("d-none");
 }
 
+
+
+/*
+  Ellenőrzi a jelenlegi űrlapon lévő mezők kitöltését és a helyes válasz kiválasztását.
+  Ha minden szükséges mező ki van töltve, és a helyes válasz kiválasztva, akkor a következő űrlapot jeleníti meg.
+  Ellenkező esetben hibaüzenet jelenik meg.
+*/
 function next() {
     var currentFormElement = document.getElementById("form" + currentForm);
     var inputs = currentFormElement.getElementsByTagName("input");
@@ -86,6 +93,10 @@ function next() {
 }
 
 
+
+/*
+  Az összes kitöltött űrlap és a hozzájuk tartozó mezők megjelenítése, valamint azok letiltása.
+*/
 function showAllData() {
     for (var i = 0; i < darab; i++) {
         var formElement = document.getElementById("form" + (i + 1));

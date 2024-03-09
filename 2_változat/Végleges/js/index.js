@@ -98,6 +98,9 @@ function bejelentkez() {
     });
 }
 
+
+
+// Autómata kijelentkeztetés
 function autoLogout() {
   if (new Date().getTime() < new Date(localStorage.getItem('expirationTime')).getTime()) {
     console.log((new Date(localStorage.getItem('expirationTime')).getTime()) - (new Date().getTime()))
