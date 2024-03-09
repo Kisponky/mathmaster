@@ -31,6 +31,7 @@ function navBar() {
 
     // Üzenetek menüpont megjelenítése
     if (!localStorage.getItem("admin")) {
+        new_task.innerHTML += '<li><a class="dropdown-item active" href="#">Új feladat...</a></li>';
         uzeneteim.innerHTML += '<li><a class="dropdown-item" href="./html/messages.html">Üzeneteim</a></li>';
     }
 
