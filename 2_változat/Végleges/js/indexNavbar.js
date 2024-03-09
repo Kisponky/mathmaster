@@ -31,7 +31,6 @@ function navBar() {
 
     // Üzenetek menüpont megjelenítése
     if (!localStorage.getItem("admin")) {
-        new_task.innerHTML += '<li><a class="dropdown-item active" href="#">Új feladat...</a></li>';
         uzeneteim.innerHTML += '<li><a class="dropdown-item" href="./html/messages.html">Üzeneteim</a></li>';
     }
 
@@ -39,6 +38,7 @@ function navBar() {
 
     // Admin menüpont megjelenítése
     if (localStorage.getItem("admin")) {
+        new_task.innerHTML += '<li><a class="dropdown-item" href="#">Új feladat...</a></li>';
         admin.innerHTML += '<li><a class="dropdown-item" href="./html/admin.html">Admin</a></li>';
     }
 }
@@ -47,14 +47,15 @@ function navBar() {
 function getMenuHTML(isLoggedIn = true) {
     var menuHTML='';
     menuHTML += '<li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Kezdőlap</a></li>';
+    var aboutMenu = '<li class="nav-item"><a class="nav-link" href="./html/about.html">Rólunk</a></li>';
     if (isLoggedIn) {
-        menuHTML += '<li class="nav-item"><a class="nav-link" href="./html/about.html">Rólunk</a></li>';
+        menuHTML += aboutMenu;
         menuHTML += '<li class="nav-item"><a class="nav-link" href="./html/contact.html">Kapcsolat</a></li>';
         menuHTML += '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#uzenet">Üzenet küldés</a></li>';
     } else {
         menuHTML += '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#regisztracio">Regisztráció</a></li>';
         menuHTML += '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#bejelentkezes">Bejelentkezés</a></li>';
-        menuHTML += '<li class="nav-item"><a class="nav-link" href="href="./html/about.html">Rólunk</a></li>';
+        menuHTML += aboutMenu;
     }
     return menuHTML;
 }
