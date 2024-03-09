@@ -1,10 +1,10 @@
-var currentForm = 1; 
+var currentForm = 1;
 var darab = 0;
-var kerdesek = []; 
-var valaszokA = []; 
-var valaszokB = []; 
-var valaszokC = []; 
-var valaszokD = []; 
+var kerdesek = [];
+var valaszokA = [];
+var valaszokB = [];
+var valaszokC = [];
+var valaszokD = [];
 var radio = [];
 
 
@@ -13,17 +13,23 @@ function checkInput() {
     var darabSzamInput = document.getElementById("darabSzamInput");
     darab = parseInt(darabSzamInput.value);
 
-    if (!isNaN(darab) && darab >= 1 && darab <= 10) {
-        showForm(currentForm);
-        darabSzamInput.disabled = true;
-        next();
+    if (currentForm != darab + 1) {
+
+
+        if (!isNaN(darab) && darab >= 1 && darab <= 10) {
+            showForm(currentForm);
+            darabSzamInput.disabled = true;
+            next();
+        } else {
+            Swal.fire({
+                title: "Info",
+                text: "Kérlek adj meg egy érvényes számot 1 és 10 között!",
+                icon: "info",
+                confirmButtonColor: "#3498db"
+            });
+        }
     } else {
-        Swal.fire({
-            title: "Info",
-            text: "Kérlek adj meg egy érvényes számot 1 és 10 között!",
-            icon: "info",
-            confirmButtonColor: "#3498db"
-        });
+        alert("vége")
     }
 }
 
@@ -45,8 +51,9 @@ function showForm(formNumber) {
   Ellenkező esetben hibaüzenet jelenik meg.
 */
 function next() {
-    var currentFormElement = document.getElementById("form" + currentForm);
-    var inputs = currentFormElement.getElementsByTagName("input");
+    // var currentFormElement = document.getElementById("form" + currentForm);
+    // var inputs = currentFormElement.getElementsByTagName("input");
+
     var kerdesInput = document.getElementById("kerdes" + currentForm).value;
     var valaszAInput = document.getElementById("valaszA" + currentForm).value;
     var valaszBInput = document.getElementById("valaszB" + currentForm).value;
@@ -59,7 +66,8 @@ function next() {
         for (let i = 0; i < radioButton.length; i++) {
             if (radioButton[i].checked) {
                 radioChecked = true;
-                break; 
+                radioButton = radioButton[i].value
+                break;
             }
         }
         if (radioChecked) {
@@ -68,6 +76,7 @@ function next() {
             valaszokB.push(valaszBInput);
             valaszokC.push(valaszCInput);
             valaszokD.push(valaszDInput);
+            radio.push(radioButton);
             currentForm++;
             if (currentForm <= darab) {
                 showForm(currentForm);
@@ -90,6 +99,7 @@ function next() {
             confirmButtonColor: "#3498db"
         });
     }
+
 }
 
 
@@ -98,6 +108,7 @@ function next() {
   Az összes kitöltött űrlap és a hozzájuk tartozó mezők megjelenítése, valamint azok letiltása.
 */
 function showAllData() {
+    document.getElementById("formButton").innerHTML = "Feltöltés"
     for (var i = 0; i < darab; i++) {
         var formElement = document.getElementById("form" + (i + 1));
         formElement.classList.remove("d-none");
