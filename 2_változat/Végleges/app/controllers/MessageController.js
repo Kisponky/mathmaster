@@ -69,7 +69,7 @@ const saveMessage = (req, res) => {
           GetUserDataByConnectionId.getUserData(kapcsolatId)
           .then((results) => {
               console.log('Users:', results[0]);
-              newMessage(results[0].teljes_nev, results[0].email)
+              newMessage(results[0][0].teljes_nev, results[0][0].email)
           })
           .catch((err) => {
               console.error('Error getting users:', err);

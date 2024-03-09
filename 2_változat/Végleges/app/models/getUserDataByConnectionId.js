@@ -2,7 +2,7 @@ const db = require('../db/db');
 
 function getUserData(connectionId) {
     return new Promise((resolve, reject) => {
-        const query = `GetUserDataByConnectionId(?);`;
+        const query = `CALL GetUserDataByConnectionId(?);`;
 
         db.query(query, [connectionId], (err, results) => {
             if (err) {
