@@ -11,25 +11,27 @@ var radio = [];
 // Fő függvény a bemenet ellenőrzéséhez és a formok megjelenítéséhez
 function checkInput() {
     var darabSzamInput = document.getElementById("darabSzamInput");
+    var osztaly = document.getElementById('osztaly');
     darab = parseInt(darabSzamInput.value);
 
     if (currentForm != darab + 1) {
 
 
-        if (!isNaN(darab) && darab >= 1 && darab <= 10) {
+        if (!isNaN(darab) && darab >= 1 && darab <= 10 && !isNaN(osztaly.value)) {
             showForm(currentForm);
             darabSzamInput.disabled = true;
+            osztaly.disabled = true;
             next();
         } else {
             Swal.fire({
                 title: "Info",
-                text: "Kérlek adj meg egy érvényes számot 1 és 10 között!",
+                text: "Adj meg 1 és 10 közötti számot és válaszd ki az osztályt is!",
                 icon: "info",
                 confirmButtonColor: "#3498db"
             });
         }
     } else {
-        alert("vége")
+        alert(osztaly.value)
     }
 }
 
