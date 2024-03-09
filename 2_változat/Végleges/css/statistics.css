@@ -1,41 +1,109 @@
-body{
+body {
     background: linear-gradient(#224468, #162C45) no-repeat center center fixed;
     background-size: cover;
 }
 
-.container-fluid {
-    padding: 0 0 20px 0;
-}
-
+/* Tartalom szélessége */
 .container {
     max-width: 1440px;
 }
 
 
 
-.custom-container {
-    max-width: 1440px;
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* Modal tartalma */
+.modal-content {
+    background-image: linear-gradient(#22446B, #162C45);
+    border-radius: 25px;
 }
 
-.custom-nav {
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+/* Modal fejléce */
+.modal-header {
+    padding-top: 43px;
+    color: white;
 }
 
-.custom-nav li {
-    margin-right: 5px;
+.modal-header>h1{
+    background: none;
+    color: white;
 }
 
-.custom-nav a {
-    text-decoration: none;
+/* Modal-t bezáró gomb */
+.btn-close {
     color: #fff;
+    background: url('../img/btn-close.svg') no-repeat center center;
+    box-sizing: content-box;
+    width: 0.5em;
+    height: 0.5em;
+    padding: 0.25em;
+}
+
+
+/* Textarea */
+.custom-textarea {
+    resize: none;
+    overflow: hidden;
+}
+
+
+/* Regisztrációs szöveg */
+small {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    line-height: 120%;
+}
+
+
+/* Gomb */
+.btn-danger {
+    background: #800000;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+}
+
+
+
+/* Háttér szín */
+header {
+    background: linear-gradient(to right, #162C45, #22446B);
+}
+
+
+/* Szövegformázás */
+.ceg-nev,
+.nav-link,
+.dropdown-item {
+    font-family: 'Abril Fatface', serif;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+/* Cím */
+.ceg-nev {
+    font-size: 24px;
+    font-weight: bold;
+    color: #800000;
+}
+
+.ceg-nev:hover{
+    color: #800000;
+}
+
+/* Linkek */
+.nav-link {
+    color: white;
+}
+
+.nav-link:hover,
+.nav-link:active {
+    color: white;
+}
+
+/* Aktív link */
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #800000;
 }
 
 .dropdown-item.active {
@@ -44,148 +112,121 @@ body{
 }
 
 
-
-.ceg-logo {
-    height: 40px;
-}
-
-@font-face {
-    font-family: 'Abril_Farface';
-    src: url('../font/Abril_Fatface.zip');
-}
-
-.ceg-nev {
-    font-family: 'Abril_Farface', serif;
-    font-size: 24px;
-    font-weight: bold;
-    color: #800000;
-}
-
-.nav-link {
-    font-family: 'Abril_Farface', serif;
-    font-size: 16px;
-    font-weight: normal;
-    color: #fff;
-}
-
-.active {
-    color: #fff;
-    text-decoration: underline;
-}
-
-.profile {
-    height: 28px;
-}
-
-header {
-    background-image: linear-gradient(to right, #162C45, #22446B);
-}
-
-.animated-icon1,
-.animated-icon2,
-.animated-icon3 {
+/* Hambureger menü */
+.toggler-icon{
     width: 30px;
-    height: 20px;
-    position: relative;
-    margin: 0px;
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
-    -webkit-transition: .4s ease-in-out;
-    -moz-transition: .4s ease-in-out;
-    -o-transition: .4s ease-in-out;
-    transition: .4s ease-in-out;
-    cursor: pointer;
-}
-
-.animated-icon1 span,
-.animated-icon2 span,
-.animated-icon3 span {
-    display: block;
-    position: absolute;
     height: 3px;
-    width: 100%;
     border-radius: 9px;
-    opacity: 1;
-    left: 0;
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
-    -webkit-transition: .24s ease-in-out;
-    -moz-transition: .24s ease-in-out;
-    -o-transition: .24s ease-in-out;
-    transition: .24s ease-in-out;
+    background: #e74c3c;
+    display: block;
+    transition: all 0.3s ease-in-out;
 }
 
 
-.animated-icon2 span {
-    background: black;
-}
-
-.animated-icon2 span:nth-child(1) {
-    top: 0px;
-}
-
-.animated-icon2 span:nth-child(2),
-.animated-icon2 span:nth-child(3) {
-    top: 10px;
-}
-
-.animated-icon2 span:nth-child(4) {
-    top: 20px;
-}
-
-.animated-icon2.open span:nth-child(1) {
-    top: 11px;
-    width: 0%;
-    left: 50%;
-}
-
-.animated-icon2.open span:nth-child(2) {
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-
-.animated-icon2.open span:nth-child(3) {
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    -o-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-}
-
-.animated-icon2.open span:nth-child(4) {
-    top: 11px;
-    width: 0%;
-    left: 50%;
-}
-
-.navbar .navbar-toggler {
-    border-width: 0;
+/* Menü rendszer */
+.dropdown-toggle::after {
+    display: none !important;
 }
 
 .navbar-toggler {
-    background-color: transparent;
+    border: 0;
 }
 
-button#button {
-    order: 1;
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+    border: 0;
 }
 
-img#profil {
-    order: 2;
+.middle-bar{
+    margin: 5px auto;
 }
 
-@media (max-width: 420px) {
-    button#button {
-        order: 2;
+.navbar-toggler .top-bar {
+    transform: translateY(-0.5px) translateX(0.75px) rotate(45deg); /* Módosítás */
+    transform-origin: 10% 10%;
+}
+
+.navbar-toggler .middle-bar {
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.navbar-toggler .bottom-bar {
+    transform: translateY(0.5px) translateX(-0.75px) rotate(-45deg); /* Módosítás */
+    transform-origin: 10% 10%;
+}
+
+.navbar-toggler.collapsed .top-bar{
+    transform: rotate(0);
+}
+
+.navbar-toggler.collapsed .middle-bar{
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+.navbar-toggler.collapsed .bottom-bar{
+    transform: rotate(0);
+}
+
+.navbar-toggler.collapsed .toggler-icon{
+    background: #f4f4f4;
+}
+
+
+/* Mobil nézet */
+@media (max-width: 576px) {
+    .navbar-brand {
+        order: -2;
     }
 
-    img#profil {
+    .navbar-collapse {
         order: 1;
+    }
+
+    .nav-link{
+        padding: 8px 0 8px 10px;
+    }
+
+    .dropdown {
+        order: -1;
+        margin: 0 0 0 200px;
+    }
+
+    .dropdown-menu {
+        right: auto;
+        left: 0;
+    }
+}
+
+@media (max-width: 450px) {
+    .dropdown {
+        margin: 0 0 0 30px;
+    }
+}
+
+@media (max-width: 391px) {
+    .dropdown {
+        margin: 0 0 0 25px;
+    }
+}
+
+@media (max-width: 361px) {
+  .dropdown {
+        margin: 0 0 0 10px;
+    }
+}
+
+@media (max-width: 320px) {
+    .ceg-nev {
+        font-size: 20px;
+    }
+
+    .dropdown {
+        margin: 0 0 0 0;
     }
 }
 

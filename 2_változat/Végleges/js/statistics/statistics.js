@@ -73,12 +73,13 @@ fetch(`http://localhost:8000/api/tasks/statistics/${"összeadás"}`, {
     })
     .catch(error => console.error('Hiba a fetch kérés során: ', error));
 
+    
 let kivonasO = [];
 let kivonasH = [];
 
 var kivonas = [];
 
-fetch(`http://localhost:8000/api/tasks/statistics/${"kivonas"}`, {
+fetch(`http://localhost:8000/api/tasks/statistics/${"kivonás"}`, {
     method: 'GET',
     headers: {
         'Authorization': localStorage.getItem('token'),
@@ -124,7 +125,7 @@ let szorzasH = [];
 
 var szorzas = [];
 
-fetch(`http://localhost:8000/api/tasks/statistics/${"szorzas"}`, {
+fetch(`http://localhost:8000/api/tasks/statistics/${"szorzás"}`, {
     method: 'GET',
     headers: {
         'Authorization': localStorage.getItem('token'),
@@ -164,12 +165,13 @@ fetch(`http://localhost:8000/api/tasks/statistics/${"szorzas"}`, {
     })
     .catch(error => console.error('Hiba a fetch kérés során: ', error));
 
+
 let osztasO = [];
 let osztasH = [];
 
 var osztas = [];
 
-fetch(`http://localhost:8000/api/tasks/statistics/${"osztas"}`, {
+fetch(`http://localhost:8000/api/tasks/statistics/${"osztás"}`, {
     method: 'GET',
     headers: {
         'Authorization': localStorage.getItem('token'),
