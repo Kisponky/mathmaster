@@ -1,3 +1,5 @@
+const { default: Swal } = require("sweetalert2");
+
 var currentForm = 1;
 var darab = 0;
 var kerdesek = [];
@@ -151,6 +153,14 @@ const createNewTask = async () => {
       if (response.ok) {
         const result = await response.json();
         console.log(result); // Sikeres válasz esetén
+        Swal.fire({
+            title: "Sikeres feltöltés",
+            icon: "success",
+            confirmButtonColor: "#3498db"
+        });
+        setTimeout(() => {
+            location.href = "../index.html"
+        }, 2000)
       } else {
         const errorData = await response.json();
         console.error('Hiba a szerver válaszában:', errorData);

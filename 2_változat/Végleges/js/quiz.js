@@ -7,7 +7,7 @@ function feladatGeneral() {
         }
     })
         .then(response => response.json())
-        .then(data => kiir(data.tartalom, data.valaszlehetosegek))
+        .then(data => console.log(data))
         .catch(error => console.error('Hiba a fetch kérés során: ', error));
 }
 feladatGeneral();

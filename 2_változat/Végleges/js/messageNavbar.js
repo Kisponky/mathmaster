@@ -42,7 +42,11 @@ function navBar() {
 
     // Admin menüpont megjelenítése
     if (localStorage.getItem("admin")) {
-        new_task.innerHTML += '<li><a class="dropdown-item" href="./new_task.html">Új feladat...</a></li>';
+        if (window.location.href.includes("new_task.html")) {
+            new_task.innerHTML += '<li><a class="dropdown-item active" href="./new_task.html">Új feladat...</a></li>';
+        } else {
+            new_task.innerHTML += '<li><a class="dropdown-item" href="./new_task.html">Új feladat...</a></li>';
+        }
         admin.innerHTML += '<li><a class="dropdown-item" href="./admin.html">Admin</a></li>';
     }
 }
