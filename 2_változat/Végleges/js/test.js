@@ -1,6 +1,6 @@
-
-
 var feladvany = "";
+
+// Fetch hívás a feladat tartalmának lekérésére
 function testContent() {
     fetch(`http://localhost:8000/api/tasks/task?osztaly=${localStorage.getItem('class')}&tipus=matematika`, {
         method: 'GET',
@@ -18,6 +18,7 @@ testContent();
 function setData(data) {
     feladvany = data;
 
+    // Változók inicializálása
     var szamok = feladvany.match(/\d+/g);
     var muvJelek = feladvany.match(/[+\-*/]/g);
     var maradek = szamok[0] % szamok[1];
@@ -25,13 +26,14 @@ function setData(data) {
     var elsoTag = szamok[0].split("");
     var masodikTag = szamok[1].split("");
 
-
     var elsoOsztaly = feladvany.match(/[+-]/g);
     var harmadikOsztaly = feladvany.match(/[/]/g);
     var harmadikOsztaly1 = feladvany.match(/[*]/g);
     var negyedikOsztaly = feladvany.match(/[/]/g);
     var negyedikOsztaly1 = feladvany.match(/[*]/g);
 
+
+    // Kisebb mint ellenőrzése
     var kisebbMint20 = true;
     var kisebbMint100 = true;
     var kisebbMint1000 = true;
@@ -54,7 +56,11 @@ function setData(data) {
         }
     }
 
-    if ((localStorage.getItem('class') == 1 && elsoOsztaly && kisebbMint20 == true /*&& lekérdezés adatbázisból*/) || (localStorage.getItem('class') == 2 && kisebbMint100 == true /*&& lekérdezés adatbázisból*/) || (localStorage.getItem('class') == 3 && harmadikOsztaly && kisebbMint1000 == true && szamok[1].length == 1 /*&& lekérdezés adatbázisból*/)) {
+
+    // 1. osztály, 2. osztály és 3. osztály osztás
+    if ((localStorage.getItem('class') == 1 && elsoOsztaly && kisebbMint20 == true) || (localStorage.getItem('class') == 2 && kisebbMint100 == true) || (localStorage.getItem('class') == 3 && harmadikOsztaly && kisebbMint1000 == true && szamok[1].length == 1)) {
+        
+        // html generálás
         document.getElementById("tartalom").innerHTML = `
         <div class="col-1 col-md-4 col-lg-4 col-xl-5"></div>
         <div class="col-9 col-md-4 col-lg-3 col-xl-2 text-end">
@@ -66,6 +72,7 @@ function setData(data) {
         </div>
         `;
 
+        // Input mezők stílusa
         const inputs = document.querySelectorAll('.input-style');
         inputs.forEach(input => {
             input.style.width = '38px';
@@ -76,8 +83,7 @@ function setData(data) {
             input.style.borderRadius = '5px'
         });
 
-
-
+        // Gomb funkciónalitása
         const button = document.getElementById('Ellenorzes');
 
         button.addEventListener('click', function () {
@@ -116,8 +122,10 @@ function setData(data) {
             }, 1500);
         });
 
-
+        // 3. osztály és 4. osztály összeadás, kivonás
     } else if ((localStorage.getItem('class') == 3 && kisebbMint1000 == true && elsoOsztaly /*&& lekérdezés adatbázisból*/) || (localStorage.getItem('class') == 4 && kisebbMint10000 == true && elsoOsztaly /*&& lekérdezés adatbázisból*/)) {
+        
+        // Nem látható input mezők
         var elsoTagInput = '';
         for (let i = 0; i < szamok[0].length; i++) {
             elsoTagInput += `<input type="text" class="form-control tag-style" value="${elsoTag[i]}" disabled>`;
@@ -128,20 +136,19 @@ function setData(data) {
             masodikTagInput += `<input type="text" class="form-control tag-style" value="${masodikTag[i]}" disabled>`;
         }
 
-        // Létrehozunk egy üres stringet, amelybe a ciklus eredményét fűzzük majd
+
+        // Eredmény input mezők
         var eredmenyInput = '';
 
-        // Az input mezők számának meghatározása
         var inputCount = szamok[2].length;
 
-        // Fordított sorrendben beállítjuk a tabindex értéket az input mezőkön
         for (let i = 0; i < inputCount; i++) {
             let reversedTabIndex = inputCount - i;
             eredmenyInput += `<input type="text" class="form-control mt-1 input-style" maxlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, '')" if(this.value.length === 1) { document.querySelector('input[tabindex=\"${reversedTabIndex}\"] + input').focus(); }" tabindex="${reversedTabIndex}">`;
         }
 
 
-        // Az eredményHTML tartalmát illesszük be a tartalom elembe
+        // Html generálása
         document.getElementById("tartalom").innerHTML = `
         <div class="col-0 col-md-5 col-xl-5"></div>
         <div class="col-8 col-md-2 col-xl-2  text-end">
@@ -157,7 +164,7 @@ function setData(data) {
         `;
 
 
-        // Az input mezőkre vonatkozó fókuszkezelő beállítása
+        // Inputok auto tabIndex-ének beállítása és gomb funkciónalitása
         const button = document.getElementById('Ellenorzes');
         const inputFields = document.querySelectorAll('.input-style');
 
@@ -207,7 +214,8 @@ function setData(data) {
             }, 1500);
         });
 
-        // Add CSS styles to the input elements
+
+        // Input mezők stílusa
         const tag = document.querySelectorAll('.tag-style');
         tag.forEach(input => {
             input.style.width = '20px';
@@ -230,7 +238,10 @@ function setData(data) {
         });
 
 
+        // 3. osztály szorzás
     } else if ((localStorage.getItem('class') == 3 && kisebbMint1000 == true && harmadikOsztaly1 && szamok[1].length == 1 /*&& lekérdezés adatbázisból*/) || (localStorage.getItem('class') == 4 && kisebbMint10000 == true && negyedikOsztaly1 && szamok[1].length == 1 /*&& lekérdezés adatbázisból*/)) {
+        
+        // Nem látható input mezők
         var elsoTagInput = '';
         for (let i = 0; i < szamok[0].length; i++) {
             elsoTagInput += `<input type="text" class="form-control tag-style" value="${elsoTag[i]}" disabled>`;
@@ -238,19 +249,17 @@ function setData(data) {
 
         var muvJelInput = `<input type="text" class="form-control tag-style" value="${muvJelek[0]}" disabled>`;
 
-
         var masodikTagInput = '';
         for (let i = 0; i < szamok[1].length; i++) {
             masodikTagInput += `<input type="text" class="form-control tag-style" value="${masodikTag[i]}" disabled>`;
         }
 
-        // Létrehozunk egy üres stringet, amelybe a ciklus eredményét fűzzük majd
+
+        // Eredmény input mezők és a hozzá tartozó nem látható input mezők
         var eredmenyInput = '';
 
-        // Az input mezők számának meghatározása
         var inputCount = szamok[2].length;
 
-        // Fordított sorrendben beállítjuk a tabindex értéket az input mezőkön
         for (let i = 0; i < inputCount; i++) {
             let reversedTabIndex = inputCount - i;
             eredmenyInput += `<input type="text" class="form-control mt-1 input-style" maxlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, '')" if(this.value.length === 1) { document.querySelector('input[tabindex=\"${reversedTabIndex}\"] + input').focus(); }" tabindex="${reversedTabIndex}">`;
@@ -263,7 +272,7 @@ function setData(data) {
         }
 
 
-        // Az eredményHTML tartalmát illesszük be a tartalom elembe
+        // Html generálása
         document.getElementById("tartalom").innerHTML = `
         <div class="col-0 col-md-4 col-lg-5"></div>
         <div class="col-9 col-md-3 col-lg-2  text-end">
@@ -277,6 +286,7 @@ function setData(data) {
         `;
 
 
+        // Inputok auto tabIndex-ének beállítása és gomb funkciónalitása
         const inputFields = document.querySelectorAll('.input-style');
         const button = document.getElementById('Ellenorzes');
 
@@ -319,8 +329,7 @@ function setData(data) {
         });
 
 
-
-        // Add CSS styles to the input elements
+        // Input mezők stílusa
         const tag = document.querySelectorAll('.tag-style');
         tag.forEach(input => {
             input.style.width = '20px';
@@ -341,7 +350,12 @@ function setData(data) {
             input.style.margin = '0 2px';
             input.style.padding = '3px 5px';
         });
+
+
+        // 4. osztály szorzás
     } else if ((localStorage.getItem('class') == 4 && kisebbMint10000 == true && negyedikOsztaly1 && szamok[1].length == 2 /*&& lekérdezés adatbázisból*/)) {
+        
+        // Nem látható input mezők
         var elsoTagInput = '';
         for (let i = 0; i < szamok[0].length; i++) {
             elsoTagInput += `<input type="text" class="form-control tag-style" value="${elsoTag[i]}" disabled>`;
@@ -349,20 +363,18 @@ function setData(data) {
 
         var muvJelInput = `<input type="text" class="form-control tag-style" value="${muvJelek[0]}" disabled>`;
 
-
         var masodikTagInput = '';
         for (let i = 0; i < szamok[1].length; i++) {
             masodikTagInput += `<input type="text" class="form-control tag-style" value="${masodikTag[i]}" disabled>`;
         }
 
-        // Létrehozunk egy üres stringet, amelybe a ciklus eredményét fűzzük majd
+        
+        // Rész eredmény input mezők és a hozzá tartozó nem látható input mezők
         var reszeredmenyInput1 = '';
         var reszeredmeny1 = szamok[0] * (Math.floor(szamok[1] / 10));
 
-        // Az input mezők számának meghatározása
         var inputCount1 = reszeredmeny1.toString().length;
 
-        // Fordított sorrendben beállítjuk a tabindex értéket az input mezőkön
         for (let i = 0; i < inputCount1; i++) {
             let reversedTabIndex1 = inputCount1 - i;
             reszeredmenyInput1 += `<input type="text" class="form-control mt-1 input-style" maxlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, '')" if(this.value.length === 1) { document.querySelector('input[tabindex=\"${reversedTabIndex1}\"] + input').focus(); }" tabindex="${reversedTabIndex1}">`;
@@ -375,13 +387,9 @@ function setData(data) {
         }
 
 
-
-
-        // Létrehozunk egy üres stringet, amelybe a ciklus eredményét fűzzük majd
         var reszeredmenyInput2 = '';
         var reszeredmeny2 = szamok[0] * (Math.floor(szamok[1] % 10));
 
-        // Az input mezők számának meghatározása
         var inputCount2 = reszeredmeny2.toString().length;
         var plus2 = szamok[1].length;
 
@@ -403,28 +411,21 @@ function setData(data) {
             }
         } else { }
 
-        // Fordított sorrendben beállítjuk a tabindex értéket az input mezőkön
         for (let i = 0; i < inputCount2; i++) {
             let reversedTabIndex2 = inputCount1 - i;
             reszeredmenyInput2 += `<input type="text" class="form-control mt-1 input-style" maxlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, '')" if(this.value.length === 1) { document.querySelector('input[tabindex=\"${reversedTabIndex2}\"] + input').focus(); }" tabindex="${reversedTabIndex2}">`;
         }
-
-
 
         for (let i = 0; i < plus2; i++) {
             reszeredmenyInput2 += `<input type="text" class="form-control tag-style" disabled>`;
         }
 
 
-
-
-        // Létrehozunk egy üres stringet, amelybe a ciklus eredményét fűzzük majd
+        // Eredmény input mezők és a hozzá tartozó nem látható input mezők
         var eredmenyInput = '';
 
-        // Az input mezők számának meghatározása
         var inputCount = szamok[2].length;
 
-        // Fordított sorrendben beállítjuk a tabindex értéket az input mezőkön
         for (let i = 0; i < inputCount; i++) {
             let reversedTabIndex = inputCount - i;
             eredmenyInput += `<input type="text" id="eredmeny" class="form-control mt-1 input-style" maxlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, '')" if(this.value.length === 1) { document.querySelector('input[tabindex=\"${reversedTabIndex}\"] + input').focus(); }" tabindex="${reversedTabIndex}">`;
@@ -437,7 +438,7 @@ function setData(data) {
         }
 
 
-        // Az eredményHTML tartalmát illesszük be a tartalom elembe
+        // Html generálása
         document.getElementById("tartalom").innerHTML = `
         <div class="col-0 col-md-4 col-xl-5"></div>
         <div class="col-8 col-md-3 col-xl-2 text-end">
@@ -454,6 +455,7 @@ function setData(data) {
         `;
 
 
+        // Inputok auto tabIndex-ének beállítása és gomb funkciónalitása
         const inputFields = document.querySelectorAll('.input-style');
         const button = document.getElementById('Ellenorzes');
 
@@ -475,10 +477,8 @@ function setData(data) {
 
 
         button.addEventListener('click', function () {
-            // Az összes input elem kiválasztása a "Eredmény" id-vel rendelkező div alatt
             var inputMezok = document.querySelectorAll('#eredmeny input[type="text"]');
 
-            // Az összes input mező értékeinek kinyerése és összevonása egy stringbe
             var result = "";
             inputMezok.forEach(function (input) {
                 result += input.value;
@@ -501,8 +501,7 @@ function setData(data) {
         });
 
 
-
-        // Add CSS styles to the input elements
+        // Input mezők stílusa
         const tag = document.querySelectorAll('.tag-style');
         tag.forEach(input => {
             input.style.width = '20px';
@@ -525,6 +524,8 @@ function setData(data) {
         });
 
     } else if ((localStorage.getItem('class') == 4 && kisebbMint10000 == true && negyedikOsztaly && szamok[1].length == 1 /*&& lekérdezés adatbázisból*/)) {
+        
+        // Nem látható input mezők
         var elsoTagInput = '';
         for (let i = 0; i < szamok[0].length; i++) {
             elsoTagInput += `<input type="text" class="form-control tag-style" value="${elsoTag[i]}" disabled>`;
@@ -532,37 +533,32 @@ function setData(data) {
 
         var muvJelInput = `<input type="text" class="form-control tag-style" value="${muvJelek[0]}" disabled>`;
 
-
         var masodikTagInput = '';
         for (let i = 0; i < szamok[1].length; i++) {
             masodikTagInput += `<input type="text" class="form-control tag-style" value="${masodikTag[i]}" disabled>`;
         }
 
-        // Létrehozunk egy üres stringet, amelybe a ciklus eredményét fűzzük majd
+
+        // Eredmény input mezők és a hozzá tartozó nem látható input mezők
         var eredmenyInput = '';
 
-        // Az input mezők számának meghatározása
         var inputCount = szamok[2].length;
 
-        // Fordított sorrendben beállítjuk a tabindex értéket az input mezőkön
         for (let i = 0; i < inputCount; i++) {
             let reversedTabIndex = inputCount - i;
             eredmenyInput += `<input type="text" id="eredmeny" class="form-control mt-1 input-style" maxlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, '')" if(this.value.length === 1) { document.querySelector('input[tabindex=\"${reversedTabIndex}\"] + input').focus(); }" tabindex="${reversedTabIndex}">`;
         }
 
 
+        // Maradék input mezők és a hozzá tartozó nem látható input mezők
         var maradekInput = '';
-
         var maradekNoneInput = (szamok[0].length - 3) + 2 + szamok[1].length + szamok[2].length;
-
         var maradekBlockInput = szamok[0].length + 2 + szamok[1].length + szamok[2].length - maradekNoneInput;
-
 
         if (elsoTag[0] >= szamok[1]) {
             if (szamok[0].length > 2) {
                 for (let i = 0; i < szamok[0].length; i++) {
                     if (szamok[0].length - 1 == i) {
-                        // Hozzáadunk egy div-et, majd az input elemeket az adott div-hez
                         maradekInput += `<div>`;
                         for (let j = 0; j < maradekBlockInput - 2; j++) {
                             maradekInput += `<input type="text" id="helyesMaradek" class="form-control mt-1 input-style">`;
@@ -573,7 +569,6 @@ function setData(data) {
                         maradekInput += `</div>`;
                         maradekNoneInput--;
                     } else {
-                        // Hozzáadunk egy div-et, majd az input elemeket az adott div-hez
                         maradekInput += `<div>`;
                         for (let j = 0; j < maradekBlockInput - 1; j++) {
                             maradekInput += `<input type="text" class="form-control mt-1 input-style">`;
@@ -588,7 +583,6 @@ function setData(data) {
             } else {
                 for (let i = 0; i < szamok[0].length; i++) {
                     if (szamok[0].length - 1 == i) {
-                        // Hozzáadunk egy div-et, majd az input elemeket az adott div-hez
                         maradekInput += `<div>`;
                         for (let j = 0; j < maradekBlockInput - 2; j++) {
                             maradekInput += `<input type="text" id="helyesMaradek" class="form-control mt-1 input-style" placeholder="1">`;
@@ -599,7 +593,6 @@ function setData(data) {
                         maradekInput += `</div>`;
                         maradekNoneInput--;
                     } else {
-                        // Hozzáadunk egy div-et, majd az input elemeket az adott div-hez
                         maradekInput += `<div>`;
                         for (let j = 0; j < maradekBlockInput - 1; j++) {
                             maradekInput += `<input type="text" class="form-control mt-1 input-style">`;
@@ -625,7 +618,6 @@ function setData(data) {
                     maradekInput += `</div>`;
                     maradekNoneInput--;
                 } else {
-                    // Hozzáadunk egy div-et, majd az input elemeket az adott div-hez
                     maradekInput += `<div>`;
                     for (let j = 0; j < maradekBlockInput - 1; j++) {
                         maradekInput += `<input type="text" class="form-control mt-1 input-style">`;
@@ -640,7 +632,7 @@ function setData(data) {
         }
 
 
-        // Az eredményHTML tartalmát illesszük be a tartalom elembe
+        // Html generálása
         document.getElementById("tartalom").innerHTML = `
         <div class="col-0 col-md-3 col-lg-4 col-xl-4"></div>
         <div class="col-12 col-md-5 col-lg-4 col-xl-3  text-end">
@@ -652,15 +644,15 @@ function setData(data) {
         </div>
         `;
 
+
+        // Gomb funkciónalitása
         const button = document.getElementById('Ellenorzes');
 
         button.addEventListener('click', function () {
-            // Az összes input elem kiválasztása a "Eredmény" id-vel rendelkező div alatt
             var inputMezok = document.querySelectorAll('#eredmeny input[type="text"]');
             var helyesMaradek = document.getElementById('helyesMaradek').value;
             console.log(helyesMaradek)
 
-            // Az összes input mező értékeinek kinyerése és összevonása egy stringbe
             var result = "";
             inputMezok.forEach(function (input) {
                 result += input.value;
@@ -691,8 +683,7 @@ function setData(data) {
         });
 
 
-
-        // Add CSS styles to the input elements
+        // Input mezők stílusa
         const tag = document.querySelectorAll('.tag-style');
         tag.forEach(input => {
             input.style.width = '20px';
@@ -717,7 +708,7 @@ function setData(data) {
 }
 
 
-// Példa fetch hívás a kliensoldalról
+// Statisztika mentése
 const saveStatistics = async (answer, taskType) => {
     try {
         const response = await fetch('http://localhost:8000/api/tasks/statistics/saveResult', {
@@ -734,7 +725,7 @@ const saveStatistics = async (answer, taskType) => {
 
         if (response.ok) {
             const result = await response.json();
-            console.log(result); // Sikeres válasz esetén
+            console.log(result);
         } else {
             const errorData = await response.json();
             console.error('Hiba a szerver válaszában:', errorData);
@@ -743,4 +734,3 @@ const saveStatistics = async (answer, taskType) => {
         console.error('Hiba a fetch hívás során:', error);
     }
 };
-
