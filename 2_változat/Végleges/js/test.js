@@ -585,7 +585,7 @@ function setData(data) {
                     if (szamok[0].length - 1 == i) {
                         maradekInput += `<div>`;
                         for (let j = 0; j < maradekBlockInput - 2; j++) {
-                            maradekInput += `<input type="text" id="helyesMaradek" class="form-control mt-1 input-style" placeholder="1">`;
+                            maradekInput += `<input type="text" id="helyesMaradek" class="form-control mt-1 input-style">`;
                         }
                         for (let j = 0; j < maradekNoneInput + 2; j++) {
                             maradekInput += `<input type="text" class="form-control tag-style" disabled>`;

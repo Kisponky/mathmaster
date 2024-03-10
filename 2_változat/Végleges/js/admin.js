@@ -51,15 +51,15 @@ function uezenetekBetolt() {
             'Content-Type': 'application/json'
         }
     })
-    .then(response => response.json())
-    .then(data => {
-        const messagesContainer = document.getElementById('messages');
-        data.forEach(kapcsolat => {
-            const messageHTML = createMessageHTML(kapcsolat);
-            messagesContainer.innerHTML += messageHTML;
-        });
-    })
-    .catch(error => console.error('Hiba a fetch kérés során:', error));
+        .then(response => response.json())
+        .then(data => {
+            const messagesContainer = document.getElementById('messages');
+            data.forEach(kapcsolat => {
+                const messageHTML = createMessageHTML(kapcsolat);
+                messagesContainer.innerHTML += messageHTML;
+            });
+        })
+        .catch(error => console.error('Hiba a fetch kérés során:', error));
 }
 
 // Üzenet kiírása html-ben
@@ -109,16 +109,16 @@ function valaszKuldes(id) {
         },
         body: JSON.stringify({ uzenet: valaszUzenet, token: token }),
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('A szerver hibát adott vissza');
-        }
-        document.getElementById(`message-buborek${id}`).remove();
-        return response.json();
-    })
-    .catch(error => {
-        console.error('Hiba történt az API hívás során:', error.message);
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('A szerver hibát adott vissza');
+            }
+            document.getElementById(`message-buborek${id}`).remove();
+            return response.json();
+        })
+        .catch(error => {
+            console.error('Hiba történt az API hívás során:', error.message);
+        });
 }
 
 // Üzenet törlése
@@ -133,20 +133,27 @@ function torles(id) {
             'Authorization': token,
         },
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP hiba! Státusz: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Sikeres törlés:', data);
-        swal("Sikeres törlés!", "Az üzenet törlésre került.", "success");
-        document.getElementById(`message-buborek${id}`).remove();
-    })
-    .catch(error => {
-        console.error('Hiba a törlés során:', error);
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP hiba! Státusz: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Sikeres törlés:', data);
+            Swal.fire("Sikeres törlés!", "Az üzenet törlésre került.", "success");
+            Swal.fire({
+                title: "Sikeres törlés!",
+                text: "Az üzenet törlésre került.",
+                icon: "success",
+                confirmButtonColor: "#3498db",
+                timer: 2000
+            });
+            document.getElementById(`message-buborek${id}`).remove();
+        })
+        .catch(error => {
+            console.error('Hiba a törlés során:', error);
+        });
 }
 
 
@@ -167,17 +174,22 @@ function adminFelvetel() {
             email: emailInput
         }),
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP hiba! Státusz: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Sikeres admin felvétel:', data);
-        alert("Sikeres admin felvétel");
-    })
-    .catch(error => {
-        console.error('Hiba az admin felvétel során:', error);
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP hiba! Státusz: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Sikeres admin felvétel:', data);
+            Swal.fire({
+                title: "Sikeres admin felvétel!",
+                icon: "success",
+                confirmButtonColor: "#3498db",
+                timer: 2000
+            });
+        })
+        .catch(error => {
+            console.error('Hiba az admin felvétel során:', error);
+        });
 }
