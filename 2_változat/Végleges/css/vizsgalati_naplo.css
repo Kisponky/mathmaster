@@ -1,46 +1,133 @@
 body {
     background: linear-gradient(#224468, #162C45) no-repeat center center fixed;
     background-size: cover;
+    color: white;
 }
 
-
-.dropdown-toggle::after {
-    display: none !important;
-}
-
+/* Tartalom szélessége */
 .container {
     max-width: 1440px;
 }
 
+
+
+/* Modal tartalma */
+.modal-content {
+    background-image: linear-gradient(#22446B, #162C45);
+    border-radius: 25px;
+}
+
+
+/* Modal fejléce */
+.modal-header {
+    padding-top: 43px;
+    color: white;
+}
+
+.modal-header>h1{
+    background: none;
+    color: white;
+}
+
+/* Modal-t bezáró gomb */
+.btn-close {
+    color: #fff;
+    background: url('../img/btn-close.svg') no-repeat center center;
+    box-sizing: content-box;
+    width: 0.5em;
+    height: 0.5em;
+    padding: 0.25em;
+}
+
+
+/* Textarea */
+.custom-textarea {
+    resize: none;
+    overflow: hidden;
+}
+
+
+/* Regisztrációs szöveg */
+small {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    line-height: 120%;
+}
+
+
+/* Gomb */
+.btn-danger {
+    background: #800000;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+}
+
+
+
+/* Háttér szín */
+header {
+    background: linear-gradient(to right, #162C45, #22446B);
+}
+
+
+/* Szövegformázás */
+.ceg-nev,
+.nav-link,
+.dropdown-item {
+    font-family: 'Abril Fatface', serif;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+/* Cím */
+.ceg-nev {
+    font-size: 24px;
+    font-weight: bold;
+    color: #800000;
+}
+
+.ceg-nev:hover{
+    color: #800000;
+}
+
+/* Linkek */
+.nav-link {
+    color: white;
+}
+
+.nav-link:hover,
+.nav-link:active {
+    color: white;
+}
+
+/* Aktív link */
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
     color: #fff;
     background-color: #800000;
 }
 
-.ceg-nev {
-    font-family: "Abril Fatface", serif;
-    font-size: 24px;
-    font-weight: bold;
-    color: #800000;
-}
-
-.ceg-nev:hover {
-    color: #800000;
-}
-
-.nav-link {
-    font-family: 'Abril_Farface', serif;
-    font-size: 16px;
-    font-weight: normal;
+.dropdown-item.active {
     color: #fff;
-}
-
-header {
-    background-image: linear-gradient(to right, #162C45, #22446B);
+    background-color: #800000;
 }
 
 
+/* Hambureger menü */
+.toggler-icon{
+    width: 30px;
+    height: 3px;
+    border-radius: 9px;
+    background: #e74c3c;
+    display: block;
+    transition: all 0.3s ease-in-out;
+}
+
+
+/* Menü rendszer */
+.dropdown-toggle::after {
+    display: none !important;
+}
 
 .navbar-toggler {
     border: 0;
@@ -54,22 +141,12 @@ header {
     border: 0;
 }
 
-.toggler-icon {
-    width: 30px;
-    height: 3px;
-    border-radius: 9px;
-    background: #e74c3c;
-    display: block;
-    transition: all 0.4s ease-in-out;
-}
-
-.middle-bar {
+.middle-bar{
     margin: 5px auto;
 }
 
 .navbar-toggler .top-bar {
-    transform: translateY(-0.5px) translateX(0.75px) rotate(45deg);
-    /* Módosítás */
+    transform: translateY(-0.5px) translateX(0.75px) rotate(45deg); /* Módosítás */
     transform-origin: 10% 10%;
 }
 
@@ -79,28 +156,29 @@ header {
 }
 
 .navbar-toggler .bottom-bar {
-    transform: translateY(0.5px) translateX(-0.75px) rotate(-45deg);
-    /* Módosítás */
+    transform: translateY(0.5px) translateX(-0.75px) rotate(-45deg); /* Módosítás */
     transform-origin: 10% 10%;
 }
 
-.navbar-toggler.collapsed .top-bar {
+.navbar-toggler.collapsed .top-bar{
     transform: rotate(0);
 }
 
-.navbar-toggler.collapsed .middle-bar {
+.navbar-toggler.collapsed .middle-bar{
     opacity: 1;
     filter: alpha(opacity=100);
 }
 
-.navbar-toggler.collapsed .bottom-bar {
+.navbar-toggler.collapsed .bottom-bar{
     transform: rotate(0);
 }
 
-.navbar-toggler.collapsed .toggler-icon {
+.navbar-toggler.collapsed .toggler-icon{
     background: #f4f4f4;
 }
 
+
+/* Mobil nézet */
 @media (max-width: 576px) {
     .navbar-brand {
         order: -2;
@@ -110,7 +188,7 @@ header {
         order: 1;
     }
 
-    .nav-link {
+    .nav-link{
         padding: 8px 0 8px 10px;
     }
 
@@ -127,7 +205,7 @@ header {
 
 @media (max-width: 450px) {
     .dropdown {
-        margin: 0 0 0 60px;
+        margin: 0 0 0 30px;
     }
 }
 
@@ -138,7 +216,7 @@ header {
 }
 
 @media (max-width: 361px) {
-    .dropdown {
+  .dropdown {
         margin: 0 0 0 10px;
     }
 }
@@ -155,11 +233,13 @@ header {
 
 
 
+/* Cím */
 h2 {
     font-family: "Abril Fatface", serif;
     font-size: 40px;
 }
 
+/* Legördülő menü */
 #select {
     margin: 3px 0 10px 12px;
     width: 50%;
@@ -167,6 +247,7 @@ h2 {
     font-size: 16px;
 }
 
+/* Mobil nézett */
 @media (max-width: 576px) {
     h2 {
         font-size: 34px;
@@ -178,7 +259,7 @@ h2 {
 }
 
 
-
+/* Táblázat */
 .table-responsive {
     overflow-x:hidden;
 }
@@ -189,6 +270,7 @@ table {
     font-size: 16px;
 }
 
+/* Tablet és mobil nézett */
 @media (max-width: 768px) {
     .table-responsive {
         display: block;

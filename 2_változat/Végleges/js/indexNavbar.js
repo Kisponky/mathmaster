@@ -4,10 +4,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function navBar() {
     var navbarMenu = document.getElementById('navbarMenu');
+    var new_task = document.getElementById('new_task');
     var uzeneteim = document.getElementById('uzeneteim');
     var admin = document.getElementById('admin');
 
     navbarMenu.innerHTML = '';
+    new_task.innerHTML = '';
     uzeneteim.innerHTML = '';
     admin.innerHTML = '';
 
