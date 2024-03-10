@@ -6,11 +6,15 @@ const { ClientBase } = require('pg');
 require('dotenv').config();
 
 const register = (req, res) => {
-    // Req body feldolgozása
+    const { fullName, userName, email, password } = req.body;
+    // Ellenőrizze, hogy az e-mail és jelszó üres-e
+    if (!fullName || !userName || !email || !password ) {
+        return res.status(400).json({ error: 'Hiányzó adatok!' });
+    }
 
-    UserModel.createUser(req.body.fullName, req.body.userName, req.body.email, req.body.password)
+    UserModel.createUser(fullName, userName, email, password)
         .then(result => {
-            sendEmail(req.body.fullName, req.body.email)
+            sendEmail(fullName, email)
             res.status(200).send({ status: 200, success: "Sikeres adatrögzítés" });
         })
         .catch(err => {
