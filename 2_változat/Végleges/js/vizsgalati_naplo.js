@@ -33,6 +33,101 @@ document.addEventListener('DOMContentLoaded', () => {
 
         isMirrored = !isMirrored;
         localStorage.setItem("isMirrored", isMirrored);
-        
+
     });
+
+
+
+    adminCheck();
+
+
+
+    auditLog(document.getElementById("select").value, "ASC")
 });
+
+
+function adminCheck() {
+    fetch('http://localhost:8000/api/auth/check-admin', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `${localStorage.getItem('token')}`,
+        },
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            if (error.message.includes('403') || error.message.includes('401')) {
+                window.location.href = '../index.html';
+            }
+        });
+}
+
+
+function orderType(type) {
+    if (type == "true") {
+        return "DESC";
+    } else {
+        return "ASC";
+    }
+}
+
+function auditLog(type, order) {
+    document.getElementById("tableBody").innerHTML = "";
+    fetch(`http://localhost:8000/api/auditLog/vizsgalatinaplo/${type}/${order}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': localStorage.getItem('token'),
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data.data)
+            const selectElement = document.getElementById('select');
+            const tipusok = data.data.tipusok;
+            selectElement.innerHTML = '<option value="null">Szűrés kikapcsolva</option>';
+
+            tipusok.forEach(tipus => {
+                const option = document.createElement('option');
+                option.value = tipus;
+                option.text = tipus;
+                if (tipus == type) {
+                    option.selected = true;
+                }
+                selectElement.appendChild(option);
+            });
+
+            // Adatok feldolgozása és táblázat generálása
+            const tableBody = document.getElementById('tableBody');
+            data.data.vizsgalatinaplo.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+          <th scope="row">${row.naplo_id}</th>
+          <td>${row.felhasznalonev}</td>
+          <td>${row.email}</td>
+          <td>${row.tipus}</td>
+          <td>${row.megjegyzes}</td>
+          <td>${new Date(row.datum).toLocaleString('hu-HU', { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' })}</td>
+        `;
+                tableBody.appendChild(tr);
+            });
+
+
+
+        })
+        .catch(error => console.error('Error:', error));
+}

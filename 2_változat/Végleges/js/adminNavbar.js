@@ -49,8 +49,8 @@ function navBar() {
 function getMenuHTML() {
     var menuHTML='';
     menuHTML += '<li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Kezdőlap</a></li>';
-    menuHTML += '<li class="nav-item"><a class="nav-link active" href="./about.html">Beérkező üzenetek</a></li>';
-    menuHTML += '<li class="nav-item"><a class="nav-link" href="./contact.html">Vizsgálati napló</a></li>';
+    menuHTML += '<li class="nav-item"><a class="nav-link active" href="./admin.html">Beérkező üzenetek</a></li>';
+    menuHTML += '<li class="nav-item"><a class="nav-link" href="./vizsgalati_naplo.html">Vizsgálati napló</a></li>';
     menuHTML += '<li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#adminModal">Admin felvétel</a></li>';
     return menuHTML;
 }
