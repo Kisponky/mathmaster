@@ -31,7 +31,11 @@ function navBar() {
 
     // Üzenetek menüpont megjelenítése
     if (!localStorage.getItem("admin")) {
-        uzeneteim.innerHTML += '<li><a class="dropdown-item  active" href="./messages.html">Üzeneteim</a></li>';
+        if (window.location.href.includes("message")) {
+            uzeneteim.innerHTML += '<li><a class="dropdown-item active" href="./messages.html">Üzeneteim</a></li>';
+        } else {
+            uzeneteim.innerHTML += '<li><a class="dropdown-item" href="./messages.html">Üzeneteim</a></li>';
+        }
     }
 
 
