@@ -13,8 +13,61 @@ function register() {
   var password2 = document.getElementById('password2').value;
   var bezar = document.getElementById('regisztracio');
 
+  var fullNameRegex = /^[a-zA-ZáéíóöőúüűÁÉÍÓÖŐÚÜŰ\s]+$/;
+  var userNameRegex = /^[a-zA-Z0-9áéíóöőúüűÁÉÍÓÖŐÚÜŰ\s]+$/;
+  var emailRegex = /^[a-z0-9._+\-~]+@[a-z0-9.\-]+\.[a-z]{2,}$/;
+  var passwordRegex = /^[a-zA-Z0-9._+\-~!?]+$/;
 
-  if (password != password2) {
+  if (!fullName || !userName || !email || !password || !password2) {
+    Swal.fire({
+      title: "Hiányzó adat!",
+      text: "Kérjük, töltse ki az összes mezőt!",
+      icon: "warning",
+      confirmButtonColor: "#3498db"
+    });
+  } else if (!fullName.match(fullNameRegex)) {
+    Swal.fire({
+      title: "Hibás név!",
+      text: "A teljes név csak betűket és ékezetes karaktereket tartalmazhat!",
+      icon: "warning",
+      confirmButtonColor: "#3498db"
+    });
+  } else if (!fullName.includes(" ")) {
+    Swal.fire({
+      title: "Hibás név!",
+      text: "A teljes nevét adja meg!",
+      icon: "warning",
+      confirmButtonColor: "#3498db"
+    });
+  } else if (!userName.match(userNameRegex)) {
+    Swal.fire({
+      title: "Hibás felhasználónév!",
+      text: "A felhasználónév csak betűket, számokat és ékezetes karaktereket tartalmazhat!",
+      icon: "warning",
+      confirmButtonColor: "#3498db"
+    });
+  } else if (!email.match(emailRegex)) {
+    Swal.fire({
+      title: "Hibás email cím!",
+      text: "Kérjük, adjon meg egy érvényes email címet!",
+      icon: "warning",
+      confirmButtonColor: "#3498db"
+    });
+  } else if (password.length < 6) {
+    Swal.fire({
+      title: "Hibás jelszó!",
+      text: "A jelszónak legalább 6 karakter hosszúnak kell lennie!",
+      icon: "warning",
+      confirmButtonColor: "#3498db"
+    });
+  } else if (!password.match(passwordRegex)) {
+    Swal.fire({
+      title: "Hibás jelszó!",
+      text: "A jelszó csak betűket, számokat és speciális karaktereket (_ . - + ~ ! ?) tartalmazhat!",
+      icon: "warning",
+      confirmButtonColor: "#3498db"
+    });
+  } else if (password != password2) {
     Swal.fire({
       title: "A jelszavak nem egyeznek!",
       text: "Kérjük megegyező jelszavakat adjon meg!",
@@ -98,18 +151,16 @@ function bejelentkez() {
           localStorage.setItem('admin', data.admin);
         }
         navBar();
-        autoLogout()
+        autoLogout();
+        $(bezarL).modal('hide');
       } else {
         Swal.fire({
           title: "Sikertelen bejelentkezés",
           text: data.error,
-          icon: "error",
-          confirmButtonColor: "#3498db",
-          timer: 3000 
+          icon: "warning",
+          confirmButtonColor: "#3498db"
         });
       }
-
-      $(bezarL).modal('hide');
     })
     .catch(error => {
       console.error('Hiba történt:', error);
@@ -125,7 +176,7 @@ function autoLogout() {
     setTimeout(() => {
       logout()
     }, (new Date(localStorage.getItem('expirationTime')).getTime()) - (new Date().getTime()))
-  
+
   } else {
     if (localStorage.getItem("token")) {
       logout()
@@ -166,9 +217,17 @@ function uzenet() {
   var token = localStorage.getItem("token");
   var bezarT = document.getElementById('uzenet');
 
+  var textRegex = /^[a-zA-Z0-9áéíóöőúüűÁÉÍÓÖŐÚÜŰ\s!%^*()_\-+=:,.\/?]+$/;
 
   if (text.length > 0) {
-    if (token) {
+    if (!text.match(textRegex)) {
+      Swal.fire({
+        title: "Hibás karakter az üzenetben!",
+        text: "Az üzenet csak betűket, számokat és a következő speciális karaktereket tartalmazhatja: ! % ^ * ( ) _ - + = : , . / ?",
+        icon: "warning",
+        confirmButtonColor: "#3498db"
+      });
+    } else if (token) {
       var data = {
         text: text,
         token: token
@@ -227,11 +286,11 @@ if (window.location.href.includes("index.html")) {
   $(function () {
     $('#registerContainer').load('./html/modal/register.html');
   });
-  
+
   $(function () {
     $('#loginContainer').load('./html/modal/login.html');
   });
-  
+
   $(function () {
     $('#uzenetContainer').load('./html/modal/uzenet.html');
   });
@@ -239,11 +298,11 @@ if (window.location.href.includes("index.html")) {
   $(function () {
     $('#registerContainer').load('../html/modal/register.html');
   });
-  
+
   $(function () {
     $('#loginContainer').load('../html/modal/login.html');
   });
-  
+
   $(function () {
     $('#uzenetContainer').load('../html/modal/uzenet.html');
   });
