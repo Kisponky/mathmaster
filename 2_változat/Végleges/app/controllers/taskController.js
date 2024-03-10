@@ -3,6 +3,8 @@ const TaskModel = require('../models/taskModel');
 const generateTask = (req, res) => {
   const osztaly = req.query.osztaly;
   const tipus = req.query.tipus;
+  console.log(osztaly)
+  console.log(tipus)
 
   TaskModel.generateTask(osztaly, tipus)
     .then((task) => {
