@@ -38,5 +38,3 @@ const checkAuth = async () => {
 if (localStorage.getItem('token') == null) {
     location.href = "../index.html";
 }
-
-// Hívás a fenti függvénytől, például oldal betöltésekor

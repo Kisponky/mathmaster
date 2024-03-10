@@ -34,7 +34,7 @@ function kiir(feladat, valaszok) {
     }
 
     for (let i = 0; i < btn.length; i++) {
-        btn[i].style.width = ''; 
+        btn[i].style.width = '';
     }
 
     for (let i = 0; i < btn.length; i++) {
@@ -49,9 +49,9 @@ function kiir(feladat, valaszok) {
 function valasz(id) {
     if (btoa(btoa(`val${id.toString()}asz`)) == localStorage.getItem('valasz')) {
         swal({
-            icon: "success", 
-            title: "Jó válasz!", 
-            text: "Hooti büszke rád!", 
+            icon: "success",
+            title: "Jó válasz!",
+            text: "Hooti büszke rád!",
             timer: "2000"
         })
 
@@ -60,9 +60,9 @@ function valasz(id) {
         }, 2500);
     } else {
         swal({
-            icon: "error", 
-            title: "Rossz válasz!", 
-            text: "Hooti bízik benned!", 
+            icon: "error",
+            title: "Rossz válasz!",
+            text: "Hooti bízik benned!",
             timer: "2000"
         })
     }
