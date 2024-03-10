@@ -35,12 +35,19 @@ function register() {
       }),
     })
       .then((response) => {
+        if (response.status == 404 || response.status == 400) {
+        }
         return response.json();
       })
       .then((data) => {
-        if (data.status == 404) {
-          let err = document.getElementById("error");
-          err.innerHTML = data.error;
+        if (data.error != undefined) {
+          Swal.fire({
+            title: "Sikertelen regisztráció!",
+            text: data.error,
+            icon: "error",
+            confirmButtonColor: "#3498db",
+            timer: 2000
+          });
         } else {
           Swal.fire({
             title: "Sikeres regisztráció!",
@@ -82,15 +89,26 @@ function bejelentkez() {
   fetch(apiEndpoint, requestOptions)
     .then(response => response.json())
     .then(data => {
-      console.log('Sikeres bejelentkezés:', data);
-      localStorage.setItem('token', data.token);
-      const expirationTime = new Date(new Date().getTime() + data.expiresIn * 1000); // Az expiresIn másodpercben van, ezért szorozzuk meg 1000-rel
-      localStorage.setItem('expirationTime', expirationTime.toISOString());
-      if (data.admin == true) {
-        localStorage.setItem('admin', data.admin);
+      console.log('Bejelentkezés állapota:', data);
+      if (data.token != undefined) {
+        localStorage.setItem('token', data.token);
+        const expirationTime = new Date(new Date().getTime() + data.expiresIn * 1000); // Az expiresIn másodpercben van, ezért szorozzuk meg 1000-rel
+        localStorage.setItem('expirationTime', expirationTime.toISOString());
+        if (data.admin == true) {
+          localStorage.setItem('admin', data.admin);
+        }
+        navBar();
+        autoLogout()
+      } else {
+        Swal.fire({
+          title: "Sikertelen bejelentkezés",
+          text: data.error,
+          icon: "error",
+          confirmButtonColor: "#3498db",
+          timer: 3000 
+        });
       }
-      navBar();
-      autoLogout()
+
       $(bezarL).modal('hide');
     })
     .catch(error => {
