@@ -39,15 +39,15 @@ function navBar() {
     // Admin menüpont megjelenítése
     if (localStorage.getItem("admin")) {
         new_task.innerHTML += '<li><a class="dropdown-item" href="./html/new_task.html">Új feladat...</a></li>';
-        admin.innerHTML += '<li><a class="dropdown-item" href="./html/admin.html">Admin</a></li>';
+        admin.innerHTML += '<li><a class="dropdown-item" href="#" onclick="goToAdmin()">Admin</a></li>';
     }
 }
 
 // Függvény a menüpontok HTML kódjának generálásához
 function getMenuHTML(isLoggedIn = true) {
     var menuHTML='';
-    menuHTML += '<li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Kezdőlap</a></li>';
-    var aboutMenu = '<li class="nav-item"><a class="nav-link" href="./html/about.html">Rólunk</a></li>';
+    menuHTML += `<li class="nav-item"><a class="nav-link${homePage()}" aria-current="page" href="#">Kezdőlap</a></li>`;
+    var aboutMenu = '<li class="nav-item"><a class="nav-link" href="#" onclick="goToAbout()">Rólunk</a></li>';
     if (isLoggedIn) {
         menuHTML += aboutMenu;
         menuHTML += '<li class="nav-item"><a class="nav-link" href="./html/contact.html">Kapcsolat</a></li>';
@@ -58,4 +58,18 @@ function getMenuHTML(isLoggedIn = true) {
         menuHTML += aboutMenu;
     }
     return menuHTML;
+}
+
+function goToAbout() {
+    location.href = "../html/about.html"
+}
+
+function goToAdmin() {
+    location.href = "../html/admin.html"
+}
+
+function homePage() {
+    var data = window.location.href.includes("index.html") ? " active" : "";
+    return data
+
 }
