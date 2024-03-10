@@ -20,8 +20,8 @@ const checkAuth = async () => {
                 if (localStorage.getItem("admin")) {
                     localStorage.removeItem("admin")
                 }
+                location.href = "../index.html"
             }
-            location.href = "../index.html"
         }
     } catch (error) {
         console.error('Hiba a kérés során:', error.message);
@@ -35,6 +35,12 @@ const checkAuth = async () => {
     }
 };
 
-if (localStorage.getItem('token') == null) {
+if (localStorage.getItem('token') == null && !window.location.href.includes("index.html")) {
     location.href = "../index.html";
 }
+
+if (window.location.href.includes("index.html")) {
+    if (localStorage.getItem("token")) {
+        checkAuth();
+    }
+  }
