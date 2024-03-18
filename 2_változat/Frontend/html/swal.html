@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+
+<body>
+    <button id="valasz1" class="btn btn-info mb-5" onclick="valasz(1)">Swal</button>
+
+    <script>
+        function valasz(id) {
+            
+
+
+            swal({
+                icon: "error",
+                title: "Rossz válasz!",
+                text: "Hooti bízik benned!",
+                timer: "2000"
+            })
+        }
+    </script>
+</body>
+
+</html>

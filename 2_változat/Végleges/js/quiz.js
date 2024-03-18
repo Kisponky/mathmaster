@@ -7,7 +7,7 @@ function feladatGeneral() {
         }
     })
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => kiir(data.tartalom, data.valaszlehetosegek))
         .catch(error => console.error('Hiba a fetch kérés során: ', error));
 }
 feladatGeneral();
@@ -33,13 +33,12 @@ function kiir(feladat, valaszok) {
         }
     }
 
-    for (let i = 0; i < btn.length; i++) {
-        btn[i].style.width = '';
-    }
-
-    for (let i = 0; i < btn.length; i++) {
-        btn[i].style.width = max.offsetWidth + 10 + 'px';
-    }
+    setTimeout(() =>{
+        for (let i = 0; i < btn.length; i++) {
+            btn[i].style.width = '';
+            btn[i].style.width = max.offsetWidth + 10 + 'px';
+        }
+    }, 1000 * 60 * 60 * 4);
 
     console.log(max.innerText)
 }
