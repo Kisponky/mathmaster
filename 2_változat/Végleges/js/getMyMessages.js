@@ -57,12 +57,12 @@ function torles(id) {
       })
       .then(data => {
           console.log('Sikeres törlés:', data);
-          swal("Sikeres törlés!", "Az üzenet törlésre került.", "success")
+          Swal.fire("Sikeres törlés!", "Az üzenet törlésre került.", "success")
           document.getElementById('message-buborek'+id.toString()).remove();
       })
       .catch(error => {
           console.error('Hiba a törlés során:', error);
-          swal("Hiba a törlés során!", `${error}`, "error")
+          Swal.fire("Hiba a törlés során!", `${error}`, "error")
       });
 
 }

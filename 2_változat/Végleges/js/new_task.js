@@ -1,5 +1,3 @@
-const { default: Swal } = require("sweetalert2");
-
 var currentForm = 1;
 var darab = 0;
 var kerdesek = [];
