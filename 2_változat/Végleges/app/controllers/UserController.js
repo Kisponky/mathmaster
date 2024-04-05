@@ -68,8 +68,6 @@ const addAdminPrivilege = (req, res) => {
                 res.status(500).json({ success: false, message: 'Hiba az admin jog hozzáadása közben.' });
             });
 
-
-
     } catch (error) {
         console.error('Token verification failed:', error);
         res.status(401).json({ success: false, message: 'Érvénytelen token.' });
@@ -113,7 +111,6 @@ const updateUserEmail = (req, res) => {
 const deleteUserById = async (req, res) => {
     try {
         const userId = req.user.userId;
-
         const result = await UserModel.deleteUserById(userId);
 
         if (result.affectedRows > 0) {

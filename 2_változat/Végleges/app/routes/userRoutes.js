@@ -23,7 +23,7 @@ router.put('/change-password', auth, UserController.changePassword);
 
 
 // Védett útvonal, ahol az authMiddleware-t alkalmazzuk
-router.get('/protected', auth, (req, res) => {
+router.get('/protected', (req, res) => {
   res.json({ message: 'Ez egy védett útvonal.' });
 });
 
