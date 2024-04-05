@@ -26,19 +26,21 @@ function kiir(feladat, valaszok) {
 
     var btn = document.getElementsByClassName('btn');
     var max = btn[0];
-
-    for (let i = 1; i < btn.length; i++) {
-        if (btn[i].innerText.length > max.innerText.length) {
-            max = btn[i];
+    
+    for (let i = 0; i < btn.length.innerText; i++) {
+        if (btn[i].length.innerText > max.length.innerText) {
+            for (let j = 1; j < btn.length.innerText; j++) {
+                btn[j].style.width = max.offsetWidth + 10 + 'px';
+                max = btn[j];
+            }
         }
     }
 
-    setTimeout(() =>{
-        for (let i = 0; i < btn.length; i++) {
-            btn[i].style.width = '';
-            btn[i].style.width = max.offsetWidth + 10 + 'px';
-        }
-    }, 1000 * 60 * 60 * 4);
+    
+
+    
+    setTimeout(() =>{    
+    }, 500);
 
     console.log(max.innerText)
 }
@@ -47,7 +49,7 @@ function kiir(feladat, valaszok) {
 
 function valasz(id) {
     if (btoa(btoa(`val${id.toString()}asz`)) == localStorage.getItem('valasz')) {
-        swal({
+        Swal.fire({
             icon: "success",
             title: "Jó válasz!",
             text: "Hooti büszke rád!",
@@ -58,7 +60,7 @@ function valasz(id) {
             feladatGeneral();
         }, 2500);
     } else {
-        swal({
+        Swal.fire({
             icon: "error",
             title: "Rossz válasz!",
             text: "Hooti bízik benned!",
