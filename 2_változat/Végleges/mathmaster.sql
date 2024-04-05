@@ -4,9 +4,9 @@ CREATE TABLE Felhasznalo (
     felhasznalo_id INT PRIMARY KEY AUTO_INCREMENT,
     teljes_nev VARCHAR(50) NULL DEFAULT NULL,
     felhasznalonev VARCHAR(50) UNIQUE NULL DEFAULT NULL,
-    email VARCHAR(255) CHECK (email LIKE '%_@__%.__%') UNIQUE   ,
-    jelszo BLOB NULL DEFAULT NULL,
-    datum DATETIME NULL DEFAULT NULL,
+    email VARCHAR(255) UNIQUE CHECK (email LIKE '%_@__%.__%'),
+    jelszo BLOB NULL,
+    datum DATETIME NULL,
     admin TINYINT(4) NULL DEFAULT NULL
 );
 
