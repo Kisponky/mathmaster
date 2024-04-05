@@ -33,3 +33,5 @@ app.get('/', (req, res) => {
 app.listen(process.env.PORT, () => {
   console.log(`Példa alkalmazás publikálva ${process.env.PORT}-en`);
 });
+
+module.exports = app;
