@@ -1,10 +1,7 @@
-// Felhasználónév frissítése
 function updateUsername() {
-    // Az új felhasználónév begyűjtése az űrlapról
     const newUsername = document.getElementById('userName').value;
     var userNameRegex = /^[a-zA-Z0-9áéíóöőúüűÁÉÍÓÖŐÚÜŰ\s]+$/;
 
-    // Üres input mező ellenőrzése
     if (!newUsername) {
         Swal.fire({
             title: "A mező üres!",
@@ -23,7 +20,6 @@ function updateUsername() {
         return;
     }
 
-    // Felhasználónév frissítésének kérése a szerver felé
     fetch('http://localhost:8000/users/update-username', {
         method: 'PUT',
         headers: {
@@ -40,19 +36,16 @@ function updateUsername() {
         })
         .then(data => {
             console.log(data);
-            // Sikeres frissítés üzenet megjelenítése
             Swal.fire({
                 title: "Felhasználónév sikeresen frissítve!",
                 text: `A te új felhasználóneved: ${newUsername}`,
                 icon: "success",
                 confirmButtonColor: "#3498db"
             });
-            // Űrlap mezők ürítése
             document.getElementById("userName").value = "";
         })
         .catch(error => {
             console.error('Fetch error:', error);
-            // Hibaüzenet megjelenítése
             Swal.fire({
                 title: "Hiba történt a felhasználónév frissítése során.",
                 text: `${error}`,
@@ -64,13 +57,10 @@ function updateUsername() {
 
 
 
-// Email cím frissítése
 function updateEmail() {
-    // Az új email cím begyűjtése az űrlapról
     const newEmail = document.getElementById('userMail').value;
     var emailRegex = /^[a-z0-9._+\-~]+@[a-z0-9.\-]+\.[a-z]{2,}$/;
 
-    // Üres input mező ellenőrzése
     if (!newEmail) {
         Swal.fire({
             title: "A mező üres!",
@@ -89,7 +79,6 @@ function updateEmail() {
         return;
     }
 
-    // Email frissítésének kérése a szerver felé
     fetch('http://localhost:8000/users/update-email', {
         method: 'PUT',
         headers: {
@@ -106,19 +95,16 @@ function updateEmail() {
         })
         .then(data => {
             console.log(data);
-            // Sikeres frissítés esetén üzenet megjelenítése
             Swal.fire({
                 title: "Email cím sikeresen frissítve!",
                 text: `Az új email címe: ${newEmail}`,
                 icon: "success",
                 confirmButtonColor: "#3498db"
             });
-            // Űrlap mezők ürítése
             document.getElementById("userMail").value = "";
         })
         .catch(error => {
             console.error('Fetch error:', error);
-            // Hiba esetén üzenet megjelenítése
             Swal.fire({
                 title: "Hiba történt az email cím frissítése során.",
                 text: `${error}`,
@@ -131,15 +117,12 @@ function updateEmail() {
 
 
 
-// Jelszó frissitése
 function changePassword() {
-    // A régi, új és megerősített jelszó begyűjtése az űrlapról
     const oldPassword = document.getElementById('oldPw').value;
     const newPassword = document.getElementById('newPw').value;
     const newPassword2 = document.getElementById('newPw2').value;
     var passwordRegex = /^[a-zA-Z0-9._+\-~!?]+$/;
 
-    // Üres input mezők ellenőrzése
     if (!oldPassword || !newPassword || !newPassword2) {
         Swal.fire({
             title: "Hiányzó jelszó",
@@ -166,7 +149,6 @@ function changePassword() {
         return;
     }
 
-    // Az új jelszavak egyezőségének ellenőrzése
     if (newPassword != newPassword2) {
         Swal.fire({
             title: "Hibás jelszó!",
@@ -177,7 +159,6 @@ function changePassword() {
         return;
     }
 
-    // Jelszó frissítésének kérése a szerver felé
     fetch('http://localhost:8000/users/change-password', {
         method: 'PUT',
         headers: {
@@ -197,20 +178,17 @@ function changePassword() {
         })
         .then(data => {
             console.log(data);
-            // Sikeres jelszóváltoztatás esetén üzenet megjelenítése
             Swal.fire({
                 title: "Jelszó sikeresen megváltoztatva!",
                 icon: "success",
                 confirmButtonColor: "#3498db"
             });
-            // Űrlap mezők ürítése
             document.getElementById("oldPw").value = "";
             document.getElementById("newPw").value = "";
             document.getElementById("newPw2").value = "";
         })
         .catch(error => {
             console.error('Fetch error:', error);
-            // Hiba esetén üzenet megjelenítése
             Swal.fire({
                 title: "Hiba történt a jelszóváltás során.",
                 text: `${error}`,
@@ -222,9 +200,7 @@ function changePassword() {
 
 
 
-// Felhasználói profil törlése
 function deleteUserProfile() {
-    // Felhasználó megerősítésének kérése a törlés előtt
     Swal.fire({
         title: "Biztos vagy benne?",
         text: "A fiók törlése visszavonhatatlan és minden adat törlődik! Hooty hiányolni fog.",
@@ -238,7 +214,6 @@ function deleteUserProfile() {
     })
         .then((result) => {
             if (result.isConfirmed) {
-                // Felhasználó törlése a szerverről
                 fetch(`http://localhost:8000/users/deleteProfile`, {
                     method: 'DELETE',
                     headers: {
@@ -254,23 +229,19 @@ function deleteUserProfile() {
                     })
                     .then(data => {
                         console.log(data);
-                        // Sikeres törlés esetén üzenet megjelenítése
                         Swal.fire({
                             title: "A felhasználó törlésre került!",
                             icon: "success",
                             confirmButtonColor: "#3498db"
                         });
-                        // Lokális tárolók ürítése
                         localStorage.removeItem('token')
                         localStorage.removeItem('admin')
-                        // Újratöltés az index oldalra irányítással
                         setTimeout(function () {
                             location.href = "../index.html";
                         }, 3000);
                     })
                     .catch(error => {
                         console.error('Fetch error:', error);
-                        // Hiba esetén üzenet megjelenítése
                         Swal.fire({
                             title: "Sikertelen törlés!",
                             text: `${error}`,
@@ -279,7 +250,6 @@ function deleteUserProfile() {
                         });
                     });
             } else {
-                // Törlés visszavonása esetén üzenet megjelenítése
                 Swal.fire({
                     title: "Törlés visszavonva",
                     icon: "info",

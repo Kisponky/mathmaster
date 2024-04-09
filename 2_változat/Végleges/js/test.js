@@ -1,6 +1,5 @@
 var feladvany = "";
 
-// Fetch hívás a feladat tartalmának lekérésére
 function testContent() {
     fetch(`http://localhost:8000/api/tasks/task?osztaly=${localStorage.getItem('class')}&tipus=matematika`, {
         method: 'GET',
@@ -18,7 +17,6 @@ testContent();
 function setData(data) {
     feladvany = data;
 
-    // Változók inicializálása
     var szamok = feladvany.match(/\d+/g);
     var muvJelek = feladvany.match(/[+\-*/]/g);
     var maradek = szamok[0] % szamok[1];
@@ -33,7 +31,6 @@ function setData(data) {
     var negyedikOsztaly1 = feladvany.match(/[*]/g);
 
 
-    // Kisebb mint ellenőrzése
     var kisebbMint20 = true;
     var kisebbMint100 = true;
     var kisebbMint1000 = true;
@@ -57,10 +54,8 @@ function setData(data) {
     }
 
 
-    // 1. osztály, 2. osztály és 3. osztály osztás
     if ((localStorage.getItem('class') == 1 && elsoOsztaly && kisebbMint20 == true) || (localStorage.getItem('class') == 2 && kisebbMint100 == true) || (localStorage.getItem('class') == 3 && harmadikOsztaly && kisebbMint1000 == true && szamok[1].length == 1)) {
         
-        // html generálás
         document.getElementById("tartalom").innerHTML = `
         <div class="col-1 col-md-4 col-lg-4 col-xl-5"></div>
         <div class="col-9 col-md-4 col-lg-3 col-xl-2 text-end">
@@ -72,7 +67,6 @@ function setData(data) {
         </div>
         `;
 
-        // Input mezők stílusa
         const inputs = document.querySelectorAll('.input-style');
         inputs.forEach(input => {
             input.style.width = '38px';
@@ -83,7 +77,6 @@ function setData(data) {
             input.style.borderRadius = '5px'
         });
 
-        // Gomb funkciónalitása
         const button = document.getElementById('Ellenorzes');
 
         button.addEventListener('click', function () {
@@ -122,10 +115,8 @@ function setData(data) {
             }, 1500);
         });
 
-        // 3. osztály és 4. osztály összeadás, kivonás
-    } else if ((localStorage.getItem('class') == 3 && kisebbMint1000 == true && elsoOsztaly /*&& lekérdezés adatbázisból*/) || (localStorage.getItem('class') == 4 && kisebbMint10000 == true && elsoOsztaly /*&& lekérdezés adatbázisból*/)) {
+    } else if ((localStorage.getItem('class') == 3 && kisebbMint1000 == true && elsoOsztaly) || (localStorage.getItem('class') == 4 && kisebbMint10000 == true && elsoOsztaly)) {
         
-        // Nem látható input mezők
         var elsoTagInput = '';
         for (let i = 0; i < szamok[0].length; i++) {
             elsoTagInput += `<input type="text" class="form-control tag-style" value="${elsoTag[i]}" disabled>`;
@@ -137,7 +128,6 @@ function setData(data) {
         }
 
 
-        // Eredmény input mezők
         var eredmenyInput = '';
 
         var inputCount = szamok[2].length;
@@ -148,7 +138,6 @@ function setData(data) {
         }
 
 
-        // Html generálása
         document.getElementById("tartalom").innerHTML = `
         <div class="col-0 col-md-5 col-xl-5"></div>
         <div class="col-8 col-md-2 col-xl-2  text-end">
@@ -164,7 +153,6 @@ function setData(data) {
         `;
 
 
-        // Inputok auto tabIndex-ének beállítása és gomb funkciónalitása
         const button = document.getElementById('Ellenorzes');
         const inputFields = document.querySelectorAll('.input-style');
 
@@ -215,7 +203,6 @@ function setData(data) {
         });
 
 
-        // Input mezők stílusa
         const tag = document.querySelectorAll('.tag-style');
         tag.forEach(input => {
             input.style.width = '20px';
@@ -238,10 +225,8 @@ function setData(data) {
         });
 
 
-        // 3. osztály szorzás
-    } else if ((localStorage.getItem('class') == 3 && kisebbMint1000 == true && harmadikOsztaly1 && szamok[1].length == 1 /*&& lekérdezés adatbázisból*/) || (localStorage.getItem('class') == 4 && kisebbMint10000 == true && negyedikOsztaly1 && szamok[1].length == 1 /*&& lekérdezés adatbázisból*/)) {
+    } else if ((localStorage.getItem('class') == 3 && kisebbMint1000 == true && harmadikOsztaly1 && szamok[1].length == 1 ) || (localStorage.getItem('class') == 4 && kisebbMint10000 == true && negyedikOsztaly1 && szamok[1].length == 1 )) {
         
-        // Nem látható input mezők
         var elsoTagInput = '';
         for (let i = 0; i < szamok[0].length; i++) {
             elsoTagInput += `<input type="text" class="form-control tag-style" value="${elsoTag[i]}" disabled>`;
@@ -255,7 +240,6 @@ function setData(data) {
         }
 
 
-        // Eredmény input mezők és a hozzá tartozó nem látható input mezők
         var eredmenyInput = '';
 
         var inputCount = szamok[2].length;
@@ -272,7 +256,6 @@ function setData(data) {
         }
 
 
-        // Html generálása
         document.getElementById("tartalom").innerHTML = `
         <div class="col-0 col-md-4 col-lg-5"></div>
         <div class="col-9 col-md-3 col-lg-2  text-end">
@@ -286,7 +269,6 @@ function setData(data) {
         `;
 
 
-        // Inputok auto tabIndex-ének beállítása és gomb funkciónalitása
         const inputFields = document.querySelectorAll('.input-style');
         const button = document.getElementById('Ellenorzes');
 
@@ -329,7 +311,6 @@ function setData(data) {
         });
 
 
-        // Input mezők stílusa
         const tag = document.querySelectorAll('.tag-style');
         tag.forEach(input => {
             input.style.width = '20px';
@@ -352,10 +333,8 @@ function setData(data) {
         });
 
 
-        // 4. osztály szorzás
-    } else if ((localStorage.getItem('class') == 4 && kisebbMint10000 == true && negyedikOsztaly1 && szamok[1].length == 2 /*&& lekérdezés adatbázisból*/)) {
+    } else if ((localStorage.getItem('class') == 4 && kisebbMint10000 == true && negyedikOsztaly1 && szamok[1].length == 2 )) {
         
-        // Nem látható input mezők
         var elsoTagInput = '';
         for (let i = 0; i < szamok[0].length; i++) {
             elsoTagInput += `<input type="text" class="form-control tag-style" value="${elsoTag[i]}" disabled>`;
@@ -369,7 +348,6 @@ function setData(data) {
         }
 
         
-        // Rész eredmény input mezők és a hozzá tartozó nem látható input mezők
         var reszeredmenyInput1 = '';
         var reszeredmeny1 = szamok[0] * (Math.floor(szamok[1] / 10));
 
@@ -421,7 +399,6 @@ function setData(data) {
         }
 
 
-        // Eredmény input mezők és a hozzá tartozó nem látható input mezők
         var eredmenyInput = '';
 
         var inputCount = szamok[2].length;
@@ -438,7 +415,6 @@ function setData(data) {
         }
 
 
-        // Html generálása
         document.getElementById("tartalom").innerHTML = `
         <div class="col-0 col-md-4 col-xl-5"></div>
         <div class="col-8 col-md-3 col-xl-2 text-end">
@@ -455,7 +431,6 @@ function setData(data) {
         `;
 
 
-        // Inputok auto tabIndex-ének beállítása és gomb funkciónalitása
         const inputFields = document.querySelectorAll('.input-style');
         const button = document.getElementById('Ellenorzes');
 
@@ -501,7 +476,6 @@ function setData(data) {
         });
 
 
-        // Input mezők stílusa
         const tag = document.querySelectorAll('.tag-style');
         tag.forEach(input => {
             input.style.width = '20px';
@@ -523,9 +497,8 @@ function setData(data) {
             input.style.padding = '3px 5px';
         });
 
-    } else if ((localStorage.getItem('class') == 4 && kisebbMint10000 == true && negyedikOsztaly && szamok[1].length == 1 /*&& lekérdezés adatbázisból*/)) {
+    } else if ((localStorage.getItem('class') == 4 && kisebbMint10000 == true && negyedikOsztaly && szamok[1].length == 1 )) {
         
-        // Nem látható input mezők
         var elsoTagInput = '';
         for (let i = 0; i < szamok[0].length; i++) {
             elsoTagInput += `<input type="text" class="form-control tag-style" value="${elsoTag[i]}" disabled>`;
@@ -539,7 +512,6 @@ function setData(data) {
         }
 
 
-        // Eredmény input mezők és a hozzá tartozó nem látható input mezők
         var eredmenyInput = '';
 
         var inputCount = szamok[2].length;
@@ -550,7 +522,6 @@ function setData(data) {
         }
 
 
-        // Maradék input mezők és a hozzá tartozó nem látható input mezők
         var maradekInput = '';
         var maradekNoneInput = (szamok[0].length - 3) + 2 + szamok[1].length + szamok[2].length;
         var maradekBlockInput = szamok[0].length + 2 + szamok[1].length + szamok[2].length - maradekNoneInput;
@@ -632,7 +603,6 @@ function setData(data) {
         }
 
 
-        // Html generálása
         document.getElementById("tartalom").innerHTML = `
         <div class="col-0 col-md-3 col-lg-4 col-xl-4"></div>
         <div class="col-12 col-md-5 col-lg-4 col-xl-3  text-end">
@@ -645,7 +615,6 @@ function setData(data) {
         `;
 
 
-        // Gomb funkciónalitása
         const button = document.getElementById('Ellenorzes');
 
         button.addEventListener('click', function () {
@@ -683,7 +652,6 @@ function setData(data) {
         });
 
 
-        // Input mezők stílusa
         const tag = document.querySelectorAll('.tag-style');
         tag.forEach(input => {
             input.style.width = '20px';
@@ -708,7 +676,6 @@ function setData(data) {
 }
 
 
-// Statisztika mentése
 const saveStatistics = async (answer, taskType) => {
     try {
         const response = await fetch('http://localhost:8000/api/tasks/statistics/saveResult', {

@@ -1,4 +1,3 @@
-// Regisztráció
 function register() {
   var fullName = document.getElementById('fullName').value;
   var userName = document.getElementById('userName').value;
@@ -55,7 +54,6 @@ function register() {
 
 
 
-// Bejelentkezés
 function bejelentkez() {
   var emailL = document.getElementById('emailL').value;
   var jelszoL = document.getElementById('passwordL').value;
@@ -79,7 +77,6 @@ function bejelentkez() {
       if (data.admin == true) {
         localStorage.setItem('admin', data.admin);
       }
-      // location.href = "index.html";
       navBar();
       $(bezarL).modal('hide');
     })
@@ -90,7 +87,6 @@ function bejelentkez() {
 
 
 
-// Kijelentkezés
 function logout() {
   localStorage.removeItem('token');
   localStorage.removeItem('admin');
@@ -99,7 +95,6 @@ function logout() {
 
 
 
-// Üzenet küldése
 function uzenet() {
   var text = document.getElementById("text").value;
   var token = localStorage.getItem("token");
@@ -163,7 +158,6 @@ function uzenet() {
 
 
 
-// Modálok betöltése
 $(function () {
   $('#registerContainer').load('../html/modal/register.html');
 });

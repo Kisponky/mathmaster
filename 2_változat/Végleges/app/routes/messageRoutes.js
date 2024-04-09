@@ -4,7 +4,6 @@ const auth = require('../auth/authMiddleware')
 const adminAuthMiddleware = require('../auth/adminAuthMiddleware');
 const messageController = require('../controllers/MessageController');
 
-// Üzenetek lekérése útvonala
 router.get('/messages', adminAuthMiddleware, messageController.getMessages);
 
 router.post('/text', messageController.saveMessage);

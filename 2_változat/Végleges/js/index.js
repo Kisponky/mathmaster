@@ -1,10 +1,8 @@
-// Az osztály kiválasztása és átirányítás a megfelelő oldalra
 function osztaly(szam) {
   localStorage.setItem('class', szam);
   location.href = "./html/quiz_selector.html";
 }
 
-// Regisztráció
 function register() {
   var fullName = document.getElementById('fullName').value;
   var userName = document.getElementById('userName').value;
@@ -121,7 +119,6 @@ function register() {
 
 
 
-// Bejelentkezés
 function bejelentkez() {
   var emailL = document.getElementById('emailL').value;
   var jelszoL = document.getElementById('passwordL').value;
@@ -145,7 +142,7 @@ function bejelentkez() {
       console.log('Bejelentkezés állapota:', data);
       if (data.token != undefined) {
         localStorage.setItem('token', data.token);
-        const expirationTime = new Date(new Date().getTime() + data.expiresIn * 1000); // Az expiresIn másodpercben van, ezért szorozzuk meg 1000-rel
+        const expirationTime = new Date(new Date().getTime() + data.expiresIn * 1000); 
         localStorage.setItem('expirationTime', expirationTime.toISOString());
         if (data.admin == true) {
           localStorage.setItem('admin', data.admin);
@@ -169,7 +166,6 @@ function bejelentkez() {
 
 
 
-// Autómata kijelentkeztetés
 function autoLogout() {
   if (new Date().getTime() < new Date(localStorage.getItem('expirationTime')).getTime()) {
     console.log((new Date(localStorage.getItem('expirationTime')).getTime()) - (new Date().getTime()))
@@ -187,7 +183,6 @@ function autoLogout() {
 autoLogout()
 
 
-// Kijelentkezés
 function logout() {
   if (localStorage.getItem("token")) {
     Swal.fire({
@@ -210,7 +205,6 @@ function logout() {
 
 
 
-// Üzenet küldése
 function uzenet() {
   var text = document.getElementById("text").value;
   document.getElementById("text").value = "";
@@ -281,7 +275,6 @@ function uzenet() {
 
 
 
-// Modálok betöltése
 if (window.location.href.includes("index.html")) {
   $(function () {
     $('#registerContainer').load('./html/modal/register.html');

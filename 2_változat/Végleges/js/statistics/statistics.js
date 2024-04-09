@@ -12,7 +12,6 @@ function loadContent() {
 
 let honapok = ['Január', 'Február', 'Március', 'Április', 'Május', 'Június', 'Júlus', 'Augusztus', 'Szeptember', 'Október', 'November', 'December'];
 let jelenlegiHo = new Date().getMonth();
-// jelenlegiHo = 6;
 let aktHonapok = [];
 if (jelenlegiHo < 5) {
     for (let i = jelenlegiHo; i >= 0; i--) {
@@ -41,7 +40,6 @@ fetch(`http://localhost:8000/api/tasks/statistics/${"összeadás"}`, {
 })
     .then(response => response.json())
     .then(data => {
-        // alert(data.osszes + " / " + data.jo);
         console.log(data)
         if (jelenlegiHo < 5) {
             for (let i = 0; i < jelenlegiHo + 1; i++) {
@@ -88,7 +86,6 @@ fetch(`http://localhost:8000/api/tasks/statistics/${"kivonás"}`, {
 })
     .then(response => response.json())
     .then(data => {
-        // alert(data.osszes + " / " + data.jo);
         console.log(data)
         if (jelenlegiHo < 5) {
             for (let i = 0; i < jelenlegiHo + 1; i++) {
@@ -134,7 +131,6 @@ fetch(`http://localhost:8000/api/tasks/statistics/${"szorzás"}`, {
 })
     .then(response => response.json())
     .then(data => {
-        // alert(data.osszes + " / " + data.jo);
         console.log(data)
         if (jelenlegiHo < 5) {
             for (let i = 0; i < jelenlegiHo + 1; i++) {
@@ -180,7 +176,6 @@ fetch(`http://localhost:8000/api/tasks/statistics/${"osztás"}`, {
 })
     .then(response => response.json())
     .then(data => {
-        // alert(data.osszes + " / " + data.jo);
         console.log(data)
         if (jelenlegiHo < 5) {
             for (let i = 0; i < jelenlegiHo + 1; i++) {

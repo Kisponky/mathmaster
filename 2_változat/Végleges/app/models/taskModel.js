@@ -10,7 +10,7 @@ class TaskModel {
           reject(error);
         } else {
           if (results.length === 0) {
-            resolve(null); // Ha nincs találat
+            resolve(null); 
           } else {
             resolve(results[0]);
           }

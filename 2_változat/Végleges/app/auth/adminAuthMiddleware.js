@@ -13,10 +13,9 @@ const adminAuthMiddleware = (req, res, next) => {
         const decodedToken = jwt.verify(token, process.env.TOKEN_KEY);
 
         if (decodedToken.admin === 1) {
-            req.user = decodedToken;  // A kéréshez hozzáadjuk a felhasználó adatait
+            req.user = decodedToken;  
             next();
         } else {
-            // Ha nem rendelkezik admin jogosultságokkal, hozzáférés megtagadva
             return res.status(403).json({ error: 'Hozzáférés megtagadva. Admin jogosultságok szükségesek.' });
         }
     } catch (error) {

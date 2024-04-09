@@ -3,21 +3,18 @@ body {
     background-size: cover;
 }
 
-/* Tartalom szélessége */
 .container {
     max-width: 1440px;
 }
 
 
 
-/* Modal tartalma */
 .modal-content {
     background-image: linear-gradient(#22446B, #162C45);
     border-radius: 25px;
 }
 
 
-/* Modal fejléce */
 .modal-header {
     padding-top: 43px;
     color: white;
@@ -28,7 +25,6 @@ body {
     color: white;
 }
 
-/* Modal-t bezáró gomb */
 .btn-close {
     color: #fff;
     background: url('../img/btn-close.svg') no-repeat center center;
@@ -39,14 +35,12 @@ body {
 }
 
 
-/* Textarea */
 .custom-textarea {
     resize: none;
     overflow: hidden;
 }
 
 
-/* Regisztrációs szöveg */
 small {
     font-family: 'Poppins', sans-serif;
     font-size: 12px;
@@ -54,7 +48,6 @@ small {
 }
 
 
-/* Gomb */
 .btn-danger {
     background: #800000;
     font-family: 'Poppins', sans-serif;
@@ -63,13 +56,11 @@ small {
 
 
 
-/* Háttér szín */
 header {
     background: linear-gradient(to right, #162C45, #22446B);
 }
 
 
-/* Szövegformázás */
 .ceg-nev,
 .nav-link,
 .dropdown-item {
@@ -78,7 +69,6 @@ header {
     font-weight: normal;
 }
 
-/* Cím */
 .ceg-nev {
     font-size: 24px;
     font-weight: bold;
@@ -89,7 +79,6 @@ header {
     color: #800000;
 }
 
-/* Linkek */
 .nav-link {
     color: white;
 }
@@ -99,7 +88,6 @@ header {
     color: white;
 }
 
-/* Aktív link */
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
     color: #fff;
@@ -112,7 +100,6 @@ header {
 }
 
 
-/* Hambureger menü */
 .toggler-icon{
     width: 30px;
     height: 3px;
@@ -123,7 +110,6 @@ header {
 }
 
 
-/* Menü rendszer */
 .dropdown-toggle::after {
     display: none !important;
 }
@@ -145,7 +131,7 @@ header {
 }
 
 .navbar-toggler .top-bar {
-    transform: translateY(-0.5px) translateX(0.75px) rotate(45deg); /* Módosítás */
+    transform: translateY(-0.5px) translateX(0.75px) rotate(45deg); 
     transform-origin: 10% 10%;
 }
 
@@ -155,7 +141,7 @@ header {
 }
 
 .navbar-toggler .bottom-bar {
-    transform: translateY(0.5px) translateX(-0.75px) rotate(-45deg); /* Módosítás */
+    transform: translateY(0.5px) translateX(-0.75px) rotate(-45deg); 
     transform-origin: 10% 10%;
 }
 
@@ -177,7 +163,6 @@ header {
 }
 
 
-/* Mobil nézet */
 @media (max-width: 576px) {
     .navbar-brand {
         order: -2;
@@ -232,12 +217,10 @@ header {
 
 
 
-/* Tartalom pozícionálása */
 .container.tartalom {
     margin: 33vh auto;
 }
 
-/* Gomb */
 .btn {
     padding: 3px 5px;
     background-color: #800000;
@@ -248,7 +231,6 @@ header {
     font-weight: normal;
 }
 
-/* Mobil nézet */
 @media (max-width: 575px) {
     .btn-margin{
         margin: 15px 0 0 0;

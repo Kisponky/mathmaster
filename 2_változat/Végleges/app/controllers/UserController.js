@@ -7,7 +7,6 @@ require('dotenv').config();
 
 const register = (req, res) => {
     const { fullName, userName, email, password } = req.body;
-    // Ellenőrizze, hogy az e-mail és jelszó üres-e
     if (!fullName || !userName || !email || !password ) {
         return res.status(400).json({ error: 'Hiányzó adatok!' });
     }
@@ -26,7 +25,6 @@ const register = (req, res) => {
 const login = (req, res) => {
     const { email, jelszo } = req.body;
 
-    // Ellenőrizze, hogy az e-mail és jelszó üres-e
     if (!email || !jelszo) {
         return res.status(400).json({ error: 'Hiányzó e-mail vagy jelszó' });
     }
@@ -39,7 +37,6 @@ const login = (req, res) => {
                 const token = jwt.sign({ userId: user.felhasznalo_id, fullName: user.teljes_nev, email: user.email, admin: user.admin }, process.env.TOKEN_KEY, { expiresIn });
                 return res.json({ success: true, message: 'Sikeres bejelentkezés', token: token, admin: user.admin, expiresIn: expiresIn });
             } else {
-                // Sikertelen bejelentkezés
                 return res.status(401).json({ error: 'Hibás e-mail vagy jelszó' });
             }
         })
@@ -134,7 +131,6 @@ const changePassword = (req, res) => {
     console.log("oldPassword" + req.body.oldPassword)
     console.log("newPassword" + req.body.newPassword)
 
-    // Ellenőrizze, hogy az régi és az új jelszó üres-e
     if (!oldPassword || !newPassword) {
         return res.status(400).json({ error: 'Hiányzó régi vagy új jelszó' });
     }

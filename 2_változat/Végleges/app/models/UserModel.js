@@ -96,7 +96,6 @@ class UserModel {
         });
     }
 
-    // Egyéb metódusok (pl. felhasználó frissítése, törlése)...
 }
 
 module.exports = UserModel;

@@ -25,7 +25,6 @@ const getStatistics = (req, res) => {
 
   console.log(operation)
 
-  // Token ellenőrzése és felhasználói azonosító lekérése
   let userId = req.user.userId;
 
   TaskModel.getStatistics(userId, operation)
@@ -81,7 +80,6 @@ const newTask = (req, res) => {
     console.log(answers)
     TaskModel.newTask(userId, studentClass, content[i], answers)
       .then((result) => {
-        // res.status(200).json({ success: 'success' });
         console.log("task" + (i + 1) + " OK")
       })
       .catch((error) => {

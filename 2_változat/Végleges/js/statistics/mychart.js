@@ -104,5 +104,3 @@ function updateChart() {
 window.addEventListener('resize', function () {
     updateChart();
 });
-
-// updateChart();

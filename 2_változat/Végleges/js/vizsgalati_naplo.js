@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const caretIconContainer = document.getElementById('caretIcon');
     const caretIcon = caretIconContainer.firstElementChild;
 
-    // Tükrözött ikon létrehozása
     const mirroredIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     mirroredIcon.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
     mirroredIcon.setAttribute('width', '16');
@@ -20,12 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     datumHeader.addEventListener('click', () => {
         if (!isMirrored) {
-            // Tükrözött ikon megjelenítése
             caretIconContainer.innerHTML = '';
             caretIconContainer.appendChild(mirroredIcon);
             auditLog(document.getElementById("select").value, "DESC")
         } else {
-            // Eredeti ikon visszaállítása
             caretIconContainer.innerHTML = '';
             caretIconContainer.appendChild(caretIcon);
             auditLog(document.getElementById("select").value, "ASC")
@@ -111,7 +108,6 @@ function auditLog(type, order) {
                 selectElement.appendChild(option);
             });
 
-            // Adatok feldolgozása és táblázat generálása
             const tableBody = document.getElementById('tableBody');
             data.data.vizsgalatinaplo.forEach(row => {
                 const tr = document.createElement('tr');

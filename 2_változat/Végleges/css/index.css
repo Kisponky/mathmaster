@@ -1,24 +1,20 @@
-/* Tartalom szélessége */
 .container {
     max-width: 1440px;
 }
 
 
 
-/* Modal tartalma */
 .modal-content {
     background-image: linear-gradient(#22446B, #162C45);
     border-radius: 25px;
 }
 
 
-/* Modal fejléce */
 .modal-header {
     padding-top: 43px;
     color: white;
 }
 
-/* Modal-t bezáró gomb */
 .btn-close {
     color: #fff;
     background: url('../img/btn-close.svg') no-repeat center center;
@@ -29,14 +25,12 @@
 }
 
 
-/* Textarea */
 .custom-textarea {
     resize: none;
     overflow: hidden;
 }
 
 
-/* Regisztrációs szöveg */
 small {
     font-family: 'Poppins', sans-serif;
     font-size: 12px;
@@ -44,7 +38,6 @@ small {
 }
 
 
-/* Gomb */
 .btn-danger {
     background: #800000;
     font-family: 'Poppins', sans-serif;
@@ -53,13 +46,11 @@ small {
 
 
 
-/* Háttér szín */
 header {
     background: linear-gradient(to right, #162C45, #22446B);
 }
 
 
-/* Szövegformázás */
 .ceg-nev,
 .nav-link,
 .dropdown-item {
@@ -68,7 +59,6 @@ header {
     font-weight: normal;
 }
 
-/* Cím */
 .ceg-nev {
     font-size: 24px;
     font-weight: bold;
@@ -79,7 +69,6 @@ header {
     color: #800000;
 }
 
-/* Linkek */
 .nav-link {
     color: white;
 }
@@ -89,7 +78,6 @@ header {
     color: white;
 }
 
-/* Aktív link */
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
     color: #fff;
@@ -97,7 +85,6 @@ header {
 }
 
 
-/* Hambureger menü */
 .toggler-icon{
     width: 30px;
     height: 3px;
@@ -108,7 +95,6 @@ header {
 }
 
 
-/* Menü rendszer */
 .dropdown-toggle::after {
     display: none !important;
 }
@@ -130,7 +116,7 @@ header {
 }
 
 .navbar-toggler .top-bar {
-    transform: translateY(-0.5px) translateX(0.75px) rotate(45deg); /* Módosítás */
+    transform: translateY(-0.5px) translateX(0.75px) rotate(45deg); 
     transform-origin: 10% 10%;
 }
 
@@ -140,7 +126,7 @@ header {
 }
 
 .navbar-toggler .bottom-bar {
-    transform: translateY(0.5px) translateX(-0.75px) rotate(-45deg); /* Módosítás */
+    transform: translateY(0.5px) translateX(-0.75px) rotate(-45deg); 
     transform-origin: 10% 10%;
 }
 
@@ -162,7 +148,6 @@ header {
 }
 
 
-/* Mobil nézet */
 @media (max-width: 576px) {
     .navbar-brand {
         order: -2;
@@ -217,13 +202,11 @@ header {
 
 
 
-/* Logó */
 .logo {
     max-width: 712.5px;
     padding-top: 32px;
 }
 
-/* Főcím */
 h1 {
     font-family: 'Abril Fatface', serif;
     font-size: 60px;
@@ -232,12 +215,10 @@ h1 {
     padding: 28px 0 16px 0;
 }
 
-/* Első szakasz */
 .container1 {
     background: url('../img/deszka_hatter.svg');
 }
 
-/* Mobil nézet */
 @media (max-width: 374px) {
     h1 {
         font-size: 50px;
@@ -246,7 +227,6 @@ h1 {
 
 
 
-/* Gombok */
 .btn-class {
     background: #800000;
     font-family: 'Poppins', sans-serif;
@@ -255,7 +235,6 @@ h1 {
     color: #fff;
 }
 
-/* Második szakasz */
 .container2 {
     background: url('../img/blob08.svg') no-repeat center center;
     background-size: cover;
@@ -263,7 +242,6 @@ h1 {
 
 
 
-/* Alcímek */
 h4 {
     font-family: 'Abril Fatface', serif;
     font-size: 24px;
@@ -271,7 +249,6 @@ h4 {
     line-height: 130%;
 }
 
-/* Szöveg */
 p {
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
@@ -279,7 +256,6 @@ p {
     line-height: 160%;
 }
 
-/* Gombok */
 .btn-about-contact {
     background: #800000;
     font-family: 'Poppins', sans-serif;
@@ -289,12 +265,10 @@ p {
     text-decoration: none;
 }
 
-/* Harmadik szakasz */
 .container3 {
     background: url('../img/blob13.svg') no-repeat 65% 110%;
 }
 
-/* Mobil nézet */
 @media (max-width: 1389px) {
     .container2 {
         background: none;
@@ -308,12 +282,10 @@ p {
 
 
 
-/* Lábléc cég logó */
 .ceg-logo-footer {
     height: 63px;
 }
 
-/* Lábléc cég név */
 .ceg-nev-footer {
     font-family: 'Abril Fatface', serif;
     font-size: 40px;
@@ -321,14 +293,12 @@ p {
     color: #800000;
 }
 
-/* Copyrigth */
 .copyright {
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
     color: #fff;
 }
 
-/* Idézet */
 .idezet {
     font-family: 'Poppins', sans-serif;
     font-size: 24px;
@@ -336,18 +306,15 @@ p {
     line-height: 130%;
 }
 
-/* Negyedik szakasz */
 .container4 {
     background: url('../img/footer3.svg') no-repeat center center;
     background-size: cover;
 }
 
-/* Lábléc */
 .footer-bg {
     height: 100px;
 }
 
-/* Mobil nézet */
 @media (max-width: 800px) {
     .ceg-logo-footer,
     .ceg-nev-footer,

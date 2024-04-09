@@ -6,22 +6,18 @@
     <title>Üzenet küldés</title>
 </head>
 <body>
-    <!-- Üzenet küldés modal -->
     <div class="modal fade" id="uzenet" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
 
-                <!-- Modal fejléc -->
                 <div class="modal-header p-5 pb-4 border-bottom-0">
                     <h1 class="fw-bold mb-0 fs-2">Üzenet küldés</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
                 </div>
     
-                <!-- Modal tartalom -->
                 <div class="modal-body p-5 pt-0">
                     <form>
 
-                        <!-- Üzenet szöveg mező -->
                         <div class="form-floating mb-3">
                             <textarea oninput="this.style.height = ''; this.style.height = (this.scrollHeight + 2) + 'px';"
                                 name="message" class="form-control rounded-3 custom-textarea" id="text" cols="30"
@@ -29,7 +25,6 @@
                             <label for="text"><span>Üzenet szövege</span></label>
                         </div>
 
-                        <!-- Küldés gomb -->
                         <button onclick="uzenet()" class="w-100 mb-2 btn btn-lg rounded-3 btn-danger border-0" type="button">
                             <span>Küldés</span>
                         </button>

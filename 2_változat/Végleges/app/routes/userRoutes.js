@@ -5,10 +5,8 @@ const auth = require('../auth/authMiddleware');
 const adminAuthMiddleware = require('../auth/adminAuthMiddleware');
 
 
-// Regisztráció útvonala
 router.post('/register', UserController.register);
 
-// Bejelentkezés útvonala
 router.post('/login', UserController.login);
 
 router.post('/newAdmin', adminAuthMiddleware, UserController.addAdminPrivilege);
@@ -22,11 +20,9 @@ router.delete('/deleteProfile', auth, UserController.deleteUserById);
 router.put('/change-password', auth, UserController.changePassword);
 
 
-// Védett útvonal, ahol az authMiddleware-t alkalmazzuk
 router.get('/protected', (req, res) => {
   res.json({ message: 'Ez egy védett útvonal.' });
 });
 
-// További felhasználókkal kapcsolatos útvonalak...
 
 module.exports = router;

@@ -4,21 +4,18 @@ body {
     color: white;
 }
 
-/* Tartalom szélessége */
 .container {
     max-width: 1440px;
 }
 
 
 
-/* Modal tartalma */
 .modal-content {
     background-image: linear-gradient(#22446B, #162C45);
     border-radius: 25px;
 }
 
 
-/* Modal fejléce */
 .modal-header {
     padding-top: 43px;
     color: white;
@@ -29,7 +26,6 @@ body {
     color: white;
 }
 
-/* Modal-t bezáró gomb */
 .btn-close {
     color: #fff;
     background: url('../img/btn-close.svg') no-repeat center center;
@@ -40,14 +36,12 @@ body {
 }
 
 
-/* Textarea */
 .custom-textarea {
     resize: none;
     overflow: hidden;
 }
 
 
-/* Regisztrációs szöveg */
 small {
     font-family: 'Poppins', sans-serif;
     font-size: 12px;
@@ -55,7 +49,6 @@ small {
 }
 
 
-/* Gomb */
 .btn-danger {
     background: #800000;
     font-family: 'Poppins', sans-serif;
@@ -64,13 +57,11 @@ small {
 
 
 
-/* Háttér szín */
 header {
     background: linear-gradient(to right, #162C45, #22446B);
 }
 
 
-/* Szövegformázás */
 .ceg-nev,
 .nav-link,
 .dropdown-item {
@@ -79,7 +70,6 @@ header {
     font-weight: normal;
 }
 
-/* Cím */
 .ceg-nev {
     font-size: 24px;
     font-weight: bold;
@@ -90,7 +80,6 @@ header {
     color: #800000;
 }
 
-/* Linkek */
 .nav-link {
     color: white;
 }
@@ -100,7 +89,6 @@ header {
     color: white;
 }
 
-/* Aktív link */
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
     color: #fff;
@@ -113,7 +101,6 @@ header {
 }
 
 
-/* Hambureger menü */
 .toggler-icon{
     width: 30px;
     height: 3px;
@@ -124,7 +111,6 @@ header {
 }
 
 
-/* Menü rendszer */
 .dropdown-toggle::after {
     display: none !important;
 }
@@ -146,7 +132,7 @@ header {
 }
 
 .navbar-toggler .top-bar {
-    transform: translateY(-0.5px) translateX(0.75px) rotate(45deg); /* Módosítás */
+    transform: translateY(-0.5px) translateX(0.75px) rotate(45deg); 
     transform-origin: 10% 10%;
 }
 
@@ -156,7 +142,7 @@ header {
 }
 
 .navbar-toggler .bottom-bar {
-    transform: translateY(0.5px) translateX(-0.75px) rotate(-45deg); /* Módosítás */
+    transform: translateY(0.5px) translateX(-0.75px) rotate(-45deg); 
     transform-origin: 10% 10%;
 }
 
@@ -178,7 +164,6 @@ header {
 }
 
 
-/* Mobil nézet */
 @media (max-width: 576px) {
     .navbar-brand {
         order: -2;
@@ -233,7 +218,6 @@ header {
 
 
 
-/* Cím és szöveg */
 h1 {
     font-family: 'Abril Fatface', serif;
     font-size: 60px;
@@ -250,7 +234,6 @@ p {
 
 
 
-/* Üzenet konténer */
 .message-container {
     display: flex;
     flex-direction: column;
@@ -258,7 +241,6 @@ p {
     padding: 20px;
 }
 
-/* Üzenet buborék */
 .message-buborek {
     width: 80%;
     padding: 25px 30px;
@@ -275,7 +257,6 @@ p {
     transform: scale(1.05);
 }
 
-/* Üzenet fejléc */
 .message-header {
     display: flex;
     justify-content: space-between;
@@ -283,14 +264,12 @@ p {
     margin-bottom: 10px;
 }
 
-/* Felhasználónév */
 .message-user {
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
     font-weight: normal;
 }
 
-/* Dátum */
 .message-date {
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
@@ -298,7 +277,6 @@ p {
     color: #BBB;
 }
 
-/* Üzenet szövege */
 .message-text {
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
@@ -306,14 +284,12 @@ p {
     line-height: 160%;
 }
 
-/* Üzenet műveletek */
 .message-actions {
     display: flex;
     justify-content: end;
     margin-top: 10px;
 }
 
-/* Gombok */
 .message-actions button {
     padding: 10px 20px;
     font-family: 'Poppins', sans-serif;
@@ -343,14 +319,12 @@ p {
     border: none;
 }
 
-/* Mobil nézet */
 @media (max-width: 425px){
     .message-actions {
         justify-content: center;
     }
 }
 
-/* Válasz üzenet szöveg és gombok */
 .message-text textarea, .message-text button {
     resize: none;
     overflow: hidden;
@@ -364,12 +338,10 @@ p {
 
 
 
-/* Lábléc cég logó */
 .ceg-logo-footer {
     height: 63px;
 }
 
-/* Lábléc cég név */
 .ceg-nev-footer {
     font-family: 'Abril Fatface', serif;
     font-size: 40px;
@@ -377,14 +349,12 @@ p {
     color: #800000;
 }
 
-/* Copyrigth */
 .copyright {
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
     color: #fff;
 }
 
-/* Idézet */
 .idezet {
     font-family: 'Poppins', sans-serif;
     font-size: 24px;
@@ -392,18 +362,15 @@ p {
     line-height: 130%;
 }
 
-/* Negyedik szakasz */
 .container4 {
     background: url('../img/footer3.svg') no-repeat center center;
     background-size: cover;
 }
 
-/* Lábléc */
 .footer-bg {
     height: 100px;
 }
 
-/* Mobil nézet */
 @media (max-width: 800px) {
     .ceg-logo-footer,
     .ceg-nev-footer,

@@ -13,7 +13,6 @@ function uezenetekBetolt() {
           return response.json();
       })
       .then(data => {
-          // Adatok betöltése a táblázatba
           const messages = document.getElementById('messages');
           data.forEach(kapcsolat => {
               let bubi = `

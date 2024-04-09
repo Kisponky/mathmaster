@@ -8,10 +8,8 @@ const getVizsgalatinaplo = async (req, res) => {
         const type = req.params.type;
         const order = req.params.order;
   
-        // Lekérdezi az összes vizsgalatinaplo bejegyzést
         const auditLogEntries = await AuditLogModel.getVizsgalatinaplo(type, order);
   
-        // Lekéri a különböző tipusokat
         const tipusok = await AuditLogModel.getTypes();
   
         res.json({
@@ -35,12 +33,10 @@ const getVizsgalatinaplo = async (req, res) => {
       if (req.user.admin === 1) {
         const { felhasznalo_id, tipus, megjegyzes } = req.body;
   
-        // Ellenőrizzük, hogy minden szükséges adat meg van-e adva
         if (!felhasznalo_id || !tipus || !megjegyzes) {
           return res.status(400).json({ success: false, message: 'Hiányzó adatok.' });
         }
   
-        // Az új bejegyzés hozzáadása az audit log-hoz
         await AuditLogModel.addAuditLog(felhasznalo_id, tipus, megjegyzes);
   
         res.json({ success: true, message: 'Audit log bejegyzés sikeresen hozzáadva.' });

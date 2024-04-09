@@ -2,7 +2,6 @@ const supertest = require('supertest');
 const app = require('../app');
 const { receiveMessageOnPort } = require('worker_threads');
 
-// Dinamikus importálás aszinkron függvény segítségével
 const loadChai = async () => {
     const { expect } = await import('chai');
     return expect;
@@ -19,8 +18,7 @@ describe('API Végpontok Tesztelése', () => {
     });
 
     it('Visszaadja az üzenetet a /protected végpontra tett GET kérésre', async () => {
-        // Dinamikusan betöltött 'expect' használata
-        const response = await request.get('/users/protected'); // Teljes URL megadása
+        const response = await request.get('/users/protected'); 
         expect(response.status).to.equal(200);
         expect(response.body.message).to.equal('Ez egy védett útvonal.');
     });
@@ -41,8 +39,8 @@ describe('API Végpontok Tesztelése', () => {
         expect(response.body).to.have.property('success').to.equal('Sikeres adatrögzítés');
     });
 
-    let authToken; // JWT token
-    let adminAuthToken; // JWT token admin jogosultsággal
+    let authToken; 
+    let adminAuthToken; 
 
     it('Sikeres belépés esetén JWT tokent ad vissza', async () => {
         const userData = {
@@ -57,7 +55,7 @@ describe('API Végpontok Tesztelése', () => {
         expect(response.body).to.have.property('token');
 
 
-        authToken = response.body.token; // Token mentése a további tesztekhez
+        authToken = response.body.token; 
     });
 
     it('Sikeres belépés esetén JWT tokent ad vissza admin belépésre', async () => {
@@ -73,7 +71,7 @@ describe('API Végpontok Tesztelése', () => {
         expect(response.body).to.have.property('token');
 
 
-        adminAuthToken = response.body.token; // Token mentése a további tesztekhez
+        adminAuthToken = response.body.token; 
     });
 
     it('Felhasználónév frissítése sikeres', async () => {
@@ -89,22 +87,18 @@ describe('API Végpontok Tesztelése', () => {
     });
 
     it('Sikertelen admin jog hozzáadása nem megfelelő jogosultsággal', async () => {
-        // Admin jog hozzáadása végponton keresztül
         const addAdminResponse = await request.post('/users/newAdmin')
             .set('Authorization', `${authToken}`)
             .send({ email: "test@example.com" });
 
-        // Válasz ellenőrzése
         expect(addAdminResponse.status).to.equal(403);
         expect(addAdminResponse.body).to.have.property('error').to.equal(`Hozzáférés megtagadva. Admin jogosultságok szükségesek.`);
     });
 
     it('Sikeres felhasználó törlés', async () => {
-        // Felhasználó törlése a deleteUserById végponton keresztül
         const deleteUserResponse = await request.delete('/users/deleteProfile')
-            .set('Authorization', `${authToken}`); // Az authMiddleware által beállított userId alapján
+            .set('Authorization', `${authToken}`); 
 
-        // Válasz ellenőrzése
         expect(deleteUserResponse.status).to.equal(200);
         expect(deleteUserResponse.body).to.have.property('success').to.be.true;
         expect(deleteUserResponse.body).to.have.property('message').to.equal('Felhasználó sikeresen törölve');

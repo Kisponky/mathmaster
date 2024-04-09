@@ -9,7 +9,6 @@ var radio = [];
 var osztaly = document.getElementById('osztaly');
 
 
-// Fő függvény a bemenet ellenőrzéséhez és a formok megjelenítéséhez
 function checkInput() {
     var darabSzamInput = document.getElementById("darabSzamInput");
     darab = parseInt(darabSzamInput.value);
@@ -39,7 +38,6 @@ function checkInput() {
 
 
 
-//Megjeleníti a megadott űrlap számát a képernyőn, és elrejti az összes többit.
 function showForm(formNumber) {
     for (var i = 1; i <= 10; i++) {
         document.getElementById("form" + i).classList.add("d-none");
@@ -49,14 +47,8 @@ function showForm(formNumber) {
 
 
 
-/*
-  Ellenőrzi a jelenlegi űrlapon lévő mezők kitöltését és a helyes válasz kiválasztását.
-  Ha minden szükséges mező ki van töltve, és a helyes válasz kiválasztva, akkor a következő űrlapot jeleníti meg.
-  Ellenkező esetben hibaüzenet jelenik meg.
-*/
+
 function next() {
-    // var currentFormElement = document.getElementById("form" + currentForm);
-    // var inputs = currentFormElement.getElementsByTagName("input");
 
     var kerdesInput = document.getElementById("kerdes" + currentForm).value;
     var valaszAInput = document.getElementById("valaszA" + currentForm).value;
@@ -108,9 +100,6 @@ function next() {
 
 
 
-/*
-  Az összes kitöltött űrlap és a hozzájuk tartozó mezők megjelenítése, valamint azok letiltása.
-*/
 function showAllData() {
     document.getElementById("formButton").innerHTML = "Feltöltés"
     for (var i = 0; i < darab; i++) {
@@ -131,11 +120,10 @@ function showAllData() {
 }
 
 
-// Példa fetch hívás a kliensoldalról a /task/new végpontra
 const createNewTask = async () => {
-    const studentClass = osztaly.value; // Helyettesítsd a saját osztálynévvel
-    const content = kerdesek; // Helyettesítsd a saját feladattartalommal
-    const answer = [valaszokA, valaszokB, valaszokC, valaszokD, radio]; // Helyettesítsd a saját válasszal
+    const studentClass = osztaly.value; 
+    const content = kerdesek; 
+    const answer = [valaszokA, valaszokB, valaszokC, valaszokD, radio]; 
     console.log(answer)
 
     try {
@@ -150,7 +138,7 @@ const createNewTask = async () => {
 
       if (response.ok) {
         const result = await response.json();
-        console.log(result); // Sikeres válasz esetén
+        console.log(result); 
         Swal.fire({
             title: "Sikeres feltöltés",
             icon: "success",
@@ -167,5 +155,3 @@ const createNewTask = async () => {
       console.error('Hiba a fetch hívás során:', error);
     }
 };
-
-// Hívjuk meg a createNewTask funkciót

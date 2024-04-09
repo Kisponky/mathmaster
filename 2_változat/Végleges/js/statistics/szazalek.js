@@ -2,44 +2,6 @@ var szazalekCtx = document.getElementById('szazalekChart').getContext('2d');
 var szazalekChart;
 
 
-
-// osszeadasH = [2, 3, 3, 3, 1, 4];
-// osszeadasO = [3, 4, 6, 4, 1, 7];
-
-
-// var kivonasH = [0, 0, 0, 0, 0, 0];
-// var kivonasO = [0, 0, 0, 0, 0, 0];
-// var kivonas = [];
-// for (let i = 0; i < kivonasH.length; i++) {
-//     if (kivonasO[i] != 0) {
-//         kivonas.push((kivonasH[i] / kivonasO[i]) * 100);
-//     } else {
-//         kivonas.push(0)
-//     }
-// }
-
-// var szorzasH = [0, 0, 0, 0, 0, 0];
-// var szorzasO = [0, 0, 0, 0, 0, 0];
-// var szorzas = [];
-// for (let i = 0; i < szorzasH.length; i++) {
-//     if (szorzasO[i] != 0) {
-//         szorzas.push((szorzasH[i] / szorzasO[i]) * 100);
-//     } else {
-//         szorzas.push(0)
-//     }
-// }
-
-// var osztasH = [0, 0, 0, 0, 0, 0];
-// var osztasO = [0, 0, 0, 0, 0, 0];
-// var osztas = [];
-// for (let i = 0; i < osztasH.length; i++) {
-//     if (osztasO[i] != 0) {
-//         osztas.push((osztasH[i] / osztasO[i]) * 100);
-//     } else {
-//         osztas.push(0)
-//     }
-// }
-
 function chart() {
     if (szazalekChart) {
         szazalekChart.destroy();
@@ -152,16 +114,7 @@ window.addEventListener('resize', function () {
     chart();
 });
 
-// chart();
-
-
-/*Nagy Ferót megkérdezni, hogyan lakítsuk ki a mobil nézetet és a nála nagyobb méreteket,
-amikor üres rész kerül a diagram alá*/
-
-
-// mychart.js
 document.addEventListener('DOMContentLoaded', function () {
-    // Itt folytathatod a mychart.js logikádat
     chart();
     updateChart();
 });

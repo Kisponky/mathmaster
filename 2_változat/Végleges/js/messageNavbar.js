@@ -11,7 +11,6 @@ function navBar() {
     uzeneteim.innerHTML = '';
     admin.innerHTML = '';
 
-    // Felhasználó bejelentkezésének ellenőrzése
     if (localStorage.getItem("token")) {
         navbarMenu.innerHTML += getMenuHTML();
     } else {
@@ -20,7 +19,6 @@ function navBar() {
 
 
 
-    // Profilom menü elrejtése, ha a felhasználó nincs bejelentkezve
     if (!localStorage.getItem("token")) {
         document.getElementById("profilom").style.display = "none";
     } else {
@@ -29,7 +27,6 @@ function navBar() {
 
 
 
-    // Üzenetek menüpont megjelenítése
     if (!localStorage.getItem("admin")) {
         if (window.location.href.includes("message")) {
             uzeneteim.innerHTML += '<li><a class="dropdown-item active" href="./messages.html">Üzeneteim</a></li>';
@@ -40,7 +37,6 @@ function navBar() {
 
 
 
-    // Admin menüpont megjelenítése
     if (localStorage.getItem("admin")) {
         if (window.location.href.includes("new_task.html")) {
             new_task.innerHTML += '<li><a class="dropdown-item active" href="./new_task.html">Új feladat...</a></li>';
@@ -51,7 +47,6 @@ function navBar() {
     }
 }
 
-// Függvény a menüpontok HTML kódjának generálásához
 function getMenuHTML() {
     var menuHTML='';
     menuHTML += '<li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Kezdőlap</a></li>';

@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-// Admin-e
 function adminCheck() {
     const token = localStorage.getItem('token');
     const url = 'http://localhost:8000/api/auth/check-admin';
@@ -39,7 +38,6 @@ function adminCheck() {
 
 
 
-// Üzenetek betöltése és megjelenítése
 function uezenetekBetolt() {
     const url = 'http://localhost:8000/api/admin/messages';
     const token = localStorage.getItem('token');
@@ -62,7 +60,6 @@ function uezenetekBetolt() {
         .catch(error => console.error('Hiba a fetch kérés során:', error));
 }
 
-// Üzenet kiírása html-ben
 function createMessageHTML(kapcsolat) {
     return `
         <div class="message-buborek" id="message-buborek${kapcsolat.kapcsolat_id}">
@@ -87,7 +84,6 @@ function createMessageHTML(kapcsolat) {
     `;
 }
 
-// Válaszmező megjelenítése
 function valaszInputMezo(id) {
     const inputMezo = document.getElementById(`inputMezo${id}`);
     inputMezo.style.display = "block";
@@ -95,7 +91,6 @@ function valaszInputMezo(id) {
     inputButton.style.display = "block";
 }
 
-// Válasz küldése
 function valaszKuldes(id) {
     const valaszUzenet = document.getElementById(`inputMezo${id}`).value;
     const url = `http://localhost:8000/api/admin/valasz/${id}`;
@@ -121,7 +116,6 @@ function valaszKuldes(id) {
         });
 }
 
-// Üzenet törlése
 function torles(id) {
     const url = `http://localhost:8000/api/admin/kapcsolat/${id}`;
     const token = localStorage.getItem('token');
@@ -158,7 +152,6 @@ function torles(id) {
 
 
 
-// Admin felvétel funkció
 function adminFelvetel() {
     const url = 'http://localhost:8000/users/newAdmin';
     const token = localStorage.getItem('token');
